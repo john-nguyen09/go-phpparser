@@ -1,0 +1,8 @@
+OpenTag 0 6 ModeInitial
+Dollar 6 1 ModeScripting
+OpenBrace 7 1 ModeScripting
+VariableName 8 4 ModeScripting ModeScripting
+Arrow 12 2 ModeScripting ModeScripting
+Name 14 3 ModeScripting ModeScripting ModeLookingForProperty
+CloseBrace 17 1 ModeScripting ModeScripting
+Semicolon 18 1 ModeScripting

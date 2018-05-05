@@ -1,0 +1,2 @@
+<?php
+$c = new class {};

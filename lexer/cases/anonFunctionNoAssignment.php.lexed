@@ -1,0 +1,10 @@
+OpenTag 0 6 ModeInitial
+Function 6 8 ModeScripting
+Whitespace 14 1 ModeScripting
+OpenParenthesis 15 1 ModeScripting
+CloseParenthesis 16 1 ModeScripting
+Whitespace 17 1 ModeScripting
+OpenBrace 18 1 ModeScripting
+Whitespace 19 1 ModeScripting ModeScripting
+CloseBrace 20 1 ModeScripting ModeScripting
+Semicolon 21 1 ModeScripting
