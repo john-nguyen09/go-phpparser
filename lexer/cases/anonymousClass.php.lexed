@@ -1,0 +1,12 @@
+OpenTag 0 6 ModeInitial
+VariableName 6 2 ModeScripting
+Whitespace 8 1 ModeScripting
+Equals 9 1 ModeScripting
+Whitespace 10 1 ModeScripting
+New 11 3 ModeScripting
+Whitespace 14 1 ModeScripting
+Class 15 5 ModeScripting
+Whitespace 20 1 ModeScripting
+OpenBrace 21 1 ModeScripting
+CloseBrace 22 1 ModeScripting ModeScripting
+Semicolon 23 1 ModeScripting
