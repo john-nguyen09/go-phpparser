@@ -8,11 +8,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/john-nguyen09/phpparser/lexer"
+	"github.com/john-nguyen09/go-phpparser/lexer"
 )
 
 func TestLexer(t *testing.T) {
-	dir := "./cases"
+	dir := "../cases"
 	files, err := ioutil.ReadDir(dir)
 
 	if err != nil {

@@ -1,0 +1,26 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-ExpressionStatement
+--SimpleAssignmentExpression
+---SimpleVariable
+----VariableName 6 6 ModeScripting
+---Whitespace 12 1 ModeScripting
+---Equals 13 1 ModeScripting
+---Whitespace 14 1 ModeScripting
+---ArrayCreationExpression
+----OpenBracket 15 1 ModeScripting
+----ArrayInitialiserList
+-----ArrayElement
+------ArrayValue
+-------StringLiteral 16 3 ModeScripting
+-----Error
+-----ArrayElement
+------ArrayValue
+-------StringLiteral 19 3 ModeScripting
+-----Comma 22 1 ModeScripting
+-----ArrayElement
+------ArrayValue
+-------StringLiteral 23 3 ModeScripting
+----CloseBracket 26 1 ModeScripting
+--Semicolon 27 1 ModeScripting

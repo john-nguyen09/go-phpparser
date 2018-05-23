@@ -1,0 +1,6 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-Error
+--CloseBracket 6 1 ModeScripting
+--Comma 7 1 ModeScripting

@@ -1,0 +1,16 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-ExpressionStatement
+--SimpleVariable
+---Dollar 6 1 ModeScripting
+---EncapsulatedExpression
+----OpenBrace 7 1 ModeScripting
+----PropertyAccessExpression
+-----SimpleVariable
+------VariableName 8 4 ModeScripting ModeScripting
+-----Arrow 12 2 ModeScripting ModeScripting
+-----MemberName
+------Name 14 3 ModeScripting ModeScripting ModeLookingForProperty
+----CloseBrace 17 1 ModeScripting ModeScripting
+--Semicolon 18 1 ModeScripting
