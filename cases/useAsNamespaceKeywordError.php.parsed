@@ -1,0 +1,18 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-Whitespace 6 4 ModeScripting
+-NamespaceUseDeclaration
+--Use 10 3 ModeScripting
+--Whitespace 13 1 ModeScripting
+--NamespaceUseClauseList
+---NamespaceUseClause
+----NamespaceName
+-----Name 14 6 ModeScripting
+----Whitespace 20 1 ModeScripting
+----NamespaceAliasingClause
+-----As 21 2 ModeScripting
+-----Error
+------Whitespace 23 1 ModeScripting
+------Namespace 24 9 ModeScripting
+--Semicolon 33 1 ModeScripting

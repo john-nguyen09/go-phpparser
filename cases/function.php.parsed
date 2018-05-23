@@ -1,0 +1,38 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-Whitespace 6 5 ModeScripting
+-DocumentComment 11 15 ModeScripting
+-Whitespace 26 5 ModeScripting
+-FunctionDeclaration
+--FunctionDeclarationHeader
+---Function 31 8 ModeScripting
+---Whitespace 39 1 ModeScripting
+---Name 40 10 ModeScripting
+---OpenParenthesis 50 1 ModeScripting
+---ParameterDeclarationList
+----ParameterDeclaration
+-----TypeDeclaration
+------QualifiedName
+-------NamespaceName
+--------Name 51 6 ModeScripting
+-----Whitespace 57 1 ModeScripting
+-----VariableName 58 7 ModeScripting
+-----Whitespace 65 1 ModeScripting
+-----Equals 66 1 ModeScripting
+-----Whitespace 67 1 ModeScripting
+-----StringLiteral 68 13 ModeScripting
+---CloseParenthesis 81 1 ModeScripting
+---Whitespace 82 1 ModeScripting
+---ReturnType
+----Colon 83 1 ModeScripting
+----Whitespace 84 1 ModeScripting
+----TypeDeclaration
+-----QualifiedName
+------NamespaceName
+-------Name 85 6 ModeScripting
+--Whitespace 91 1 ModeScripting
+--FunctionDeclarationBody
+---OpenBrace 92 1 ModeScripting
+---Whitespace 93 1 ModeScripting ModeScripting
+---CloseBrace 94 1 ModeScripting ModeScripting

@@ -1,0 +1,20 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-ExpressionStatement
+--SimpleAssignmentExpression
+---SimpleVariable
+----VariableName 6 4 ModeScripting
+---Whitespace 10 1 ModeScripting
+---Equals 11 1 ModeScripting
+---Whitespace 12 1 ModeScripting
+---HeredocStringLiteral
+----StartHeredoc 13 7 ModeScripting
+----EncapsulatedVariableList
+-----EncapsulatedAndWhitespace 20 6 ModeHereDoc
+-----SimpleVariable
+------VariableName 26 6 ModeHereDoc
+-----EncapsulatedAndWhitespace 32 0 ModeHereDoc
+----EndHeredoc 32 4 ModeEndHereDoc
+--Semicolon 36 1 ModeScripting
+-Whitespace 37 1 ModeScripting

@@ -1,0 +1,9 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-CompoundStatement
+--OpenBrace 6 1 ModeScripting
+--Whitespace 7 1 ModeScripting ModeScripting
+--Comment 8 4 ModeScripting ModeScripting
+--Whitespace 12 1 ModeScripting ModeScripting
+--CloseBrace 13 1 ModeScripting ModeScripting

@@ -1,0 +1,20 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-Whitespace 6 4 ModeScripting
+-ClassDeclaration
+--ClassDeclarationHeader
+---Class 10 5 ModeScripting
+---Whitespace 15 1 ModeScripting
+---Name 16 7 ModeScripting
+--Whitespace 23 1 ModeScripting
+--ClassDeclarationBody
+---OpenBrace 24 1 ModeScripting
+---Whitespace 25 9 ModeScripting ModeScripting
+---ClassMemberDeclarationList
+----ErrorClassMemberDeclaration
+-----MemberModifierList
+------Public 34 6 ModeScripting ModeScripting
+-----Error
+---Whitespace 40 5 ModeScripting ModeScripting
+---CloseBrace 45 1 ModeScripting ModeScripting

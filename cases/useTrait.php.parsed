@@ -1,0 +1,25 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-Whitespace 6 4 ModeScripting
+-ClassDeclaration
+--ClassDeclarationHeader
+---Class 10 5 ModeScripting
+---Whitespace 15 1 ModeScripting
+---Name 16 3 ModeScripting
+--Whitespace 19 1 ModeScripting
+--ClassDeclarationBody
+---OpenBrace 20 1 ModeScripting
+---Whitespace 21 9 ModeScripting ModeScripting
+---ClassMemberDeclarationList
+----TraitUseClause
+-----Use 30 3 ModeScripting ModeScripting
+-----Whitespace 33 1 ModeScripting ModeScripting
+-----QualifiedNameList
+------QualifiedName
+-------NamespaceName
+--------Name 34 3 ModeScripting ModeScripting
+-----TraitUseSpecification
+------Semicolon 37 1 ModeScripting ModeScripting
+---Whitespace 38 5 ModeScripting ModeScripting
+---CloseBrace 43 1 ModeScripting ModeScripting

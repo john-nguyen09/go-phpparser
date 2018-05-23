@@ -1,0 +1,25 @@
+StatementList
+-EchoIntrinsic
+--OpenTagEcho 0 3 ModeInitial
+--Whitespace 3 1 ModeScripting
+--ExpressionList
+---SimpleVariable
+----VariableName 4 2 ModeScripting
+---Comma 6 1 ModeScripting
+---Whitespace 7 1 ModeScripting
+---SimpleVariable
+----VariableName 8 2 ModeScripting
+--Semicolon 10 1 ModeScripting
+-Whitespace 11 1 ModeScripting
+-ExpressionStatement
+--SimpleAssignmentExpression
+---SimpleVariable
+----VariableName 12 2 ModeScripting
+---Whitespace 14 1 ModeScripting
+---Equals 15 1 ModeScripting
+---Whitespace 16 1 ModeScripting
+---SimpleVariable
+----VariableName 17 2 ModeScripting
+-Whitespace 19 1 ModeScripting
+-InlineText
+--CloseTag 20 2 ModeScripting

@@ -1,0 +1,27 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-Whitespace 6 4 ModeScripting
+-ExpressionStatement
+--SimpleAssignmentExpression
+---SimpleVariable
+----VariableName 10 4 ModeScripting
+---Whitespace 14 1 ModeScripting
+---Equals 15 1 ModeScripting
+---Whitespace 16 1 ModeScripting
+---DoubleQuotedStringLiteral
+----DoubleQuote 17 1 ModeScripting
+----EncapsulatedVariableList
+-----EncapsulatedAndWhitespace 18 6 ModeDoubleQuotes
+-----EncapsulatedVariable
+------DollarCurlyOpen 24 2 ModeDoubleQuotes
+------DoubleQuotedStringLiteral
+-------DoubleQuote 26 1 ModeDoubleQuotes ModeScripting
+-------EncapsulatedVariableList
+--------EncapsulatedAndWhitespace 27 4 ModeDoubleQuotes ModeDoubleQuotes
+--------SimpleVariable
+---------VariableName 31 2 ModeDoubleQuotes ModeDoubleQuotes
+-------DoubleQuote 33 1 ModeDoubleQuotes ModeDoubleQuotes
+------CloseBrace 34 1 ModeDoubleQuotes ModeScripting
+----DoubleQuote 35 1 ModeDoubleQuotes
+--Semicolon 36 1 ModeScripting

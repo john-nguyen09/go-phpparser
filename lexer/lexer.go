@@ -10,7 +10,8 @@ type TokenType uint8
 
 const (
 	// Misc
-	Unknown TokenType = iota
+	Undefined TokenType = iota
+	Unknown
 	EndOfFile
 
 	Abstract
@@ -569,8 +570,8 @@ func NewToken(tokenType TokenType, offset int, length int, modeStack []LexerMode
 	return &Token{tokenType, offset, length, modeStack}
 }
 
-func (token *Token) TokenType() TokenType {
-	return token.Type
+// AstNode is a boilerplate for extending interface
+func (token Token) AstNode() {
 }
 
 func (token Token) String() string {

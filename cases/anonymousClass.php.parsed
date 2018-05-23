@@ -1,0 +1,21 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-ExpressionStatement
+--SimpleAssignmentExpression
+---SimpleVariable
+----VariableName 6 2 ModeScripting
+---Whitespace 8 1 ModeScripting
+---Equals 9 1 ModeScripting
+---Whitespace 10 1 ModeScripting
+---ObjectCreationExpression
+----New 11 3 ModeScripting
+----Whitespace 14 1 ModeScripting
+----AnonymousClassDeclaration
+-----AnonymousClassDeclarationHeader
+------Class 15 5 ModeScripting
+-----Whitespace 20 1 ModeScripting
+-----ClassDeclarationBody
+------OpenBrace 21 1 ModeScripting
+------CloseBrace 22 1 ModeScripting ModeScripting
+--Semicolon 23 1 ModeScripting
