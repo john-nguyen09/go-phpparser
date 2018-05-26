@@ -992,9 +992,9 @@ func (s *LexerState) scriptingLessThan() *Token {
 
 					if heredoc != nil {
 						return heredoc
-					} else {
-						s.position += 2
 					}
+
+					s.position += 2
 				}
 			}
 
@@ -1327,10 +1327,12 @@ func (s *LexerState) scriptingSingleQuote(start int) *Token {
 			if s.input[s.position] == '\'' {
 				s.position++
 				break
-			}
-
-			s.position++
-			if s.position < s.inputLength && s.input[s.position] == '\\' {
+			} else if s.input[s.position] == '\\' {
+				s.position++
+				if s.position < s.inputLength {
+					s.position++
+				}
+			} else {
 				s.position++
 			}
 
@@ -1604,7 +1606,7 @@ func (s *LexerState) scriptingHeredoc(start int) *Token {
 	var labelStart int
 	var labelEnd int
 
-	for kPlus3 := k + 3; k < kPlus3; k++ {
+	for posPlus3 := k + 3; k < posPlus3; k++ {
 		if k >= s.inputLength || s.input[k] != '<' {
 			return nil
 		}

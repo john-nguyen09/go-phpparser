@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/john-nguyen09/go-phpparser/lexer"
 	"github.com/john-nguyen09/go-phpparser/parser"
@@ -49,6 +51,28 @@ func TestParser(t *testing.T) {
 		outFile.Close()
 	}
 
+}
+
+func TestPerformance(t *testing.T) {
+	dir := "../cases/moodle"
+
+	start := time.Now()
+	filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
+		if !f.IsDir() && strings.HasSuffix(path, ".php") {
+			data, err := ioutil.ReadFile(path)
+
+			if err != nil {
+				return err
+			}
+
+			parser.Parse(string(data))
+		}
+
+		return nil
+	})
+	elapsed := time.Since(start)
+
+	fmt.Printf("Parser took %s to finish", elapsed)
 }
 
 func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {

@@ -685,7 +685,11 @@ func (doc *Parser) ternaryExpression(testExpr phrase.AstNode) *phrase.Phrase {
 
 func (doc *Parser) variableOrExpression() phrase.AstNode {
 	part := doc.variableAtom()
-	isVariable := part.(*phrase.Phrase).Type == phrase.SimpleVariable
+	isVariable := false
+
+	if p, ok := part.(*phrase.Phrase); ok {
+		isVariable = p.Type == phrase.SimpleVariable
+	}
 
 	if isDereferenceOperator(doc.peek(0)) {
 		part = doc.variable(part)

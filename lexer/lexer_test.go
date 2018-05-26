@@ -25,6 +25,10 @@ func TestLexer(t *testing.T) {
 			continue
 		}
 
+		if file.Name() != "antivirus_clamav.php" {
+			continue
+		}
+
 		filePath := dir + "/" + file.Name()
 		data, err := ioutil.ReadFile(filePath)
 
