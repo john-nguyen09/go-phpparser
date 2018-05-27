@@ -995,8 +995,6 @@ func (doc *Parser) encapsulatedVariable() phrase.AstNode {
 	t := doc.peek(0)
 
 	panic(errors.New("Unexpected token: " + t.Type.String()))
-
-	return nil
 }
 
 func (doc *Parser) curlyOpenEncapsulatedVariable() *phrase.Phrase {
@@ -1193,8 +1191,6 @@ func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 	}
 
 	panic(errors.New("Unexpected token: " + t.Type.String()))
-
-	return nil
 }
 
 func (doc *Parser) traitUseClause(p *phrase.Phrase) *phrase.Phrase {

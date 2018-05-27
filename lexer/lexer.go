@@ -1375,6 +1375,7 @@ func (s *LexerState) scriptingDoubleQuote(start int) *Token {
 			if n < s.inputLength {
 				n++
 			}
+			continue
 		/* fall through */
 		default:
 			continue

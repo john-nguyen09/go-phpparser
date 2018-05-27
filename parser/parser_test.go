@@ -59,6 +59,10 @@ func TestPerformance(t *testing.T) {
 	start := time.Now()
 	filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
 		if !f.IsDir() && strings.HasSuffix(path, ".php") {
+			if path != "..\\cases\\moodle\\admin\\tests\\behat\\behat_admin.php" {
+				return nil
+			}
+
 			data, err := ioutil.ReadFile(path)
 
 			if err != nil {
@@ -72,7 +76,7 @@ func TestPerformance(t *testing.T) {
 	})
 	elapsed := time.Since(start)
 
-	fmt.Printf("Parser took %s to finish", elapsed)
+	fmt.Printf("Parser took %s to finish\n", elapsed)
 }
 
 func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {
