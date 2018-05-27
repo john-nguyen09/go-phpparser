@@ -3122,6 +3122,7 @@ func (doc *Parser) namespaceUseClauseFunction(nsName *phrase.Phrase) func() phra
 
 		if nsName != nil {
 			p.Children = append(p.Children, nsName)
+			nsName = nil
 		} else {
 			p.Children = append(p.Children, doc.namespaceName())
 		}
