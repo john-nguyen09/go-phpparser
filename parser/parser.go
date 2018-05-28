@@ -250,13 +250,6 @@ func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
 	return -1
 }
 
-func getCopyOfTokenTypes(set []lexer.TokenType) []lexer.TokenType {
-	copySet := make([]lexer.TokenType, len(set))
-	copy(copySet, set)
-
-	return copySet
-}
-
 func Parse(text string) *phrase.Phrase {
 	doc := &Parser{lexer.NewLexerState(text, nil, 0),
 		make([]*lexer.Token, 0),
@@ -572,7 +565,7 @@ func (doc *Parser) statementList(breakOn []lexer.TokenType) *phrase.Phrase {
 		doc.statement,
 		isStatementStart,
 		breakOn,
-		getCopyOfTokenTypes(statementListRecoverSet))
+		statementListRecoverSet[:])
 }
 
 func (doc *Parser) constDeclaration() *phrase.Phrase {
@@ -956,7 +949,7 @@ func (doc *Parser) encapsulatedVariableList(breakOn lexer.TokenType) *phrase.Phr
 		doc.encapsulatedVariable,
 		isEncapsulatedVariableStart,
 		[]lexer.TokenType{breakOn},
-		getCopyOfTokenTypes(encapsulatedVariableListRecoverSet))
+		encapsulatedVariableListRecoverSet)
 }
 
 func isEncapsulatedVariableStart(t *lexer.Token) bool {
@@ -1127,7 +1120,7 @@ func (doc *Parser) classMemberDeclarationList() *phrase.Phrase {
 		doc.classMemberDeclaration,
 		isClassMemberStart,
 		[]lexer.TokenType{lexer.CloseBrace},
-		getCopyOfTokenTypes(classMemberDeclarationListRecoverSet))
+		classMemberDeclarationListRecoverSet)
 }
 
 func isClassMemberStart(t *lexer.Token) bool {
@@ -1399,7 +1392,7 @@ func (doc *Parser) interfaceMemberDeclarations() *phrase.Phrase {
 		doc.classMemberDeclaration,
 		isClassMemberStart,
 		[]lexer.TokenType{lexer.CloseBrace},
-		getCopyOfTokenTypes(classMemberDeclarationListRecoverSet))
+		classMemberDeclarationListRecoverSet)
 }
 
 func (doc *Parser) interfaceDeclarationHeader() *phrase.Phrase {
@@ -1446,7 +1439,7 @@ func (doc *Parser) traitMemberDeclarations() *phrase.Phrase {
 		doc.classMemberDeclaration,
 		isClassMemberStart,
 		[]lexer.TokenType{lexer.CloseBrace},
-		getCopyOfTokenTypes(classMemberDeclarationListRecoverSet))
+		classMemberDeclarationListRecoverSet[:])
 }
 
 func (doc *Parser) functionDeclaration() *phrase.Phrase {
