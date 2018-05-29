@@ -2,7 +2,7 @@ const fs = require('fs');
 const lexer = require('php7parser').Lexer;
 const tokenTypeToString = require('php7parser').tokenTypeToString;
 
-const dir = './lexer/cases';
+const dir = './cases';
 
 fs.readdir(dir, (err, files) => {
     if (err) {

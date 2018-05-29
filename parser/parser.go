@@ -250,13 +250,6 @@ func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
 	return -1
 }
 
-func getCopyOfTokenTypes(set []lexer.TokenType) []lexer.TokenType {
-	copySet := make([]lexer.TokenType, len(set))
-	copy(copySet, set)
-
-	return copySet
-}
-
 func Parse(text string) *phrase.Phrase {
 	doc := &Parser{lexer.NewLexerState(text, nil, 0),
 		make([]*lexer.Token, 0),
@@ -572,7 +565,7 @@ func (doc *Parser) statementList(breakOn []lexer.TokenType) *phrase.Phrase {
 		doc.statement,
 		isStatementStart,
 		breakOn,
-		getCopyOfTokenTypes(statementListRecoverSet))
+		statementListRecoverSet[:])
 }
 
 func (doc *Parser) constDeclaration() *phrase.Phrase {
@@ -685,7 +678,11 @@ func (doc *Parser) ternaryExpression(testExpr phrase.AstNode) *phrase.Phrase {
 
 func (doc *Parser) variableOrExpression() phrase.AstNode {
 	part := doc.variableAtom()
-	isVariable := part.(*phrase.Phrase).Type == phrase.SimpleVariable
+	isVariable := false
+
+	if p, ok := part.(*phrase.Phrase); ok {
+		isVariable = p.Type == phrase.SimpleVariable
+	}
 
 	if isDereferenceOperator(doc.peek(0)) {
 		part = doc.variable(part)
@@ -952,7 +949,7 @@ func (doc *Parser) encapsulatedVariableList(breakOn lexer.TokenType) *phrase.Phr
 		doc.encapsulatedVariable,
 		isEncapsulatedVariableStart,
 		[]lexer.TokenType{breakOn},
-		getCopyOfTokenTypes(encapsulatedVariableListRecoverSet))
+		encapsulatedVariableListRecoverSet)
 }
 
 func isEncapsulatedVariableStart(t *lexer.Token) bool {
@@ -991,8 +988,6 @@ func (doc *Parser) encapsulatedVariable() phrase.AstNode {
 	t := doc.peek(0)
 
 	panic(errors.New("Unexpected token: " + t.Type.String()))
-
-	return nil
 }
 
 func (doc *Parser) curlyOpenEncapsulatedVariable() *phrase.Phrase {
@@ -1125,7 +1120,7 @@ func (doc *Parser) classMemberDeclarationList() *phrase.Phrase {
 		doc.classMemberDeclaration,
 		isClassMemberStart,
 		[]lexer.TokenType{lexer.CloseBrace},
-		getCopyOfTokenTypes(classMemberDeclarationListRecoverSet))
+		classMemberDeclarationListRecoverSet)
 }
 
 func isClassMemberStart(t *lexer.Token) bool {
@@ -1189,8 +1184,6 @@ func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 	}
 
 	panic(errors.New("Unexpected token: " + t.Type.String()))
-
-	return nil
 }
 
 func (doc *Parser) traitUseClause(p *phrase.Phrase) *phrase.Phrase {
@@ -1399,7 +1392,7 @@ func (doc *Parser) interfaceMemberDeclarations() *phrase.Phrase {
 		doc.classMemberDeclaration,
 		isClassMemberStart,
 		[]lexer.TokenType{lexer.CloseBrace},
-		getCopyOfTokenTypes(classMemberDeclarationListRecoverSet))
+		classMemberDeclarationListRecoverSet)
 }
 
 func (doc *Parser) interfaceDeclarationHeader() *phrase.Phrase {
@@ -1446,7 +1439,7 @@ func (doc *Parser) traitMemberDeclarations() *phrase.Phrase {
 		doc.classMemberDeclaration,
 		isClassMemberStart,
 		[]lexer.TokenType{lexer.CloseBrace},
-		getCopyOfTokenTypes(classMemberDeclarationListRecoverSet))
+		classMemberDeclarationListRecoverSet[:])
 }
 
 func (doc *Parser) functionDeclaration() *phrase.Phrase {
@@ -3122,6 +3115,7 @@ func (doc *Parser) namespaceUseClauseFunction(nsName *phrase.Phrase) func() phra
 
 		if nsName != nil {
 			p.Children = append(p.Children, nsName)
+			nsName = nil
 		} else {
 			p.Children = append(p.Children, doc.namespaceName())
 		}

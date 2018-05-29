@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -49,6 +50,24 @@ func TestParser(t *testing.T) {
 		outFile.Close()
 	}
 
+}
+
+func BenchmarkParser(t *testing.B) {
+	dir := "../cases/moodle"
+
+	filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
+		if !f.IsDir() && strings.HasSuffix(path, ".php") {
+			data, err := ioutil.ReadFile(path)
+
+			if err != nil {
+				return err
+			}
+
+			parser.Parse(string(data))
+		}
+
+		return nil
+	})
 }
 
 func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {
