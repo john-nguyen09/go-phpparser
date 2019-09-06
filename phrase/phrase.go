@@ -1,6 +1,10 @@
 package phrase
 
-import "github.com/john-nguyen09/go-phpparser/lexer"
+import (
+	"bytes"
+
+	"github.com/john-nguyen09/go-phpparser/lexer"
+)
 
 type PhraseType uint8
 
@@ -565,7 +569,7 @@ type AstNode interface {
 }
 
 type Phrase struct {
-	Type     PhraseType
+	Type     PhraseType `json:"PhraseType"`
 	Children []AstNode
 }
 
@@ -577,6 +581,14 @@ type ParseError struct {
 
 // AstNode is to extend interface
 func (p Phrase) AstNode() {
+}
+
+func (phraseType *PhraseType) MarshalJSON() ([]byte, error) {
+	buffer := bytes.NewBufferString(`"`)
+	buffer.WriteString(phraseType.String())
+	buffer.WriteString(`"`)
+
+	return buffer.Bytes(), nil
 }
 
 func NewPhrase(phraseType PhraseType, children []AstNode) *Phrase {

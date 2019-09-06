@@ -1,6 +1,7 @@
 package lexer
 
 import (
+	"bytes"
 	"regexp"
 	"strconv"
 	"strings"
@@ -560,10 +561,10 @@ func (mode LexerMode) String() string {
 }
 
 type Token struct {
-	Type      TokenType
-	Offset    int
-	Length    int
-	ModeStack []LexerMode
+	Type      TokenType   `json:"TokenType"`
+	Offset    int         `json:"Offset"`
+	Length    int         `json:"Length"`
+	ModeStack []LexerMode `json:"-"`
 }
 
 func NewToken(tokenType TokenType, offset int, length int, modeStack []LexerMode) *Token {
@@ -667,6 +668,14 @@ func (s *LexerState) Lex() *Token {
 	}
 
 	return t
+}
+
+func (tokenType *TokenType) MarshalJSON() ([]byte, error) {
+	buffer := bytes.NewBufferString(`"`)
+	buffer.WriteString(tokenType.String())
+	buffer.WriteString(`"`)
+
+	return buffer.Bytes(), nil
 }
 
 func (s *LexerState) initial() *Token {
