@@ -1304,7 +1304,7 @@ func (doc *Parser) methodReference() *phrase.Phrase {
 func (doc *Parser) methodDeclarationHeader(memberModifers *phrase.Phrase) *phrase.Phrase {
 	p := doc.start(phrase.MethodDeclarationHeader, true)
 	if memberModifers != nil {
-		p.Children = append(p.Children, *memberModifers)
+		p.Children = append(p.Children, memberModifers)
 	}
 	doc.next(false) //function
 	doc.optional(lexer.Ampersand)
