@@ -54,20 +54,26 @@ func TestParser(t *testing.T) {
 
 func BenchmarkParser(t *testing.B) {
 	dir := "../cases/moodle"
+	jobs := make(chan string)
+	numOfWorkers := 4
+
+	for i := 1; i <= numOfWorkers; i++ {
+		go parseWorker(i, jobs)
+	}
 
 	filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
 		if !f.IsDir() && strings.HasSuffix(path, ".php") {
-			data, err := ioutil.ReadFile(path)
-
-			if err != nil {
-				return err
-			}
-
-			parser.Parse(string(data))
+			jobs <- path
 		}
-
 		return nil
 	})
+}
+
+func parseWorker(id int, filePaths <-chan string) {
+	for filePath := range filePaths {
+		data, _ := ioutil.ReadFile(filePath)
+		parser.Parse(string(data))
+	}
 }
 
 func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {

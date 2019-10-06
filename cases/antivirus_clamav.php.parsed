@@ -1,0 +1,12 @@
+StatementList
+-InlineText
+--OpenTag 0 6 ModeInitial
+-ExpressionStatement
+--SimpleAssignmentExpression
+---SimpleVariable
+----VariableName 6 7 ModeScripting
+---Whitespace 13 1 ModeScripting
+---Equals 14 1 ModeScripting
+---Whitespace 15 1 ModeScripting
+---StringLiteral 16 42 ModeScripting
+--Semicolon 58 1 ModeScripting
