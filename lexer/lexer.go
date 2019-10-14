@@ -608,8 +608,7 @@ func NewLexerState(text string, modeStack []LexerMode, position int) *LexerState
 
 // ModeStack returns a copy of modeStack
 func (s *LexerState) ModeStack() []LexerMode {
-	modeStack := make([]LexerMode, len(s.modeStack))
-	copy(modeStack, s.modeStack)
+	modeStack := append(s.modeStack[:0:0], s.modeStack...)
 
 	return modeStack
 }
