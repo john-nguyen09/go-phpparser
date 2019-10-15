@@ -1,6 +1,6 @@
-OpenTag 0 6 ModeInitial
-OpenBrace 6 1 ModeScripting
-Whitespace 7 1 ModeScripting ModeScripting
-Comment 8 4 ModeScripting ModeScripting
-Whitespace 12 1 ModeScripting ModeScripting
-CloseBrace 13 1 ModeScripting ModeScripting
+OpenTag 0 6
+OpenBrace 6 1
+Whitespace 7 1
+Comment 8 4
+Whitespace 12 1
+CloseBrace 13 1

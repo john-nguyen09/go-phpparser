@@ -1,12 +1,12 @@
 StatementList
 -InlineText
---OpenTag 0 6 ModeInitial
+--OpenTag 0 6
 -ExpressionStatement
 --SimpleAssignmentExpression
 ---SimpleVariable
-----VariableName 6 5 ModeScripting
----Whitespace 11 1 ModeScripting
----Equals 12 1 ModeScripting
----Whitespace 13 1 ModeScripting
----IntegerLiteral 14 1 ModeScripting
---Semicolon 15 1 ModeScripting
+----VariableName 6 5
+---Whitespace 11 1
+---Equals 12 1
+---Whitespace 13 1
+---IntegerLiteral 14 1
+--Semicolon 15 1

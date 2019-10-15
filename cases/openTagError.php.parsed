@@ -1,9 +1,9 @@
 StatementList
 -InlineText
---OpenTag 0 2 ModeInitial
+--OpenTag 0 2
 -ExpressionStatement
 --ConstantAccessExpression
 ---QualifiedName
 ----NamespaceName
------Name 2 1 ModeScripting
+-----Name 2 1
 --Error

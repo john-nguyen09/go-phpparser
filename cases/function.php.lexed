@@ -1,24 +1,24 @@
-OpenTag 0 6 ModeInitial
-Whitespace 6 5 ModeScripting
-DocumentComment 11 15 ModeScripting
-Whitespace 26 5 ModeScripting
-Function 31 8 ModeScripting
-Whitespace 39 1 ModeScripting
-Name 40 10 ModeScripting
-OpenParenthesis 50 1 ModeScripting
-Name 51 6 ModeScripting
-Whitespace 57 1 ModeScripting
-VariableName 58 7 ModeScripting
-Whitespace 65 1 ModeScripting
-Equals 66 1 ModeScripting
-Whitespace 67 1 ModeScripting
-StringLiteral 68 13 ModeScripting
-CloseParenthesis 81 1 ModeScripting
-Whitespace 82 1 ModeScripting
-Colon 83 1 ModeScripting
-Whitespace 84 1 ModeScripting
-Name 85 6 ModeScripting
-Whitespace 91 1 ModeScripting
-OpenBrace 92 1 ModeScripting
-Whitespace 93 1 ModeScripting ModeScripting
-CloseBrace 94 1 ModeScripting ModeScripting
+OpenTag 0 6
+Whitespace 6 5
+DocumentComment 11 15
+Whitespace 26 5
+Function 31 8
+Whitespace 39 1
+Name 40 10
+OpenParenthesis 50 1
+Name 51 6
+Whitespace 57 1
+VariableName 58 7
+Whitespace 65 1
+Equals 66 1
+Whitespace 67 1
+StringLiteral 68 13
+CloseParenthesis 81 1
+Whitespace 82 1
+Colon 83 1
+Whitespace 84 1
+Name 85 6
+Whitespace 91 1
+OpenBrace 92 1
+Whitespace 93 1
+CloseBrace 94 1

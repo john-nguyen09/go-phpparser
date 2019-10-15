@@ -1,10 +1,10 @@
-OpenTag 0 6 ModeInitial
-Whitespace 6 4 ModeScripting
-Use 10 3 ModeScripting
-Whitespace 13 1 ModeScripting
-Name 14 6 ModeScripting
-Whitespace 20 1 ModeScripting
-As 21 2 ModeScripting
-Whitespace 23 1 ModeScripting
-Namespace 24 9 ModeScripting
-Semicolon 33 1 ModeScripting
+OpenTag 0 6
+Whitespace 6 4
+Use 10 3
+Whitespace 13 1
+Name 14 6
+Whitespace 20 1
+As 21 2
+Whitespace 23 1
+Namespace 24 9
+Semicolon 33 1

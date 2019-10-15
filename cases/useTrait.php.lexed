@@ -1,14 +1,14 @@
-OpenTag 0 6 ModeInitial
-Whitespace 6 4 ModeScripting
-Class 10 5 ModeScripting
-Whitespace 15 1 ModeScripting
-Name 16 3 ModeScripting
-Whitespace 19 1 ModeScripting
-OpenBrace 20 1 ModeScripting
-Whitespace 21 9 ModeScripting ModeScripting
-Use 30 3 ModeScripting ModeScripting
-Whitespace 33 1 ModeScripting ModeScripting
-Name 34 3 ModeScripting ModeScripting
-Semicolon 37 1 ModeScripting ModeScripting
-Whitespace 38 5 ModeScripting ModeScripting
-CloseBrace 43 1 ModeScripting ModeScripting
+OpenTag 0 6
+Whitespace 6 4
+Class 10 5
+Whitespace 15 1
+Name 16 3
+Whitespace 19 1
+OpenBrace 20 1
+Whitespace 21 9
+Use 30 3
+Whitespace 33 1
+Name 34 3
+Semicolon 37 1
+Whitespace 38 5
+CloseBrace 43 1

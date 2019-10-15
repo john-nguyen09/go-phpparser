@@ -1,8 +1,8 @@
-OpenTag 0 6 ModeInitial
-Whitespace 6 4 ModeScripting
-VariableName 10 6 ModeScripting
-Whitespace 16 1 ModeScripting
-Equals 17 1 ModeScripting
-Whitespace 18 1 ModeScripting
-IntegerLiteral 19 1 ModeScripting
-Semicolon 20 1 ModeScripting
+OpenTag 0 6
+Whitespace 6 4
+VariableName 10 6
+Whitespace 16 1
+Equals 17 1
+Whitespace 18 1
+IntegerLiteral 19 1
+Semicolon 20 1

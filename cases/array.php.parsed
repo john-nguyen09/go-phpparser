@@ -1,31 +1,31 @@
 StatementList
 -InlineText
---OpenTag 0 6 ModeInitial
+--OpenTag 0 6
 -ExpressionStatement
 --SimpleAssignmentExpression
 ---SimpleVariable
-----VariableName 6 6 ModeScripting
----Whitespace 12 1 ModeScripting
----Equals 13 1 ModeScripting
----Whitespace 14 1 ModeScripting
+----VariableName 6 6
+---Whitespace 12 1
+---Equals 13 1
+---Whitespace 14 1
 ---ArrayCreationExpression
-----OpenBracket 15 1 ModeScripting
+----OpenBracket 15 1
 ----ArrayInitialiserList
 -----ArrayElement
 ------ArrayValue
--------IntegerLiteral 16 1 ModeScripting
------Comma 17 1 ModeScripting
+-------IntegerLiteral 16 1
+-----Comma 17 1
 -----ArrayElement
 ------ArrayValue
--------IntegerLiteral 18 1 ModeScripting
------Comma 19 1 ModeScripting
+-------IntegerLiteral 18 1
+-----Comma 19 1
 -----ArrayElement
 ------ArrayValue
--------IntegerLiteral 20 1 ModeScripting
------Comma 21 1 ModeScripting
+-------IntegerLiteral 20 1
+-----Comma 21 1
 -----ArrayElement
 ------ArrayValue
--------IntegerLiteral 22 1 ModeScripting
------Comma 23 1 ModeScripting
-----CloseBracket 24 1 ModeScripting
---Semicolon 25 1 ModeScripting
+-------IntegerLiteral 22 1
+-----Comma 23 1
+----CloseBracket 24 1
+--Semicolon 25 1

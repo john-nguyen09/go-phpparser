@@ -1,9 +1,9 @@
-OpenTag 0 6 ModeInitial
-Whitespace 6 1 ModeScripting
-LessThanLessThan 7 2 ModeScripting
-LessThanLessThan 9 2 ModeScripting
-StartHeredoc 11 9 ModeScripting
-VariableName 20 4 ModeHereDoc
-EncapsulatedAndWhitespace 24 14 ModeHereDoc
-VariableName 38 4 ModeHereDoc
-EncapsulatedAndWhitespace 42 24 ModeHereDoc
+OpenTag 0 6
+Whitespace 6 1
+LessThanLessThan 7 2
+LessThanLessThan 9 2
+StartHeredoc 11 9
+VariableName 20 4
+EncapsulatedAndWhitespace 24 14
+VariableName 38 4
+EncapsulatedAndWhitespace 42 24

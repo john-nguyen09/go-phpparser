@@ -1,14 +1,14 @@
 StatementList
 -InlineText
---OpenTag 0 6 ModeInitial
--Whitespace 6 4 ModeScripting
+--OpenTag 0 6
+-Whitespace 6 4
 -ClassDeclaration
 --ClassDeclarationHeader
----Class 10 5 ModeScripting
----Whitespace 15 1 ModeScripting
----Name 16 7 ModeScripting
---Whitespace 23 1 ModeScripting
+---Class 10 5
+---Whitespace 15 1
+---Name 16 7
+--Whitespace 23 1
 --ClassDeclarationBody
----OpenBrace 24 1 ModeScripting
----Whitespace 25 1 ModeScripting ModeScripting
----CloseBrace 26 1 ModeScripting ModeScripting
+---OpenBrace 24 1
+---Whitespace 25 1
+---CloseBrace 26 1

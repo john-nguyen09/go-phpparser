@@ -1,6 +1,6 @@
 StatementList
 -InlineText
---OpenTag 0 6 ModeInitial
+--OpenTag 0 6
 -Error
---CloseBracket 6 1 ModeScripting
---Comma 7 1 ModeScripting
+--CloseBracket 6 1
+--Comma 7 1
