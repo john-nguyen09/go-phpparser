@@ -1275,12 +1275,14 @@ func (s *LexerState) scriptingNumeric() *Token {
 	for s.position++; s.position < s.inputLength && s.input[s.position] >= '0' && s.input[s.position] <= '9'; s.position++ {
 	}
 
-	if s.input[s.position] == '.' {
-		s.position++
+	if s.position < len(s.input) {
+		if s.input[s.position] == '.' {
+			s.position++
 
-		return s.scriptingNumericStartingWithDotOrE(start, true)
-	} else if s.input[s.position] == 'e' || s.input[s.position] == 'E' {
-		return s.scriptingNumericStartingWithDotOrE(start, false)
+			return s.scriptingNumericStartingWithDotOrE(start, true)
+		} else if s.input[s.position] == 'e' || s.input[s.position] == 'E' {
+			return s.scriptingNumericStartingWithDotOrE(start, false)
+		}
 	}
 
 	return NewToken(IntegerLiteral, start, s.position-start)
