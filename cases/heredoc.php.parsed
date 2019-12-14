@@ -1,20 +1,20 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---SimpleAssignmentExpression
----SimpleVariable
-----VariableName 6 4
----Whitespace 10 1
----Equals 11 1
----Whitespace 12 1
----HeredocStringLiteral
-----StartHeredoc 13 7
-----EncapsulatedVariableList
------EncapsulatedAndWhitespace 20 6
------SimpleVariable
-------VariableName 26 6
------EncapsulatedAndWhitespace 32 0
-----EndHeredoc 32 4
---Semicolon 36 1
--Whitespace 37 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--SimpleAssignmentExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 6 4[Token]
+---Whitespace 10 1[Token]
+---Equals 11 1[Token]
+---Whitespace 12 1[Token]
+---HeredocStringLiteral[Phrase]
+----StartHeredoc 13 7[Token]
+----EncapsulatedVariableList[Phrase]
+-----EncapsulatedAndWhitespace 20 6[Token]
+-----SimpleVariable[Phrase]
+------VariableName 26 6[Token]
+-----EncapsulatedAndWhitespace 32 0[Token]
+----EndHeredoc 32 4[Token]
+--Semicolon 36 1[Token]
+-Whitespace 37 1[Token]

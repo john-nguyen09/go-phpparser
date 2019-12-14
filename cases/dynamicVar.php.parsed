@@ -1,16 +1,16 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---SimpleVariable
----Dollar 6 1
----EncapsulatedExpression
-----OpenBrace 7 1
-----PropertyAccessExpression
------SimpleVariable
-------VariableName 8 4
------Arrow 12 2
------MemberName
-------Name 14 3
-----CloseBrace 17 1
---Semicolon 18 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--SimpleVariable[Phrase]
+---Dollar 6 1[Token]
+---EncapsulatedExpression[Phrase]
+----OpenBrace 7 1[Token]
+----PropertyAccessExpression[Phrase]
+-----SimpleVariable[Phrase]
+------VariableName 8 4[Token]
+-----Arrow 12 2[Token]
+-----MemberName[Phrase]
+------Name 14 3[Token]
+----CloseBrace 17 1[Token]
+--Semicolon 18 1[Token]

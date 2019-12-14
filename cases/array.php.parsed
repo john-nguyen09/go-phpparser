@@ -1,31 +1,31 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---SimpleAssignmentExpression
----SimpleVariable
-----VariableName 6 6
----Whitespace 12 1
----Equals 13 1
----Whitespace 14 1
----ArrayCreationExpression
-----OpenBracket 15 1
-----ArrayInitialiserList
------ArrayElement
-------ArrayValue
--------IntegerLiteral 16 1
------Comma 17 1
------ArrayElement
-------ArrayValue
--------IntegerLiteral 18 1
------Comma 19 1
------ArrayElement
-------ArrayValue
--------IntegerLiteral 20 1
------Comma 21 1
------ArrayElement
-------ArrayValue
--------IntegerLiteral 22 1
------Comma 23 1
-----CloseBracket 24 1
---Semicolon 25 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--SimpleAssignmentExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 6 6[Token]
+---Whitespace 12 1[Token]
+---Equals 13 1[Token]
+---Whitespace 14 1[Token]
+---ArrayCreationExpression[Phrase]
+----OpenBracket 15 1[Token]
+----ArrayInitialiserList[Phrase]
+-----ArrayElement[Phrase]
+------ArrayValue[Phrase]
+-------IntegerLiteral 16 1[Token]
+-----Comma 17 1[Token]
+-----ArrayElement[Phrase]
+------ArrayValue[Phrase]
+-------IntegerLiteral 18 1[Token]
+-----Comma 19 1[Token]
+-----ArrayElement[Phrase]
+------ArrayValue[Phrase]
+-------IntegerLiteral 20 1[Token]
+-----Comma 21 1[Token]
+-----ArrayElement[Phrase]
+------ArrayValue[Phrase]
+-------IntegerLiteral 22 1[Token]
+-----Comma 23 1[Token]
+----CloseBracket 24 1[Token]
+--Semicolon 25 1[Token]

@@ -1,27 +1,27 @@
-StatementList
--InlineText
---OpenTag 0 6
--Whitespace 6 4
--ExpressionStatement
---SimpleAssignmentExpression
----SimpleVariable
-----VariableName 10 4
----Whitespace 14 1
----Equals 15 1
----Whitespace 16 1
----DoubleQuotedStringLiteral
-----DoubleQuote 17 1
-----EncapsulatedVariableList
------EncapsulatedAndWhitespace 18 6
------EncapsulatedVariable
-------DollarCurlyOpen 24 2
-------DoubleQuotedStringLiteral
--------DoubleQuote 26 1
--------EncapsulatedVariableList
---------EncapsulatedAndWhitespace 27 4
---------SimpleVariable
----------VariableName 31 2
--------DoubleQuote 33 1
-------CloseBrace 34 1
-----DoubleQuote 35 1
---Semicolon 36 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-Whitespace 6 4[Token]
+-ExpressionStatement[Phrase]
+--SimpleAssignmentExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 10 4[Token]
+---Whitespace 14 1[Token]
+---Equals 15 1[Token]
+---Whitespace 16 1[Token]
+---DoubleQuotedStringLiteral[Phrase]
+----DoubleQuote 17 1[Token]
+----EncapsulatedVariableList[Phrase]
+-----EncapsulatedAndWhitespace 18 6[Token]
+-----EncapsulatedVariable[Phrase]
+------DollarCurlyOpen 24 2[Token]
+------DoubleQuotedStringLiteral[Phrase]
+-------DoubleQuote 26 1[Token]
+-------EncapsulatedVariableList[Phrase]
+--------EncapsulatedAndWhitespace 27 4[Token]
+--------SimpleVariable[Phrase]
+---------VariableName 31 2[Token]
+-------DoubleQuote 33 1[Token]
+------CloseBrace 34 1[Token]
+----DoubleQuote 35 1[Token]
+--Semicolon 36 1[Token]

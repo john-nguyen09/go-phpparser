@@ -33,8 +33,4 @@ Semicolon 118 1
 Whitespace 119 2
 VariableName 121 9
 Arrow 130 2
-Name 132 7
-OpenParenthesis 139 1
-CloseParenthesis 140 1
-Semicolon 141 1
-Whitespace 142 2
+Whitespace 132 2

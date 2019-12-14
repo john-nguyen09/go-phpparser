@@ -1,25 +1,25 @@
-StatementList
--EchoIntrinsic
---OpenTagEcho 0 3
---Whitespace 3 1
---ExpressionList
----SimpleVariable
-----VariableName 4 2
----Comma 6 1
----Whitespace 7 1
----SimpleVariable
-----VariableName 8 2
---Semicolon 10 1
--Whitespace 11 1
--ExpressionStatement
---SimpleAssignmentExpression
----SimpleVariable
-----VariableName 12 2
----Whitespace 14 1
----Equals 15 1
----Whitespace 16 1
----SimpleVariable
-----VariableName 17 2
--Whitespace 19 1
--InlineText
---CloseTag 20 2
+StatementList[Phrase]
+-EchoIntrinsic[Phrase]
+--OpenTagEcho 0 3[Token]
+--Whitespace 3 1[Token]
+--ExpressionList[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 4 2[Token]
+---Comma 6 1[Token]
+---Whitespace 7 1[Token]
+---SimpleVariable[Phrase]
+----VariableName 8 2[Token]
+--Semicolon 10 1[Token]
+-Whitespace 11 1[Token]
+-ExpressionStatement[Phrase]
+--SimpleAssignmentExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 12 2[Token]
+---Whitespace 14 1[Token]
+---Equals 15 1[Token]
+---Whitespace 16 1[Token]
+---SimpleVariable[Phrase]
+----VariableName 17 2[Token]
+-Whitespace 19 1[Token]
+-InlineText[Phrase]
+--CloseTag 20 2[Token]

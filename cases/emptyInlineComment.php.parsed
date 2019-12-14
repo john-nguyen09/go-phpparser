@@ -1,9 +1,9 @@
-StatementList
--InlineText
---OpenTag 0 6
--CompoundStatement
---OpenBrace 6 1
---Whitespace 7 1
---Comment 8 4
---Whitespace 12 1
---CloseBrace 13 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-CompoundStatement[Phrase]
+--OpenBrace 6 1[Token]
+--Whitespace 7 1[Token]
+--Comment 8 4[Token]
+--Whitespace 12 1[Token]
+--CloseBrace 13 1[Token]

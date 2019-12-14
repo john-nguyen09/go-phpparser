@@ -1,38 +1,38 @@
-StatementList
--InlineText
---OpenTag 0 6
--Whitespace 6 5
--DocumentComment 11 15
--Whitespace 26 5
--FunctionDeclaration
---FunctionDeclarationHeader
----Function 31 8
----Whitespace 39 1
----Name 40 10
----OpenParenthesis 50 1
----ParameterDeclarationList
-----ParameterDeclaration
------TypeDeclaration
-------QualifiedName
--------NamespaceName
---------Name 51 6
------Whitespace 57 1
------VariableName 58 7
------Whitespace 65 1
------Equals 66 1
------Whitespace 67 1
------StringLiteral 68 13
----CloseParenthesis 81 1
----Whitespace 82 1
----ReturnType
-----Colon 83 1
-----Whitespace 84 1
-----TypeDeclaration
------QualifiedName
-------NamespaceName
--------Name 85 6
---Whitespace 91 1
---FunctionDeclarationBody
----OpenBrace 92 1
----Whitespace 93 1
----CloseBrace 94 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-Whitespace 6 5[Token]
+-DocumentComment 11 15[Token]
+-Whitespace 26 5[Token]
+-FunctionDeclaration[Phrase]
+--FunctionDeclarationHeader[Phrase]
+---Function 31 8[Token]
+---Whitespace 39 1[Token]
+---Name 40 10[Token]
+---OpenParenthesis 50 1[Token]
+---ParameterDeclarationList[Phrase]
+----ParameterDeclaration[Phrase]
+-----TypeDeclaration[Phrase]
+------QualifiedName[Phrase]
+-------NamespaceName[Phrase]
+--------Name 51 6[Token]
+-----Whitespace 57 1[Token]
+-----VariableName 58 7[Token]
+-----Whitespace 65 1[Token]
+-----Equals 66 1[Token]
+-----Whitespace 67 1[Token]
+-----StringLiteral 68 13[Token]
+---CloseParenthesis 81 1[Token]
+---Whitespace 82 1[Token]
+---ReturnType[Phrase]
+----Colon 83 1[Token]
+----Whitespace 84 1[Token]
+----TypeDeclaration[Phrase]
+-----QualifiedName[Phrase]
+------NamespaceName[Phrase]
+-------Name 85 6[Token]
+--Whitespace 91 1[Token]
+--FunctionDeclarationBody[Phrase]
+---OpenBrace 92 1[Token]
+---Whitespace 93 1[Token]
+---CloseBrace 94 1[Token]

@@ -1,15 +1,15 @@
-StatementList
--InlineText
---OpenTag 0 6
--Whitespace 6 4
--ClassDeclaration
---ClassDeclarationHeader
----Abstract 10 8
----Whitespace 18 1
----Class 19 5
----Whitespace 24 1
----Name 25 3
---Whitespace 28 1
---ClassDeclarationBody
----OpenBrace 29 1
----CloseBrace 30 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-Whitespace 6 4[Token]
+-ClassDeclaration[Phrase]
+--ClassDeclarationHeader[Phrase]
+---Abstract 10 8[Token]
+---Whitespace 18 1[Token]
+---Class 19 5[Token]
+---Whitespace 24 1[Token]
+---Name 25 3[Token]
+--Whitespace 28 1[Token]
+--ClassDeclarationBody[Phrase]
+---OpenBrace 29 1[Token]
+---CloseBrace 30 1[Token]

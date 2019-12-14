@@ -1,20 +1,21 @@
-StatementList
--InlineText
---OpenTag 0 6
--Whitespace 6 4
--ClassDeclaration
---ClassDeclarationHeader
----Class 10 5
----Whitespace 15 1
----Name 16 7
---Whitespace 23 1
---ClassDeclarationBody
----OpenBrace 24 1
----Whitespace 25 9
----ClassMemberDeclarationList
-----ErrorClassMemberDeclaration
------MemberModifierList
-------Public 34 6
------Error
----Whitespace 40 5
----CloseBrace 45 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-Whitespace 6 4[Token]
+-ClassDeclaration[Phrase]
+--ClassDeclarationHeader[Phrase]
+---Class 10 5[Token]
+---Whitespace 15 1[Token]
+---Name 16 7[Token]
+--Whitespace 23 1[Token]
+--ClassDeclarationBody[Phrase]
+---OpenBrace 24 1[Token]
+---Whitespace 25 9[Token]
+---ClassMemberDeclarationList[Phrase]
+----ErrorClassMemberDeclaration[Phrase]
+-----MemberModifierList[Phrase]
+------Public 34 6[Token]
+-----Error[ParseError]
+------Unexpected: CloseBrace 45 1
+---Whitespace 40 5[Token]
+---CloseBrace 45 1[Token]

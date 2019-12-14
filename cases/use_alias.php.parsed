@@ -1,40 +1,40 @@
-StatementList
--InlineText
---OpenTag 0 6
--Whitespace 6 1
--NamespaceUseDeclaration
---Use 7 3
---Whitespace 10 1
---NamespaceUseClauseList
----NamespaceUseClause
-----NamespaceName
------Name 11 5
------Backslash 16 1
------Name 17 7
------Backslash 24 1
------Name 25 4
------Backslash 29 1
------Name 30 9
-----Whitespace 39 1
-----NamespaceAliasingClause
------As 40 2
------Whitespace 42 1
------Name 43 9
----Comma 52 1
----Whitespace 53 5
----NamespaceUseClause
-----NamespaceName
------Name 58 5
------Backslash 63 1
------Name 64 4
------Backslash 68 1
------Name 69 9
------Backslash 78 1
------Name 79 24
-----Whitespace 103 1
-----NamespaceAliasingClause
------As 104 2
------Whitespace 106 1
------Name 107 24
---Semicolon 131 1
--Whitespace 132 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-Whitespace 6 1[Token]
+-NamespaceUseDeclaration[Phrase]
+--Use 7 3[Token]
+--Whitespace 10 1[Token]
+--NamespaceUseClauseList[Phrase]
+---NamespaceUseClause[Phrase]
+----NamespaceName[Phrase]
+-----Name 11 5[Token]
+-----Backslash 16 1[Token]
+-----Name 17 7[Token]
+-----Backslash 24 1[Token]
+-----Name 25 4[Token]
+-----Backslash 29 1[Token]
+-----Name 30 9[Token]
+----Whitespace 39 1[Token]
+----NamespaceAliasingClause[Phrase]
+-----As 40 2[Token]
+-----Whitespace 42 1[Token]
+-----Name 43 9[Token]
+---Comma 52 1[Token]
+---Whitespace 53 5[Token]
+---NamespaceUseClause[Phrase]
+----NamespaceName[Phrase]
+-----Name 58 5[Token]
+-----Backslash 63 1[Token]
+-----Name 64 4[Token]
+-----Backslash 68 1[Token]
+-----Name 69 9[Token]
+-----Backslash 78 1[Token]
+-----Name 79 24[Token]
+----Whitespace 103 1[Token]
+----NamespaceAliasingClause[Phrase]
+-----As 104 2[Token]
+-----Whitespace 106 1[Token]
+-----Name 107 24[Token]
+--Semicolon 131 1[Token]
+-Whitespace 132 1[Token]

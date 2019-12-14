@@ -1,18 +1,18 @@
-StatementList
--InlineText
---OpenTag 0 6
--NamespaceUseDeclaration
---Use 6 3
---Whitespace 9 1
---NamespaceUseClauseList
----NamespaceUseClause
-----NamespaceName
------Name 10 3
------Backslash 13 1
------Name 14 3
-----Whitespace 17 1
-----NamespaceAliasingClause
------As 18 2
------Whitespace 20 1
------Name 21 3
---Semicolon 24 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-NamespaceUseDeclaration[Phrase]
+--Use 6 3[Token]
+--Whitespace 9 1[Token]
+--NamespaceUseClauseList[Phrase]
+---NamespaceUseClause[Phrase]
+----NamespaceName[Phrase]
+-----Name 10 3[Token]
+-----Backslash 13 1[Token]
+-----Name 14 3[Token]
+----Whitespace 17 1[Token]
+----NamespaceAliasingClause[Phrase]
+-----As 18 2[Token]
+-----Whitespace 20 1[Token]
+-----Name 21 3[Token]
+--Semicolon 24 1[Token]

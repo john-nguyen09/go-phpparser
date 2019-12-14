@@ -6,4 +6,4 @@ TestClass::method1();
 
 $instance = new TestClass;
 $instance->prop2;
-$instance->method2();
+$instance->

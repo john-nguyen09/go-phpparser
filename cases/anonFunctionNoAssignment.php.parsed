@@ -1,16 +1,16 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---AnonymousFunctionCreationExpression
----AnonymousFunctionHeader
-----Function 6 8
-----Whitespace 14 1
-----OpenParenthesis 15 1
-----CloseParenthesis 16 1
----Whitespace 17 1
----FunctionDeclarationBody
-----OpenBrace 18 1
-----Whitespace 19 1
-----CloseBrace 20 1
---Semicolon 21 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--AnonymousFunctionCreationExpression[Phrase]
+---AnonymousFunctionHeader[Phrase]
+----Function 6 8[Token]
+----Whitespace 14 1[Token]
+----OpenParenthesis 15 1[Token]
+----CloseParenthesis 16 1[Token]
+---Whitespace 17 1[Token]
+---FunctionDeclarationBody[Phrase]
+----OpenBrace 18 1[Token]
+----Whitespace 19 1[Token]
+----CloseBrace 20 1[Token]
+--Semicolon 21 1[Token]

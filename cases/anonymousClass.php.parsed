@@ -1,21 +1,21 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---SimpleAssignmentExpression
----SimpleVariable
-----VariableName 6 2
----Whitespace 8 1
----Equals 9 1
----Whitespace 10 1
----ObjectCreationExpression
-----New 11 3
-----Whitespace 14 1
-----AnonymousClassDeclaration
------AnonymousClassDeclarationHeader
-------Class 15 5
------Whitespace 20 1
------ClassDeclarationBody
-------OpenBrace 21 1
-------CloseBrace 22 1
---Semicolon 23 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--SimpleAssignmentExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 6 2[Token]
+---Whitespace 8 1[Token]
+---Equals 9 1[Token]
+---Whitespace 10 1[Token]
+---ObjectCreationExpression[Phrase]
+----New 11 3[Token]
+----Whitespace 14 1[Token]
+----AnonymousClassDeclaration[Phrase]
+-----AnonymousClassDeclarationHeader[Phrase]
+------Class 15 5[Token]
+-----Whitespace 20 1[Token]
+-----ClassDeclarationBody[Phrase]
+------OpenBrace 21 1[Token]
+------CloseBrace 22 1[Token]
+--Semicolon 23 1[Token]

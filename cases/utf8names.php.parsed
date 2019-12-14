@@ -1,12 +1,12 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---SimpleAssignmentExpression
----SimpleVariable
-----VariableName 6 5
----Whitespace 11 1
----Equals 12 1
----Whitespace 13 1
----IntegerLiteral 14 1
---Semicolon 15 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--SimpleAssignmentExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 6 5[Token]
+---Whitespace 11 1[Token]
+---Equals 12 1[Token]
+---Whitespace 13 1[Token]
+---IntegerLiteral 14 1[Token]
+--Semicolon 15 1[Token]

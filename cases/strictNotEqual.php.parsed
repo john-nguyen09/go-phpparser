@@ -1,13 +1,13 @@
-StatementList
--InlineText
---OpenTag 0 6
--ExpressionStatement
---EqualityExpression
----SimpleVariable
-----VariableName 6 2
----Whitespace 8 1
----ExclamationEqualsEquals 9 3
----Whitespace 12 1
----SimpleVariable
-----VariableName 13 2
---Semicolon 15 1
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--EqualityExpression[Phrase]
+---SimpleVariable[Phrase]
+----VariableName 6 2[Token]
+---Whitespace 8 1[Token]
+---ExclamationEqualsEquals 9 3[Token]
+---Whitespace 12 1[Token]
+---SimpleVariable[Phrase]
+----VariableName 13 2[Token]
+--Semicolon 15 1[Token]
