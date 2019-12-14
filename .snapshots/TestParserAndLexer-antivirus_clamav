@@ -1,0 +1,9 @@
+([]*lexer.Token) (len=7) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(VariableName 6 7),
+  (*lexer.Token)(Whitespace 13 1),
+  (*lexer.Token)(Equals 14 1),
+  (*lexer.Token)(Whitespace 15 1),
+  (*lexer.Token)(StringLiteral 16 42),
+  (*lexer.Token)(Semicolon 58 1)
+}

@@ -1,0 +1,12 @@
+([]*lexer.Token) (len=10) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(Function 6 8),
+  (*lexer.Token)(Whitespace 14 1),
+  (*lexer.Token)(OpenParenthesis 15 1),
+  (*lexer.Token)(CloseParenthesis 16 1),
+  (*lexer.Token)(Whitespace 17 1),
+  (*lexer.Token)(OpenBrace 18 1),
+  (*lexer.Token)(Whitespace 19 1),
+  (*lexer.Token)(CloseBrace 20 1),
+  (*lexer.Token)(Semicolon 21 1)
+}

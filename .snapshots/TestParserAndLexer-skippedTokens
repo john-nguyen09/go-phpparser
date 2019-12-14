@@ -1,0 +1,5 @@
+([]*lexer.Token) (len=3) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(CloseBracket 6 1),
+  (*lexer.Token)(Comma 7 1)
+}

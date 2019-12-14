@@ -1,0 +1,18 @@
+([]*lexer.Token) (len=16) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(Whitespace 6 4),
+  (*lexer.Token)(VariableName 10 4),
+  (*lexer.Token)(Whitespace 14 1),
+  (*lexer.Token)(Equals 15 1),
+  (*lexer.Token)(Whitespace 16 1),
+  (*lexer.Token)(DoubleQuote 17 1),
+  (*lexer.Token)(EncapsulatedAndWhitespace 18 6),
+  (*lexer.Token)(DollarCurlyOpen 24 2),
+  (*lexer.Token)(DoubleQuote 26 1),
+  (*lexer.Token)(EncapsulatedAndWhitespace 27 4),
+  (*lexer.Token)(VariableName 31 2),
+  (*lexer.Token)(DoubleQuote 33 1),
+  (*lexer.Token)(CloseBrace 34 1),
+  (*lexer.Token)(DoubleQuote 35 1),
+  (*lexer.Token)(Semicolon 36 1)
+}

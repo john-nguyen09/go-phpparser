@@ -1,0 +1,10 @@
+([]*lexer.Token) (len=8) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(Dollar 6 1),
+  (*lexer.Token)(OpenBrace 7 1),
+  (*lexer.Token)(VariableName 8 4),
+  (*lexer.Token)(Arrow 12 2),
+  (*lexer.Token)(Name 14 3),
+  (*lexer.Token)(CloseBrace 17 1),
+  (*lexer.Token)(Semicolon 18 1)
+}

@@ -669,7 +669,11 @@ func (s *LexerState) initial() *Token {
 	c := s.input[s.position]
 	start := s.position
 
-	if c == '<' && s.position+1 < s.inputLength && s.input[s.position+1] == '?' {
+	if c == '<' &&
+		s.position+1 < s.inputLength && s.input[s.position+1] == '?' &&
+		s.position+2 < s.inputLength && (s.input[s.position+2] == ' ' ||
+		s.input[s.position+2] == 'p' ||
+		s.input[s.position+2] == '=') {
 		tokenType := OpenTag
 
 		if s.position+5 < s.inputLength &&

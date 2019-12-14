@@ -1,0 +1,4 @@
+([]*lexer.Token) (len=2) {
+  (*lexer.Token)(OpenTag 0 2),
+  (*lexer.Token)(Name 2 1)
+}

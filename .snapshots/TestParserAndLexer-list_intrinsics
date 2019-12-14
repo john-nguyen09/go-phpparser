@@ -1,0 +1,22 @@
+([]*lexer.Token) (len=20) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(OpenBracket 6 1),
+  (*lexer.Token)(Whitespace 7 1),
+  (*lexer.Token)(Comma 8 1),
+  (*lexer.Token)(VariableName 9 4),
+  (*lexer.Token)(Comma 13 1),
+  (*lexer.Token)(CloseBracket 14 1),
+  (*lexer.Token)(Whitespace 15 1),
+  (*lexer.Token)(Equals 16 1),
+  (*lexer.Token)(Whitespace 17 1),
+  (*lexer.Token)(OpenBracket 18 1),
+  (*lexer.Token)(Comma 19 1),
+  (*lexer.Token)(Whitespace 20 1),
+  (*lexer.Token)(IntegerLiteral 21 1),
+  (*lexer.Token)(Comma 22 1),
+  (*lexer.Token)(Whitespace 23 1),
+  (*lexer.Token)(IntegerLiteral 24 1),
+  (*lexer.Token)(CloseBracket 25 1),
+  (*lexer.Token)(Semicolon 26 1),
+  (*lexer.Token)(Whitespace 27 1)
+}

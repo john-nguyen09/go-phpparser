@@ -1,0 +1,13 @@
+([]*lexer.Token) (len=11) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(Use 6 3),
+  (*lexer.Token)(Whitespace 9 1),
+  (*lexer.Token)(Name 10 3),
+  (*lexer.Token)(Backslash 13 1),
+  (*lexer.Token)(Name 14 3),
+  (*lexer.Token)(Whitespace 17 1),
+  (*lexer.Token)(As 18 2),
+  (*lexer.Token)(Whitespace 20 1),
+  (*lexer.Token)(Name 21 3),
+  (*lexer.Token)(Semicolon 24 1)
+}

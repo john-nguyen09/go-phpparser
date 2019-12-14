@@ -1,0 +1,3 @@
+([]*lexer.Token) (len=1) {
+  (*lexer.Token)(Text 0 22)
+}

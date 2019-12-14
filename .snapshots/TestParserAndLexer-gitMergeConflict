@@ -1,0 +1,11 @@
+([]*lexer.Token) (len=9) {
+  (*lexer.Token)(OpenTag 0 6),
+  (*lexer.Token)(Whitespace 6 1),
+  (*lexer.Token)(LessThanLessThan 7 2),
+  (*lexer.Token)(LessThanLessThan 9 2),
+  (*lexer.Token)(StartHeredoc 11 9),
+  (*lexer.Token)(VariableName 20 4),
+  (*lexer.Token)(EncapsulatedAndWhitespace 24 14),
+  (*lexer.Token)(VariableName 38 4),
+  (*lexer.Token)(EncapsulatedAndWhitespace 42 24)
+}
