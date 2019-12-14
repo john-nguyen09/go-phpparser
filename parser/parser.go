@@ -611,7 +611,7 @@ func (doc *Parser) expression(minPrecedence int) phrase.AstNode {
 	var p *phrase.Phrase
 	var binaryPhraseType phrase.PhraseType
 
-	lhs := doc.expressionAtom()
+	lhs := doc.expressionAtom(minPrecedence)
 
 	for {
 		op = doc.peek(0)
@@ -676,8 +676,8 @@ func (doc *Parser) ternaryExpression(testExpr phrase.AstNode) *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) variableOrExpression() phrase.AstNode {
-	part := doc.variableAtom()
+func (doc *Parser) variableOrExpression(precedence int) phrase.AstNode {
+	part := doc.variableAtom(precedence)
 	isVariable := false
 
 	if p, ok := part.(*phrase.Phrase); ok {
@@ -740,7 +740,7 @@ func isDereferenceOperator(t *lexer.Token) bool {
 	return false
 }
 
-func (doc *Parser) expressionAtom() phrase.AstNode {
+func (doc *Parser) expressionAtom(precedence int) phrase.AstNode {
 	t := doc.peek(0)
 
 	switch t.Type {
@@ -749,10 +749,10 @@ func (doc *Parser) expressionAtom() phrase.AstNode {
 			return doc.anonymousFunctionCreationExpression()
 		}
 
-		return doc.variableOrExpression()
+		return doc.variableOrExpression(0)
 	case lexer.StringLiteral:
 		if isDereferenceOperator(doc.peek(1)) {
-			return doc.variableOrExpression()
+			return doc.variableOrExpression(0)
 		}
 
 		return doc.next(true)
@@ -764,7 +764,7 @@ func (doc *Parser) expressionAtom() phrase.AstNode {
 		lexer.Name,
 		lexer.Namespace,
 		lexer.OpenParenthesis:
-		return doc.variableOrExpression()
+		return doc.variableOrExpression(precedence)
 	case lexer.PlusPlus:
 		return doc.unaryExpression(phrase.PrefixIncrementExpression)
 	case lexer.MinusMinus:
@@ -993,7 +993,7 @@ func (doc *Parser) encapsulatedVariable() phrase.AstNode {
 func (doc *Parser) curlyOpenEncapsulatedVariable() *phrase.Phrase {
 	p := doc.start(phrase.EncapsulatedVariable, false)
 	doc.next(false) //{
-	p.Children = append(p.Children, doc.variable(doc.variableAtom()))
+	p.Children = append(p.Children, doc.variable(doc.variableAtom(0)))
 	doc.expect(lexer.CloseBrace)
 
 	return doc.end()
@@ -1920,7 +1920,7 @@ func isVariableStart(t *lexer.Token) bool {
 }
 
 func (doc *Parser) variableInitial() phrase.AstNode {
-	return doc.variable(doc.variableAtom())
+	return doc.variable(doc.variableAtom(0))
 }
 
 func (doc *Parser) variableList(breakOn []lexer.TokenType) *phrase.Phrase {
@@ -2548,7 +2548,7 @@ func (doc *Parser) unaryExpression(phraseType phrase.PhraseType) *phrase.Phrase 
 
 	switch phraseType {
 	case phrase.PrefixDecrementExpression, phrase.PrefixIncrementExpression:
-		p.Children = append(p.Children, doc.variable(doc.variableAtom()))
+		p.Children = append(p.Children, doc.variable(doc.variableAtom(0)))
 	default:
 		precendence, _ := precedenceAssociativityTuple(op)
 		p.Children = append(p.Children, doc.expression(precendence))
@@ -2883,10 +2883,10 @@ func isQualifiedNameStart(t *lexer.Token) bool {
 	return false
 }
 
-func (doc *Parser) shortArrayCreationExpression() *phrase.Phrase {
+func (doc *Parser) shortArrayCreationExpression(precedence int) *phrase.Phrase {
 	p := doc.start(phrase.ArrayCreationExpression, false)
 	doc.next(false) //[
-	if isArrayElementStart(doc.peek(0)) {
+	if isArrayElementStart(doc.peek(0)) || (precedence == 0 && doc.peek(0).Type == lexer.Comma) {
 		p.Children = append(p.Children, doc.arrayInitialiserList(lexer.CloseBracket))
 	}
 	doc.expect(lexer.CloseBracket)
@@ -3011,7 +3011,7 @@ func (doc *Parser) relativeScope() *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) variableAtom() phrase.AstNode {
+func (doc *Parser) variableAtom(precedence int) phrase.AstNode {
 	t := doc.peek(0)
 	switch t.Type {
 	case lexer.VariableName, lexer.Dollar:
@@ -3021,7 +3021,7 @@ func (doc *Parser) variableAtom() phrase.AstNode {
 	case lexer.Array:
 		return doc.longArrayCreationExpression()
 	case lexer.OpenBracket:
-		return doc.shortArrayCreationExpression()
+		return doc.shortArrayCreationExpression(precedence)
 	case lexer.StringLiteral:
 		return doc.next(true)
 	case lexer.Static:
