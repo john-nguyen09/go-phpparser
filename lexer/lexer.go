@@ -1252,14 +1252,14 @@ func (s *LexerState) scriptingNumeric() *Token {
 
 	if s.input[s.position] == '0' && k < s.inputLength-1 {
 		k++
-		if s.input[k] == 'b' && k < s.inputLength && (s.input[k] == '0' || s.input[k] == '1') {
-			for k++; k < s.inputLength && (s.input[k] == '0' || s.input[k] == '1'); k++ {
+		j := k + 1
+		if s.input[k] == 'b' && j < s.inputLength && (s.input[j] == '0' || s.input[j] == '1') {
+			for j++; j < s.inputLength && (s.input[j] == '0' || s.input[j] == '1'); j++ {
 			}
-			s.position = k
+			s.position = j
 
 			return NewToken(IntegerLiteral, start, s.position-start)
 		}
-		j := k + 1
 		if s.input[k] == 'x' && j < s.inputLength && isHexDigit(s.input[j]) {
 			for j++; j < s.inputLength && isHexDigit(s.input[j]); j++ {
 			}

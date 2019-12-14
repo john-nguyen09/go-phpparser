@@ -1,3 +1,6 @@
 OpenTag 0 6
 IntegerLiteral 6 6
 Semicolon 12 1
+Whitespace 13 1
+IntegerLiteral 14 4
+Semicolon 18 1
