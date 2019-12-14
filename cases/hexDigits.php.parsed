@@ -1,0 +1,6 @@
+StatementList[Phrase]
+-InlineText[Phrase]
+--OpenTag 0 6[Token]
+-ExpressionStatement[Phrase]
+--IntegerLiteral 6 6[Token]
+--Semicolon 12 1[Token]

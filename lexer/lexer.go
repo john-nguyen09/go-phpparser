@@ -1250,8 +1250,7 @@ func (s *LexerState) scriptingNumeric() *Token {
 	start := s.position
 	k := s.position
 
-	k++
-	if s.input[s.position] == '0' && k < s.inputLength {
+	if s.input[s.position] == '0' && k < s.inputLength-1 {
 		k++
 		if s.input[k] == 'b' && k < s.inputLength && (s.input[k] == '0' || s.input[k] == '1') {
 			for k++; k < s.inputLength && (s.input[k] == '0' || s.input[k] == '1'); k++ {
@@ -1260,13 +1259,11 @@ func (s *LexerState) scriptingNumeric() *Token {
 
 			return NewToken(IntegerLiteral, start, s.position-start)
 		}
-
-		k = s.position + 1
-		k++
-		if s.input[k] == 'x' && k < s.inputLength && isHexDigit(s.input[k]) {
-			for k++; k < s.inputLength && isHexDigit(s.input[k]); k++ {
+		j := k + 1
+		if s.input[k] == 'x' && j < s.inputLength && isHexDigit(s.input[j]) {
+			for j++; j < s.inputLength && isHexDigit(s.input[j]); j++ {
 			}
-			s.position = k
+			s.position = j
 
 			return NewToken(IntegerLiteral, start, s.position-start)
 		}
