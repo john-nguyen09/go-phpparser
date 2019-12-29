@@ -33,22 +33,18 @@ func TestParserAndLexer(t *testing.T) {
 		}
 
 		t.Run(strings.TrimSuffix(file.Name(), path.Ext(file.Name())), func(t *testing.T) {
-			testLex(t, filePath, data)
-			testParse(t, filePath, data)
+			lexerState := lexer.NewLexerState(string(data), nil, 0)
+			tokens := []*lexer.Token{}
+			token := lexerState.Lex()
+			for {
+				tokens = append(tokens, token)
+				if token.Type == lexer.EndOfFile {
+					break
+				}
+				token = lexerState.Lex()
+			}
+			rootNode := parser.Parse(string(data))
+			cupaloy.SnapshotT(t, tokens, rootNode)
 		})
 	}
-}
-
-func testLex(t *testing.T, filePath string, data []byte) {
-	lexerState := lexer.NewLexerState(string(data), nil, 0)
-	tokens := []*lexer.Token{}
-	for token := lexerState.Lex(); token.Type != lexer.EndOfFile; token = lexerState.Lex() {
-		tokens = append(tokens, token)
-	}
-	cupaloy.SnapshotT(t, tokens)
-}
-
-func testParse(t *testing.T, filePath string, data []byte) {
-	rootNode := parser.Parse(string(data))
-	cupaloy.SnapshotT(t, rootNode)
 }

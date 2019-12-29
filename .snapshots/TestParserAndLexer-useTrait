@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=14) {
+([]*lexer.Token) (len=15) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(Whitespace 6 4),
   (*lexer.Token)(Class 10 5),
@@ -12,5 +12,75 @@
   (*lexer.Token)(Name 34 3),
   (*lexer.Token)(Semicolon 37 1),
   (*lexer.Token)(Whitespace 38 5),
-  (*lexer.Token)(CloseBrace 43 1)
+  (*lexer.Token)(CloseBrace 43 1),
+  (*lexer.Token)(EndOfFile 44 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=3) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*lexer.Token)(Whitespace 6 4),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ClassDeclaration,
+      Children: ([]phrase.AstNode) (len=3) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationHeader,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*lexer.Token)(Class 10 5),
+            (*lexer.Token)(Whitespace 15 1),
+            (*lexer.Token)(Name 16 3)
+          }
+        }),
+        (*lexer.Token)(Whitespace 19 1),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationBody,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*lexer.Token)(OpenBrace 20 1),
+            (*lexer.Token)(Whitespace 21 9),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ClassMemberDeclarationList,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) TraitUseClause,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*lexer.Token)(Use 30 3),
+                    (*lexer.Token)(Whitespace 33 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) QualifiedNameList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) QualifiedName,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) NamespaceName,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*lexer.Token)(Name 34 3)
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) TraitUseSpecification,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Semicolon 37 1)
+                      }
+                    })
+                  }
+                })
+              }
+            }),
+            (*lexer.Token)(Whitespace 38 5),
+            (*lexer.Token)(CloseBrace 43 1)
+          }
+        })
+      }
+    })
+  }
+})

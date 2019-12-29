@@ -1,4 +1,46 @@
-([]*lexer.Token) (len=2) {
+([]*lexer.Token) (len=3) {
   (*lexer.Token)(OpenTag 0 2),
-  (*lexer.Token)(Name 2 1)
+  (*lexer.Token)(Name 2 1),
+  (*lexer.Token)(EndOfFile 3 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=2) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 2)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=2) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ConstantAccessExpression,
+          Children: ([]phrase.AstNode) (len=1) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) QualifiedName,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) NamespaceName,
+                  Children: ([]phrase.AstNode) (len=1) {
+                    (*lexer.Token)(Name 2 1)
+                  }
+                })
+              }
+            })
+          }
+        }),
+        (*phrase.ParseError)({
+          Phrase: (phrase.Phrase) {
+            Type: (phrase.PhraseType) Error,
+            Children: ([]phrase.AstNode) {
+            }
+          },
+          Unexpected: (*lexer.Token)(EndOfFile 3 0),
+          Expected: (lexer.TokenType) Semicolon
+        })
+      }
+    })
+  }
+})

@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=10) {
+([]*lexer.Token) (len=11) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(Function 6 8),
   (*lexer.Token)(Whitespace 14 1),
@@ -8,5 +8,46 @@
   (*lexer.Token)(OpenBrace 18 1),
   (*lexer.Token)(Whitespace 19 1),
   (*lexer.Token)(CloseBrace 20 1),
-  (*lexer.Token)(Semicolon 21 1)
+  (*lexer.Token)(Semicolon 21 1),
+  (*lexer.Token)(EndOfFile 22 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=2) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=2) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) AnonymousFunctionCreationExpression,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) AnonymousFunctionHeader,
+              Children: ([]phrase.AstNode) (len=4) {
+                (*lexer.Token)(Function 6 8),
+                (*lexer.Token)(Whitespace 14 1),
+                (*lexer.Token)(OpenParenthesis 15 1),
+                (*lexer.Token)(CloseParenthesis 16 1)
+              }
+            }),
+            (*lexer.Token)(Whitespace 17 1),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) FunctionDeclarationBody,
+              Children: ([]phrase.AstNode) (len=3) {
+                (*lexer.Token)(OpenBrace 18 1),
+                (*lexer.Token)(Whitespace 19 1),
+                (*lexer.Token)(CloseBrace 20 1)
+              }
+            })
+          }
+        }),
+        (*lexer.Token)(Semicolon 21 1)
+      }
+    })
+  }
+})

@@ -1,5 +1,53 @@
-([]*lexer.Token) (len=3) {
+([]*lexer.Token) (len=4) {
   (*lexer.Token)(OpenTag 0 7),
   (*lexer.Token)(Name 7 15),
-  (*lexer.Token)(ColonColon 22 2)
+  (*lexer.Token)(ColonColon 22 2),
+  (*lexer.Token)(EndOfFile 24 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=2) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 7)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ErrorScopedAccessExpression,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) QualifiedName,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) NamespaceName,
+                  Children: ([]phrase.AstNode) (len=1) {
+                    (*lexer.Token)(Name 7 15)
+                  }
+                })
+              }
+            }),
+            (*lexer.Token)(ColonColon 22 2),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ScopedMemberName,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.ParseError)({
+                  Phrase: (phrase.Phrase) {
+                    Type: (phrase.PhraseType) Error,
+                    Children: ([]phrase.AstNode) {
+                    }
+                  },
+                  Unexpected: (*lexer.Token)(EndOfFile 24 0),
+                  Expected: (lexer.TokenType) 
+                })
+              }
+            })
+          }
+        })
+      }
+    })
+  }
+})

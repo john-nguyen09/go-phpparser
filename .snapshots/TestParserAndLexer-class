@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=9) {
+([]*lexer.Token) (len=10) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(Whitespace 6 4),
   (*lexer.Token)(Class 10 5),
@@ -7,5 +7,40 @@
   (*lexer.Token)(Whitespace 23 1),
   (*lexer.Token)(OpenBrace 24 1),
   (*lexer.Token)(Whitespace 25 1),
-  (*lexer.Token)(CloseBrace 26 1)
+  (*lexer.Token)(CloseBrace 26 1),
+  (*lexer.Token)(EndOfFile 27 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=3) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*lexer.Token)(Whitespace 6 4),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ClassDeclaration,
+      Children: ([]phrase.AstNode) (len=3) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationHeader,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*lexer.Token)(Class 10 5),
+            (*lexer.Token)(Whitespace 15 1),
+            (*lexer.Token)(Name 16 7)
+          }
+        }),
+        (*lexer.Token)(Whitespace 23 1),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationBody,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*lexer.Token)(OpenBrace 24 1),
+            (*lexer.Token)(Whitespace 25 1),
+            (*lexer.Token)(CloseBrace 26 1)
+          }
+        })
+      }
+    })
+  }
+})

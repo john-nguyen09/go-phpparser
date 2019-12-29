@@ -1,5 +1,28 @@
-([]*lexer.Token) (len=3) {
+([]*lexer.Token) (len=4) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(CloseBracket 6 1),
-  (*lexer.Token)(Comma 7 1)
+  (*lexer.Token)(Comma 7 1),
+  (*lexer.Token)(EndOfFile 8 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=2) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*phrase.ParseError)({
+      Phrase: (phrase.Phrase) {
+        Type: (phrase.PhraseType) Error,
+        Children: ([]phrase.AstNode) (len=2) {
+          (*lexer.Token)(CloseBracket 6 1),
+          (*lexer.Token)(Comma 7 1)
+        }
+      },
+      Unexpected: (*lexer.Token)(CloseBracket 6 1),
+      Expected: (lexer.TokenType) 
+    })
+  }
+})

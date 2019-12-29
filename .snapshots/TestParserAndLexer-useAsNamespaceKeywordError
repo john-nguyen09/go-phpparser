@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=10) {
+([]*lexer.Token) (len=11) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(Whitespace 6 4),
   (*lexer.Token)(Use 10 3),
@@ -8,5 +8,60 @@
   (*lexer.Token)(As 21 2),
   (*lexer.Token)(Whitespace 23 1),
   (*lexer.Token)(Namespace 24 9),
-  (*lexer.Token)(Semicolon 33 1)
+  (*lexer.Token)(Semicolon 33 1),
+  (*lexer.Token)(EndOfFile 34 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=3) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*lexer.Token)(Whitespace 6 4),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) NamespaceUseDeclaration,
+      Children: ([]phrase.AstNode) (len=4) {
+        (*lexer.Token)(Use 10 3),
+        (*lexer.Token)(Whitespace 13 1),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) NamespaceUseClauseList,
+          Children: ([]phrase.AstNode) (len=1) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) NamespaceUseClause,
+              Children: ([]phrase.AstNode) (len=3) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) NamespaceName,
+                  Children: ([]phrase.AstNode) (len=1) {
+                    (*lexer.Token)(Name 14 6)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 20 1),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) NamespaceAliasingClause,
+                  Children: ([]phrase.AstNode) (len=2) {
+                    (*lexer.Token)(As 21 2),
+                    (*phrase.ParseError)({
+                      Phrase: (phrase.Phrase) {
+                        Type: (phrase.PhraseType) Error,
+                        Children: ([]phrase.AstNode) (len=2) {
+                          (*lexer.Token)(Whitespace 23 1),
+                          (*lexer.Token)(Namespace 24 9)
+                        }
+                      },
+                      Unexpected: (*lexer.Token)(Namespace 24 9),
+                      Expected: (lexer.TokenType) Name
+                    })
+                  }
+                })
+              }
+            })
+          }
+        }),
+        (*lexer.Token)(Semicolon 33 1)
+      }
+    })
+  }
+})

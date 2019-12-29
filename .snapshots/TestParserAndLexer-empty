@@ -1,2 +1,8 @@
-([]*lexer.Token) {
+([]*lexer.Token) (len=1) {
+  (*lexer.Token)(EndOfFile 0 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) {
+  }
+})

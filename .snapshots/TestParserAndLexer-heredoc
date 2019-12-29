@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=12) {
+([]*lexer.Token) (len=13) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(VariableName 6 4),
   (*lexer.Token)(Whitespace 10 1),
@@ -10,5 +10,58 @@
   (*lexer.Token)(EncapsulatedAndWhitespace 32 0),
   (*lexer.Token)(EndHeredoc 32 4),
   (*lexer.Token)(Semicolon 36 1),
-  (*lexer.Token)(Whitespace 37 1)
+  (*lexer.Token)(Whitespace 37 1),
+  (*lexer.Token)(EndOfFile 38 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=3) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=2) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) SimpleAssignmentExpression,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) SimpleVariable,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*lexer.Token)(VariableName 6 4)
+              }
+            }),
+            (*lexer.Token)(Whitespace 10 1),
+            (*lexer.Token)(Equals 11 1),
+            (*lexer.Token)(Whitespace 12 1),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) HeredocStringLiteral,
+              Children: ([]phrase.AstNode) (len=3) {
+                (*lexer.Token)(StartHeredoc 13 7),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) EncapsulatedVariableList,
+                  Children: ([]phrase.AstNode) (len=3) {
+                    (*lexer.Token)(EncapsulatedAndWhitespace 20 6),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) SimpleVariable,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(VariableName 26 6)
+                      }
+                    }),
+                    (*lexer.Token)(EncapsulatedAndWhitespace 32 0)
+                  }
+                }),
+                (*lexer.Token)(EndHeredoc 32 4)
+              }
+            })
+          }
+        }),
+        (*lexer.Token)(Semicolon 36 1)
+      }
+    }),
+    (*lexer.Token)(Whitespace 37 1)
+  }
+})

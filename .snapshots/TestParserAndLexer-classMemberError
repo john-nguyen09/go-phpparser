@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=11) {
+([]*lexer.Token) (len=12) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(Whitespace 6 4),
   (*lexer.Token)(Class 10 5),
@@ -9,5 +9,66 @@
   (*lexer.Token)(Whitespace 25 9),
   (*lexer.Token)(Public 34 6),
   (*lexer.Token)(Whitespace 40 5),
-  (*lexer.Token)(CloseBrace 45 1)
+  (*lexer.Token)(CloseBrace 45 1),
+  (*lexer.Token)(EndOfFile 46 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=3) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*lexer.Token)(Whitespace 6 4),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ClassDeclaration,
+      Children: ([]phrase.AstNode) (len=3) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationHeader,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*lexer.Token)(Class 10 5),
+            (*lexer.Token)(Whitespace 15 1),
+            (*lexer.Token)(Name 16 7)
+          }
+        }),
+        (*lexer.Token)(Whitespace 23 1),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationBody,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*lexer.Token)(OpenBrace 24 1),
+            (*lexer.Token)(Whitespace 25 9),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ClassMemberDeclarationList,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) ErrorClassMemberDeclaration,
+                  Children: ([]phrase.AstNode) (len=2) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Public 34 6)
+                      }
+                    }),
+                    (*phrase.ParseError)({
+                      Phrase: (phrase.Phrase) {
+                        Type: (phrase.PhraseType) Error,
+                        Children: ([]phrase.AstNode) {
+                        }
+                      },
+                      Unexpected: (*lexer.Token)(CloseBrace 45 1),
+                      Expected: (lexer.TokenType) 
+                    })
+                  }
+                })
+              }
+            }),
+            (*lexer.Token)(Whitespace 40 5),
+            (*lexer.Token)(CloseBrace 45 1)
+          }
+        })
+      }
+    })
+  }
+})

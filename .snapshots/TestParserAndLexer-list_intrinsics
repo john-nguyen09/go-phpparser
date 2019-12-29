@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=20) {
+([]*lexer.Token) (len=21) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(OpenBracket 6 1),
   (*lexer.Token)(Whitespace 7 1),
@@ -18,5 +18,95 @@
   (*lexer.Token)(IntegerLiteral 24 1),
   (*lexer.Token)(CloseBracket 25 1),
   (*lexer.Token)(Semicolon 26 1),
-  (*lexer.Token)(Whitespace 27 1)
+  (*lexer.Token)(Whitespace 27 1),
+  (*lexer.Token)(EndOfFile 28 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=5) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) SimpleAssignmentExpression,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArrayCreationExpression,
+              Children: ([]phrase.AstNode) (len=4) {
+                (*lexer.Token)(OpenBracket 6 1),
+                (*lexer.Token)(Whitespace 7 1),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) ArrayInitialiserList,
+                  Children: ([]phrase.AstNode) (len=3) {
+                    (*lexer.Token)(Comma 8 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) ArrayElement,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) ArrayValue,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) SimpleVariable,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*lexer.Token)(VariableName 9 4)
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Comma 13 1)
+                  }
+                }),
+                (*lexer.Token)(CloseBracket 14 1)
+              }
+            }),
+            (*lexer.Token)(Whitespace 15 1),
+            (*lexer.Token)(Equals 16 1),
+            (*lexer.Token)(Whitespace 17 1),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArrayCreationExpression,
+              Children: ([]phrase.AstNode) (len=2) {
+                (*lexer.Token)(OpenBracket 18 1),
+                (*phrase.ParseError)({
+                  Phrase: (phrase.Phrase) {
+                    Type: (phrase.PhraseType) Error,
+                    Children: ([]phrase.AstNode) (len=5) {
+                      (*lexer.Token)(Comma 19 1),
+                      (*lexer.Token)(Whitespace 20 1),
+                      (*lexer.Token)(Comma 22 1),
+                      (*lexer.Token)(Whitespace 23 1),
+                      (*lexer.Token)(CloseBracket 25 1)
+                    }
+                  },
+                  Unexpected: (*lexer.Token)(Comma 19 1),
+                  Expected: (lexer.TokenType) CloseBracket
+                })
+              }
+            })
+          }
+        })
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(IntegerLiteral 21 1)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=2) {
+        (*lexer.Token)(IntegerLiteral 24 1),
+        (*lexer.Token)(Semicolon 26 1)
+      }
+    }),
+    (*lexer.Token)(Whitespace 27 1)
+  }
+})

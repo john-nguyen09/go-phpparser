@@ -1,4 +1,4 @@
-([]*lexer.Token) (len=93) {
+([]*lexer.Token) (len=94) {
   (*lexer.Token)(OpenTag 0 7),
   (*lexer.Token)(Whitespace 7 2),
   (*lexer.Token)(Class 9 5),
@@ -91,5 +91,374 @@
   (*lexer.Token)(Semicolon 431 1),
   (*lexer.Token)(Whitespace 432 2),
   (*lexer.Token)(CloseBrace 434 1),
-  (*lexer.Token)(Whitespace 435 2)
+  (*lexer.Token)(Whitespace 435 2),
+  (*lexer.Token)(EndOfFile 437 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=4) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 7)
+      }
+    }),
+    (*lexer.Token)(Whitespace 7 2),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ClassDeclaration,
+      Children: ([]phrase.AstNode) (len=3) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationHeader,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*lexer.Token)(Class 9 5),
+            (*lexer.Token)(Whitespace 14 1),
+            (*lexer.Token)(Name 15 19)
+          }
+        }),
+        (*lexer.Token)(Whitespace 34 1),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationBody,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*lexer.Token)(OpenBrace 35 1),
+            (*lexer.Token)(Whitespace 36 6),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ClassMemberDeclarationList,
+              Children: ([]phrase.AstNode) (len=23) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(Private 42 7),
+                        (*lexer.Token)(Whitespace 49 1),
+                        (*lexer.Token)(Static 50 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 56 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 57 12)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 69 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 70 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(Protected 76 9),
+                        (*lexer.Token)(Whitespace 85 1),
+                        (*lexer.Token)(Static 86 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 92 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 93 12)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 105 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 106 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(Public 112 6),
+                        (*lexer.Token)(Whitespace 118 1),
+                        (*lexer.Token)(Static 119 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 125 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=3) {
+                            (*lexer.Token)(VariableName 126 12),
+                            (*lexer.Token)(Whitespace 138 1),
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) PropertyInitialiser,
+                              Children: ([]phrase.AstNode) (len=3) {
+                                (*lexer.Token)(Equals 139 1),
+                                (*lexer.Token)(Whitespace 140 1),
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) ArrayCreationExpression,
+                                  Children: ([]phrase.AstNode) (len=3) {
+                                    (*lexer.Token)(Array 141 5),
+                                    (*lexer.Token)(OpenParenthesis 146 1),
+                                    (*lexer.Token)(CloseParenthesis 147 1)
+                                  }
+                                })
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 148 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 149 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Static 155 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 161 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=4) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 162 12)
+                          }
+                        }),
+                        (*lexer.Token)(Comma 174 1),
+                        (*lexer.Token)(Whitespace 175 1),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 176 12)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 188 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 189 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(Private 195 7),
+                        (*lexer.Token)(Whitespace 202 1),
+                        (*lexer.Token)(Static 203 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 209 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=4) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 210 12)
+                          }
+                        }),
+                        (*lexer.Token)(Comma 222 1),
+                        (*lexer.Token)(Whitespace 223 1),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 224 12)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 236 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 237 8),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Private 245 7)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 252 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 253 6)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 259 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 260 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Protected 266 9)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 275 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 276 6)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 282 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 283 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Public 289 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 295 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 296 6)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 302 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 303 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*lexer.Token)(Var 309 3),
+                    (*lexer.Token)(Whitespace 312 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=4) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 313 6)
+                          }
+                        }),
+                        (*lexer.Token)(Comma 319 1),
+                        (*lexer.Token)(Whitespace 320 1),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 321 6)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 327 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 328 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Protected 334 9)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 343 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=4) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 344 6)
+                          }
+                        }),
+                        (*lexer.Token)(Comma 350 1),
+                        (*lexer.Token)(Whitespace 351 1),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 352 6)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 358 1)
+                  }
+                }),
+                (*lexer.Token)(Whitespace 359 8),
+                (*lexer.Token)(DocumentComment 367 45),
+                (*lexer.Token)(Whitespace 412 6),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MemberModifierList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(Public 418 6)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 424 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 425 6)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 431 1)
+                  }
+                })
+              }
+            }),
+            (*lexer.Token)(Whitespace 432 2),
+            (*lexer.Token)(CloseBrace 434 1)
+          }
+        })
+      }
+    }),
+    (*lexer.Token)(Whitespace 435 2)
+  }
+})

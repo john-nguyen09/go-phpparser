@@ -1,8 +1,30 @@
-([]*lexer.Token) (len=6) {
+([]*lexer.Token) (len=7) {
   (*lexer.Token)(OpenTag 0 6),
   (*lexer.Token)(OpenBrace 6 1),
   (*lexer.Token)(Whitespace 7 1),
   (*lexer.Token)(Comment 8 4),
   (*lexer.Token)(Whitespace 12 1),
-  (*lexer.Token)(CloseBrace 13 1)
+  (*lexer.Token)(CloseBrace 13 1),
+  (*lexer.Token)(EndOfFile 14 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=2) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) CompoundStatement,
+      Children: ([]phrase.AstNode) (len=5) {
+        (*lexer.Token)(OpenBrace 6 1),
+        (*lexer.Token)(Whitespace 7 1),
+        (*lexer.Token)(Comment 8 4),
+        (*lexer.Token)(Whitespace 12 1),
+        (*lexer.Token)(CloseBrace 13 1)
+      }
+    })
+  }
+})

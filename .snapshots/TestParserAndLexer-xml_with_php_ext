@@ -1,3 +1,15 @@
-([]*lexer.Token) (len=1) {
-  (*lexer.Token)(Text 0 22)
+([]*lexer.Token) (len=2) {
+  (*lexer.Token)(Text 0 22),
+  (*lexer.Token)(EndOfFile 22 0)
 }
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=1) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(Text 0 22)
+      }
+    })
+  }
+})
