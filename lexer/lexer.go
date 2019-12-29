@@ -601,6 +601,20 @@ func NewLexerState(text string, modeStack []LexerMode, position int) *LexerState
 	return &LexerState{position, characters, len(characters), modeStack, -1, ""}
 }
 
+func Lex(text string) []*Token {
+	lexerState := NewLexerState(text, nil, 0)
+	tokens := []*Token{}
+	t := lexerState.Lex()
+	for {
+		tokens = append(tokens, t)
+		if t.Type == EndOfFile {
+			break
+		}
+		t = lexerState.Lex()
+	}
+	return tokens
+}
+
 func (s *LexerState) Lex() *Token {
 	if s.position >= s.inputLength {
 		return NewToken(EndOfFile, s.inputLength, 0)
@@ -1723,11 +1737,7 @@ func (s *LexerState) lookingForProperty() *Token {
 	start := s.position
 	c := s.input[s.position]
 
-	switch c {
-	case ' ':
-	case '\t':
-	case '\n':
-	case '\r':
+	if isWhitespace(c) {
 		for s.position++; s.position < s.inputLength && isWhitespace(s.input[s.position]); s.position++ {
 		}
 

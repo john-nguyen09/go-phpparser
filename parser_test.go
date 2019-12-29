@@ -33,18 +33,32 @@ func TestParserAndLexer(t *testing.T) {
 		}
 
 		t.Run(strings.TrimSuffix(file.Name(), path.Ext(file.Name())), func(t *testing.T) {
-			lexerState := lexer.NewLexerState(string(data), nil, 0)
-			tokens := []*lexer.Token{}
-			token := lexerState.Lex()
-			for {
-				tokens = append(tokens, token)
-				if token.Type == lexer.EndOfFile {
-					break
-				}
-				token = lexerState.Lex()
-			}
+			tokens := lexer.Lex(string(data))
 			rootNode := parser.Parse(string(data))
 			cupaloy.SnapshotT(t, tokens, rootNode)
 		})
+	}
+}
+
+func BenchmarkParser(b *testing.B) {
+	dir := "cases"
+	files, err := ioutil.ReadDir(dir)
+
+	if err != nil {
+		panic(err)
+	}
+
+	for _, file := range files {
+		if !strings.HasSuffix(file.Name(), ".php") {
+			continue
+		}
+
+		filePath := dir + "/" + file.Name()
+		data, err := ioutil.ReadFile(filePath)
+		if err != nil {
+			panic(err)
+		}
+
+		parser.Parse(string(data))
 	}
 }

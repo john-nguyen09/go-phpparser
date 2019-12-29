@@ -233,7 +233,7 @@ func binaryOpToPhraseType(t *lexer.Token) phrase.PhraseType {
 }
 
 type Parser struct {
-	lexerState      *lexer.LexerState
+	tokenOffset     int
 	tokenBuffer     []*lexer.Token
 	phraseStack     []*phrase.Phrase
 	errorPhrase     *phrase.ParseError
@@ -251,8 +251,8 @@ func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
 }
 
 func Parse(text string) *phrase.Phrase {
-	doc := &Parser{lexer.NewLexerState(text, nil, 0),
-		make([]*lexer.Token, 0),
+	doc := &Parser{0,
+		lexer.Lex(text),
 		make([]*phrase.Phrase, 0),
 		nil,
 		make([][]lexer.TokenType, 0)}
@@ -304,14 +304,13 @@ func (doc *Parser) hidden(p *phrase.Phrase) {
 	var t *lexer.Token
 
 	for {
-		if len(doc.tokenBuffer) > 0 {
-			t, doc.tokenBuffer = doc.tokenBuffer[0], doc.tokenBuffer[1:]
-		} else {
-			t = doc.lexerState.Lex()
+		if doc.tokenOffset < len(doc.tokenBuffer) {
+			t = doc.tokenBuffer[doc.tokenOffset]
+			doc.tokenOffset++
 		}
 
 		if t.Type < lexer.Comment {
-			doc.tokenBuffer = append([]*lexer.Token{t}, doc.tokenBuffer...)
+			doc.tokenOffset--
 			break
 		} else {
 			p.Children = append(p.Children, t)
@@ -340,12 +339,8 @@ func (doc *Parser) optionalOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
 }
 
 func (doc *Parser) next(doNotPush bool) *lexer.Token {
-	var t *lexer.Token
-	if len(doc.tokenBuffer) > 0 {
-		t, doc.tokenBuffer = doc.tokenBuffer[0], doc.tokenBuffer[1:]
-	} else {
-		t = doc.lexerState.Lex()
-	}
+	t := doc.tokenBuffer[doc.tokenOffset]
+	doc.tokenOffset++
 
 	if t.Type == lexer.EndOfFile {
 		return t
@@ -417,15 +412,11 @@ func (doc *Parser) expectOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
 
 func (doc *Parser) peek(n int) *lexer.Token {
 	k := n + 1
-	bufferPos := -1
+	bufferPos := doc.tokenOffset - 1
 	var t *lexer.Token
 
 	for {
 		bufferPos++
-		if bufferPos == len(doc.tokenBuffer) {
-			doc.tokenBuffer = append(doc.tokenBuffer, doc.lexerState.Lex())
-		}
-
 		t = doc.tokenBuffer[bufferPos]
 
 		if t.Type < lexer.Comment {
@@ -450,14 +441,13 @@ func (doc *Parser) skip(predicate func(*lexer.Token) bool) {
 	var t *lexer.Token
 
 	for {
-		if len(doc.tokenBuffer) > 0 {
-			t, doc.tokenBuffer = doc.tokenBuffer[0], doc.tokenBuffer[1:]
-		} else {
-			t = doc.lexerState.Lex()
+		if doc.tokenOffset < len(doc.tokenBuffer) {
+			t = doc.tokenBuffer[doc.tokenOffset]
+			doc.tokenOffset++
 		}
 
 		if predicate(t) || t.Type == lexer.EndOfFile {
-			doc.tokenBuffer = append([]*lexer.Token{t}, doc.tokenBuffer...)
+			doc.tokenOffset--
 			break
 		} else {
 			doc.errorPhrase.Children = append(doc.errorPhrase.Children, t)
