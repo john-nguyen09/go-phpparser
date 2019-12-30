@@ -1,13 +1,49 @@
-([]*lexer.Token) (len=9) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(Dollar 6 1),
-  (*lexer.Token)(OpenBrace 7 1),
-  (*lexer.Token)(VariableName 8 4),
-  (*lexer.Token)(Arrow 12 2),
-  (*lexer.Token)(Name 14 3),
-  (*lexer.Token)(CloseBrace 17 1),
-  (*lexer.Token)(Semicolon 18 1),
-  (*lexer.Token)(EndOfFile 19 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=9) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Dollar,
+    Offset: (int) 6,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBrace,
+    Offset: (int) 7,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 8,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Arrow,
+    Offset: (int) 12,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 14,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBrace,
+    Offset: (int) 17,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 18,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 19,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -15,7 +51,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
@@ -24,35 +60,35 @@
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) SimpleVariable,
           Children: ([]phrase.AstNode) (len=2) {
-            (*lexer.Token)(Dollar 6 1),
+            (*lexer.Token)(Dollar 6 1 ModeScripting),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) EncapsulatedExpression,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(OpenBrace 7 1),
+                (*lexer.Token)(OpenBrace 7 1 ModeScripting),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) PropertyAccessExpression,
                   Children: ([]phrase.AstNode) (len=3) {
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) SimpleVariable,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(VariableName 8 4)
+                        (*lexer.Token)(VariableName 8 4 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Arrow 12 2),
+                    (*lexer.Token)(Arrow 12 2 ModeScripting ModeScripting),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) MemberName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 14 3)
+                        (*lexer.Token)(Name 14 3 ModeScripting ModeScripting ModeLookingForProperty)
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(CloseBrace 17 1)
+                (*lexer.Token)(CloseBrace 17 1 ModeScripting ModeScripting)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 18 1)
+        (*lexer.Token)(Semicolon 18 1 ModeScripting)
       }
     })
   }

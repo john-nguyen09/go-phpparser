@@ -1,8 +1,24 @@
-([]*lexer.Token) (len=4) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(CloseBracket 6 1),
-  (*lexer.Token)(Comma 7 1),
-  (*lexer.Token)(EndOfFile 8 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=4) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBracket,
+    Offset: (int) 6,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Comma,
+    Offset: (int) 7,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 8,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -10,18 +26,18 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.ParseError)({
       Phrase: (phrase.Phrase) {
         Type: (phrase.PhraseType) Error,
         Children: ([]phrase.AstNode) (len=2) {
-          (*lexer.Token)(CloseBracket 6 1),
-          (*lexer.Token)(Comma 7 1)
+          (*lexer.Token)(CloseBracket 6 1 ModeScripting),
+          (*lexer.Token)(Comma 7 1 ModeScripting)
         }
       },
-      Unexpected: (*lexer.Token)(CloseBracket 6 1),
+      Unexpected: (*lexer.Token)(CloseBracket 6 1 ModeScripting),
       Expected: (lexer.TokenType) 
     })
   }

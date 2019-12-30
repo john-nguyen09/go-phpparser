@@ -1,11 +1,39 @@
-([]*lexer.Token) (len=7) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(IntegerLiteral 6 6),
-  (*lexer.Token)(Semicolon 12 1),
-  (*lexer.Token)(Whitespace 13 1),
-  (*lexer.Token)(IntegerLiteral 14 4),
-  (*lexer.Token)(Semicolon 18 1),
-  (*lexer.Token)(EndOfFile 19 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=7) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) IntegerLiteral,
+    Offset: (int) 6,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 12,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 13,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) IntegerLiteral,
+    Offset: (int) 14,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 18,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 19,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -13,22 +41,22 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
-        (*lexer.Token)(IntegerLiteral 6 6),
-        (*lexer.Token)(Semicolon 12 1)
+        (*lexer.Token)(IntegerLiteral 6 6 ModeScripting),
+        (*lexer.Token)(Semicolon 12 1 ModeScripting)
       }
     }),
-    (*lexer.Token)(Whitespace 13 1),
+    (*lexer.Token)(Whitespace 13 1 ModeScripting),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
-        (*lexer.Token)(IntegerLiteral 14 4),
-        (*lexer.Token)(Semicolon 18 1)
+        (*lexer.Token)(IntegerLiteral 14 4 ModeScripting),
+        (*lexer.Token)(Semicolon 18 1 ModeScripting)
       }
     })
   }

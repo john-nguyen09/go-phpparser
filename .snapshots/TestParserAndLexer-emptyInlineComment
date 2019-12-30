@@ -1,11 +1,39 @@
-([]*lexer.Token) (len=7) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(OpenBrace 6 1),
-  (*lexer.Token)(Whitespace 7 1),
-  (*lexer.Token)(Comment 8 4),
-  (*lexer.Token)(Whitespace 12 1),
-  (*lexer.Token)(CloseBrace 13 1),
-  (*lexer.Token)(EndOfFile 14 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=7) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBrace,
+    Offset: (int) 6,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 7,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Comment,
+    Offset: (int) 8,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 12,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBrace,
+    Offset: (int) 13,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 14,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -13,17 +41,17 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) CompoundStatement,
       Children: ([]phrase.AstNode) (len=5) {
-        (*lexer.Token)(OpenBrace 6 1),
-        (*lexer.Token)(Whitespace 7 1),
-        (*lexer.Token)(Comment 8 4),
-        (*lexer.Token)(Whitespace 12 1),
-        (*lexer.Token)(CloseBrace 13 1)
+        (*lexer.Token)(OpenBrace 6 1 ModeScripting),
+        (*lexer.Token)(Whitespace 7 1 ModeScripting ModeScripting),
+        (*lexer.Token)(Comment 8 4 ModeScripting ModeScripting),
+        (*lexer.Token)(Whitespace 12 1 ModeScripting ModeScripting),
+        (*lexer.Token)(CloseBrace 13 1 ModeScripting ModeScripting)
       }
     })
   }

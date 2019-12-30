@@ -1,7 +1,19 @@
-([]*lexer.Token) (len=3) {
-  (*lexer.Token)(OpenTag 0 2),
-  (*lexer.Token)(Name 2 1),
-  (*lexer.Token)(EndOfFile 3 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=3) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 2,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 3,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -9,7 +21,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 2)
+        (*lexer.Token)(OpenTag 0 2 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
@@ -24,7 +36,7 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 2 1)
+                    (*lexer.Token)(Name 2 1 ModeScripting)
                   }
                 })
               }
@@ -37,7 +49,7 @@
             Children: ([]phrase.AstNode) {
             }
           },
-          Unexpected: (*lexer.Token)(EndOfFile 3 0),
+          Unexpected: (*lexer.Token)(EndOfFile 3 0 ModeScripting),
           Expected: (lexer.TokenType) Semicolon
         })
       }

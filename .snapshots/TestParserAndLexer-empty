@@ -1,5 +1,9 @@
-([]*lexer.Token) (len=1) {
-  (*lexer.Token)(EndOfFile 0 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=1) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 0,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,

@@ -1,12 +1,44 @@
-([]*lexer.Token) (len=8) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(VariableName 6 5),
-  (*lexer.Token)(Whitespace 11 1),
-  (*lexer.Token)(Equals 12 1),
-  (*lexer.Token)(Whitespace 13 1),
-  (*lexer.Token)(IntegerLiteral 14 1),
-  (*lexer.Token)(Semicolon 15 1),
-  (*lexer.Token)(EndOfFile 16 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=8) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 6,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 11,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Equals,
+    Offset: (int) 12,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 13,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) IntegerLiteral,
+    Offset: (int) 14,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 15,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 16,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -14,7 +46,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
@@ -26,16 +58,16 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 5)
+                (*lexer.Token)(VariableName 6 5 ModeScripting)
               }
             }),
-            (*lexer.Token)(Whitespace 11 1),
-            (*lexer.Token)(Equals 12 1),
-            (*lexer.Token)(Whitespace 13 1),
-            (*lexer.Token)(IntegerLiteral 14 1)
+            (*lexer.Token)(Whitespace 11 1 ModeScripting),
+            (*lexer.Token)(Equals 12 1 ModeScripting),
+            (*lexer.Token)(Whitespace 13 1 ModeScripting),
+            (*lexer.Token)(IntegerLiteral 14 1 ModeScripting)
           }
         }),
-        (*lexer.Token)(Semicolon 15 1)
+        (*lexer.Token)(Semicolon 15 1 ModeScripting)
       }
     })
   }

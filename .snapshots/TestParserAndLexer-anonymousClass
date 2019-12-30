@@ -1,17 +1,69 @@
-([]*lexer.Token) (len=13) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(VariableName 6 2),
-  (*lexer.Token)(Whitespace 8 1),
-  (*lexer.Token)(Equals 9 1),
-  (*lexer.Token)(Whitespace 10 1),
-  (*lexer.Token)(New 11 3),
-  (*lexer.Token)(Whitespace 14 1),
-  (*lexer.Token)(Class 15 5),
-  (*lexer.Token)(Whitespace 20 1),
-  (*lexer.Token)(OpenBrace 21 1),
-  (*lexer.Token)(CloseBrace 22 1),
-  (*lexer.Token)(Semicolon 23 1),
-  (*lexer.Token)(EndOfFile 24 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=13) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 6,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 8,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Equals,
+    Offset: (int) 9,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 10,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) New,
+    Offset: (int) 11,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 14,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Class,
+    Offset: (int) 15,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 20,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBrace,
+    Offset: (int) 21,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBrace,
+    Offset: (int) 22,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 23,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 24,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -19,7 +71,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
@@ -31,32 +83,32 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 2)
+                (*lexer.Token)(VariableName 6 2 ModeScripting)
               }
             }),
-            (*lexer.Token)(Whitespace 8 1),
-            (*lexer.Token)(Equals 9 1),
-            (*lexer.Token)(Whitespace 10 1),
+            (*lexer.Token)(Whitespace 8 1 ModeScripting),
+            (*lexer.Token)(Equals 9 1 ModeScripting),
+            (*lexer.Token)(Whitespace 10 1 ModeScripting),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ObjectCreationExpression,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(New 11 3),
-                (*lexer.Token)(Whitespace 14 1),
+                (*lexer.Token)(New 11 3 ModeScripting),
+                (*lexer.Token)(Whitespace 14 1 ModeScripting),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) AnonymousClassDeclaration,
                   Children: ([]phrase.AstNode) (len=3) {
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) AnonymousClassDeclarationHeader,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Class 15 5)
+                        (*lexer.Token)(Class 15 5 ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 20 1),
+                    (*lexer.Token)(Whitespace 20 1 ModeScripting),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) ClassDeclarationBody,
                       Children: ([]phrase.AstNode) (len=2) {
-                        (*lexer.Token)(OpenBrace 21 1),
-                        (*lexer.Token)(CloseBrace 22 1)
+                        (*lexer.Token)(OpenBrace 21 1 ModeScripting),
+                        (*lexer.Token)(CloseBrace 22 1 ModeScripting ModeScripting)
                       }
                     })
                   }
@@ -65,7 +117,7 @@
             })
           }
         }),
-        (*lexer.Token)(Semicolon 23 1)
+        (*lexer.Token)(Semicolon 23 1 ModeScripting)
       }
     })
   }

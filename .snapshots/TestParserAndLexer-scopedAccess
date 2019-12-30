@@ -1,8 +1,24 @@
-([]*lexer.Token) (len=4) {
-  (*lexer.Token)(OpenTag 0 7),
-  (*lexer.Token)(Name 7 15),
-  (*lexer.Token)(ColonColon 22 2),
-  (*lexer.Token)(EndOfFile 24 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=4) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 7,
+    Length: (int) 15
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) ColonColon,
+    Offset: (int) 22,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 24,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -10,7 +26,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 7)
+        (*lexer.Token)(OpenTag 0 7 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
@@ -25,12 +41,12 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 7 15)
+                    (*lexer.Token)(Name 7 15 ModeScripting)
                   }
                 })
               }
             }),
-            (*lexer.Token)(ColonColon 22 2),
+            (*lexer.Token)(ColonColon 22 2 ModeScripting),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ScopedMemberName,
               Children: ([]phrase.AstNode) (len=1) {
@@ -40,7 +56,7 @@
                     Children: ([]phrase.AstNode) {
                     }
                   },
-                  Unexpected: (*lexer.Token)(EndOfFile 24 0),
+                  Unexpected: (*lexer.Token)(EndOfFile 24 0 ModeScripting),
                   Expected: (lexer.TokenType) 
                 })
               }

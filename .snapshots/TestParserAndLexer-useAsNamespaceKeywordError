@@ -1,15 +1,59 @@
-([]*lexer.Token) (len=11) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(Whitespace 6 4),
-  (*lexer.Token)(Use 10 3),
-  (*lexer.Token)(Whitespace 13 1),
-  (*lexer.Token)(Name 14 6),
-  (*lexer.Token)(Whitespace 20 1),
-  (*lexer.Token)(As 21 2),
-  (*lexer.Token)(Whitespace 23 1),
-  (*lexer.Token)(Namespace 24 9),
-  (*lexer.Token)(Semicolon 33 1),
-  (*lexer.Token)(EndOfFile 34 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=11) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 6,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Use,
+    Offset: (int) 10,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 13,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 14,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 20,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) As,
+    Offset: (int) 21,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 23,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Namespace,
+    Offset: (int) 24,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 33,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 34,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -17,15 +61,15 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
-    (*lexer.Token)(Whitespace 6 4),
+    (*lexer.Token)(Whitespace 6 4 ModeScripting),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceUseDeclaration,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Use 10 3),
-        (*lexer.Token)(Whitespace 13 1),
+        (*lexer.Token)(Use 10 3 ModeScripting),
+        (*lexer.Token)(Whitespace 13 1 ModeScripting),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceUseClauseList,
           Children: ([]phrase.AstNode) (len=1) {
@@ -35,23 +79,23 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 14 6)
+                    (*lexer.Token)(Name 14 6 ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 20 1),
+                (*lexer.Token)(Whitespace 20 1 ModeScripting),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceAliasingClause,
                   Children: ([]phrase.AstNode) (len=2) {
-                    (*lexer.Token)(As 21 2),
+                    (*lexer.Token)(As 21 2 ModeScripting),
                     (*phrase.ParseError)({
                       Phrase: (phrase.Phrase) {
                         Type: (phrase.PhraseType) Error,
                         Children: ([]phrase.AstNode) (len=2) {
-                          (*lexer.Token)(Whitespace 23 1),
-                          (*lexer.Token)(Namespace 24 9)
+                          (*lexer.Token)(Whitespace 23 1 ModeScripting),
+                          (*lexer.Token)(Namespace 24 9 ModeScripting)
                         }
                       },
-                      Unexpected: (*lexer.Token)(Namespace 24 9),
+                      Unexpected: (*lexer.Token)(Namespace 24 9 ModeScripting),
                       Expected: (lexer.TokenType) Name
                     })
                   }
@@ -60,7 +104,7 @@
             })
           }
         }),
-        (*lexer.Token)(Semicolon 33 1)
+        (*lexer.Token)(Semicolon 33 1 ModeScripting)
       }
     })
   }

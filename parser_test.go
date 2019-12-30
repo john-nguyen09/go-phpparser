@@ -34,8 +34,22 @@ func TestParserAndLexer(t *testing.T) {
 
 		t.Run(strings.TrimSuffix(file.Name(), path.Ext(file.Name())), func(t *testing.T) {
 			tokens := lexer.Lex(string(data))
+			snapshotTokens := []struct {
+				Type   lexer.TokenType
+				Offset int
+				Length int
+			}{}
+			for _, token := range tokens {
+				snapshotTokens = append(snapshotTokens, struct {
+					Type   lexer.TokenType
+					Offset int
+					Length int
+				}{
+					token.Type, token.Offset, token.Length,
+				})
+			}
 			rootNode := parser.Parse(string(data))
-			cupaloy.SnapshotT(t, tokens, rootNode)
+			cupaloy.SnapshotT(t, snapshotTokens, rootNode)
 		})
 	}
 }

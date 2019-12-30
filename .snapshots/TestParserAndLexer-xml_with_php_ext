@@ -1,6 +1,14 @@
-([]*lexer.Token) (len=2) {
-  (*lexer.Token)(Text 0 22),
-  (*lexer.Token)(EndOfFile 22 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=2) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Text,
+    Offset: (int) 0,
+    Length: (int) 22
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 22,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -8,7 +16,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(Text 0 22)
+        (*lexer.Token)(Text 0 22 ModeInitial)
       }
     })
   }

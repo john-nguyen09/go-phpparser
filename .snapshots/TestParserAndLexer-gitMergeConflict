@@ -1,14 +1,54 @@
-([]*lexer.Token) (len=10) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(Whitespace 6 1),
-  (*lexer.Token)(LessThanLessThan 7 2),
-  (*lexer.Token)(LessThanLessThan 9 2),
-  (*lexer.Token)(StartHeredoc 11 9),
-  (*lexer.Token)(VariableName 20 4),
-  (*lexer.Token)(EncapsulatedAndWhitespace 24 14),
-  (*lexer.Token)(VariableName 38 4),
-  (*lexer.Token)(EncapsulatedAndWhitespace 42 24),
-  (*lexer.Token)(EndOfFile 66 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=10) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 6,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) LessThanLessThan,
+    Offset: (int) 7,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) LessThanLessThan,
+    Offset: (int) 9,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) StartHeredoc,
+    Offset: (int) 11,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 20,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EncapsulatedAndWhitespace,
+    Offset: (int) 24,
+    Length: (int) 14
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 38,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EncapsulatedAndWhitespace,
+    Offset: (int) 42,
+    Length: (int) 24
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 66,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -16,24 +56,24 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.ParseError)({
       Phrase: (phrase.Phrase) {
         Type: (phrase.PhraseType) Error,
         Children: ([]phrase.AstNode) (len=8) {
-          (*lexer.Token)(Whitespace 6 1),
-          (*lexer.Token)(LessThanLessThan 7 2),
-          (*lexer.Token)(LessThanLessThan 9 2),
-          (*lexer.Token)(StartHeredoc 11 9),
-          (*lexer.Token)(VariableName 20 4),
-          (*lexer.Token)(EncapsulatedAndWhitespace 24 14),
-          (*lexer.Token)(VariableName 38 4),
-          (*lexer.Token)(EncapsulatedAndWhitespace 42 24)
+          (*lexer.Token)(Whitespace 6 1 ModeScripting),
+          (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
+          (*lexer.Token)(LessThanLessThan 9 2 ModeScripting),
+          (*lexer.Token)(StartHeredoc 11 9 ModeScripting),
+          (*lexer.Token)(VariableName 20 4 ModeHereDoc),
+          (*lexer.Token)(EncapsulatedAndWhitespace 24 14 ModeHereDoc),
+          (*lexer.Token)(VariableName 38 4 ModeHereDoc),
+          (*lexer.Token)(EncapsulatedAndWhitespace 42 24 ModeHereDoc)
         }
       },
-      Unexpected: (*lexer.Token)(LessThanLessThan 7 2),
+      Unexpected: (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
       Expected: (lexer.TokenType) 
     })
   }

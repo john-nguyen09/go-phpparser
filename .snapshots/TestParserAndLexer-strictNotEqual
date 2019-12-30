@@ -1,12 +1,44 @@
-([]*lexer.Token) (len=8) {
-  (*lexer.Token)(OpenTag 0 6),
-  (*lexer.Token)(VariableName 6 2),
-  (*lexer.Token)(Whitespace 8 1),
-  (*lexer.Token)(ExclamationEqualsEquals 9 3),
-  (*lexer.Token)(Whitespace 12 1),
-  (*lexer.Token)(VariableName 13 2),
-  (*lexer.Token)(Semicolon 15 1),
-  (*lexer.Token)(EndOfFile 16 0)
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=8) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 6,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 8,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) ExclamationEqualsEquals,
+    Offset: (int) 9,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 12,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 13,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 15,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 16,
+    Length: (int) 0
+  }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
@@ -14,7 +46,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6)
+        (*lexer.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
     (*phrase.Phrase)({
@@ -26,21 +58,21 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 2)
+                (*lexer.Token)(VariableName 6 2 ModeScripting)
               }
             }),
-            (*lexer.Token)(Whitespace 8 1),
-            (*lexer.Token)(ExclamationEqualsEquals 9 3),
-            (*lexer.Token)(Whitespace 12 1),
+            (*lexer.Token)(Whitespace 8 1 ModeScripting),
+            (*lexer.Token)(ExclamationEqualsEquals 9 3 ModeScripting),
+            (*lexer.Token)(Whitespace 12 1 ModeScripting),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 13 2)
+                (*lexer.Token)(VariableName 13 2 ModeScripting)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 15 1)
+        (*lexer.Token)(Semicolon 15 1 ModeScripting)
       }
     })
   }
