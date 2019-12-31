@@ -697,7 +697,11 @@ func (s *LexerState) initial() *Token {
 
 	if c == '<' && (s.position+1 < s.inputLength && s.input[s.position+1] == '?') {
 		if s.position+2 >= s.inputLength || isWhitespace(s.input[s.position+2]) {
-			s.position += 2
+			if s.input[s.position+2] == '\r' && s.position+3 < s.inputLength && s.input[s.position+3] == '\n' {
+				s.position += 4
+			} else {
+				s.position += 3
+			}
 
 			token := NewToken(OpenTag, start, s.position-start, s.ModeStack())
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
@@ -705,7 +709,11 @@ func (s *LexerState) initial() *Token {
 		}
 		if s.position+2 < s.inputLength && s.input[s.position+2] == '=' &&
 			(s.position+3 >= s.inputLength || isWhitespace(s.input[s.position+3])) {
-			s.position += 3
+			if s.input[s.position+3] == '\r' && s.position+4 < s.inputLength && s.input[s.position+4] == '\n' {
+				s.position += 5
+			} else {
+				s.position += 4
+			}
 
 			token := NewToken(OpenTagEcho, start, s.position-start, s.ModeStack())
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
@@ -713,7 +721,11 @@ func (s *LexerState) initial() *Token {
 		}
 		if s.position+5 < s.inputLength && strings.ToLower(string(s.input[s.position:s.position+5])) == "<?php" &&
 			(s.position+5 >= s.inputLength || isWhitespace(s.input[s.position+5])) {
-			s.position += 5
+			if s.input[s.position+5] == '\r' && s.position+6 < s.inputLength && s.input[s.position+6] == '\n' {
+				s.position += 7
+			} else {
+				s.position += 6
+			}
 
 			token := NewToken(OpenTag, start, s.position-start, s.ModeStack())
 			s.modeStack[len(s.modeStack)-1] = ModeScripting

@@ -1,13 +1,8 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=3) {
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=2) {
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenTag,
+    Type: (lexer.TokenType) Text,
     Offset: (int) 0,
-    Length: (int) 2
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
-    Offset: (int) 2,
-    Length: (int) 1
+    Length: (int) 3
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) EndOfFile,
@@ -17,41 +12,11 @@
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=2) {
+  Children: ([]phrase.AstNode) (len=1) {
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 2 ModeInitial)
-      }
-    }),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) ExpressionStatement,
-      Children: ([]phrase.AstNode) (len=2) {
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) ConstantAccessExpression,
-          Children: ([]phrase.AstNode) (len=1) {
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) QualifiedName,
-              Children: ([]phrase.AstNode) (len=1) {
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) NamespaceName,
-                  Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 2 1 ModeScripting)
-                  }
-                })
-              }
-            })
-          }
-        }),
-        (*phrase.ParseError)({
-          Phrase: (phrase.Phrase) {
-            Type: (phrase.PhraseType) Error,
-            Children: ([]phrase.AstNode) {
-            }
-          },
-          Unexpected: (*lexer.Token)(EndOfFile 3 0 ModeScripting),
-          Expected: (lexer.TokenType) Semicolon
-        })
+        (*lexer.Token)(Text 0 3 ModeInitial)
       }
     })
   }
