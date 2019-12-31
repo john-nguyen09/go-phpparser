@@ -3,6 +3,7 @@ package lexer
 import (
 	"bytes"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -625,6 +626,57 @@ func (s *LexerState) ModeStack() []LexerMode {
 	modeStack := append(s.modeStack[:0:0], s.modeStack...)
 
 	return modeStack
+}
+
+func IsInToken(offset int, t *Token) int {
+	if offset < t.Offset {
+		return -1
+	}
+	if offset >= t.Offset+t.Length {
+		return 1
+	}
+	return 0
+}
+
+func Sync(text string, change ChangeEvent, oldTokens []*Token) []*Token {
+	startIndex := sort.Search(len(oldTokens), func(i int) bool {
+		return IsInToken(change.Start, oldTokens[i]) <= 0
+	})
+	endIndex := sort.Search(len(oldTokens), func(i int) bool {
+		return IsInToken(change.End, oldTokens[i]) <= 0
+	})
+
+	modeStack := []LexerMode{ModeInitial}
+	position := 0
+	changedTokens := []*Token{}
+	if startIndex > 0 {
+		copy(modeStack, oldTokens[startIndex-1].ModeStack)
+		position = oldTokens[startIndex-1].Offset
+		changedTokens = append(oldTokens[:0:0], oldTokens[:startIndex-1]...)
+	}
+
+	lexerState := NewLexerState(text, modeStack, position)
+	t := lexerState.Lex()
+	lastOffset := 0
+	newOffsetDiff := len(change.Text) - (change.End - change.Start)
+	for t.Offset < change.End+newOffsetDiff || t.Length == 0 {
+		changedTokens = append(changedTokens, t)
+		lastOffset = t.Offset + t.Length
+		if t.Type == EndOfFile {
+			break
+		}
+		t = lexerState.Lex()
+	}
+	for _, token := range oldTokens[endIndex:] {
+		newToken := *token
+		newToken.Offset += len(change.Text) - (change.End - change.Start)
+
+		if newToken.Offset < lastOffset {
+			continue
+		}
+		changedTokens = append(changedTokens, &newToken)
+	}
+	return changedTokens
 }
 
 func (s *LexerState) Lex() *Token {
