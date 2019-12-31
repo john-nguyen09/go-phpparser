@@ -695,43 +695,46 @@ func (s *LexerState) initial() *Token {
 	c := s.input[s.position]
 	start := s.position
 
-	if c == '<' &&
-		s.position+1 < s.inputLength && s.input[s.position+1] == '?' &&
-		s.position+2 < s.inputLength && (s.input[s.position+2] == ' ' ||
-		s.input[s.position+2] == 'p' ||
-		s.input[s.position+2] == '=') {
-		tokenType := OpenTag
-
-		if s.position+5 < s.inputLength &&
-			strings.ToLower(string(s.input[s.position:s.position+5])) == "<?php" &&
-			isWhitespace(s.input[s.position+5]) {
-
-			if s.input[s.position+5] == '\r' &&
-				s.position+6 < s.inputLength &&
-				s.input[s.position+6] == '\n' {
-
-				s.position += 7
-			} else {
-				s.position += 6
-			}
-
-		} else if s.position+2 < s.inputLength && s.input[s.position+2] == '=' {
-			tokenType = OpenTagEcho
-			s.position += 3
-		} else {
+	if c == '<' && (s.position+1 < s.inputLength && s.input[s.position+1] == '?') {
+		if s.position+2 >= s.inputLength || isWhitespace(s.input[s.position+2]) {
 			s.position += 2
+
+			token := NewToken(OpenTag, start, s.position-start, s.ModeStack())
+			s.modeStack[len(s.modeStack)-1] = ModeScripting
+			return token
 		}
+		if s.position+2 < s.inputLength && s.input[s.position+2] == '=' &&
+			(s.position+3 >= s.inputLength || isWhitespace(s.input[s.position+3])) {
+			s.position += 3
 
-		token := NewToken(tokenType, start, s.position-start, s.ModeStack())
-		s.modeStack[len(s.modeStack)-1] = ModeScripting
+			token := NewToken(OpenTagEcho, start, s.position-start, s.ModeStack())
+			s.modeStack[len(s.modeStack)-1] = ModeScripting
+			return token
+		}
+		if s.position+5 < s.inputLength && strings.ToLower(string(s.input[s.position:s.position+5])) == "<?php" &&
+			(s.position+5 >= s.inputLength || isWhitespace(s.input[s.position+5])) {
+			s.position += 5
 
-		return token
+			token := NewToken(OpenTag, start, s.position-start, s.ModeStack())
+			s.modeStack[len(s.modeStack)-1] = ModeScripting
+			return token
+		}
 	}
 
 	for s.position++; s.position < s.inputLength; s.position++ {
 		c = s.input[s.position]
-		if c == '<' && s.position+1 < s.inputLength && s.input[s.position+1] == '?' {
-			break
+		if c == '<' && (s.position+1 < s.inputLength && s.input[s.position+1] == '?') {
+			if s.position+2 >= s.inputLength || isWhitespace(s.input[s.position+2]) {
+				break
+			}
+			if s.position+2 < s.inputLength && s.input[s.position+2] == '=' &&
+				(s.position+3 >= s.inputLength || isWhitespace(s.input[s.position+3])) {
+				break
+			}
+			if s.position+5 < s.inputLength && strings.ToLower(string(s.input[s.position:s.position+5])) == "<?php" &&
+				(s.position+5 >= s.inputLength || isWhitespace(s.input[s.position+5])) {
+				break
+			}
 		}
 	}
 
