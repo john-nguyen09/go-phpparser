@@ -1,4 +1,4 @@
-package lexer
+package parser
 
 import (
 	"bytes"
@@ -13,7 +13,7 @@ type TokenType uint8
 const (
 	// Misc
 	Undefined TokenType = iota
-	Unknown
+	TokenUnknown
 	EndOfFile
 
 	Abstract
@@ -190,8 +190,8 @@ const (
 
 func (tokenType TokenType) String() string {
 	switch tokenType {
-	case Unknown:
-		return "Unknown"
+	case TokenUnknown:
+		return "TokenUnknown"
 	case EndOfFile:
 		return "EndOfFile"
 	case Abstract:
@@ -941,7 +941,7 @@ func (s *LexerState) scripting() *Token {
 
 	s.position++
 
-	return NewToken(Unknown, start, 1, modeStack)
+	return NewToken(TokenUnknown, start, 1, modeStack)
 }
 
 func (s *LexerState) scriptingMinus() *Token {
@@ -1253,7 +1253,7 @@ func (s *LexerState) scriptingOpenParenthesis() *Token {
 	//should have a ) here if valid cast token
 	if k < s.inputLength && s.input[k] == ')' {
 		keyword := strings.ToLower(string(s.input[keywordStart:keywordEnd]))
-		tokenType := Unknown
+		tokenType := TokenUnknown
 
 		switch keyword {
 		case "int", "integer":
@@ -1272,7 +1272,7 @@ func (s *LexerState) scriptingOpenParenthesis() *Token {
 			tokenType = UnsetCast
 		}
 
-		if tokenType > Unknown {
+		if tokenType > TokenUnknown {
 			s.position = k + 1
 
 			return NewToken(tokenType, start, s.position-start, s.ModeStack())
@@ -1492,7 +1492,7 @@ func (s *LexerState) scriptingLabelStart() *Token {
 
 	firstRune := s.input[start]
 	text := string(s.input[start:s.position])
-	tokenType := Unknown
+	tokenType := TokenUnknown
 
 	if firstRune == '_' {
 		switch text {
@@ -1514,7 +1514,7 @@ func (s *LexerState) scriptingLabelStart() *Token {
 			tokenType = NamespaceConstant
 		}
 
-		if tokenType > Unknown {
+		if tokenType > TokenUnknown {
 			return NewToken(tokenType, start, s.position-start, s.ModeStack())
 		}
 	}
@@ -1658,7 +1658,7 @@ func (s *LexerState) scriptingLabelStart() *Token {
 		tokenType = Xor
 	}
 
-	if tokenType > Unknown {
+	if tokenType > TokenUnknown {
 		return NewToken(tokenType, start, s.position-start, s.ModeStack())
 	}
 
@@ -2245,7 +2245,7 @@ func (s *LexerState) varOffset() *Token {
 	s.modeStack = s.modeStack[0 : len(s.modeStack)-1]
 	s.position++
 
-	return NewToken(Unknown, start, 1, modeStack)
+	return NewToken(TokenUnknown, start, 1, modeStack)
 }
 
 func (s *LexerState) varOffsetNumeric() *Token {

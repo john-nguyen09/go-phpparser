@@ -1,15 +1,13 @@
-package phrase
+package parser
 
 import (
 	"bytes"
-
-	"github.com/john-nguyen09/go-phpparser/lexer"
 )
 
 type PhraseType uint8
 
 const (
-	Unknown PhraseType = iota
+	PhraseUnknown PhraseType = iota
 	AdditiveExpression
 	AnonymousClassDeclaration
 	AnonymousClassDeclarationHeader
@@ -195,8 +193,8 @@ const (
 
 func (phraseType PhraseType) String() string {
 	switch phraseType {
-	case Unknown:
-		return "Unknown"
+	case PhraseUnknown:
+		return "PhraseUnknown"
 	case AdditiveExpression:
 		return "AdditiveExpression"
 	case AnonymousClassDeclaration:
@@ -575,8 +573,8 @@ type Phrase struct {
 
 type ParseError struct {
 	Phrase
-	Unexpected *lexer.Token
-	Expected   lexer.TokenType
+	Unexpected *Token
+	Expected   TokenType
 }
 
 // AstNode is to extend interface
@@ -598,8 +596,8 @@ func NewPhrase(phraseType PhraseType, children []AstNode) *Phrase {
 func NewParseErr(
 	phraseType PhraseType,
 	children []AstNode,
-	unexpected *lexer.Token,
-	expected lexer.TokenType) *ParseError {
+	unexpected *Token,
+	expected TokenType) *ParseError {
 	phrase := NewPhrase(phraseType, children)
 
 	return &ParseError{*phrase, unexpected, expected}

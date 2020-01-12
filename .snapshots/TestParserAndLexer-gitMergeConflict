@@ -1,80 +1,80 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=10) {
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenTag,
+([]struct { Type parser.TokenType; Offset int; Length int }) (len=10) {
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenTag,
     Offset: (int) 0,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 6,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) LessThanLessThan,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) LessThanLessThan,
     Offset: (int) 7,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) LessThanLessThan,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) LessThanLessThan,
     Offset: (int) 9,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) StartHeredoc,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) StartHeredoc,
     Offset: (int) 11,
     Length: (int) 9
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 20,
     Length: (int) 4
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EncapsulatedAndWhitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EncapsulatedAndWhitespace,
     Offset: (int) 24,
     Length: (int) 14
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 38,
     Length: (int) 4
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EncapsulatedAndWhitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EncapsulatedAndWhitespace,
     Offset: (int) 42,
     Length: (int) 24
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EndOfFile,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EndOfFile,
     Offset: (int) 66,
     Length: (int) 0
   }
 }
-(*phrase.Phrase)({
-  Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=2) {
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) InlineText,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+(*parser.Phrase)({
+  Type: (parser.PhraseType) StatementList,
+  Children: ([]parser.AstNode) (len=2) {
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) InlineText,
+      Children: ([]parser.AstNode) (len=1) {
+        (*parser.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
-    (*phrase.ParseError)({
-      Phrase: (phrase.Phrase) {
-        Type: (phrase.PhraseType) Error,
-        Children: ([]phrase.AstNode) (len=8) {
-          (*lexer.Token)(Whitespace 6 1 ModeScripting),
-          (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
-          (*lexer.Token)(LessThanLessThan 9 2 ModeScripting),
-          (*lexer.Token)(StartHeredoc 11 9 ModeScripting),
-          (*lexer.Token)(VariableName 20 4 ModeHereDoc),
-          (*lexer.Token)(EncapsulatedAndWhitespace 24 14 ModeHereDoc),
-          (*lexer.Token)(VariableName 38 4 ModeHereDoc),
-          (*lexer.Token)(EncapsulatedAndWhitespace 42 24 ModeHereDoc)
+    (*parser.ParseError)({
+      Phrase: (parser.Phrase) {
+        Type: (parser.PhraseType) Error,
+        Children: ([]parser.AstNode) (len=8) {
+          (*parser.Token)(Whitespace 6 1 ModeScripting),
+          (*parser.Token)(LessThanLessThan 7 2 ModeScripting),
+          (*parser.Token)(LessThanLessThan 9 2 ModeScripting),
+          (*parser.Token)(StartHeredoc 11 9 ModeScripting),
+          (*parser.Token)(VariableName 20 4 ModeHereDoc),
+          (*parser.Token)(EncapsulatedAndWhitespace 24 14 ModeHereDoc),
+          (*parser.Token)(VariableName 38 4 ModeHereDoc),
+          (*parser.Token)(EncapsulatedAndWhitespace 42 24 ModeHereDoc)
         }
       },
-      Unexpected: (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
-      Expected: (lexer.TokenType) 
+      Unexpected: (*parser.Token)(LessThanLessThan 7 2 ModeScripting),
+      Expected: (parser.TokenType) 
     })
   }
 })

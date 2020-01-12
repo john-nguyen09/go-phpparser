@@ -3,60 +3,57 @@ package parser
 import (
 	"errors"
 	"reflect"
-
-	"github.com/john-nguyen09/go-phpparser/lexer"
-	"github.com/john-nguyen09/go-phpparser/phrase"
 )
 
-var statementListRecoverSet = []lexer.TokenType{lexer.Use,
-	lexer.HaltCompiler,
-	lexer.Const,
-	lexer.Function,
-	lexer.Class,
-	lexer.Abstract,
-	lexer.Final,
-	lexer.Trait,
-	lexer.Interface,
-	lexer.OpenBrace,
-	lexer.If,
-	lexer.While,
-	lexer.Do,
-	lexer.For,
-	lexer.Switch,
-	lexer.Break,
-	lexer.Continue,
-	lexer.Return,
-	lexer.Global,
-	lexer.Static,
-	lexer.Echo,
-	lexer.Unset,
-	lexer.ForEach,
-	lexer.Declare,
-	lexer.Try,
-	lexer.Throw,
-	lexer.Goto,
-	lexer.Semicolon,
-	lexer.CloseTag,
-	lexer.OpenTagEcho,
-	lexer.Text,
-	lexer.OpenTag}
+var statementListRecoverSet = []TokenType{Use,
+	HaltCompiler,
+	Const,
+	Function,
+	Class,
+	Abstract,
+	Final,
+	Trait,
+	Interface,
+	OpenBrace,
+	If,
+	While,
+	Do,
+	For,
+	Switch,
+	Break,
+	Continue,
+	Return,
+	Global,
+	Static,
+	Echo,
+	Unset,
+	ForEach,
+	Declare,
+	Try,
+	Throw,
+	Goto,
+	Semicolon,
+	CloseTag,
+	OpenTagEcho,
+	Text,
+	OpenTag}
 
-var classMemberDeclarationListRecoverSet = []lexer.TokenType{
-	lexer.Public,
-	lexer.Protected,
-	lexer.Private,
-	lexer.Static,
-	lexer.Abstract,
-	lexer.Final,
-	lexer.Function,
-	lexer.Var,
-	lexer.Const,
-	lexer.Use}
+var classMemberDeclarationListRecoverSet = []TokenType{
+	Public,
+	Protected,
+	Private,
+	Static,
+	Abstract,
+	Final,
+	Function,
+	Var,
+	Const,
+	Use}
 
-var encapsulatedVariableListRecoverSet = []lexer.TokenType{
-	lexer.EncapsulatedAndWhitespace,
-	lexer.DollarCurlyOpen,
-	lexer.CurlyOpen}
+var encapsulatedVariableListRecoverSet = []TokenType{
+	EncapsulatedAndWhitespace,
+	DollarCurlyOpen,
+	CurlyOpen}
 
 type Associativity int
 
@@ -66,181 +63,181 @@ const (
 	Right
 )
 
-func precedenceAssociativityTuple(t *lexer.Token) (int, Associativity) {
+func precedenceAssociativityTuple(t *Token) (int, Associativity) {
 	switch t.Type {
-	case lexer.AsteriskAsterisk:
+	case AsteriskAsterisk:
 		return 48, Right
-	case lexer.PlusPlus:
+	case PlusPlus:
 		return 47, Right
-	case lexer.MinusMinus:
+	case MinusMinus:
 		return 47, Right
-	case lexer.Tilde:
+	case Tilde:
 		return 47, Right
-	case lexer.IntegerCast:
+	case IntegerCast:
 		return 47, Right
-	case lexer.FloatCast:
+	case FloatCast:
 		return 47, Right
-	case lexer.StringCast:
+	case StringCast:
 		return 47, Right
-	case lexer.ArrayCast:
+	case ArrayCast:
 		return 47, Right
-	case lexer.ObjectCast:
+	case ObjectCast:
 		return 47, Right
-	case lexer.BooleanCast:
+	case BooleanCast:
 		return 47, Right
-	case lexer.UnsetCast:
+	case UnsetCast:
 		return 47, Right
-	case lexer.AtSymbol:
+	case AtSymbol:
 		return 47, Right
-	case lexer.InstanceOf:
+	case InstanceOf:
 		return 46, None
-	case lexer.Exclamation:
+	case Exclamation:
 		return 45, Right
-	case lexer.Asterisk:
+	case Asterisk:
 		return 44, Left
-	case lexer.ForwardSlash:
+	case ForwardSlash:
 		return 44, Left
-	case lexer.Percent:
+	case Percent:
 		return 44, Left
-	case lexer.Plus:
+	case Plus:
 		return 43, Left
-	case lexer.Minus:
+	case Minus:
 		return 43, Left
-	case lexer.Dot:
+	case Dot:
 		return 43, Left
-	case lexer.LessThanLessThan:
+	case LessThanLessThan:
 		return 42, Left
-	case lexer.GreaterThanGreaterThan:
+	case GreaterThanGreaterThan:
 		return 42, Left
-	case lexer.LessThan:
+	case LessThan:
 		return 41, None
-	case lexer.GreaterThan:
+	case GreaterThan:
 		return 41, None
-	case lexer.LessThanEquals:
+	case LessThanEquals:
 		return 41, None
-	case lexer.GreaterThanEquals:
+	case GreaterThanEquals:
 		return 41, None
-	case lexer.EqualsEquals:
+	case EqualsEquals:
 		return 40, None
-	case lexer.EqualsEqualsEquals:
+	case EqualsEqualsEquals:
 		return 40, None
-	case lexer.ExclamationEquals:
+	case ExclamationEquals:
 		return 40, None
-	case lexer.ExclamationEqualsEquals:
+	case ExclamationEqualsEquals:
 		return 40, None
-	case lexer.Spaceship:
+	case Spaceship:
 		return 40, None
-	case lexer.Ampersand:
+	case Ampersand:
 		return 39, Left
-	case lexer.Caret:
+	case Caret:
 		return 38, Left
-	case lexer.Bar:
+	case Bar:
 		return 37, Left
-	case lexer.AmpersandAmpersand:
+	case AmpersandAmpersand:
 		return 36, Left
-	case lexer.BarBar:
+	case BarBar:
 		return 35, Left
-	case lexer.QuestionQuestion:
+	case QuestionQuestion:
 		return 34, Right
-	case lexer.Question:
+	case Question:
 		return 33, Left //?: ternary
-	case lexer.Equals:
+	case Equals:
 		return 32, Right
-	case lexer.DotEquals:
+	case DotEquals:
 		return 32, Right
-	case lexer.PlusEquals:
+	case PlusEquals:
 		return 32, Right
-	case lexer.MinusEquals:
+	case MinusEquals:
 		return 32, Right
-	case lexer.AsteriskEquals:
+	case AsteriskEquals:
 		return 32, Right
-	case lexer.ForwardslashEquals:
+	case ForwardslashEquals:
 		return 32, Right
-	case lexer.PercentEquals:
+	case PercentEquals:
 		return 32, Right
-	case lexer.AsteriskAsteriskEquals:
+	case AsteriskAsteriskEquals:
 		return 32, Right
-	case lexer.AmpersandEquals:
+	case AmpersandEquals:
 		return 32, Right
-	case lexer.BarEquals:
+	case BarEquals:
 		return 32, Right
-	case lexer.CaretEquals:
+	case CaretEquals:
 		return 32, Right
-	case lexer.LessThanLessThanEquals:
+	case LessThanLessThanEquals:
 		return 32, Right
-	case lexer.GreaterThanGreaterThanEquals:
+	case GreaterThanGreaterThanEquals:
 		return 32, Right
-	case lexer.And:
+	case And:
 		return 31, Left
-	case lexer.Xor:
+	case Xor:
 		return 30, Left
-	case lexer.Or:
+	case Or:
 		return 29, Left
 	}
 
 	return 0, None
 }
 
-func binaryOpToPhraseType(t *lexer.Token) phrase.PhraseType {
+func binaryOpToPhraseType(t *Token) PhraseType {
 	switch t.Type {
-	case lexer.Question:
-		return phrase.TernaryExpression
-	case lexer.Dot, lexer.Plus, lexer.Minus:
-		return phrase.AdditiveExpression
-	case lexer.Bar, lexer.Ampersand, lexer.Caret:
-		return phrase.BitwiseExpression
-	case lexer.Asterisk, lexer.ForwardSlash, lexer.Percent:
-		return phrase.MultiplicativeExpression
-	case lexer.AsteriskAsterisk:
-		return phrase.ExponentiationExpression
-	case lexer.LessThanLessThan, lexer.GreaterThanGreaterThan:
-		return phrase.ShiftExpression
-	case lexer.AmpersandAmpersand, lexer.BarBar, lexer.And, lexer.Or, lexer.Xor:
-		return phrase.LogicalExpression
-	case lexer.EqualsEqualsEquals,
-		lexer.ExclamationEqualsEquals,
-		lexer.EqualsEquals,
-		lexer.ExclamationEquals:
-		return phrase.EqualityExpression
-	case lexer.LessThan,
-		lexer.LessThanEquals,
-		lexer.GreaterThan,
-		lexer.GreaterThanEquals,
-		lexer.Spaceship:
-		return phrase.RelationalExpression
-	case lexer.QuestionQuestion:
-		return phrase.CoalesceExpression
-	case lexer.Equals:
-		return phrase.SimpleAssignmentExpression
-	case lexer.PlusEquals,
-		lexer.MinusEquals,
-		lexer.AsteriskEquals,
-		lexer.AsteriskAsteriskEquals,
-		lexer.ForwardslashEquals,
-		lexer.DotEquals,
-		lexer.PercentEquals,
-		lexer.AmpersandEquals,
-		lexer.BarEquals,
-		lexer.CaretEquals,
-		lexer.LessThanLessThanEquals,
-		lexer.GreaterThanGreaterThanEquals:
-		return phrase.CompoundAssignmentExpression
-	case lexer.InstanceOf:
-		return phrase.InstanceOfExpression
+	case Question:
+		return TernaryExpression
+	case Dot, Plus, Minus:
+		return AdditiveExpression
+	case Bar, Ampersand, Caret:
+		return BitwiseExpression
+	case Asterisk, ForwardSlash, Percent:
+		return MultiplicativeExpression
+	case AsteriskAsterisk:
+		return ExponentiationExpression
+	case LessThanLessThan, GreaterThanGreaterThan:
+		return ShiftExpression
+	case AmpersandAmpersand, BarBar, And, Or, Xor:
+		return LogicalExpression
+	case EqualsEqualsEquals,
+		ExclamationEqualsEquals,
+		EqualsEquals,
+		ExclamationEquals:
+		return EqualityExpression
+	case LessThan,
+		LessThanEquals,
+		GreaterThan,
+		GreaterThanEquals,
+		Spaceship:
+		return RelationalExpression
+	case QuestionQuestion:
+		return CoalesceExpression
+	case Equals:
+		return SimpleAssignmentExpression
+	case PlusEquals,
+		MinusEquals,
+		AsteriskEquals,
+		AsteriskAsteriskEquals,
+		ForwardslashEquals,
+		DotEquals,
+		PercentEquals,
+		AmpersandEquals,
+		BarEquals,
+		CaretEquals,
+		LessThanLessThanEquals,
+		GreaterThanGreaterThanEquals:
+		return CompoundAssignmentExpression
+	case InstanceOf:
+		return InstanceOfExpression
 	default:
-		return phrase.Unknown
+		return PhraseUnknown
 	}
 }
 
 type Parser struct {
 	tokenOffset     int
-	tokenBuffer     []*lexer.Token
-	phraseStack     []*phrase.Phrase
-	errorPhrase     *phrase.ParseError
-	recoverSetStack [][]lexer.TokenType
+	tokenBuffer     []*Token
+	phraseStack     []*Phrase
+	errorPhrase     *ParseError
+	recoverSetStack [][]TokenType
 }
 
-func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
+func tokenTypeIndexOf(haystack []TokenType, needle TokenType) int {
 	for index, tokenType := range haystack {
 		if tokenType == needle {
 			return index
@@ -250,21 +247,21 @@ func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
 	return -1
 }
 
-func Parse(text string) *phrase.Phrase {
+func Parse(text string) *Phrase {
 	doc := &Parser{0,
-		lexer.Lex(text),
-		make([]*phrase.Phrase, 0),
+		Lex(text),
+		make([]*Phrase, 0),
 		nil,
-		make([][]lexer.TokenType, 0)}
-	stmtList := doc.statementList([]lexer.TokenType{lexer.EndOfFile})
+		make([][]TokenType, 0)}
+	stmtList := doc.statementList([]TokenType{EndOfFile})
 	//append trailing hidden tokens
 	doc.hidden(stmtList)
 
 	return stmtList
 }
 
-func (doc *Parser) popRecover() []lexer.TokenType {
-	var lastRecoverSet []lexer.TokenType
+func (doc *Parser) popRecover() []TokenType {
+	var lastRecoverSet []TokenType
 
 	lastRecoverSet, doc.recoverSetStack = doc.recoverSetStack[len(doc.recoverSetStack)-1],
 		doc.recoverSetStack[:len(doc.recoverSetStack)-1]
@@ -272,21 +269,21 @@ func (doc *Parser) popRecover() []lexer.TokenType {
 	return lastRecoverSet
 }
 
-func (doc *Parser) start(phraseType phrase.PhraseType, dontPushHiddenToParent bool) *phrase.Phrase {
+func (doc *Parser) start(phraseType PhraseType, dontPushHiddenToParent bool) *Phrase {
 	//parent node gets hidden tokens between children
 	if !dontPushHiddenToParent {
 		doc.hidden(nil)
 	}
 
-	p := phrase.NewPhrase(phraseType, make([]phrase.AstNode, 0))
+	p := NewPhrase(phraseType, make([]AstNode, 0))
 
 	doc.phraseStack = append(doc.phraseStack, p)
 
 	return p
 }
 
-func (doc *Parser) end() *phrase.Phrase {
-	var result *phrase.Phrase
+func (doc *Parser) end() *Phrase {
+	var result *Phrase
 
 	result, doc.phraseStack =
 		doc.phraseStack[len(doc.phraseStack)-1], doc.phraseStack[:len(doc.phraseStack)-1]
@@ -294,14 +291,14 @@ func (doc *Parser) end() *phrase.Phrase {
 	return result
 }
 
-func (doc *Parser) hidden(p *phrase.Phrase) {
+func (doc *Parser) hidden(p *Phrase) {
 	if p == nil {
 		if len(doc.phraseStack) > 0 {
 			p = doc.phraseStack[len(doc.phraseStack)-1]
 		}
 	}
 
-	var t *lexer.Token
+	var t *Token
 
 	for {
 		if doc.tokenOffset < len(doc.tokenBuffer) {
@@ -309,7 +306,7 @@ func (doc *Parser) hidden(p *phrase.Phrase) {
 			doc.tokenOffset++
 		}
 
-		if t.Type < lexer.Comment {
+		if t.Type < Comment {
 			doc.tokenOffset--
 			break
 		} else {
@@ -318,7 +315,7 @@ func (doc *Parser) hidden(p *phrase.Phrase) {
 	}
 }
 
-func (doc *Parser) optional(tokenType lexer.TokenType) *lexer.Token {
+func (doc *Parser) optional(tokenType TokenType) *Token {
 	if tokenType == doc.peek(0).Type {
 		doc.errorPhrase = nil
 
@@ -328,7 +325,7 @@ func (doc *Parser) optional(tokenType lexer.TokenType) *lexer.Token {
 	return nil
 }
 
-func (doc *Parser) optionalOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
+func (doc *Parser) optionalOneOf(tokenTypes []TokenType) *Token {
 	if tokenTypeIndexOf(tokenTypes, doc.peek(0).Type) >= 0 {
 		doc.errorPhrase = nil
 
@@ -338,16 +335,16 @@ func (doc *Parser) optionalOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
 	return nil
 }
 
-func (doc *Parser) next(doNotPush bool) *lexer.Token {
+func (doc *Parser) next(doNotPush bool) *Token {
 	t := doc.tokenBuffer[doc.tokenOffset]
 	doc.tokenOffset++
 
-	if t.Type == lexer.EndOfFile {
+	if t.Type == EndOfFile {
 		return t
 	}
 
 	lastPhrase := doc.phraseStack[len(doc.phraseStack)-1]
-	if t.Type >= lexer.Comment {
+	if t.Type >= Comment {
 		//hidden token
 		lastPhrase.Children = append(lastPhrase.Children, t)
 
@@ -359,21 +356,21 @@ func (doc *Parser) next(doNotPush bool) *lexer.Token {
 	return t
 }
 
-func (doc *Parser) expect(tokenType lexer.TokenType) *lexer.Token {
+func (doc *Parser) expect(tokenType TokenType) *Token {
 	t := doc.peek(0)
 
 	if t.Type == tokenType {
 		doc.errorPhrase = nil
 
 		return doc.next(false)
-	} else if tokenType == lexer.Semicolon && t.Type == lexer.CloseTag {
+	} else if tokenType == Semicolon && t.Type == CloseTag {
 		//implicit end statement
 		return t
 	} else {
 		doc.error(tokenType)
 		//test skipping a single token to sync
 		if doc.peek(1).Type == tokenType {
-			doc.skip(func(x *lexer.Token) bool {
+			doc.skip(func(x *Token) bool {
 				return x.Type == tokenType
 			})
 			doc.errorPhrase = nil
@@ -384,22 +381,22 @@ func (doc *Parser) expect(tokenType lexer.TokenType) *lexer.Token {
 	return nil
 }
 
-func (doc *Parser) expectOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
+func (doc *Parser) expectOneOf(tokenTypes []TokenType) *Token {
 	t := doc.peek(0)
 
 	if tokenTypeIndexOf(tokenTypes, t.Type) >= 0 {
 		doc.errorPhrase = nil
 
 		return doc.next(false)
-	} else if tokenTypeIndexOf(tokenTypes, lexer.Semicolon) >= 0 && t.Type == lexer.CloseTag {
+	} else if tokenTypeIndexOf(tokenTypes, Semicolon) >= 0 && t.Type == CloseTag {
 		//implicit end statement
 		return t
 	}
 
-	doc.error(lexer.Undefined)
+	doc.error(Undefined)
 	//test skipping single token to sync
 	if tokenTypeIndexOf(tokenTypes, doc.peek(1).Type) >= 0 {
-		doc.skip(func(x *lexer.Token) bool {
+		doc.skip(func(x *Token) bool {
 			return tokenTypeIndexOf(tokenTypes, x.Type) >= 0
 		})
 		doc.errorPhrase = nil
@@ -410,21 +407,21 @@ func (doc *Parser) expectOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
 	return nil
 }
 
-func (doc *Parser) peek(n int) *lexer.Token {
+func (doc *Parser) peek(n int) *Token {
 	k := n + 1
 	bufferPos := doc.tokenOffset - 1
-	var t *lexer.Token
+	var t *Token
 
 	for {
 		bufferPos++
 		t = doc.tokenBuffer[bufferPos]
 
-		if t.Type < lexer.Comment {
+		if t.Type < Comment {
 			//not a hidden token
 			k--
 		}
 
-		if t.Type == lexer.EndOfFile || k == 0 {
+		if t.Type == EndOfFile || k == 0 {
 			break
 		}
 
@@ -436,9 +433,9 @@ func (doc *Parser) peek(n int) *lexer.Token {
 /**
 * skipped tokens get pushed to error phrase children
  */
-func (doc *Parser) skip(predicate func(*lexer.Token) bool) {
+func (doc *Parser) skip(predicate func(*Token) bool) {
 
-	var t *lexer.Token
+	var t *Token
 
 	for {
 		if doc.tokenOffset < len(doc.tokenBuffer) {
@@ -446,7 +443,7 @@ func (doc *Parser) skip(predicate func(*lexer.Token) bool) {
 			doc.tokenOffset++
 		}
 
-		if predicate(t) || t.Type == lexer.EndOfFile {
+		if predicate(t) || t.Type == EndOfFile {
 			doc.tokenOffset--
 			break
 		} else {
@@ -456,37 +453,37 @@ func (doc *Parser) skip(predicate func(*lexer.Token) bool) {
 
 }
 
-func (doc *Parser) error(expected lexer.TokenType) {
+func (doc *Parser) error(expected TokenType) {
 
 	//dont report errors if recovering from another
 	if doc.errorPhrase != nil {
 		return
 	}
 
-	doc.errorPhrase = phrase.NewParseErr(
-		phrase.Error, make([]phrase.AstNode, 0), doc.peek(0), expected)
+	doc.errorPhrase = NewParseErr(
+		Error, make([]AstNode, 0), doc.peek(0), expected)
 
 	lastPhrase := doc.phraseStack[len(doc.phraseStack)-1]
 
 	lastPhrase.Children = append(lastPhrase.Children, doc.errorPhrase)
 }
 
-func (doc *Parser) list(phraseType phrase.PhraseType,
-	elementFunction func() phrase.AstNode,
-	elementStartPredicate func(*lexer.Token) bool,
-	breakOn []lexer.TokenType,
-	recoverSet []lexer.TokenType) *phrase.Phrase {
+func (doc *Parser) list(phraseType PhraseType,
+	elementFunction func() AstNode,
+	elementStartPredicate func(*Token) bool,
+	breakOn []TokenType,
+	recoverSet []TokenType) *Phrase {
 
 	p := doc.start(phraseType, false)
 
-	var t *lexer.Token
+	var t *Token
 	recoveryAttempted := false
-	var listRecoverSet []lexer.TokenType
+	var listRecoverSet []TokenType
 
 	if recoverSet != nil {
 		listRecoverSet = recoverSet
 	} else {
-		listRecoverSet = make([]lexer.TokenType, 0)
+		listRecoverSet = make([]TokenType, 0)
 	}
 
 	if breakOn != nil {
@@ -506,11 +503,11 @@ func (doc *Parser) list(phraseType phrase.PhraseType,
 			recoveryAttempted {
 			break
 		} else {
-			doc.error(lexer.Undefined)
+			doc.error(Undefined)
 			//attempt to sync with token stream
 			t = doc.peek(1)
 			if elementStartPredicate(t) || tokenTypeIndexOf(breakOn, t.Type) >= 0 {
-				doc.skip(func(x *lexer.Token) bool {
+				doc.skip(func(x *Token) bool {
 					return reflect.DeepEqual(x, t)
 				})
 			} else {
@@ -528,13 +525,13 @@ func (doc *Parser) list(phraseType phrase.PhraseType,
 
 func (doc *Parser) defaultSyncStrategy() {
 
-	mergedRecoverTokenTypeArray := make([]lexer.TokenType, 0)
+	mergedRecoverTokenTypeArray := make([]TokenType, 0)
 
 	for n := len(doc.recoverSetStack) - 1; n >= 0; n-- {
 		mergedRecoverTokenTypeArray = append(mergedRecoverTokenTypeArray, doc.recoverSetStack[n]...)
 	}
 
-	mergedRecoverTokenTypeSet := make(map[lexer.TokenType]bool, len(mergedRecoverTokenTypeArray))
+	mergedRecoverTokenTypeSet := make(map[TokenType]bool, len(mergedRecoverTokenTypeArray))
 
 	for _, recoverTokenType := range mergedRecoverTokenTypeArray {
 		if _, ok := mergedRecoverTokenTypeSet[recoverTokenType]; !ok {
@@ -542,64 +539,64 @@ func (doc *Parser) defaultSyncStrategy() {
 		}
 	}
 
-	doc.skip(func(x *lexer.Token) bool {
+	doc.skip(func(x *Token) bool {
 		_, ok := mergedRecoverTokenTypeSet[x.Type]
 
 		return ok
 	})
 }
 
-func (doc *Parser) statementList(breakOn []lexer.TokenType) *phrase.Phrase {
+func (doc *Parser) statementList(breakOn []TokenType) *Phrase {
 	return doc.list(
-		phrase.StatementList,
+		StatementList,
 		doc.statement,
 		isStatementStart,
 		breakOn,
 		statementListRecoverSet[:])
 }
 
-func (doc *Parser) constDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.ConstDeclaration, false)
+func (doc *Parser) constDeclaration() *Phrase {
+	p := doc.start(ConstDeclaration, false)
 	doc.next(false) //const
 
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.ConstElementList,
+		ConstElementList,
 		doc.constElement,
 		isConstElementStartToken,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.Semicolon},
+		Comma,
+		[]TokenType{Semicolon},
 		false))
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func isClassConstElementStartToken(t *lexer.Token) bool {
-	return t.Type == lexer.Name || isSemiReservedToken(t)
+func isClassConstElementStartToken(t *Token) bool {
+	return t.Type == Name || isSemiReservedToken(t)
 }
 
-func isConstElementStartToken(t *lexer.Token) bool {
-	return t.Type == lexer.Name
+func isConstElementStartToken(t *Token) bool {
+	return t.Type == Name
 }
 
-func (doc *Parser) constElement() phrase.AstNode {
-	p := doc.start(phrase.ConstElement, false)
+func (doc *Parser) constElement() AstNode {
+	p := doc.start(ConstElement, false)
 
-	doc.expect(lexer.Name)
-	doc.expect(lexer.Equals)
+	doc.expect(Name)
+	doc.expect(Equals)
 
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) expression(minPrecedence int) phrase.AstNode {
+func (doc *Parser) expression(minPrecedence int) AstNode {
 	var precedence int
 	var associativity Associativity
-	var op *lexer.Token
-	var p *phrase.Phrase
-	var binaryPhraseType phrase.PhraseType
+	var op *Token
+	var p *Phrase
+	var binaryPhraseType PhraseType
 
 	lhs := doc.expressionAtom(minPrecedence)
 
@@ -607,7 +604,7 @@ func (doc *Parser) expression(minPrecedence int) phrase.AstNode {
 		op = doc.peek(0)
 		binaryPhraseType = binaryOpToPhraseType(op)
 
-		if binaryPhraseType == phrase.Unknown {
+		if binaryPhraseType == PhraseUnknown {
 			break
 		}
 
@@ -621,7 +618,7 @@ func (doc *Parser) expression(minPrecedence int) phrase.AstNode {
 			precedence++
 		}
 
-		if binaryPhraseType == phrase.TernaryExpression {
+		if binaryPhraseType == TernaryExpression {
 			lhs = doc.ternaryExpression(lhs)
 
 			continue
@@ -631,13 +628,13 @@ func (doc *Parser) expression(minPrecedence int) phrase.AstNode {
 		p.Children = append(p.Children, lhs)
 		doc.next(false)
 
-		if binaryPhraseType == phrase.InstanceOfExpression {
-			p.Children = append(p.Children, doc.typeDesignator(phrase.InstanceofTypeDesignator))
+		if binaryPhraseType == InstanceOfExpression {
+			p.Children = append(p.Children, doc.typeDesignator(InstanceofTypeDesignator))
 		} else {
-			if binaryPhraseType == phrase.SimpleAssignmentExpression &&
-				doc.peek(0).Type == lexer.Ampersand {
+			if binaryPhraseType == SimpleAssignmentExpression &&
+				doc.peek(0).Type == Ampersand {
 				doc.next(false) //&
-				p.Type = phrase.ByRefAssignmentExpression
+				p.Type = ByRefAssignmentExpression
 			}
 
 			p.Children = append(p.Children, doc.expression(precedence))
@@ -649,39 +646,39 @@ func (doc *Parser) expression(minPrecedence int) phrase.AstNode {
 	return lhs
 }
 
-func (doc *Parser) ternaryExpression(testExpr phrase.AstNode) *phrase.Phrase {
-	p := doc.start(phrase.TernaryExpression, true)
+func (doc *Parser) ternaryExpression(testExpr AstNode) *Phrase {
+	p := doc.start(TernaryExpression, true)
 	p.Children = append(p.Children, testExpr)
 
 	doc.next(false) //?
 
-	if colonToken := doc.optional(lexer.Colon); colonToken != nil {
+	if colonToken := doc.optional(Colon); colonToken != nil {
 		p.Children = append(p.Children, doc.expression(0))
 	} else {
 		p.Children = append(p.Children, doc.expression(0))
-		doc.expect(lexer.Colon)
+		doc.expect(Colon)
 		p.Children = append(p.Children, doc.expression(0))
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) variableOrExpression(precedence int) phrase.AstNode {
+func (doc *Parser) variableOrExpression(precedence int) AstNode {
 	part := doc.variableAtom(precedence)
 	isVariable := false
 
-	if p, ok := part.(*phrase.Phrase); ok {
-		isVariable = p.Type == phrase.SimpleVariable
+	if p, ok := part.(*Phrase); ok {
+		isVariable = p.Type == SimpleVariable
 	}
 
 	if isDereferenceOperator(doc.peek(0)) {
 		part = doc.variable(part)
 		isVariable = true
 	} else {
-		switch part.(*phrase.Phrase).Type {
-		case phrase.QualifiedName,
-			phrase.FullyQualifiedName,
-			phrase.RelativeQualifiedName:
+		switch part.(*Phrase).Type {
+		case QualifiedName,
+			FullyQualifiedName,
+			RelativeQualifiedName:
 			part = doc.constantAccessExpression(part)
 		}
 	}
@@ -692,24 +689,24 @@ func (doc *Parser) variableOrExpression(precedence int) phrase.AstNode {
 
 	//check for post increment/decrement
 	t := doc.peek(0)
-	if t.Type == lexer.PlusPlus {
-		return doc.postfixExpression(phrase.PostfixIncrementExpression, part.(*phrase.Phrase))
-	} else if t.Type == lexer.MinusMinus {
-		return doc.postfixExpression(phrase.PostfixDecrementExpression, part.(*phrase.Phrase))
+	if t.Type == PlusPlus {
+		return doc.postfixExpression(PostfixIncrementExpression, part.(*Phrase))
+	} else if t.Type == MinusMinus {
+		return doc.postfixExpression(PostfixDecrementExpression, part.(*Phrase))
 	} else {
 		return part
 	}
 }
 
-func (doc *Parser) constantAccessExpression(qName phrase.AstNode) *phrase.Phrase {
-	p := doc.start(phrase.ConstantAccessExpression, true)
+func (doc *Parser) constantAccessExpression(qName AstNode) *Phrase {
+	p := doc.start(ConstantAccessExpression, true)
 	p.Children = append(p.Children, qName)
 
 	return doc.end()
 }
 
 func (doc *Parser) postfixExpression(
-	phraseType phrase.PhraseType, variableNode *phrase.Phrase) *phrase.Phrase {
+	phraseType PhraseType, variableNode *Phrase) *Phrase {
 	p := doc.start(phraseType, true)
 	p.Children = append(p.Children, variableNode)
 	doc.next(false) //operator
@@ -717,164 +714,164 @@ func (doc *Parser) postfixExpression(
 	return doc.end()
 }
 
-func isDereferenceOperator(t *lexer.Token) bool {
+func isDereferenceOperator(t *Token) bool {
 	switch t.Type {
-	case lexer.OpenBracket,
-		lexer.OpenBrace,
-		lexer.Arrow,
-		lexer.OpenParenthesis,
-		lexer.ColonColon:
+	case OpenBracket,
+		OpenBrace,
+		Arrow,
+		OpenParenthesis,
+		ColonColon:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) expressionAtom(precedence int) phrase.AstNode {
+func (doc *Parser) expressionAtom(precedence int) AstNode {
 	t := doc.peek(0)
 
 	switch t.Type {
-	case lexer.Static:
-		if doc.peek(1).Type == lexer.Function {
+	case Static:
+		if doc.peek(1).Type == Function {
 			return doc.anonymousFunctionCreationExpression()
 		}
 
 		return doc.variableOrExpression(0)
-	case lexer.StringLiteral:
+	case StringLiteral:
 		if isDereferenceOperator(doc.peek(1)) {
 			return doc.variableOrExpression(0)
 		}
 
 		return doc.next(true)
-	case lexer.VariableName,
-		lexer.Dollar,
-		lexer.Array,
-		lexer.OpenBracket,
-		lexer.Backslash,
-		lexer.Name,
-		lexer.Namespace,
-		lexer.OpenParenthesis:
+	case VariableName,
+		Dollar,
+		Array,
+		OpenBracket,
+		Backslash,
+		Name,
+		Namespace,
+		OpenParenthesis:
 		return doc.variableOrExpression(precedence)
-	case lexer.PlusPlus:
-		return doc.unaryExpression(phrase.PrefixIncrementExpression)
-	case lexer.MinusMinus:
-		return doc.unaryExpression(phrase.PrefixDecrementExpression)
-	case lexer.Plus,
-		lexer.Minus,
-		lexer.Exclamation,
-		lexer.Tilde:
-		return doc.unaryExpression(phrase.UnaryOpExpression)
-	case lexer.AtSymbol:
-		return doc.unaryExpression(phrase.ErrorControlExpression)
-	case lexer.IntegerCast,
-		lexer.FloatCast,
-		lexer.StringCast,
-		lexer.ArrayCast,
-		lexer.ObjectCast,
-		lexer.BooleanCast,
-		lexer.UnsetCast:
-		return doc.unaryExpression(phrase.CastExpression)
-	case lexer.List:
+	case PlusPlus:
+		return doc.unaryExpression(PrefixIncrementExpression)
+	case MinusMinus:
+		return doc.unaryExpression(PrefixDecrementExpression)
+	case Plus,
+		Minus,
+		Exclamation,
+		Tilde:
+		return doc.unaryExpression(UnaryOpExpression)
+	case AtSymbol:
+		return doc.unaryExpression(ErrorControlExpression)
+	case IntegerCast,
+		FloatCast,
+		StringCast,
+		ArrayCast,
+		ObjectCast,
+		BooleanCast,
+		UnsetCast:
+		return doc.unaryExpression(CastExpression)
+	case List:
 		return doc.listIntrinsic()
-	case lexer.Clone:
+	case Clone:
 		return doc.cloneExpression()
-	case lexer.New:
+	case New:
 		return doc.objectCreationExpression()
-	case lexer.FloatingLiteral,
-		lexer.IntegerLiteral,
-		lexer.LineConstant,
-		lexer.FileConstant,
-		lexer.DirectoryConstant,
-		lexer.TraitConstant,
-		lexer.MethodConstant,
-		lexer.FunctionConstant,
-		lexer.NamespaceConstant,
-		lexer.ClassConstant:
+	case FloatingLiteral,
+		IntegerLiteral,
+		LineConstant,
+		FileConstant,
+		DirectoryConstant,
+		TraitConstant,
+		MethodConstant,
+		FunctionConstant,
+		NamespaceConstant,
+		ClassConstant:
 		return doc.next(true)
-	case lexer.StartHeredoc:
+	case StartHeredoc:
 		return doc.heredocStringLiteral()
-	case lexer.DoubleQuote:
+	case DoubleQuote:
 		return doc.doubleQuotedStringLiteral()
-	case lexer.Backtick:
+	case Backtick:
 		return doc.shellCommandExpression()
-	case lexer.Print:
+	case Print:
 		return doc.printIntrinsic()
-	case lexer.Yield:
+	case Yield:
 		return doc.yieldExpression()
-	case lexer.YieldFrom:
+	case YieldFrom:
 		return doc.yieldFromExpression()
-	case lexer.Function:
+	case Function:
 		return doc.anonymousFunctionCreationExpression()
-	case lexer.Include:
-		return doc.scriptInclusion(phrase.IncludeExpression)
-	case lexer.IncludeOnce:
-		return doc.scriptInclusion(phrase.IncludeOnceExpression)
-	case lexer.Require:
-		return doc.scriptInclusion(phrase.RequireExpression)
-	case lexer.RequireOnce:
-		return doc.scriptInclusion(phrase.RequireOnceExpression)
-	case lexer.Eval:
+	case Include:
+		return doc.scriptInclusion(IncludeExpression)
+	case IncludeOnce:
+		return doc.scriptInclusion(IncludeOnceExpression)
+	case Require:
+		return doc.scriptInclusion(RequireExpression)
+	case RequireOnce:
+		return doc.scriptInclusion(RequireOnceExpression)
+	case Eval:
 		return doc.evalIntrinsic()
-	case lexer.Empty:
+	case Empty:
 		return doc.emptyIntrinsic()
-	case lexer.Exit:
+	case Exit:
 		return doc.exitIntrinsic()
-	case lexer.Isset:
+	case Isset:
 		return doc.issetIntrinsic()
 	default:
 		//error
-		doc.start(phrase.ErrorExpression, false)
-		doc.error(lexer.Undefined)
+		doc.start(ErrorExpression, false)
+		doc.error(Undefined)
 
 		return doc.end()
 	}
 }
 
-func (doc *Parser) exitIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.ExitIntrinsic, false)
+func (doc *Parser) exitIntrinsic() *Phrase {
+	p := doc.start(ExitIntrinsic, false)
 	doc.next(false) //exit or die
-	if t := doc.optional(lexer.OpenParenthesis); t != nil {
+	if t := doc.optional(OpenParenthesis); t != nil {
 		if isExpressionStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.expression(0))
 		}
 
-		doc.expect(lexer.CloseParenthesis)
+		doc.expect(CloseParenthesis)
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) issetIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.IssetIntrinsic, false)
+func (doc *Parser) issetIntrinsic() *Phrase {
+	p := doc.start(IssetIntrinsic, false)
 	doc.next(false) //isset
-	doc.expect(lexer.OpenParenthesis)
-	p.Children = append(p.Children, doc.variableList([]lexer.TokenType{lexer.CloseParenthesis}))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(OpenParenthesis)
+	p.Children = append(p.Children, doc.variableList([]TokenType{CloseParenthesis}))
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func (doc *Parser) emptyIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.EmptyIntrinsic, false)
+func (doc *Parser) emptyIntrinsic() *Phrase {
+	p := doc.start(EmptyIntrinsic, false)
 	doc.next(false) //keyword
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func (doc *Parser) evalIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.EvalIntrinsic, false)
+func (doc *Parser) evalIntrinsic() *Phrase {
+	p := doc.start(EvalIntrinsic, false)
 	doc.next(false) //keyword
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func (doc *Parser) scriptInclusion(phraseType phrase.PhraseType) *phrase.Phrase {
+func (doc *Parser) scriptInclusion(phraseType PhraseType) *Phrase {
 	p := doc.start(phraseType, false)
 	doc.next(false) //keyword
 	p.Children = append(p.Children, doc.expression(0))
@@ -882,24 +879,24 @@ func (doc *Parser) scriptInclusion(phraseType phrase.PhraseType) *phrase.Phrase 
 	return doc.end()
 }
 
-func (doc *Parser) printIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.PrintIntrinsic, false)
+func (doc *Parser) printIntrinsic() *Phrase {
+	p := doc.start(PrintIntrinsic, false)
 	doc.next(false) //keyword
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) yieldFromExpression() *phrase.Phrase {
-	p := doc.start(phrase.YieldFromExpression, false)
+func (doc *Parser) yieldFromExpression() *Phrase {
+	p := doc.start(YieldFromExpression, false)
 	doc.next(false) //keyword
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) yieldExpression() *phrase.Phrase {
-	p := doc.start(phrase.YieldExpression, false)
+func (doc *Parser) yieldExpression() *Phrase {
+	p := doc.start(YieldExpression, false)
 	doc.next(false) //yield
 	if !isExpressionStart(doc.peek(0)) {
 		return doc.end()
@@ -908,70 +905,70 @@ func (doc *Parser) yieldExpression() *phrase.Phrase {
 	keyOrValue := doc.expression(0)
 	p.Children = append(p.Children, keyOrValue)
 
-	if doc.optional(lexer.FatArrow) != nil {
+	if doc.optional(FatArrow) != nil {
 		p.Children = append(p.Children, doc.expression(0))
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) shellCommandExpression() *phrase.Phrase {
-	p := doc.start(phrase.ShellCommandExpression, false)
+func (doc *Parser) shellCommandExpression() *Phrase {
+	p := doc.start(ShellCommandExpression, false)
 	doc.next(false) //`
-	p.Children = append(p.Children, doc.encapsulatedVariableList(lexer.Backtick))
-	doc.expect(lexer.Backtick)
+	p.Children = append(p.Children, doc.encapsulatedVariableList(Backtick))
+	doc.expect(Backtick)
 
 	return doc.end()
 }
 
-func (doc *Parser) doubleQuotedStringLiteral() *phrase.Phrase {
-	p := doc.start(phrase.DoubleQuotedStringLiteral, false)
+func (doc *Parser) doubleQuotedStringLiteral() *Phrase {
+	p := doc.start(DoubleQuotedStringLiteral, false)
 	doc.next(false) //"
-	p.Children = append(p.Children, doc.encapsulatedVariableList(lexer.DoubleQuote))
-	doc.expect(lexer.DoubleQuote)
+	p.Children = append(p.Children, doc.encapsulatedVariableList(DoubleQuote))
+	doc.expect(DoubleQuote)
 
 	return doc.end()
 }
 
-func (doc *Parser) encapsulatedVariableList(breakOn lexer.TokenType) *phrase.Phrase {
+func (doc *Parser) encapsulatedVariableList(breakOn TokenType) *Phrase {
 	return doc.list(
-		phrase.EncapsulatedVariableList,
+		EncapsulatedVariableList,
 		doc.encapsulatedVariable,
 		isEncapsulatedVariableStart,
-		[]lexer.TokenType{breakOn},
+		[]TokenType{breakOn},
 		encapsulatedVariableListRecoverSet)
 }
 
-func isEncapsulatedVariableStart(t *lexer.Token) bool {
+func isEncapsulatedVariableStart(t *Token) bool {
 
 	switch t.Type {
-	case lexer.EncapsulatedAndWhitespace,
-		lexer.VariableName,
-		lexer.DollarCurlyOpen,
-		lexer.CurlyOpen:
+	case EncapsulatedAndWhitespace,
+		VariableName,
+		DollarCurlyOpen,
+		CurlyOpen:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) encapsulatedVariable() phrase.AstNode {
+func (doc *Parser) encapsulatedVariable() AstNode {
 
 	switch doc.peek(0).Type {
-	case lexer.EncapsulatedAndWhitespace:
+	case EncapsulatedAndWhitespace:
 		return doc.next(true)
-	case lexer.VariableName:
+	case VariableName:
 		t := doc.peek(1)
-		if t.Type == lexer.OpenBracket {
+		if t.Type == OpenBracket {
 			return doc.encapsulatedDimension()
-		} else if t.Type == lexer.Arrow {
+		} else if t.Type == Arrow {
 			return doc.encapsulatedProperty()
 		}
 
 		return doc.simpleVariable()
-	case lexer.DollarCurlyOpen:
+	case DollarCurlyOpen:
 		return doc.dollarCurlyOpenEncapsulatedVariable()
-	case lexer.CurlyOpen:
+	case CurlyOpen:
 		return doc.curlyOpenEncapsulatedVariable()
 	}
 
@@ -980,177 +977,177 @@ func (doc *Parser) encapsulatedVariable() phrase.AstNode {
 	panic(errors.New("Unexpected token: " + t.Type.String()))
 }
 
-func (doc *Parser) curlyOpenEncapsulatedVariable() *phrase.Phrase {
-	p := doc.start(phrase.EncapsulatedVariable, false)
+func (doc *Parser) curlyOpenEncapsulatedVariable() *Phrase {
+	p := doc.start(EncapsulatedVariable, false)
 	doc.next(false) //{
 	p.Children = append(p.Children, doc.variable(doc.variableAtom(0)))
-	doc.expect(lexer.CloseBrace)
+	doc.expect(CloseBrace)
 
 	return doc.end()
 }
 
-func (doc *Parser) dollarCurlyOpenEncapsulatedVariable() *phrase.Phrase {
-	p := doc.start(phrase.EncapsulatedVariable, false)
+func (doc *Parser) dollarCurlyOpenEncapsulatedVariable() *Phrase {
+	p := doc.start(EncapsulatedVariable, false)
 	doc.next(false) //${
 	t := doc.peek(0)
 
-	if t.Type == lexer.VariableName {
-		if doc.peek(1).Type == lexer.OpenBracket {
+	if t.Type == VariableName {
+		if doc.peek(1).Type == OpenBracket {
 			p.Children = append(p.Children, *doc.dollarCurlyEncapsulatedDimension())
 		} else {
-			doc.start(phrase.SimpleVariable, false)
+			doc.start(SimpleVariable, false)
 			doc.next(false)
 			p.Children = append(p.Children, doc.end())
 		}
 	} else if isExpressionStart(t) {
 		p.Children = append(p.Children, doc.expression(0))
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
-	doc.expect(lexer.CloseBrace)
+	doc.expect(CloseBrace)
 
 	return doc.end()
 }
 
-func (doc *Parser) dollarCurlyEncapsulatedDimension() *phrase.Phrase {
-	p := doc.start(phrase.SubscriptExpression, false)
+func (doc *Parser) dollarCurlyEncapsulatedDimension() *Phrase {
+	p := doc.start(SubscriptExpression, false)
 	doc.next(false) //VariableName
 	doc.next(false) // [
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseBracket)
+	doc.expect(CloseBracket)
 
 	return doc.end()
 }
 
-func (doc *Parser) encapsulatedDimension() *phrase.Phrase {
-	p := doc.start(phrase.SubscriptExpression, false)
+func (doc *Parser) encapsulatedDimension() *Phrase {
+	p := doc.start(SubscriptExpression, false)
 
 	p.Children = append(p.Children, doc.simpleVariable()) //T_VARIABLE
 	doc.next(false)                                       //[
 	switch doc.peek(0).Type {
-	case lexer.Name,
-		lexer.IntegerLiteral:
+	case Name,
+		IntegerLiteral:
 		doc.next(false)
-	case lexer.VariableName:
+	case VariableName:
 		p.Children = append(p.Children, doc.simpleVariable())
-	case lexer.Minus:
-		doc.start(phrase.UnaryOpExpression, false)
+	case Minus:
+		doc.start(UnaryOpExpression, false)
 		doc.next(false) //-
-		doc.expect(lexer.IntegerLiteral)
+		doc.expect(IntegerLiteral)
 		p.Children = append(p.Children, doc.end())
 	default:
 		//error
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
-	doc.expect(lexer.CloseBracket)
+	doc.expect(CloseBracket)
 	return doc.end()
 }
 
-func (doc *Parser) encapsulatedProperty() *phrase.Phrase {
-	p := doc.start(phrase.PropertyAccessExpression, false)
+func (doc *Parser) encapsulatedProperty() *Phrase {
+	p := doc.start(PropertyAccessExpression, false)
 	p.Children = append(p.Children, doc.simpleVariable())
 	doc.next(false) //->
-	doc.expect(lexer.Name)
+	doc.expect(Name)
 
 	return doc.end()
 }
 
-func (doc *Parser) heredocStringLiteral() *phrase.Phrase {
-	p := doc.start(phrase.HeredocStringLiteral, false)
+func (doc *Parser) heredocStringLiteral() *Phrase {
+	p := doc.start(HeredocStringLiteral, false)
 	doc.next(false) //StartHeredoc
-	p.Children = append(p.Children, doc.encapsulatedVariableList(lexer.EndHeredoc))
-	doc.expect(lexer.EndHeredoc)
+	p.Children = append(p.Children, doc.encapsulatedVariableList(EndHeredoc))
+	doc.expect(EndHeredoc)
 
 	return doc.end()
 }
 
-func (doc *Parser) anonymousClassDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.AnonymousClassDeclaration, false)
+func (doc *Parser) anonymousClassDeclaration() *Phrase {
+	p := doc.start(AnonymousClassDeclaration, false)
 	p.Children = append(p.Children, doc.anonymousClassDeclarationHeader())
-	p.Children = append(p.Children, doc.typeDeclarationBody(phrase.ClassDeclarationBody,
+	p.Children = append(p.Children, doc.typeDeclarationBody(ClassDeclarationBody,
 		isClassMemberStart, doc.classMemberDeclarationList))
 
 	return doc.end()
 }
 
-func (doc *Parser) anonymousClassDeclarationHeader() *phrase.Phrase {
-	p := doc.start(phrase.AnonymousClassDeclarationHeader, false)
+func (doc *Parser) anonymousClassDeclarationHeader() *Phrase {
+	p := doc.start(AnonymousClassDeclarationHeader, false)
 	doc.next(false) //class
-	if doc.optional(lexer.OpenParenthesis) != nil {
+	if doc.optional(OpenParenthesis) != nil {
 		if isArgumentStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.argumentList())
 		}
-		doc.expect(lexer.CloseParenthesis)
+		doc.expect(CloseParenthesis)
 	}
 
-	if doc.peek(0).Type == lexer.Extends {
+	if doc.peek(0).Type == Extends {
 		p.Children = append(p.Children, doc.classBaseClause())
 	}
 
-	if doc.peek(0).Type == lexer.Implements {
+	if doc.peek(0).Type == Implements {
 		p.Children = append(p.Children, doc.classInterfaceClause())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) classInterfaceClause() *phrase.Phrase {
-	p := doc.start(phrase.ClassInterfaceClause, false)
+func (doc *Parser) classInterfaceClause() *Phrase {
+	p := doc.start(ClassInterfaceClause, false)
 	doc.next(false) //implements
-	p.Children = append(p.Children, doc.qualifiedNameList([]lexer.TokenType{lexer.OpenBrace}))
+	p.Children = append(p.Children, doc.qualifiedNameList([]TokenType{OpenBrace}))
 
 	return doc.end()
 }
 
-func (doc *Parser) classMemberDeclarationList() *phrase.Phrase {
+func (doc *Parser) classMemberDeclarationList() *Phrase {
 	return doc.list(
-		phrase.ClassMemberDeclarationList,
+		ClassMemberDeclarationList,
 		doc.classMemberDeclaration,
 		isClassMemberStart,
-		[]lexer.TokenType{lexer.CloseBrace},
+		[]TokenType{CloseBrace},
 		classMemberDeclarationListRecoverSet)
 }
 
-func isClassMemberStart(t *lexer.Token) bool {
+func isClassMemberStart(t *Token) bool {
 	switch t.Type {
-	case lexer.Public,
-		lexer.Protected,
-		lexer.Private,
-		lexer.Static,
-		lexer.Abstract,
-		lexer.Final,
-		lexer.Function,
-		lexer.Var,
-		lexer.Const,
-		lexer.Use:
+	case Public,
+		Protected,
+		Private,
+		Static,
+		Abstract,
+		Final,
+		Function,
+		Var,
+		Const,
+		Use:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) classMemberDeclaration() phrase.AstNode {
-	p := doc.start(phrase.ErrorClassMemberDeclaration, false)
+func (doc *Parser) classMemberDeclaration() AstNode {
+	p := doc.start(ErrorClassMemberDeclaration, false)
 	t := doc.peek(0)
 
 	switch t.Type {
-	case lexer.Public,
-		lexer.Protected,
-		lexer.Private,
-		lexer.Static,
-		lexer.Abstract,
-		lexer.Final:
+	case Public,
+		Protected,
+		Private,
+		Static,
+		Abstract,
+		Final:
 		modifiers := doc.memberModifierList()
 		t = doc.peek(0)
-		if t.Type == lexer.VariableName {
+		if t.Type == VariableName {
 			p.Children = append(p.Children, modifiers)
 
 			return doc.propertyDeclaration(p)
-		} else if t.Type == lexer.Function {
+		} else if t.Type == Function {
 			return doc.methodDeclaration(p, modifiers)
-		} else if t.Type == lexer.Const {
+		} else if t.Type == Const {
 			p.Children = append(p.Children, modifiers)
 
 			return doc.classConstDeclaration(p)
@@ -1158,92 +1155,92 @@ func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 
 		//error
 		p.Children = append(p.Children, modifiers)
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 
 		return doc.end()
-	case lexer.Function:
+	case Function:
 		return doc.methodDeclaration(p, nil)
-	case lexer.Var:
+	case Var:
 		doc.next(false)
 
 		return doc.propertyDeclaration(p)
-	case lexer.Const:
+	case Const:
 		return doc.classConstDeclaration(p)
-	case lexer.Use:
+	case Use:
 		return doc.traitUseClause(p)
 	}
 
 	panic(errors.New("Unexpected token: " + t.Type.String()))
 }
 
-func (doc *Parser) traitUseClause(p *phrase.Phrase) *phrase.Phrase {
-	p.Type = phrase.TraitUseClause
+func (doc *Parser) traitUseClause(p *Phrase) *Phrase {
+	p.Type = TraitUseClause
 	doc.next(false) //use
 	p.Children = append(p.Children,
-		doc.qualifiedNameList([]lexer.TokenType{lexer.Semicolon, lexer.OpenBrace}),
+		doc.qualifiedNameList([]TokenType{Semicolon, OpenBrace}),
 		doc.traitUseSpecification())
 
 	return doc.end()
 
 }
 
-func (doc *Parser) traitUseSpecification() *phrase.Phrase {
-	p := doc.start(phrase.TraitUseSpecification, false)
-	t := doc.expectOneOf([]lexer.TokenType{lexer.Semicolon, lexer.OpenBrace})
+func (doc *Parser) traitUseSpecification() *Phrase {
+	p := doc.start(TraitUseSpecification, false)
+	t := doc.expectOneOf([]TokenType{Semicolon, OpenBrace})
 
-	if t != nil && t.Type == lexer.OpenBrace {
+	if t != nil && t.Type == OpenBrace {
 		if isTraitAdaptationStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.traitAdaptationList())
 		}
-		doc.expect(lexer.CloseBrace)
+		doc.expect(CloseBrace)
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) traitAdaptationList() *phrase.Phrase {
+func (doc *Parser) traitAdaptationList() *Phrase {
 	return doc.list(
-		phrase.TraitAdaptationList,
+		TraitAdaptationList,
 		doc.traitAdaptation,
 		isTraitAdaptationStart,
-		[]lexer.TokenType{lexer.CloseBrace}, nil)
+		[]TokenType{CloseBrace}, nil)
 }
 
-func isTraitAdaptationStart(t *lexer.Token) bool {
+func isTraitAdaptationStart(t *Token) bool {
 	switch t.Type {
-	case lexer.Name,
-		lexer.Backslash,
-		lexer.Namespace:
+	case Name,
+		Backslash,
+		Namespace:
 		return true
 	}
 
 	return isSemiReservedToken(t)
 }
 
-func (doc *Parser) traitAdaptation() phrase.AstNode {
-	p := doc.start(phrase.ErrorTraitAdaptation, false)
+func (doc *Parser) traitAdaptation() AstNode {
+	p := doc.start(ErrorTraitAdaptation, false)
 	t := doc.peek(0)
 	t2 := doc.peek(1)
 
-	if t.Type == lexer.Namespace ||
-		t.Type == lexer.Backslash ||
-		(t.Type == lexer.Name &&
-			(t2.Type == lexer.ColonColon || t2.Type == lexer.Backslash)) {
+	if t.Type == Namespace ||
+		t.Type == Backslash ||
+		(t.Type == Name &&
+			(t2.Type == ColonColon || t2.Type == Backslash)) {
 
 		p.Children = append(p.Children, doc.methodReference())
 
-		if doc.peek(0).Type == lexer.InsteadOf {
+		if doc.peek(0).Type == InsteadOf {
 			doc.next(false)
 			return doc.traitPrecedence(p)
 		}
 
-	} else if t.Type == lexer.Name || isSemiReservedToken(t) {
-		methodRef := doc.start(phrase.MethodReference, false)
+	} else if t.Type == Name || isSemiReservedToken(t) {
+		methodRef := doc.start(MethodReference, false)
 		methodRef.Children = append(methodRef.Children, doc.identifier())
 		p.Children = append(p.Children, doc.end())
 	} else {
 		//error
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 
 		return doc.end()
 	}
@@ -1251,86 +1248,86 @@ func (doc *Parser) traitAdaptation() phrase.AstNode {
 	return doc.traitAlias(p)
 }
 
-func (doc *Parser) traitAlias(p *phrase.Phrase) *phrase.Phrase {
-	p.Type = phrase.TraitAlias
-	doc.expect(lexer.As)
+func (doc *Parser) traitAlias(p *Phrase) *Phrase {
+	p.Type = TraitAlias
+	doc.expect(As)
 
 	t := doc.peek(0)
 
-	if t.Type == lexer.Name || isReservedToken(t) {
+	if t.Type == Name || isReservedToken(t) {
 		p.Children = append(p.Children, doc.identifier())
 	} else if isMemberModifier(t) {
 		doc.next(false)
 		t = doc.peek(0)
-		if t.Type == lexer.Name || isSemiReservedToken(t) {
+		if t.Type == Name || isSemiReservedToken(t) {
 			p.Children = append(p.Children, doc.identifier())
 		}
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) traitPrecedence(p *phrase.Phrase) *phrase.Phrase {
-	p.Type = phrase.TraitPrecedence
-	p.Children = append(p.Children, doc.qualifiedNameList([]lexer.TokenType{lexer.Semicolon}))
-	doc.expect(lexer.Semicolon)
+func (doc *Parser) traitPrecedence(p *Phrase) *Phrase {
+	p.Type = TraitPrecedence
+	p.Children = append(p.Children, doc.qualifiedNameList([]TokenType{Semicolon}))
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) methodReference() *phrase.Phrase {
-	p := doc.start(phrase.MethodReference, false)
+func (doc *Parser) methodReference() *Phrase {
+	p := doc.start(MethodReference, false)
 	p.Children = append(p.Children, doc.qualifiedName())
-	doc.expect(lexer.ColonColon)
+	doc.expect(ColonColon)
 	p.Children = append(p.Children, doc.identifier())
 
 	return doc.end()
 }
 
-func (doc *Parser) methodDeclarationHeader(memberModifers *phrase.Phrase) *phrase.Phrase {
-	p := doc.start(phrase.MethodDeclarationHeader, true)
+func (doc *Parser) methodDeclarationHeader(memberModifers *Phrase) *Phrase {
+	p := doc.start(MethodDeclarationHeader, true)
 	if memberModifers != nil {
 		p.Children = append(p.Children, memberModifers)
 	}
 	doc.next(false) //function
-	doc.optional(lexer.Ampersand)
+	doc.optional(Ampersand)
 	p.Children = append(p.Children, doc.identifier())
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 
 	if isParameterStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.delimitedList(
-			phrase.ParameterDeclarationList,
+			ParameterDeclarationList,
 			doc.parameterDeclaration,
 			isParameterStart,
-			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseParenthesis}, false))
+			Comma,
+			[]TokenType{CloseParenthesis}, false))
 	}
 
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
-	if doc.peek(0).Type == lexer.Colon {
+	if doc.peek(0).Type == Colon {
 		p.Children = append(p.Children, doc.returnType())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) methodDeclaration(p *phrase.Phrase, memberModifers *phrase.Phrase) *phrase.Phrase {
-	p.Type = phrase.MethodDeclaration
+func (doc *Parser) methodDeclaration(p *Phrase, memberModifers *Phrase) *Phrase {
+	p.Type = MethodDeclaration
 	p.Children = append(p.Children, doc.methodDeclarationHeader(memberModifers))
 	p.Children = append(p.Children, doc.methodDeclarationBody())
 
 	return doc.end()
 }
 
-func (doc *Parser) methodDeclarationBody() *phrase.Phrase {
-	p := doc.start(phrase.MethodDeclarationBody, false)
+func (doc *Parser) methodDeclarationBody() *Phrase {
+	p := doc.start(MethodDeclarationBody, false)
 
-	if doc.peek(0).Type == lexer.Semicolon {
+	if doc.peek(0).Type == Semicolon {
 		doc.next(false)
 	} else {
 		p.Children = append(p.Children, doc.compoundStatement())
@@ -1339,58 +1336,58 @@ func (doc *Parser) methodDeclarationBody() *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) identifier() *phrase.Phrase {
-	doc.start(phrase.Identifier, false)
+func (doc *Parser) identifier() *Phrase {
+	doc.start(Identifier, false)
 	t := doc.peek(0)
-	if t.Type == lexer.Name || isSemiReservedToken(t) {
+	if t.Type == Name || isSemiReservedToken(t) {
 		doc.next(false)
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) interfaceDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.InterfaceDeclaration, false)
+func (doc *Parser) interfaceDeclaration() *Phrase {
+	p := doc.start(InterfaceDeclaration, false)
 	p.Children = append(p.Children, doc.interfaceDeclarationHeader())
 	p.Children = append(p.Children, doc.typeDeclarationBody(
-		phrase.InterfaceDeclarationBody, isClassMemberStart, doc.interfaceMemberDeclarations))
+		InterfaceDeclarationBody, isClassMemberStart, doc.interfaceMemberDeclarations))
 
 	return doc.end()
 }
 
 func (doc *Parser) typeDeclarationBody(
-	phraseType phrase.PhraseType,
-	elementStartPredicate func(*lexer.Token) bool,
-	listFunction func() *phrase.Phrase) *phrase.Phrase {
+	phraseType PhraseType,
+	elementStartPredicate func(*Token) bool,
+	listFunction func() *Phrase) *Phrase {
 	p := doc.start(phraseType, false)
-	doc.expect(lexer.OpenBrace)
+	doc.expect(OpenBrace)
 
 	if elementStartPredicate(doc.peek(0)) {
 		p.Children = append(p.Children, listFunction())
 	}
 
-	doc.expect(lexer.CloseBrace)
+	doc.expect(CloseBrace)
 
 	return doc.end()
 }
 
-func (doc *Parser) interfaceMemberDeclarations() *phrase.Phrase {
+func (doc *Parser) interfaceMemberDeclarations() *Phrase {
 	return doc.list(
-		phrase.InterfaceMemberDeclarationList,
+		InterfaceMemberDeclarationList,
 		doc.classMemberDeclaration,
 		isClassMemberStart,
-		[]lexer.TokenType{lexer.CloseBrace},
+		[]TokenType{CloseBrace},
 		classMemberDeclarationListRecoverSet)
 }
 
-func (doc *Parser) interfaceDeclarationHeader() *phrase.Phrase {
-	p := doc.start(phrase.InterfaceDeclarationHeader, false)
+func (doc *Parser) interfaceDeclarationHeader() *Phrase {
+	p := doc.start(InterfaceDeclarationHeader, false)
 	doc.next(false) //interface
-	doc.expect(lexer.Name)
+	doc.expect(Name)
 
-	if doc.peek(0).Type == lexer.Extends {
+	if doc.peek(0).Type == Extends {
 		p.Children = append(p.Children, doc.interfaceBaseClause())
 	}
 
@@ -1398,224 +1395,224 @@ func (doc *Parser) interfaceDeclarationHeader() *phrase.Phrase {
 
 }
 
-func (doc *Parser) interfaceBaseClause() *phrase.Phrase {
-	p := doc.start(phrase.InterfaceBaseClause, false)
+func (doc *Parser) interfaceBaseClause() *Phrase {
+	p := doc.start(InterfaceBaseClause, false)
 	doc.next(false) //extends
-	p.Children = append(p.Children, doc.qualifiedNameList([]lexer.TokenType{lexer.OpenBrace}))
+	p.Children = append(p.Children, doc.qualifiedNameList([]TokenType{OpenBrace}))
 
 	return doc.end()
 }
 
-func (doc *Parser) traitDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.TraitDeclaration, false)
+func (doc *Parser) traitDeclaration() *Phrase {
+	p := doc.start(TraitDeclaration, false)
 	p.Children = append(p.Children, doc.traitDeclarationHeader())
 	p.Children = append(p.Children, doc.typeDeclarationBody(
-		phrase.TraitDeclarationBody, isClassMemberStart, doc.traitMemberDeclarations))
+		TraitDeclarationBody, isClassMemberStart, doc.traitMemberDeclarations))
 
 	return doc.end()
 }
 
-func (doc *Parser) traitDeclarationHeader() *phrase.Phrase {
-	doc.start(phrase.TraitDeclarationHeader, false)
+func (doc *Parser) traitDeclarationHeader() *Phrase {
+	doc.start(TraitDeclarationHeader, false)
 	doc.next(false) //trait
-	doc.expect(lexer.Name)
+	doc.expect(Name)
 
 	return doc.end()
 }
 
-func (doc *Parser) traitMemberDeclarations() *phrase.Phrase {
+func (doc *Parser) traitMemberDeclarations() *Phrase {
 	return doc.list(
-		phrase.TraitMemberDeclarationList,
+		TraitMemberDeclarationList,
 		doc.classMemberDeclaration,
 		isClassMemberStart,
-		[]lexer.TokenType{lexer.CloseBrace},
+		[]TokenType{CloseBrace},
 		classMemberDeclarationListRecoverSet[:])
 }
 
-func (doc *Parser) functionDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.FunctionDeclaration, false)
+func (doc *Parser) functionDeclaration() *Phrase {
+	p := doc.start(FunctionDeclaration, false)
 	p.Children = append(p.Children, doc.functionDeclarationHeader())
 	p.Children = append(p.Children, doc.functionDeclarationBody())
 
 	return doc.end()
 }
 
-func (doc *Parser) functionDeclarationBody() *phrase.Phrase {
+func (doc *Parser) functionDeclarationBody() *Phrase {
 	cs := doc.compoundStatement()
-	cs.Type = phrase.FunctionDeclarationBody
+	cs.Type = FunctionDeclarationBody
 
 	return cs
 }
 
-func (doc *Parser) functionDeclarationHeader() *phrase.Phrase {
-	p := doc.start(phrase.FunctionDeclarationHeader, false)
+func (doc *Parser) functionDeclarationHeader() *Phrase {
+	p := doc.start(FunctionDeclarationHeader, false)
 
 	doc.next(false) //function
-	doc.optional(lexer.Ampersand)
-	doc.expect(lexer.Name)
-	doc.expect(lexer.OpenParenthesis)
+	doc.optional(Ampersand)
+	doc.expect(Name)
+	doc.expect(OpenParenthesis)
 
 	if isParameterStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.delimitedList(
-			phrase.ParameterDeclarationList,
+			ParameterDeclarationList,
 			doc.parameterDeclaration,
 			isParameterStart,
-			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseParenthesis}, false))
+			Comma,
+			[]TokenType{CloseParenthesis}, false))
 	}
 
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
-	if doc.peek(0).Type == lexer.Colon {
+	if doc.peek(0).Type == Colon {
 		p.Children = append(p.Children, doc.returnType())
 	}
 
 	return doc.end()
 }
 
-func isParameterStart(t *lexer.Token) bool {
+func isParameterStart(t *Token) bool {
 	switch t.Type {
-	case lexer.Ampersand,
-		lexer.Ellipsis,
-		lexer.VariableName:
+	case Ampersand,
+		Ellipsis,
+		VariableName:
 		return true
 	default:
 		return isTypeDeclarationStart(t)
 	}
 }
 
-func (doc *Parser) classDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.ClassDeclaration, false)
+func (doc *Parser) classDeclaration() *Phrase {
+	p := doc.start(ClassDeclaration, false)
 
 	p.Children = append(p.Children, doc.classDeclarationHeader())
 	p.Children = append(p.Children, doc.typeDeclarationBody(
-		phrase.ClassDeclarationBody, isClassMemberStart, doc.classMemberDeclarationList))
+		ClassDeclarationBody, isClassMemberStart, doc.classMemberDeclarationList))
 
 	return doc.end()
 
 }
 
-func (doc *Parser) classDeclarationHeader() *phrase.Phrase {
-	p := doc.start(phrase.ClassDeclarationHeader, false)
-	doc.optionalOneOf([]lexer.TokenType{lexer.Abstract, lexer.Final})
-	doc.expect(lexer.Class)
-	doc.expect(lexer.Name)
+func (doc *Parser) classDeclarationHeader() *Phrase {
+	p := doc.start(ClassDeclarationHeader, false)
+	doc.optionalOneOf([]TokenType{Abstract, Final})
+	doc.expect(Class)
+	doc.expect(Name)
 
-	if doc.peek(0).Type == lexer.Extends {
+	if doc.peek(0).Type == Extends {
 		p.Children = append(p.Children, doc.classBaseClause())
 	}
 
-	if doc.peek(0).Type == lexer.Implements {
+	if doc.peek(0).Type == Implements {
 		p.Children = append(p.Children, doc.classInterfaceClause())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) classBaseClause() *phrase.Phrase {
-	p := doc.start(phrase.ClassBaseClause, false)
+func (doc *Parser) classBaseClause() *Phrase {
+	p := doc.start(ClassBaseClause, false)
 	doc.next(false) //extends
 	p.Children = append(p.Children, doc.qualifiedName())
 
 	return doc.end()
 }
 
-func (doc *Parser) compoundStatement() *phrase.Phrase {
-	p := doc.start(phrase.CompoundStatement, false)
-	doc.expect(lexer.OpenBrace)
+func (doc *Parser) compoundStatement() *Phrase {
+	p := doc.start(CompoundStatement, false)
+	doc.expect(OpenBrace)
 
 	if isStatementStart(doc.peek(0)) {
-		p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.CloseBrace}))
+		p.Children = append(p.Children, doc.statementList([]TokenType{CloseBrace}))
 	}
 
-	doc.expect(lexer.CloseBrace)
+	doc.expect(CloseBrace)
 
 	return doc.end()
 }
 
-func (doc *Parser) statement() phrase.AstNode {
+func (doc *Parser) statement() AstNode {
 	t := doc.peek(0)
 
 	switch t.Type {
-	case lexer.Namespace:
+	case Namespace:
 		return doc.namespaceDefinition()
-	case lexer.Use:
+	case Use:
 		return doc.namespaceUseDeclaration()
-	case lexer.HaltCompiler:
+	case HaltCompiler:
 		return doc.haltCompilerStatement()
-	case lexer.Const:
+	case Const:
 		return doc.constDeclaration()
-	case lexer.Function:
+	case Function:
 		{
 			p1 := doc.peek(1)
-			if p1.Type == lexer.OpenParenthesis ||
-				(p1.Type == lexer.Ampersand && doc.peek(2).Type == lexer.OpenParenthesis) {
+			if p1.Type == OpenParenthesis ||
+				(p1.Type == Ampersand && doc.peek(2).Type == OpenParenthesis) {
 				//anon fn without assignment
 				return doc.expressionStatement()
 			} else {
 				return doc.functionDeclaration()
 			}
 		}
-	case lexer.Class,
-		lexer.Abstract,
-		lexer.Final:
+	case Class,
+		Abstract,
+		Final:
 		return doc.classDeclaration()
-	case lexer.Trait:
+	case Trait:
 		return doc.traitDeclaration()
-	case lexer.Interface:
+	case Interface:
 		return doc.interfaceDeclaration()
-	case lexer.OpenBrace:
+	case OpenBrace:
 		return doc.compoundStatement()
-	case lexer.If:
+	case If:
 		return doc.ifStatement()
-	case lexer.While:
+	case While:
 		return doc.whileStatement()
-	case lexer.Do:
+	case Do:
 		return doc.doStatement()
-	case lexer.For:
+	case For:
 		return doc.forStatement()
-	case lexer.Switch:
+	case Switch:
 		return doc.switchStatement()
-	case lexer.Break:
+	case Break:
 		return doc.breakStatement()
-	case lexer.Continue:
+	case Continue:
 		return doc.continueStatement()
-	case lexer.Return:
+	case Return:
 		return doc.returnStatement()
-	case lexer.Global:
+	case Global:
 		return doc.globalDeclaration()
-	case lexer.Static:
-		if doc.peek(1).Type == lexer.VariableName &&
+	case Static:
+		if doc.peek(1).Type == VariableName &&
 			tokenTypeIndexOf(
-				[]lexer.TokenType{lexer.Semicolon, lexer.Comma, lexer.CloseTag, lexer.Equals},
+				[]TokenType{Semicolon, Comma, CloseTag, Equals},
 				doc.peek(2).Type) >= 0 {
 			return doc.functionStaticDeclaration()
 		} else {
 			return doc.expressionStatement()
 		}
-	case lexer.Text,
-		lexer.OpenTag,
-		lexer.CloseTag:
+	case Text,
+		OpenTag,
+		CloseTag:
 		return doc.inlineText()
-	case lexer.ForEach:
+	case ForEach:
 		return doc.foreachStatement()
-	case lexer.Declare:
+	case Declare:
 		return doc.declareStatement()
-	case lexer.Try:
+	case Try:
 		return doc.tryStatement()
-	case lexer.Throw:
+	case Throw:
 		return doc.throwStatement()
-	case lexer.Goto:
+	case Goto:
 		return doc.gotoStatement()
-	case lexer.Echo,
-		lexer.OpenTagEcho:
+	case Echo,
+		OpenTagEcho:
 		return doc.echoIntrinsic()
-	case lexer.Unset:
+	case Unset:
 		return doc.unsetIntrinsic()
-	case lexer.Semicolon:
+	case Semicolon:
 		return doc.nullStatement()
-	case lexer.Name:
-		if doc.peek(1).Type == lexer.Colon {
+	case Name:
+		if doc.peek(1).Type == Colon {
 			return doc.namedLabelStatement()
 		}
 		fallthrough
@@ -1624,40 +1621,40 @@ func (doc *Parser) statement() phrase.AstNode {
 	}
 }
 
-func (doc *Parser) inlineText() *phrase.Phrase {
-	doc.start(phrase.InlineText, false)
+func (doc *Parser) inlineText() *Phrase {
+	doc.start(InlineText, false)
 
-	doc.optional(lexer.CloseTag)
-	doc.optional(lexer.Text)
-	doc.optional(lexer.OpenTag)
+	doc.optional(CloseTag)
+	doc.optional(Text)
+	doc.optional(OpenTag)
 
 	return doc.end()
 }
 
-func (doc *Parser) nullStatement() *phrase.Phrase {
-	doc.start(phrase.NullStatement, false)
+func (doc *Parser) nullStatement() *Phrase {
+	doc.start(NullStatement, false)
 	doc.next(false) //;
 
 	return doc.end()
 }
 
-func (doc *Parser) tryStatement() *phrase.Phrase {
-	p := doc.start(phrase.TryStatement, false)
+func (doc *Parser) tryStatement() *Phrase {
+	p := doc.start(TryStatement, false)
 	doc.next(false) //try
 	p.Children = append(p.Children, doc.compoundStatement())
 
 	t := doc.peek(0)
 
-	if t.Type == lexer.Catch {
+	if t.Type == Catch {
 		p.Children = append(p.Children, doc.list(
-			phrase.CatchClauseList,
+			CatchClauseList,
 			doc.catchClause,
-			func(t *lexer.Token) bool { return t.Type == lexer.Catch }, nil, nil))
-	} else if t.Type != lexer.Finally {
-		doc.error(lexer.Undefined)
+			func(t *Token) bool { return t.Type == Catch }, nil, nil))
+	} else if t.Type != Finally {
+		doc.error(Undefined)
 	}
 
-	if doc.peek(0).Type == lexer.Finally {
+	if doc.peek(0).Type == Finally {
 		p.Children = append(p.Children, doc.finallyClause())
 	}
 
@@ -1665,112 +1662,112 @@ func (doc *Parser) tryStatement() *phrase.Phrase {
 
 }
 
-func (doc *Parser) finallyClause() *phrase.Phrase {
-	p := doc.start(phrase.FinallyClause, false)
+func (doc *Parser) finallyClause() *Phrase {
+	p := doc.start(FinallyClause, false)
 	doc.next(false) //finally
 	p.Children = append(p.Children, doc.compoundStatement())
 
 	return doc.end()
 }
 
-func (doc *Parser) catchClause() phrase.AstNode {
-	p := doc.start(phrase.CatchClause, false)
+func (doc *Parser) catchClause() AstNode {
+	p := doc.start(CatchClause, false)
 	doc.next(false) //catch
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.CatchNameList,
+		CatchNameList,
 		doc.qualifiedName,
 		isQualifiedNameStart,
-		lexer.Bar,
-		[]lexer.TokenType{lexer.VariableName}, false))
-	doc.expect(lexer.VariableName)
-	doc.expect(lexer.CloseParenthesis)
+		Bar,
+		[]TokenType{VariableName}, false))
+	doc.expect(VariableName)
+	doc.expect(CloseParenthesis)
 	p.Children = append(p.Children, doc.compoundStatement())
 
 	return doc.end()
 }
 
-func (doc *Parser) declareDirective() *phrase.Phrase {
-	doc.start(phrase.DeclareDirective, false)
-	doc.expect(lexer.Name)
-	doc.expect(lexer.Equals)
-	doc.expectOneOf([]lexer.TokenType{
-		lexer.IntegerLiteral, lexer.FloatingLiteral, lexer.StringLiteral})
+func (doc *Parser) declareDirective() *Phrase {
+	doc.start(DeclareDirective, false)
+	doc.expect(Name)
+	doc.expect(Equals)
+	doc.expectOneOf([]TokenType{
+		IntegerLiteral, FloatingLiteral, StringLiteral})
 
 	return doc.end()
 }
 
-func (doc *Parser) declareStatement() *phrase.Phrase {
-	p := doc.start(phrase.DeclareStatement, false)
+func (doc *Parser) declareStatement() *Phrase {
+	p := doc.start(DeclareStatement, false)
 	doc.next(false) //declare
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.declareDirective())
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	t := doc.peek(0)
 
-	if t.Type == lexer.Colon {
+	if t.Type == Colon {
 		doc.next(false) //:
-		p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.EndDeclare}))
-		doc.expect(lexer.EndDeclare)
-		doc.expect(lexer.Semicolon)
+		p.Children = append(p.Children, doc.statementList([]TokenType{EndDeclare}))
+		doc.expect(EndDeclare)
+		doc.expect(Semicolon)
 	} else if isStatementStart(t) {
 		p.Children = append(p.Children, doc.statement())
-	} else if t.Type == lexer.Semicolon {
+	} else if t.Type == Semicolon {
 		doc.next(false)
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) switchStatement() *phrase.Phrase {
-	p := doc.start(phrase.SwitchStatement, false)
+func (doc *Parser) switchStatement() *Phrase {
+	p := doc.start(SwitchStatement, false)
 	doc.next(false) //switch
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
-	t := doc.expectOneOf([]lexer.TokenType{lexer.Colon, lexer.OpenBrace})
+	t := doc.expectOneOf([]TokenType{Colon, OpenBrace})
 	tCase := doc.peek(0)
 
-	if tCase.Type == lexer.Case || tCase.Type == lexer.Default {
-		caseTokenType := lexer.CloseBrace
-		if t != nil && t.Type == lexer.Colon {
-			caseTokenType = lexer.EndSwitch
+	if tCase.Type == Case || tCase.Type == Default {
+		caseTokenType := CloseBrace
+		if t != nil && t.Type == Colon {
+			caseTokenType = EndSwitch
 		}
 
 		p.Children = append(p.Children, doc.caseStatements(caseTokenType))
 	}
 
-	if t != nil && t.Type == lexer.Colon {
-		doc.expect(lexer.EndSwitch)
-		doc.expect(lexer.Semicolon)
+	if t != nil && t.Type == Colon {
+		doc.expect(EndSwitch)
+		doc.expect(Semicolon)
 	} else {
-		doc.expect(lexer.CloseBrace)
+		doc.expect(CloseBrace)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) caseStatements(breakOn lexer.TokenType) *phrase.Phrase {
-	p := doc.start(phrase.CaseStatementList, false)
-	var t *lexer.Token
-	caseBreakOn := []lexer.TokenType{lexer.Case, lexer.Default, breakOn}
+func (doc *Parser) caseStatements(breakOn TokenType) *Phrase {
+	p := doc.start(CaseStatementList, false)
+	var t *Token
+	caseBreakOn := []TokenType{Case, Default, breakOn}
 
 	for {
 		t = doc.peek(0)
 
-		if t.Type == lexer.Case {
+		if t.Type == Case {
 			p.Children = append(p.Children, doc.caseStatement(caseBreakOn))
-		} else if t.Type == lexer.Default {
+		} else if t.Type == Default {
 			p.Children = append(p.Children, doc.defaultStatement(caseBreakOn))
 		} else if breakOn == t.Type {
 			break
 		} else {
-			doc.error(lexer.Undefined)
+			doc.error(Undefined)
 			break
 		}
 
@@ -1779,11 +1776,11 @@ func (doc *Parser) caseStatements(breakOn lexer.TokenType) *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) caseStatement(breakOn []lexer.TokenType) *phrase.Phrase {
-	p := doc.start(phrase.CaseStatement, false)
+func (doc *Parser) caseStatement(breakOn []TokenType) *Phrase {
+	p := doc.start(CaseStatement, false)
 	doc.next(false) //case
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expectOneOf([]lexer.TokenType{lexer.Colon, lexer.Semicolon})
+	doc.expectOneOf([]TokenType{Colon, Semicolon})
 	if isStatementStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.statementList(breakOn))
 	}
@@ -1791,10 +1788,10 @@ func (doc *Parser) caseStatement(breakOn []lexer.TokenType) *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) defaultStatement(breakOn []lexer.TokenType) *phrase.Phrase {
-	p := doc.start(phrase.DefaultStatement, false)
+func (doc *Parser) defaultStatement(breakOn []TokenType) *Phrase {
+	p := doc.start(DefaultStatement, false)
 	doc.next(false) //default
-	doc.expectOneOf([]lexer.TokenType{lexer.Colon, lexer.Semicolon})
+	doc.expectOneOf([]TokenType{Colon, Semicolon})
 	if isStatementStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.statementList(breakOn))
 	}
@@ -1802,592 +1799,592 @@ func (doc *Parser) defaultStatement(breakOn []lexer.TokenType) *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) namedLabelStatement() *phrase.Phrase {
-	doc.start(phrase.NamedLabelStatement, false)
+func (doc *Parser) namedLabelStatement() *Phrase {
+	doc.start(NamedLabelStatement, false)
 	doc.next(false) //name
 	doc.next(false) //:
 
 	return doc.end()
 }
 
-func (doc *Parser) gotoStatement() *phrase.Phrase {
-	doc.start(phrase.GotoStatement, false)
+func (doc *Parser) gotoStatement() *Phrase {
+	doc.start(GotoStatement, false)
 	doc.next(false) //goto
-	doc.expect(lexer.Name)
-	doc.expect(lexer.Semicolon)
+	doc.expect(Name)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) throwStatement() *phrase.Phrase {
-	p := doc.start(phrase.ThrowStatement, false)
+func (doc *Parser) throwStatement() *Phrase {
+	p := doc.start(ThrowStatement, false)
 	doc.next(false) //throw
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) foreachCollection() *phrase.Phrase {
-	p := doc.start(phrase.ForeachCollection, false)
+func (doc *Parser) foreachCollection() *Phrase {
+	p := doc.start(ForeachCollection, false)
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) foreachKeyOrValue() *phrase.Phrase {
-	p := doc.start(phrase.ForeachValue, false)
+func (doc *Parser) foreachKeyOrValue() *Phrase {
+	p := doc.start(ForeachValue, false)
 	p.Children = append(p.Children, doc.expression(0))
-	if doc.peek(0).Type == lexer.FatArrow {
+	if doc.peek(0).Type == FatArrow {
 		doc.next(false)
-		p.Type = phrase.ForeachKey
+		p.Type = ForeachKey
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) foreachValue() *phrase.Phrase {
-	p := doc.start(phrase.ForeachValue, false)
-	doc.optional(lexer.Ampersand)
+func (doc *Parser) foreachValue() *Phrase {
+	p := doc.start(ForeachValue, false)
+	doc.optional(Ampersand)
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) foreachStatement() *phrase.Phrase {
-	p := doc.start(phrase.ForeachStatement, false)
+func (doc *Parser) foreachStatement() *Phrase {
+	p := doc.start(ForeachStatement, false)
 	doc.next(false) //foreach
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.foreachCollection())
-	doc.expect(lexer.As)
-	var keyOrValue *phrase.Phrase
-	if doc.peek(0).Type == lexer.Ampersand {
+	doc.expect(As)
+	var keyOrValue *Phrase
+	if doc.peek(0).Type == Ampersand {
 		keyOrValue = doc.foreachValue()
 	} else {
 		keyOrValue = doc.foreachKeyOrValue()
 	}
 	p.Children = append(p.Children, keyOrValue)
 
-	if keyOrValue.Type == phrase.ForeachKey {
+	if keyOrValue.Type == ForeachKey {
 		p.Children = append(p.Children, doc.foreachValue())
 	}
 
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	t := doc.peek(0)
 
-	if t.Type == lexer.Colon {
+	if t.Type == Colon {
 		doc.next(false)
-		p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.EndForeach}))
-		doc.expect(lexer.EndForeach)
-		doc.expect(lexer.Semicolon)
+		p.Children = append(p.Children, doc.statementList([]TokenType{EndForeach}))
+		doc.expect(EndForeach)
+		doc.expect(Semicolon)
 	} else if isStatementStart(t) {
 		p.Children = append(p.Children, doc.statement())
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 
 }
 
-func isVariableStart(t *lexer.Token) bool {
+func isVariableStart(t *Token) bool {
 	switch t.Type {
-	case lexer.VariableName,
-		lexer.Dollar,
-		lexer.OpenParenthesis,
-		lexer.Array,
-		lexer.OpenBracket,
-		lexer.StringLiteral,
-		lexer.Static,
-		lexer.Name,
-		lexer.Namespace,
-		lexer.Backslash:
+	case VariableName,
+		Dollar,
+		OpenParenthesis,
+		Array,
+		OpenBracket,
+		StringLiteral,
+		Static,
+		Name,
+		Namespace,
+		Backslash:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) variableInitial() phrase.AstNode {
+func (doc *Parser) variableInitial() AstNode {
 	return doc.variable(doc.variableAtom(0))
 }
 
-func (doc *Parser) variableList(breakOn []lexer.TokenType) *phrase.Phrase {
+func (doc *Parser) variableList(breakOn []TokenType) *Phrase {
 	return doc.delimitedList(
-		phrase.VariableList,
+		VariableList,
 		doc.variableInitial,
 		isVariableStart,
-		lexer.Comma,
+		Comma,
 		breakOn,
 		false)
 }
 
-func (doc *Parser) unsetIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.UnsetIntrinsic, false)
+func (doc *Parser) unsetIntrinsic() *Phrase {
+	p := doc.start(UnsetIntrinsic, false)
 	doc.next(false) //unset
-	doc.expect(lexer.OpenParenthesis)
-	p.Children = append(p.Children, doc.variableList([]lexer.TokenType{lexer.CloseParenthesis}))
-	doc.expect(lexer.CloseParenthesis)
-	doc.expect(lexer.Semicolon)
+	doc.expect(OpenParenthesis)
+	p.Children = append(p.Children, doc.variableList([]TokenType{CloseParenthesis}))
+	doc.expect(CloseParenthesis)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) expressionInitial() phrase.AstNode {
+func (doc *Parser) expressionInitial() AstNode {
 	return doc.expression(0)
 }
 
-func (doc *Parser) echoIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.EchoIntrinsic, false)
+func (doc *Parser) echoIntrinsic() *Phrase {
+	p := doc.start(EchoIntrinsic, false)
 	doc.next(false) //echo or <?=
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.ExpressionList,
+		ExpressionList,
 		doc.expressionInitial,
 		isExpressionStart,
-		lexer.Comma,
+		Comma,
 		nil,
 		false))
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) functionStaticDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.FunctionStaticDeclaration, false)
+func (doc *Parser) functionStaticDeclaration() *Phrase {
+	p := doc.start(FunctionStaticDeclaration, false)
 	doc.next(false) //static
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.StaticVariableDeclarationList,
+		StaticVariableDeclarationList,
 		doc.staticVariableDeclaration,
-		func(t *lexer.Token) bool { return t.Type == lexer.VariableName },
-		lexer.Comma,
-		[]lexer.TokenType{lexer.Semicolon},
+		func(t *Token) bool { return t.Type == VariableName },
+		Comma,
+		[]TokenType{Semicolon},
 		false))
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) globalDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.GlobalDeclaration, false)
+func (doc *Parser) globalDeclaration() *Phrase {
+	p := doc.start(GlobalDeclaration, false)
 	doc.next(false) //global
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.VariableNameList,
+		VariableNameList,
 		doc.simpleVariable,
 		isSimpleVariableStart,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.Semicolon},
+		Comma,
+		[]TokenType{Semicolon},
 		false))
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func isSimpleVariableStart(t *lexer.Token) bool {
+func isSimpleVariableStart(t *Token) bool {
 	switch t.Type {
-	case lexer.VariableName, lexer.Dollar:
+	case VariableName, Dollar:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) staticVariableDeclaration() phrase.AstNode {
-	p := doc.start(phrase.StaticVariableDeclaration, false)
-	doc.expect(lexer.VariableName)
+func (doc *Parser) staticVariableDeclaration() AstNode {
+	p := doc.start(StaticVariableDeclaration, false)
+	doc.expect(VariableName)
 
-	if doc.peek(0).Type == lexer.Equals {
+	if doc.peek(0).Type == Equals {
 		p.Children = append(p.Children, doc.functionStaticInitialiser())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) functionStaticInitialiser() *phrase.Phrase {
-	p := doc.start(phrase.FunctionStaticInitialiser, false)
+func (doc *Parser) functionStaticInitialiser() *Phrase {
+	p := doc.start(FunctionStaticInitialiser, false)
 	doc.next(false) //=
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) continueStatement() *phrase.Phrase {
-	p := doc.start(phrase.ContinueStatement, false)
+func (doc *Parser) continueStatement() *Phrase {
+	p := doc.start(ContinueStatement, false)
 	doc.next(false) //break/continue
 	if isExpressionStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.expression(0))
 	}
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) breakStatement() *phrase.Phrase {
-	p := doc.start(phrase.BreakStatement, false)
+func (doc *Parser) breakStatement() *Phrase {
+	p := doc.start(BreakStatement, false)
 	doc.next(false) //break/continue
 	if isExpressionStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.expression(0))
 	}
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) returnStatement() *phrase.Phrase {
-	p := doc.start(phrase.ReturnStatement, false)
+func (doc *Parser) returnStatement() *Phrase {
+	p := doc.start(ReturnStatement, false)
 	doc.next(false) //return
 	if isExpressionStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.expression(0))
 	}
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
 func (doc *Parser) forExpressionGroup(
-	phraseType phrase.PhraseType, breakOn []lexer.TokenType) *phrase.Phrase {
+	phraseType PhraseType, breakOn []TokenType) *Phrase {
 
 	return doc.delimitedList(
 		phraseType,
 		doc.expressionInitial,
 		isExpressionStart,
-		lexer.Comma,
+		Comma,
 		breakOn,
 		false)
 }
 
-func (doc *Parser) forStatement() *phrase.Phrase {
-	p := doc.start(phrase.ForStatement, false)
+func (doc *Parser) forStatement() *Phrase {
+	p := doc.start(ForStatement, false)
 	doc.next(false) //for
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 
 	if isExpressionStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.forExpressionGroup(
-			phrase.ForInitialiser, []lexer.TokenType{lexer.Semicolon}))
+			ForInitialiser, []TokenType{Semicolon}))
 	}
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	if isExpressionStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.forExpressionGroup(
-			phrase.ForControl, []lexer.TokenType{lexer.Semicolon}))
+			ForControl, []TokenType{Semicolon}))
 	}
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	if isExpressionStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.forExpressionGroup(
-			phrase.ForEndOfLoop, []lexer.TokenType{lexer.CloseParenthesis}))
+			ForEndOfLoop, []TokenType{CloseParenthesis}))
 	}
 
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	t := doc.peek(0)
 
-	if t.Type == lexer.Colon {
+	if t.Type == Colon {
 		doc.next(false)
-		p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.EndFor}))
-		doc.expect(lexer.EndFor)
-		doc.expect(lexer.Semicolon)
+		p.Children = append(p.Children, doc.statementList([]TokenType{EndFor}))
+		doc.expect(EndFor)
+		doc.expect(Semicolon)
 	} else if isStatementStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.statement())
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) doStatement() *phrase.Phrase {
-	p := doc.start(phrase.DoStatement, false)
+func (doc *Parser) doStatement() *Phrase {
+	p := doc.start(DoStatement, false)
 	doc.next(false) // do
 	p.Children = append(p.Children, doc.statement())
-	doc.expect(lexer.While)
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(While)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
-	doc.expect(lexer.Semicolon)
+	doc.expect(CloseParenthesis)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) whileStatement() *phrase.Phrase {
-	p := doc.start(phrase.WhileStatement, false)
+func (doc *Parser) whileStatement() *Phrase {
+	p := doc.start(WhileStatement, false)
 	doc.next(false) //while
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	t := doc.peek(0)
 
-	if t.Type == lexer.Colon {
+	if t.Type == Colon {
 		doc.next(false)
-		p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.EndWhile}))
-		doc.expect(lexer.EndWhile)
-		doc.expect(lexer.Semicolon)
+		p.Children = append(p.Children, doc.statementList([]TokenType{EndWhile}))
+		doc.expect(EndWhile)
+		doc.expect(Semicolon)
 	} else if isStatementStart(t) {
 		p.Children = append(p.Children, doc.statement())
 	} else {
 		//error
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) elseIfClause1() phrase.AstNode {
-	p := doc.start(phrase.ElseIfClause, false)
+func (doc *Parser) elseIfClause1() AstNode {
+	p := doc.start(ElseIfClause, false)
 	doc.next(false) //elseif
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 	p.Children = append(p.Children, doc.statement())
 
 	return doc.end()
 }
 
-func (doc *Parser) elseIfClause2() phrase.AstNode {
-	p := doc.start(phrase.ElseIfClause, false)
+func (doc *Parser) elseIfClause2() AstNode {
+	p := doc.start(ElseIfClause, false)
 	doc.next(false) //elseif
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
-	doc.expect(lexer.Colon)
+	doc.expect(CloseParenthesis)
+	doc.expect(Colon)
 	p.Children = append(p.Children, doc.statementList(
-		[]lexer.TokenType{lexer.EndIf, lexer.Else, lexer.ElseIf}))
+		[]TokenType{EndIf, Else, ElseIf}))
 
 	return doc.end()
 }
 
-func (doc *Parser) elseClause1() *phrase.Phrase {
-	p := doc.start(phrase.ElseClause, false)
+func (doc *Parser) elseClause1() *Phrase {
+	p := doc.start(ElseClause, false)
 	doc.next(false) //else
 	p.Children = append(p.Children, doc.statement())
 
 	return doc.end()
 }
 
-func (doc *Parser) elseClause2() *phrase.Phrase {
-	p := doc.start(phrase.ElseClause, false)
+func (doc *Parser) elseClause2() *Phrase {
+	p := doc.start(ElseClause, false)
 	doc.next(false) //else
-	doc.expect(lexer.Colon)
-	p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.EndIf}))
+	doc.expect(Colon)
+	p.Children = append(p.Children, doc.statementList([]TokenType{EndIf}))
 
 	return doc.end()
 }
 
-func isElseIfClauseStart(t *lexer.Token) bool {
-	return t.Type == lexer.ElseIf
+func isElseIfClauseStart(t *Token) bool {
+	return t.Type == ElseIf
 }
 
-func (doc *Parser) ifStatement() *phrase.Phrase {
-	p := doc.start(phrase.IfStatement, false)
+func (doc *Parser) ifStatement() *Phrase {
+	p := doc.start(IfStatement, false)
 	doc.next(false) //if
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	t := doc.peek(0)
 	elseIfClausefunc := doc.elseIfClause1
 	elseClausefunc := doc.elseClause1
 	expectEndIf := false
 
-	if t.Type == lexer.Colon {
+	if t.Type == Colon {
 		doc.next(false)
 		p.Children = append(p.Children, doc.statementList(
-			[]lexer.TokenType{lexer.ElseIf, lexer.Else, lexer.EndIf}))
+			[]TokenType{ElseIf, Else, EndIf}))
 		elseIfClausefunc = doc.elseIfClause2
 		elseClausefunc = doc.elseClause2
 		expectEndIf = true
 	} else if isStatementStart(t) {
 		p.Children = append(p.Children, doc.statement())
 	} else {
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
-	if doc.peek(0).Type == lexer.ElseIf {
+	if doc.peek(0).Type == ElseIf {
 		p.Children = append(p.Children, doc.list(
-			phrase.ElseIfClauseList,
+			ElseIfClauseList,
 			elseIfClausefunc,
 			isElseIfClauseStart,
 			nil,
 			nil))
 	}
 
-	if doc.peek(0).Type == lexer.Else {
+	if doc.peek(0).Type == Else {
 		p.Children = append(p.Children, elseClausefunc())
 	}
 
 	if expectEndIf {
-		doc.expect(lexer.EndIf)
-		doc.expect(lexer.Semicolon)
+		doc.expect(EndIf)
+		doc.expect(Semicolon)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) expressionStatement() *phrase.Phrase {
-	p := doc.start(phrase.ExpressionStatement, false)
+func (doc *Parser) expressionStatement() *Phrase {
+	p := doc.start(ExpressionStatement, false)
 	p.Children = append(p.Children, doc.expression(0))
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) returnType() *phrase.Phrase {
-	p := doc.start(phrase.ReturnType, false)
+func (doc *Parser) returnType() *Phrase {
+	p := doc.start(ReturnType, false)
 	doc.next(false) //:
 	p.Children = append(p.Children, doc.typeDeclaration())
 
 	return doc.end()
 }
 
-func (doc *Parser) typeDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.TypeDeclaration, false)
-	doc.optional(lexer.Question)
+func (doc *Parser) typeDeclaration() *Phrase {
+	p := doc.start(TypeDeclaration, false)
+	doc.optional(Question)
 
 	switch doc.peek(0).Type {
-	case lexer.Callable, lexer.Array:
+	case Callable, Array:
 		doc.next(false)
-	case lexer.Name, lexer.Namespace, lexer.Backslash:
+	case Name, Namespace, Backslash:
 		p.Children = append(p.Children, doc.qualifiedName())
 	default:
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) classConstDeclaration(p *phrase.Phrase) *phrase.Phrase {
-	p.Type = phrase.ClassConstDeclaration
+func (doc *Parser) classConstDeclaration(p *Phrase) *Phrase {
+	p.Type = ClassConstDeclaration
 	doc.next(false) //const
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.ClassConstElementList,
+		ClassConstElementList,
 		doc.classConstElement,
 		isClassConstElementStartToken,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.Semicolon},
+		Comma,
+		[]TokenType{Semicolon},
 		false))
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func isExpressionStart(t *lexer.Token) bool {
+func isExpressionStart(t *Token) bool {
 
 	switch t.Type {
-	case lexer.VariableName,
-		lexer.Dollar,
-		lexer.Array,
-		lexer.OpenBracket,
-		lexer.StringLiteral,
-		lexer.Backslash,
-		lexer.Name,
-		lexer.Namespace,
-		lexer.OpenParenthesis,
-		lexer.Static,
-		lexer.PlusPlus,
-		lexer.MinusMinus,
-		lexer.Plus,
-		lexer.Minus,
-		lexer.Exclamation,
-		lexer.Tilde,
-		lexer.AtSymbol,
-		lexer.IntegerCast,
-		lexer.FloatCast,
-		lexer.StringCast,
-		lexer.ArrayCast,
-		lexer.ObjectCast,
-		lexer.BooleanCast,
-		lexer.UnsetCast,
-		lexer.List,
-		lexer.Clone,
-		lexer.New,
-		lexer.FloatingLiteral,
-		lexer.IntegerLiteral,
-		lexer.LineConstant,
-		lexer.FileConstant,
-		lexer.DirectoryConstant,
-		lexer.TraitConstant,
-		lexer.MethodConstant,
-		lexer.FunctionConstant,
-		lexer.NamespaceConstant,
-		lexer.ClassConstant,
-		lexer.StartHeredoc,
-		lexer.DoubleQuote,
-		lexer.Backtick,
-		lexer.Print,
-		lexer.Yield,
-		lexer.YieldFrom,
-		lexer.Function,
-		lexer.Include,
-		lexer.IncludeOnce,
-		lexer.Require,
-		lexer.RequireOnce,
-		lexer.Eval,
-		lexer.Empty,
-		lexer.Isset,
-		lexer.Exit:
+	case VariableName,
+		Dollar,
+		Array,
+		OpenBracket,
+		StringLiteral,
+		Backslash,
+		Name,
+		Namespace,
+		OpenParenthesis,
+		Static,
+		PlusPlus,
+		MinusMinus,
+		Plus,
+		Minus,
+		Exclamation,
+		Tilde,
+		AtSymbol,
+		IntegerCast,
+		FloatCast,
+		StringCast,
+		ArrayCast,
+		ObjectCast,
+		BooleanCast,
+		UnsetCast,
+		List,
+		Clone,
+		New,
+		FloatingLiteral,
+		IntegerLiteral,
+		LineConstant,
+		FileConstant,
+		DirectoryConstant,
+		TraitConstant,
+		MethodConstant,
+		FunctionConstant,
+		NamespaceConstant,
+		ClassConstant,
+		StartHeredoc,
+		DoubleQuote,
+		Backtick,
+		Print,
+		Yield,
+		YieldFrom,
+		Function,
+		Include,
+		IncludeOnce,
+		Require,
+		RequireOnce,
+		Eval,
+		Empty,
+		Isset,
+		Exit:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) classConstElement() phrase.AstNode {
-	p := doc.start(phrase.ClassConstElement, false)
+func (doc *Parser) classConstElement() AstNode {
+	p := doc.start(ClassConstElement, false)
 	p.Children = append(p.Children, doc.identifier())
-	doc.expect(lexer.Equals)
+	doc.expect(Equals)
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func isPropertyElementStart(t *lexer.Token) bool {
-	return t.Type == lexer.VariableName
+func isPropertyElementStart(t *Token) bool {
+	return t.Type == VariableName
 }
 
-func (doc *Parser) propertyDeclaration(p *phrase.Phrase) *phrase.Phrase {
-	p.Type = phrase.PropertyDeclaration
+func (doc *Parser) propertyDeclaration(p *Phrase) *Phrase {
+	p.Type = PropertyDeclaration
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.PropertyElementList,
+		PropertyElementList,
 		doc.propertyElement,
 		isPropertyElementStart,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.Semicolon},
+		Comma,
+		[]TokenType{Semicolon},
 		false))
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) propertyElement() phrase.AstNode {
-	p := doc.start(phrase.PropertyElement, false)
-	doc.expect(lexer.VariableName)
+func (doc *Parser) propertyElement() AstNode {
+	p := doc.start(PropertyElement, false)
+	doc.expect(VariableName)
 
-	if doc.peek(0).Type == lexer.Equals {
+	if doc.peek(0).Type == Equals {
 		p.Children = append(p.Children, doc.propertyInitialiser())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) propertyInitialiser() *phrase.Phrase {
-	p := doc.start(phrase.PropertyInitialiser, false)
+func (doc *Parser) propertyInitialiser() *Phrase {
+	p := doc.start(PropertyInitialiser, false)
 	doc.next(false) //equals
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) memberModifierList() *phrase.Phrase {
-	doc.start(phrase.MemberModifierList, false)
+func (doc *Parser) memberModifierList() *Phrase {
+	doc.start(MemberModifierList, false)
 
 	for isMemberModifier(doc.peek(0)) {
 		doc.next(false)
@@ -2396,71 +2393,71 @@ func (doc *Parser) memberModifierList() *phrase.Phrase {
 	return doc.end()
 }
 
-func isMemberModifier(t *lexer.Token) bool {
+func isMemberModifier(t *Token) bool {
 	switch t.Type {
-	case lexer.Public,
-		lexer.Protected,
-		lexer.Private,
-		lexer.Static,
-		lexer.Abstract,
-		lexer.Final:
+	case Public,
+		Protected,
+		Private,
+		Static,
+		Abstract,
+		Final:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) qualifiedNameList(breakOn []lexer.TokenType) *phrase.Phrase {
+func (doc *Parser) qualifiedNameList(breakOn []TokenType) *Phrase {
 
 	return doc.delimitedList(
-		phrase.QualifiedNameList,
+		QualifiedNameList,
 		doc.qualifiedName,
 		isQualifiedNameStart,
-		lexer.Comma,
+		Comma,
 		breakOn,
 		false)
 }
 
-func (doc *Parser) objectCreationExpression() *phrase.Phrase {
-	p := doc.start(phrase.ObjectCreationExpression, false)
+func (doc *Parser) objectCreationExpression() *Phrase {
+	p := doc.start(ObjectCreationExpression, false)
 	doc.next(false) //new
-	if doc.peek(0).Type == lexer.Class {
+	if doc.peek(0).Type == Class {
 		p.Children = append(p.Children, doc.anonymousClassDeclaration())
 
 		return doc.end()
 	}
 
-	p.Children = append(p.Children, doc.typeDesignator(phrase.ClassTypeDesignator))
+	p.Children = append(p.Children, doc.typeDesignator(ClassTypeDesignator))
 
-	if doc.optional(lexer.OpenParenthesis) != nil {
+	if doc.optional(OpenParenthesis) != nil {
 		if isArgumentStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.argumentList())
 		}
 
-		doc.expect(lexer.CloseParenthesis)
+		doc.expect(CloseParenthesis)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) typeDesignator(phraseType phrase.PhraseType) *phrase.Phrase {
+func (doc *Parser) typeDesignator(phraseType PhraseType) *Phrase {
 	p := doc.start(phraseType, false)
 	part := doc.classTypeDesignatorAtom()
 
 	for {
 		switch doc.peek(0).Type {
-		case lexer.OpenBracket:
-			part = doc.subscriptExpression(part, lexer.CloseBracket)
+		case OpenBracket:
+			part = doc.subscriptExpression(part, CloseBracket)
 			continue
-		case lexer.OpenBrace:
-			part = doc.subscriptExpression(part, lexer.CloseBrace)
+		case OpenBrace:
+			part = doc.subscriptExpression(part, CloseBrace)
 			continue
-		case lexer.Arrow:
+		case Arrow:
 			part = doc.propertyAccessExpression(part)
 			continue
-		case lexer.ColonColon:
-			staticPropNode := doc.start(phrase.ScopedPropertyAccessExpression, false)
+		case ColonColon:
+			staticPropNode := doc.start(ScopedPropertyAccessExpression, false)
 			staticPropNode.Children = append(staticPropNode.Children, part)
 			doc.next(false) //::
 			staticPropNode.Children = append(staticPropNode.Children,
@@ -2477,67 +2474,67 @@ func (doc *Parser) typeDesignator(phraseType phrase.PhraseType) *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) restrictedScopedMemberName() *phrase.Phrase {
-	p := doc.start(phrase.ScopedMemberName, false)
+func (doc *Parser) restrictedScopedMemberName() *Phrase {
+	p := doc.start(ScopedMemberName, false)
 	t := doc.peek(0)
 
 	switch t.Type {
-	case lexer.VariableName:
+	case VariableName:
 		//Spec says this should be SimpleVariable
 		//leaving as a token as this avoids confusion between
 		//static property names and simple variables
 		doc.next(false)
-	case lexer.Dollar:
+	case Dollar:
 		p.Children = append(p.Children, doc.simpleVariable())
 	default:
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) classTypeDesignatorAtom() phrase.AstNode {
+func (doc *Parser) classTypeDesignatorAtom() AstNode {
 	t := doc.peek(0)
 
 	switch t.Type {
-	case lexer.Static:
+	case Static:
 		return doc.relativeScope()
-	case lexer.VariableName, lexer.Dollar:
+	case VariableName, Dollar:
 		return doc.simpleVariable()
-	case lexer.Name, lexer.Namespace, lexer.Backslash:
+	case Name, Namespace, Backslash:
 		return doc.qualifiedName()
 	default:
-		doc.start(phrase.ErrorClassTypeDesignatorAtom, false)
-		doc.error(lexer.Undefined)
+		doc.start(ErrorClassTypeDesignatorAtom, false)
+		doc.error(Undefined)
 
 		return doc.end()
 	}
 }
 
-func (doc *Parser) cloneExpression() *phrase.Phrase {
-	p := doc.start(phrase.CloneExpression, false)
+func (doc *Parser) cloneExpression() *Phrase {
+	p := doc.start(CloneExpression, false)
 	doc.next(false) //clone
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) listIntrinsic() *phrase.Phrase {
-	p := doc.start(phrase.ListIntrinsic, false)
+func (doc *Parser) listIntrinsic() *Phrase {
+	p := doc.start(ListIntrinsic, false)
 	doc.next(false) //list
-	doc.expect(lexer.OpenParenthesis)
-	p.Children = append(p.Children, doc.arrayInitialiserList(lexer.CloseParenthesis))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(OpenParenthesis)
+	p.Children = append(p.Children, doc.arrayInitialiserList(CloseParenthesis))
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func (doc *Parser) unaryExpression(phraseType phrase.PhraseType) *phrase.Phrase {
+func (doc *Parser) unaryExpression(phraseType PhraseType) *Phrase {
 	p := doc.start(phraseType, false)
 	op := doc.next(false) //op
 
 	switch phraseType {
-	case phrase.PrefixDecrementExpression, phrase.PrefixIncrementExpression:
+	case PrefixDecrementExpression, PrefixIncrementExpression:
 		p.Children = append(p.Children, doc.variable(doc.variableAtom(0)))
 	default:
 		precendence, _ := precedenceAssociativityTuple(op)
@@ -2547,38 +2544,38 @@ func (doc *Parser) unaryExpression(phraseType phrase.PhraseType) *phrase.Phrase 
 	return doc.end()
 }
 
-func (doc *Parser) anonymousFunctionHeader() *phrase.Phrase {
-	p := doc.start(phrase.AnonymousFunctionHeader, false)
-	doc.optional(lexer.Static)
+func (doc *Parser) anonymousFunctionHeader() *Phrase {
+	p := doc.start(AnonymousFunctionHeader, false)
+	doc.optional(Static)
 	doc.next(false) //function
-	doc.optional(lexer.Ampersand)
-	doc.expect(lexer.OpenParenthesis)
+	doc.optional(Ampersand)
+	doc.expect(OpenParenthesis)
 
 	if isParameterStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.delimitedList(
-			phrase.ParameterDeclarationList,
+			ParameterDeclarationList,
 			doc.parameterDeclaration,
 			isParameterStart,
-			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseParenthesis},
+			Comma,
+			[]TokenType{CloseParenthesis},
 			false))
 	}
 
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
-	if doc.peek(0).Type == lexer.Use {
+	if doc.peek(0).Type == Use {
 		p.Children = append(p.Children, doc.anonymousFunctionUseClause())
 	}
 
-	if doc.peek(0).Type == lexer.Colon {
+	if doc.peek(0).Type == Colon {
 		p.Children = append(p.Children, doc.returnType())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) anonymousFunctionCreationExpression() *phrase.Phrase {
-	p := doc.start(phrase.AnonymousFunctionCreationExpression, false)
+func (doc *Parser) anonymousFunctionCreationExpression() *Phrase {
+	p := doc.start(AnonymousFunctionCreationExpression, false)
 
 	p.Children = append(p.Children, doc.anonymousFunctionHeader())
 	p.Children = append(p.Children, doc.functionDeclarationBody())
@@ -2586,60 +2583,60 @@ func (doc *Parser) anonymousFunctionCreationExpression() *phrase.Phrase {
 	return doc.end()
 }
 
-func isAnonymousFunctionUseVariableStart(t *lexer.Token) bool {
-	return t.Type == lexer.VariableName || t.Type == lexer.Ampersand
+func isAnonymousFunctionUseVariableStart(t *Token) bool {
+	return t.Type == VariableName || t.Type == Ampersand
 }
 
-func (doc *Parser) anonymousFunctionUseClause() *phrase.Phrase {
-	p := doc.start(phrase.AnonymousFunctionUseClause, false)
+func (doc *Parser) anonymousFunctionUseClause() *Phrase {
+	p := doc.start(AnonymousFunctionUseClause, false)
 	doc.next(false) //use
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.ClosureUseList,
+		ClosureUseList,
 		doc.anonymousFunctionUseVariable,
 		isAnonymousFunctionUseVariableStart,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.CloseParenthesis},
+		Comma,
+		[]TokenType{CloseParenthesis},
 		false))
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func (doc *Parser) anonymousFunctionUseVariable() phrase.AstNode {
-	doc.start(phrase.AnonymousFunctionUseVariable, false)
-	doc.optional(lexer.Ampersand)
-	doc.expect(lexer.VariableName)
+func (doc *Parser) anonymousFunctionUseVariable() AstNode {
+	doc.start(AnonymousFunctionUseVariable, false)
+	doc.optional(Ampersand)
+	doc.expect(VariableName)
 
 	return doc.end()
 }
 
-func isTypeDeclarationStart(t *lexer.Token) bool {
+func isTypeDeclarationStart(t *Token) bool {
 	switch t.Type {
-	case lexer.Backslash,
-		lexer.Name,
-		lexer.Namespace,
-		lexer.Question,
-		lexer.Array,
-		lexer.Callable:
+	case Backslash,
+		Name,
+		Namespace,
+		Question,
+		Array,
+		Callable:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) parameterDeclaration() phrase.AstNode {
-	p := doc.start(phrase.ParameterDeclaration, false)
+func (doc *Parser) parameterDeclaration() AstNode {
+	p := doc.start(ParameterDeclaration, false)
 
 	if isTypeDeclarationStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.typeDeclaration())
 	}
 
-	doc.optional(lexer.Ampersand)
-	doc.optional(lexer.Ellipsis)
-	doc.expect(lexer.VariableName)
+	doc.optional(Ampersand)
+	doc.optional(Ellipsis)
+	doc.expect(VariableName)
 
-	if doc.peek(0).Type == lexer.Equals {
+	if doc.peek(0).Type == Equals {
 		doc.next(false)
 		p.Children = append(p.Children, doc.expression(0))
 	}
@@ -2647,35 +2644,35 @@ func (doc *Parser) parameterDeclaration() phrase.AstNode {
 	return doc.end()
 }
 
-func (doc *Parser) variable(variableAtomNode phrase.AstNode) phrase.AstNode {
+func (doc *Parser) variable(variableAtomNode AstNode) AstNode {
 	count := 0
 
 	for {
 		count++
 		switch doc.peek(0).Type {
-		case lexer.ColonColon:
+		case ColonColon:
 			variableAtomNode = doc.scopedAccessExpression(variableAtomNode)
 			continue
-		case lexer.Arrow:
+		case Arrow:
 			variableAtomNode = doc.propertyOrMethodAccessExpression(variableAtomNode)
 			continue
-		case lexer.OpenBracket:
-			variableAtomNode = doc.subscriptExpression(variableAtomNode, lexer.CloseBracket)
+		case OpenBracket:
+			variableAtomNode = doc.subscriptExpression(variableAtomNode, CloseBracket)
 			continue
-		case lexer.OpenBrace:
-			variableAtomNode = doc.subscriptExpression(variableAtomNode, lexer.CloseBrace)
+		case OpenBrace:
+			variableAtomNode = doc.subscriptExpression(variableAtomNode, CloseBrace)
 			continue
-		case lexer.OpenParenthesis:
+		case OpenParenthesis:
 			variableAtomNode = doc.functionCallExpression(variableAtomNode)
 			continue
 		default:
 			//only simple variable atoms qualify as variables
-			p := variableAtomNode.(*phrase.Phrase)
+			p := variableAtomNode.(*Phrase)
 
-			if count == 1 && p.Type != phrase.SimpleVariable {
-				errNode := doc.start(phrase.ErrorVariable, true)
+			if count == 1 && p.Type != SimpleVariable {
+				errNode := doc.start(ErrorVariable, true)
 				errNode.Children = append(errNode.Children, variableAtomNode)
-				doc.error(lexer.Undefined)
+				doc.error(Undefined)
 
 				return doc.end()
 			}
@@ -2687,67 +2684,67 @@ func (doc *Parser) variable(variableAtomNode phrase.AstNode) phrase.AstNode {
 	return variableAtomNode
 }
 
-func (doc *Parser) functionCallExpression(lhs phrase.AstNode) *phrase.Phrase {
-	p := doc.start(phrase.FunctionCallExpression, true)
+func (doc *Parser) functionCallExpression(lhs AstNode) *Phrase {
+	p := doc.start(FunctionCallExpression, true)
 	p.Children = append(p.Children, lhs)
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 	if isArgumentStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.argumentList())
 	}
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func (doc *Parser) scopedAccessExpression(lhs phrase.AstNode) *phrase.Phrase {
-	p := doc.start(phrase.ErrorScopedAccessExpression, true)
+func (doc *Parser) scopedAccessExpression(lhs AstNode) *Phrase {
+	p := doc.start(ErrorScopedAccessExpression, true)
 	p.Children = append(p.Children, lhs)
 	doc.next(false) //::
 	p.Children = append(p.Children, doc.scopedMemberName(p))
 
-	if doc.optional(lexer.OpenParenthesis) != nil {
-		p.Type = phrase.ScopedCallExpression
+	if doc.optional(OpenParenthesis) != nil {
+		p.Type = ScopedCallExpression
 		if isArgumentStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.argumentList())
 		}
 
-		doc.expect(lexer.CloseParenthesis)
+		doc.expect(CloseParenthesis)
 
 		return doc.end()
-	} else if p.Type == phrase.ScopedCallExpression {
+	} else if p.Type == ScopedCallExpression {
 		//error
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) scopedMemberName(parent *phrase.Phrase) *phrase.Phrase {
-	p := doc.start(phrase.ScopedMemberName, false)
+func (doc *Parser) scopedMemberName(parent *Phrase) *Phrase {
+	p := doc.start(ScopedMemberName, false)
 	t := doc.peek(0)
 
 	switch t.Type {
-	case lexer.OpenBrace:
-		parent.Type = phrase.ScopedCallExpression
+	case OpenBrace:
+		parent.Type = ScopedCallExpression
 		p.Children = append(p.Children, doc.encapsulatedExpression(
-			lexer.OpenBrace, lexer.CloseBrace))
-	case lexer.VariableName:
+			OpenBrace, CloseBrace))
+	case VariableName:
 		//Spec says this should be SimpleVariable
 		//leaving as a token as this avoids confusion between
 		//static property names and simple variables
-		parent.Type = phrase.ScopedPropertyAccessExpression
+		parent.Type = ScopedPropertyAccessExpression
 		doc.next(false)
-	case lexer.Dollar:
+	case Dollar:
 		p.Children = append(p.Children, doc.simpleVariable())
-		parent.Type = phrase.ScopedPropertyAccessExpression
+		parent.Type = ScopedPropertyAccessExpression
 	default:
-		if t.Type == lexer.Name || isSemiReservedToken(t) {
+		if t.Type == Name || isSemiReservedToken(t) {
 			p.Children = append(p.Children, doc.identifier())
-			parent.Type = phrase.ClassConstantAccessExpression
+			parent.Type = ClassConstantAccessExpression
 		} else {
 			//error
-			doc.error(lexer.Undefined)
+			doc.error(Undefined)
 		}
 	}
 
@@ -2755,8 +2752,8 @@ func (doc *Parser) scopedMemberName(parent *phrase.Phrase) *phrase.Phrase {
 
 }
 
-func (doc *Parser) propertyAccessExpression(lhs phrase.AstNode) *phrase.Phrase {
-	p := doc.start(phrase.PropertyAccessExpression, true)
+func (doc *Parser) propertyAccessExpression(lhs AstNode) *Phrase {
+	p := doc.start(PropertyAccessExpression, true)
 	p.Children = append(p.Children, lhs)
 	doc.next(false) //->
 	p.Children = append(p.Children, doc.memberName())
@@ -2764,47 +2761,47 @@ func (doc *Parser) propertyAccessExpression(lhs phrase.AstNode) *phrase.Phrase {
 	return doc.end()
 }
 
-func (doc *Parser) propertyOrMethodAccessExpression(lhs phrase.AstNode) *phrase.Phrase {
+func (doc *Parser) propertyOrMethodAccessExpression(lhs AstNode) *Phrase {
 
-	p := doc.start(phrase.PropertyAccessExpression, true)
+	p := doc.start(PropertyAccessExpression, true)
 	p.Children = append(p.Children, lhs)
 	doc.next(false) //->
 	p.Children = append(p.Children, doc.memberName())
 
-	if doc.optional(lexer.OpenParenthesis) != nil {
+	if doc.optional(OpenParenthesis) != nil {
 		if isArgumentStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.argumentList())
 		}
-		p.Type = phrase.MethodCallExpression
-		doc.expect(lexer.CloseParenthesis)
+		p.Type = MethodCallExpression
+		doc.expect(CloseParenthesis)
 	}
 
 	return doc.end()
 
 }
 
-func (doc *Parser) memberName() *phrase.Phrase {
-	p := doc.start(phrase.MemberName, false)
+func (doc *Parser) memberName() *Phrase {
+	p := doc.start(MemberName, false)
 
 	switch doc.peek(0).Type {
-	case lexer.Name:
+	case Name:
 		doc.next(false)
-	case lexer.OpenBrace:
+	case OpenBrace:
 		p.Children = append(p.Children, doc.encapsulatedExpression(
-			lexer.OpenBrace, lexer.CloseBrace))
-	case lexer.Dollar, lexer.VariableName:
+			OpenBrace, CloseBrace))
+	case Dollar, VariableName:
 		p.Children = append(p.Children, doc.simpleVariable())
 	default:
-		doc.error(lexer.Undefined)
+		doc.error(Undefined)
 	}
 
 	return doc.end()
 }
 
 func (doc *Parser) subscriptExpression(
-	lhs phrase.AstNode, closeTokenType lexer.TokenType) *phrase.Phrase {
+	lhs AstNode, closeTokenType TokenType) *Phrase {
 
-	p := doc.start(phrase.SubscriptExpression, true)
+	p := doc.start(SubscriptExpression, true)
 	p.Children = append(p.Children, lhs)
 	doc.next(false) // [ or {
 	if isExpressionStart(doc.peek(0)) {
@@ -2816,47 +2813,47 @@ func (doc *Parser) subscriptExpression(
 	return doc.end()
 }
 
-func (doc *Parser) argumentList() *phrase.Phrase {
+func (doc *Parser) argumentList() *Phrase {
 	return doc.delimitedList(
-		phrase.ArgumentExpressionList,
+		ArgumentExpressionList,
 		doc.argumentExpression,
 		isArgumentStart,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.CloseParenthesis},
+		Comma,
+		[]TokenType{CloseParenthesis},
 		false)
 }
 
-func isArgumentStart(t *lexer.Token) bool {
-	return t.Type == lexer.Ellipsis || isExpressionStart(t)
+func isArgumentStart(t *Token) bool {
+	return t.Type == Ellipsis || isExpressionStart(t)
 }
 
-func (doc *Parser) variadicUnpacking() *phrase.Phrase {
-	p := doc.start(phrase.VariadicUnpacking, false)
+func (doc *Parser) variadicUnpacking() *Phrase {
+	p := doc.start(VariadicUnpacking, false)
 	doc.next(false) //...
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) argumentExpression() phrase.AstNode {
-	if doc.peek(0).Type == lexer.Ellipsis {
+func (doc *Parser) argumentExpression() AstNode {
+	if doc.peek(0).Type == Ellipsis {
 		return doc.variadicUnpacking()
 	} else {
 		return doc.expression(0)
 	}
 }
 
-func (doc *Parser) qualifiedName() phrase.AstNode {
-	p := doc.start(phrase.QualifiedName, false)
+func (doc *Parser) qualifiedName() AstNode {
+	p := doc.start(QualifiedName, false)
 	t := doc.peek(0)
 
-	if t.Type == lexer.Backslash {
+	if t.Type == Backslash {
 		doc.next(false)
-		p.Type = phrase.FullyQualifiedName
-	} else if t.Type == lexer.Namespace {
-		p.Type = phrase.RelativeQualifiedName
+		p.Type = FullyQualifiedName
+	} else if t.Type == Namespace {
+		p.Type = RelativeQualifiedName
 		doc.next(false)
-		doc.expect(lexer.Backslash)
+		doc.expect(Backslash)
 	}
 
 	p.Children = append(p.Children, doc.namespaceName())
@@ -2864,50 +2861,50 @@ func (doc *Parser) qualifiedName() phrase.AstNode {
 	return doc.end()
 }
 
-func isQualifiedNameStart(t *lexer.Token) bool {
+func isQualifiedNameStart(t *Token) bool {
 	switch t.Type {
-	case lexer.Backslash, lexer.Name, lexer.Namespace:
+	case Backslash, Name, Namespace:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) shortArrayCreationExpression(precedence int) *phrase.Phrase {
-	p := doc.start(phrase.ArrayCreationExpression, false)
+func (doc *Parser) shortArrayCreationExpression(precedence int) *Phrase {
+	p := doc.start(ArrayCreationExpression, false)
 	doc.next(false) //[
-	if isArrayElementStart(doc.peek(0)) || (precedence == 0 && doc.peek(0).Type == lexer.Comma) {
-		p.Children = append(p.Children, doc.arrayInitialiserList(lexer.CloseBracket))
+	if isArrayElementStart(doc.peek(0)) || (precedence == 0 && doc.peek(0).Type == Comma) {
+		p.Children = append(p.Children, doc.arrayInitialiserList(CloseBracket))
 	}
-	doc.expect(lexer.CloseBracket)
+	doc.expect(CloseBracket)
 
 	return doc.end()
 }
 
-func (doc *Parser) longArrayCreationExpression() *phrase.Phrase {
-	p := doc.start(phrase.ArrayCreationExpression, false)
+func (doc *Parser) longArrayCreationExpression() *Phrase {
+	p := doc.start(ArrayCreationExpression, false)
 	doc.next(false) //array
-	doc.expect(lexer.OpenParenthesis)
+	doc.expect(OpenParenthesis)
 
 	if isArrayElementStart(doc.peek(0)) {
-		p.Children = append(p.Children, doc.arrayInitialiserList(lexer.CloseParenthesis))
+		p.Children = append(p.Children, doc.arrayInitialiserList(CloseParenthesis))
 	}
 
-	doc.expect(lexer.CloseParenthesis)
+	doc.expect(CloseParenthesis)
 
 	return doc.end()
 }
 
-func isArrayElementStart(t *lexer.Token) bool {
-	return t.Type == lexer.Ampersand || isExpressionStart(t)
+func isArrayElementStart(t *Token) bool {
+	return t.Type == Ampersand || isExpressionStart(t)
 }
 
-func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase {
+func (doc *Parser) arrayInitialiserList(breakOn TokenType) *Phrase {
 
-	p := doc.start(phrase.ArrayInitialiserList, false)
-	var t *lexer.Token
+	p := doc.start(ArrayInitialiserList, false)
+	var t *Token
 
-	arrayInitialiserListRecoverSet := []lexer.TokenType{breakOn, lexer.Comma}
+	arrayInitialiserListRecoverSet := []TokenType{breakOn, Comma}
 	doc.recoverSetStack = append(doc.recoverSetStack, arrayInitialiserListRecoverSet)
 
 	for {
@@ -2918,12 +2915,12 @@ func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase 
 
 		t = doc.peek(0)
 
-		if t.Type == lexer.Comma {
+		if t.Type == Comma {
 			doc.next(false)
 		} else if t.Type == breakOn {
 			break
 		} else {
-			doc.error(lexer.Undefined)
+			doc.error(Undefined)
 			//check for missing delimeter
 			if isArrayElementStart(t) {
 				continue
@@ -2931,7 +2928,7 @@ func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase 
 				//skip until recover token
 				doc.defaultSyncStrategy()
 				t = doc.peek(0)
-				if t.Type == lexer.Comma || t.Type == breakOn {
+				if t.Type == Comma || t.Type == breakOn {
 					continue
 				}
 			}
@@ -2946,25 +2943,25 @@ func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase 
 	return doc.end()
 }
 
-func (doc *Parser) arrayValue() *phrase.Phrase {
-	p := doc.start(phrase.ArrayValue, false)
-	doc.optional(lexer.Ampersand)
+func (doc *Parser) arrayValue() *Phrase {
+	p := doc.start(ArrayValue, false)
+	doc.optional(Ampersand)
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) arrayKey() *phrase.Phrase {
-	p := doc.start(phrase.ArrayKey, false)
+func (doc *Parser) arrayKey() *Phrase {
+	p := doc.start(ArrayKey, false)
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
 }
 
-func (doc *Parser) arrayElement() *phrase.Phrase {
-	p := doc.start(phrase.ArrayElement, false)
+func (doc *Parser) arrayElement() *Phrase {
+	p := doc.start(ArrayElement, false)
 
-	if doc.peek(0).Type == lexer.Ampersand {
+	if doc.peek(0).Type == Ampersand {
 		p.Children = append(p.Children, doc.arrayValue())
 
 		return doc.end()
@@ -2973,8 +2970,8 @@ func (doc *Parser) arrayElement() *phrase.Phrase {
 	keyOrValue := doc.arrayKey()
 	p.Children = append(p.Children, keyOrValue)
 
-	if doc.optional(lexer.FatArrow) == nil {
-		keyOrValue.Type = phrase.ArrayValue
+	if doc.optional(FatArrow) == nil {
+		keyOrValue.Type = ArrayValue
 
 		return doc.end()
 	}
@@ -2985,8 +2982,8 @@ func (doc *Parser) arrayElement() *phrase.Phrase {
 }
 
 func (doc *Parser) encapsulatedExpression(
-	openTokenType lexer.TokenType, closeTokenType lexer.TokenType) *phrase.Phrase {
-	p := doc.start(phrase.EncapsulatedExpression, false)
+	openTokenType TokenType, closeTokenType TokenType) *Phrase {
+	p := doc.start(EncapsulatedExpression, false)
 	doc.expect(openTokenType)
 	p.Children = append(p.Children, doc.expression(0))
 	doc.expect(closeTokenType)
@@ -2994,114 +2991,114 @@ func (doc *Parser) encapsulatedExpression(
 	return doc.end()
 }
 
-func (doc *Parser) relativeScope() *phrase.Phrase {
-	doc.start(phrase.RelativeScope, false)
+func (doc *Parser) relativeScope() *Phrase {
+	doc.start(RelativeScope, false)
 	doc.next(false)
 
 	return doc.end()
 }
 
-func (doc *Parser) variableAtom(precedence int) phrase.AstNode {
+func (doc *Parser) variableAtom(precedence int) AstNode {
 	t := doc.peek(0)
 	switch t.Type {
-	case lexer.VariableName, lexer.Dollar:
+	case VariableName, Dollar:
 		return doc.simpleVariable()
-	case lexer.OpenParenthesis:
-		return doc.encapsulatedExpression(lexer.OpenParenthesis, lexer.CloseParenthesis)
-	case lexer.Array:
+	case OpenParenthesis:
+		return doc.encapsulatedExpression(OpenParenthesis, CloseParenthesis)
+	case Array:
 		return doc.longArrayCreationExpression()
-	case lexer.OpenBracket:
+	case OpenBracket:
 		return doc.shortArrayCreationExpression(precedence)
-	case lexer.StringLiteral:
+	case StringLiteral:
 		return doc.next(true)
-	case lexer.Static:
+	case Static:
 		return doc.relativeScope()
-	case lexer.Name, lexer.Namespace, lexer.Backslash:
+	case Name, Namespace, Backslash:
 		return doc.qualifiedName()
 	default:
 		//error
-		doc.start(phrase.ErrorVariableAtom, false)
-		doc.error(lexer.Undefined)
+		doc.start(ErrorVariableAtom, false)
+		doc.error(Undefined)
 
 		return doc.end()
 	}
 }
 
-func (doc *Parser) simpleVariable() phrase.AstNode {
-	p := doc.start(phrase.SimpleVariable, false)
-	t := doc.expectOneOf([]lexer.TokenType{lexer.VariableName, lexer.Dollar})
+func (doc *Parser) simpleVariable() AstNode {
+	p := doc.start(SimpleVariable, false)
+	t := doc.expectOneOf([]TokenType{VariableName, Dollar})
 
-	if t != nil && t.Type == lexer.Dollar {
+	if t != nil && t.Type == Dollar {
 		t = doc.peek(0)
-		if t.Type == lexer.OpenBrace {
+		if t.Type == OpenBrace {
 			p.Children = append(p.Children, doc.encapsulatedExpression(
-				lexer.OpenBrace, lexer.CloseBrace))
-		} else if t.Type == lexer.Dollar || t.Type == lexer.VariableName {
+				OpenBrace, CloseBrace))
+		} else if t.Type == Dollar || t.Type == VariableName {
 			p.Children = append(p.Children, doc.simpleVariable())
 		} else {
-			doc.error(lexer.Undefined)
+			doc.error(Undefined)
 		}
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) haltCompilerStatement() *phrase.Phrase {
-	doc.start(phrase.HaltCompilerStatement, false)
+func (doc *Parser) haltCompilerStatement() *Phrase {
+	doc.start(HaltCompilerStatement, false)
 	doc.next(false) // __halt_compiler
-	doc.expect(lexer.OpenParenthesis)
-	doc.expect(lexer.CloseParenthesis)
-	doc.expect(lexer.Semicolon)
+	doc.expect(OpenParenthesis)
+	doc.expect(CloseParenthesis)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func (doc *Parser) namespaceUseDeclaration() *phrase.Phrase {
-	p := doc.start(phrase.NamespaceUseDeclaration, false)
+func (doc *Parser) namespaceUseDeclaration() *Phrase {
+	p := doc.start(NamespaceUseDeclaration, false)
 	doc.next(false) //use
-	doc.optionalOneOf([]lexer.TokenType{lexer.Function, lexer.Const})
-	doc.optional(lexer.Backslash)
+	doc.optionalOneOf([]TokenType{Function, Const})
+	doc.optional(Backslash)
 	nsNameNode := doc.namespaceName()
 	t := doc.peek(0)
 
-	if t.Type == lexer.Backslash || t.Type == lexer.OpenBrace {
+	if t.Type == Backslash || t.Type == OpenBrace {
 		p.Children = append(p.Children, nsNameNode)
-		doc.expect(lexer.Backslash)
-		doc.expect(lexer.OpenBrace)
+		doc.expect(Backslash)
+		doc.expect(OpenBrace)
 		p.Children = append(p.Children, doc.delimitedList(
-			phrase.NamespaceUseGroupClauseList,
+			NamespaceUseGroupClauseList,
 			doc.namespaceUseGroupClause,
 			isNamespaceUseGroupClauseStartToken,
-			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseBrace},
+			Comma,
+			[]TokenType{CloseBrace},
 			false))
-		doc.expect(lexer.CloseBrace)
-		doc.expect(lexer.Semicolon)
+		doc.expect(CloseBrace)
+		doc.expect(Semicolon)
 
 		return doc.end()
 	}
 
 	p.Children = append(p.Children, doc.delimitedList(
-		phrase.NamespaceUseClauseList,
+		NamespaceUseClauseList,
 		doc.namespaceUseClauseFunction(nsNameNode),
 		isNamespaceUseClauseStartToken,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.Semicolon},
+		Comma,
+		[]TokenType{Semicolon},
 		true))
 
-	doc.expect(lexer.Semicolon)
+	doc.expect(Semicolon)
 
 	return doc.end()
 }
 
-func isNamespaceUseClauseStartToken(t *lexer.Token) bool {
-	return t.Type == lexer.Name || t.Type == lexer.Backslash
+func isNamespaceUseClauseStartToken(t *Token) bool {
+	return t.Type == Name || t.Type == Backslash
 }
 
-func (doc *Parser) namespaceUseClauseFunction(nsName *phrase.Phrase) func() phrase.AstNode {
+func (doc *Parser) namespaceUseClauseFunction(nsName *Phrase) func() AstNode {
 
-	return func() phrase.AstNode {
-		p := doc.start(phrase.NamespaceUseClause, nsName != nil)
+	return func() AstNode {
+		p := doc.start(NamespaceUseClause, nsName != nil)
 
 		if nsName != nil {
 			p.Children = append(p.Children, nsName)
@@ -3110,7 +3107,7 @@ func (doc *Parser) namespaceUseClauseFunction(nsName *phrase.Phrase) func() phra
 			p.Children = append(p.Children, doc.namespaceName())
 		}
 
-		if doc.peek(0).Type == lexer.As {
+		if doc.peek(0).Type == As {
 			p.Children = append(p.Children, doc.namespaceAliasingClause())
 		}
 
@@ -3119,21 +3116,21 @@ func (doc *Parser) namespaceUseClauseFunction(nsName *phrase.Phrase) func() phra
 }
 
 func (doc *Parser) delimitedList(
-	phraseType phrase.PhraseType,
-	elementFunction func() phrase.AstNode,
-	elementStartPredicate func(*lexer.Token) bool,
-	delimiter lexer.TokenType,
-	breakOn []lexer.TokenType,
-	doNotPushHiddenToParent bool) *phrase.Phrase {
+	phraseType PhraseType,
+	elementFunction func() AstNode,
+	elementStartPredicate func(*Token) bool,
+	delimiter TokenType,
+	breakOn []TokenType,
+	doNotPushHiddenToParent bool) *Phrase {
 
 	p := doc.start(phraseType, doNotPushHiddenToParent)
-	var t *lexer.Token
-	var delimitedListRecoverSet []lexer.TokenType
+	var t *Token
+	var delimitedListRecoverSet []TokenType
 	if breakOn != nil {
-		delimitedListRecoverSet = make([]lexer.TokenType, len(breakOn))
+		delimitedListRecoverSet = make([]TokenType, len(breakOn))
 		copy(delimitedListRecoverSet, breakOn)
 	} else {
-		delimitedListRecoverSet = make([]lexer.TokenType, 0)
+		delimitedListRecoverSet = make([]TokenType, 0)
 	}
 
 	delimitedListRecoverSet = append(delimitedListRecoverSet, delimiter)
@@ -3148,7 +3145,7 @@ func (doc *Parser) delimitedList(
 		} else if breakOn == nil || tokenTypeIndexOf(breakOn, t.Type) >= 0 {
 			break
 		} else {
-			doc.error(lexer.Undefined)
+			doc.error(Undefined)
 			//check for missing delimeter
 			if elementStartPredicate(t) {
 				continue
@@ -3170,63 +3167,63 @@ func (doc *Parser) delimitedList(
 	return doc.end()
 }
 
-func isNamespaceUseGroupClauseStartToken(t *lexer.Token) bool {
+func isNamespaceUseGroupClauseStartToken(t *Token) bool {
 	switch t.Type {
-	case lexer.Const, lexer.Function, lexer.Name:
+	case Const, Function, Name:
 		return true
 	}
 
 	return false
 }
 
-func (doc *Parser) namespaceUseGroupClause() phrase.AstNode {
-	p := doc.start(phrase.NamespaceUseGroupClause, false)
-	doc.optionalOneOf([]lexer.TokenType{lexer.Function, lexer.Const})
+func (doc *Parser) namespaceUseGroupClause() AstNode {
+	p := doc.start(NamespaceUseGroupClause, false)
+	doc.optionalOneOf([]TokenType{Function, Const})
 	p.Children = append(p.Children, doc.namespaceName())
 
-	if doc.peek(0).Type == lexer.As {
+	if doc.peek(0).Type == As {
 		p.Children = append(p.Children, doc.namespaceAliasingClause())
 	}
 
 	return doc.end()
 }
 
-func (doc *Parser) namespaceAliasingClause() *phrase.Phrase {
-	doc.start(phrase.NamespaceAliasingClause, false)
+func (doc *Parser) namespaceAliasingClause() *Phrase {
+	doc.start(NamespaceAliasingClause, false)
 	doc.next(false) //as
-	doc.expect(lexer.Name)
+	doc.expect(Name)
 
 	return doc.end()
 }
 
-func (doc *Parser) namespaceDefinition() *phrase.Phrase {
-	p := doc.start(phrase.NamespaceDefinition, false)
+func (doc *Parser) namespaceDefinition() *Phrase {
+	p := doc.start(NamespaceDefinition, false)
 	doc.next(false) //namespace
-	if doc.peek(0).Type == lexer.Name {
+	if doc.peek(0).Type == Name {
 
 		p.Children = append(p.Children, doc.namespaceName())
-		t := doc.expectOneOf([]lexer.TokenType{lexer.Semicolon, lexer.OpenBrace})
-		if t == nil || t.Type != lexer.OpenBrace {
+		t := doc.expectOneOf([]TokenType{Semicolon, OpenBrace})
+		if t == nil || t.Type != OpenBrace {
 			return doc.end()
 		}
 
 	} else {
-		doc.expect(lexer.OpenBrace)
+		doc.expect(OpenBrace)
 	}
 
-	p.Children = append(p.Children, doc.statementList([]lexer.TokenType{lexer.CloseBrace}))
-	doc.expect(lexer.CloseBrace)
+	p.Children = append(p.Children, doc.statementList([]TokenType{CloseBrace}))
+	doc.expect(CloseBrace)
 
 	return doc.end()
 }
 
-func (doc *Parser) namespaceName() *phrase.Phrase {
-	doc.start(phrase.NamespaceName, false)
-	doc.expect(lexer.Name)
+func (doc *Parser) namespaceName() *Phrase {
+	doc.start(NamespaceName, false)
+	doc.expect(Name)
 
 	for {
-		if doc.peek(0).Type == lexer.Backslash &&
-			doc.peek(1).Type == lexer.Name {
+		if doc.peek(0).Type == Backslash &&
+			doc.peek(1).Type == Name {
 			doc.next(false)
 			doc.next(false)
 		} else {
@@ -3237,131 +3234,131 @@ func (doc *Parser) namespaceName() *phrase.Phrase {
 	return doc.end()
 }
 
-func isReservedToken(t *lexer.Token) bool {
+func isReservedToken(t *Token) bool {
 	switch t.Type {
-	case lexer.Include,
-		lexer.IncludeOnce,
-		lexer.Eval,
-		lexer.Require,
-		lexer.RequireOnce,
-		lexer.Or,
-		lexer.Xor,
-		lexer.And,
-		lexer.InstanceOf,
-		lexer.New,
-		lexer.Clone,
-		lexer.Exit,
-		lexer.If,
-		lexer.ElseIf,
-		lexer.Else,
-		lexer.EndIf,
-		lexer.Echo,
-		lexer.Do,
-		lexer.While,
-		lexer.EndWhile,
-		lexer.For,
-		lexer.EndFor,
-		lexer.ForEach,
-		lexer.EndForeach,
-		lexer.Declare,
-		lexer.EndDeclare,
-		lexer.As,
-		lexer.Try,
-		lexer.Catch,
-		lexer.Finally,
-		lexer.Throw,
-		lexer.Use,
-		lexer.InsteadOf,
-		lexer.Global,
-		lexer.Var,
-		lexer.Unset,
-		lexer.Isset,
-		lexer.Empty,
-		lexer.Continue,
-		lexer.Goto,
-		lexer.Function,
-		lexer.Const,
-		lexer.Return,
-		lexer.Print,
-		lexer.Yield,
-		lexer.List,
-		lexer.Switch,
-		lexer.EndSwitch,
-		lexer.Case,
-		lexer.Default,
-		lexer.Break,
-		lexer.Array,
-		lexer.Callable,
-		lexer.Extends,
-		lexer.Implements,
-		lexer.Namespace,
-		lexer.Trait,
-		lexer.Interface,
-		lexer.Class,
-		lexer.ClassConstant,
-		lexer.TraitConstant,
-		lexer.FunctionConstant,
-		lexer.MethodConstant,
-		lexer.LineConstant,
-		lexer.FileConstant,
-		lexer.DirectoryConstant,
-		lexer.NamespaceConstant:
+	case Include,
+		IncludeOnce,
+		Eval,
+		Require,
+		RequireOnce,
+		Or,
+		Xor,
+		And,
+		InstanceOf,
+		New,
+		Clone,
+		Exit,
+		If,
+		ElseIf,
+		Else,
+		EndIf,
+		Echo,
+		Do,
+		While,
+		EndWhile,
+		For,
+		EndFor,
+		ForEach,
+		EndForeach,
+		Declare,
+		EndDeclare,
+		As,
+		Try,
+		Catch,
+		Finally,
+		Throw,
+		Use,
+		InsteadOf,
+		Global,
+		Var,
+		Unset,
+		Isset,
+		Empty,
+		Continue,
+		Goto,
+		Function,
+		Const,
+		Return,
+		Print,
+		Yield,
+		List,
+		Switch,
+		EndSwitch,
+		Case,
+		Default,
+		Break,
+		Array,
+		Callable,
+		Extends,
+		Implements,
+		Namespace,
+		Trait,
+		Interface,
+		Class,
+		ClassConstant,
+		TraitConstant,
+		FunctionConstant,
+		MethodConstant,
+		LineConstant,
+		FileConstant,
+		DirectoryConstant,
+		NamespaceConstant:
 		return true
 	}
 
 	return false
 }
 
-func isSemiReservedToken(t *lexer.Token) bool {
+func isSemiReservedToken(t *Token) bool {
 	switch t.Type {
-	case lexer.Static,
-		lexer.Abstract,
-		lexer.Final,
-		lexer.Private,
-		lexer.Protected,
-		lexer.Public:
+	case Static,
+		Abstract,
+		Final,
+		Private,
+		Protected,
+		Public:
 		return true
 	}
 
 	return isReservedToken(t)
 }
 
-func isStatementStart(t *lexer.Token) bool {
+func isStatementStart(t *Token) bool {
 	switch t.Type {
-	case lexer.Namespace,
-		lexer.Use,
-		lexer.HaltCompiler,
-		lexer.Const,
-		lexer.Function,
-		lexer.Class,
-		lexer.Abstract,
-		lexer.Final,
-		lexer.Trait,
-		lexer.Interface,
-		lexer.OpenBrace,
-		lexer.If,
-		lexer.While,
-		lexer.Do,
-		lexer.For,
-		lexer.Switch,
-		lexer.Break,
-		lexer.Continue,
-		lexer.Return,
-		lexer.Global,
-		lexer.Static,
-		lexer.Echo,
-		lexer.Unset,
-		lexer.ForEach,
-		lexer.Declare,
-		lexer.Try,
-		lexer.Throw,
-		lexer.Goto,
-		lexer.Name,
-		lexer.Semicolon,
-		lexer.CloseTag,
-		lexer.Text,
-		lexer.OpenTag,
-		lexer.OpenTagEcho:
+	case Namespace,
+		Use,
+		HaltCompiler,
+		Const,
+		Function,
+		Class,
+		Abstract,
+		Final,
+		Trait,
+		Interface,
+		OpenBrace,
+		If,
+		While,
+		Do,
+		For,
+		Switch,
+		Break,
+		Continue,
+		Return,
+		Global,
+		Static,
+		Echo,
+		Unset,
+		ForEach,
+		Declare,
+		Try,
+		Throw,
+		Goto,
+		Name,
+		Semicolon,
+		CloseTag,
+		Text,
+		OpenTag,
+		OpenTagEcho:
 		return true
 	}
 

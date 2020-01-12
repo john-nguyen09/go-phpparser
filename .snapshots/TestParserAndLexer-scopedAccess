@@ -1,63 +1,63 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=4) {
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenTag,
+([]struct { Type parser.TokenType; Offset int; Length int }) (len=4) {
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenTag,
     Offset: (int) 0,
     Length: (int) 7
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Name,
     Offset: (int) 7,
     Length: (int) 15
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) ColonColon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) ColonColon,
     Offset: (int) 22,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EndOfFile,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EndOfFile,
     Offset: (int) 24,
     Length: (int) 0
   }
 }
-(*phrase.Phrase)({
-  Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=2) {
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) InlineText,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 7 ModeInitial)
+(*parser.Phrase)({
+  Type: (parser.PhraseType) StatementList,
+  Children: ([]parser.AstNode) (len=2) {
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) InlineText,
+      Children: ([]parser.AstNode) (len=1) {
+        (*parser.Token)(OpenTag 0 7 ModeInitial)
       }
     }),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) ExpressionStatement,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) ErrorScopedAccessExpression,
-          Children: ([]phrase.AstNode) (len=3) {
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) QualifiedName,
-              Children: ([]phrase.AstNode) (len=1) {
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) NamespaceName,
-                  Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 7 15 ModeScripting)
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) ExpressionStatement,
+      Children: ([]parser.AstNode) (len=1) {
+        (*parser.Phrase)({
+          Type: (parser.PhraseType) ErrorScopedAccessExpression,
+          Children: ([]parser.AstNode) (len=3) {
+            (*parser.Phrase)({
+              Type: (parser.PhraseType) QualifiedName,
+              Children: ([]parser.AstNode) (len=1) {
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) NamespaceName,
+                  Children: ([]parser.AstNode) (len=1) {
+                    (*parser.Token)(Name 7 15 ModeScripting)
                   }
                 })
               }
             }),
-            (*lexer.Token)(ColonColon 22 2 ModeScripting),
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) ScopedMemberName,
-              Children: ([]phrase.AstNode) (len=1) {
-                (*phrase.ParseError)({
-                  Phrase: (phrase.Phrase) {
-                    Type: (phrase.PhraseType) Error,
-                    Children: ([]phrase.AstNode) {
+            (*parser.Token)(ColonColon 22 2 ModeScripting),
+            (*parser.Phrase)({
+              Type: (parser.PhraseType) ScopedMemberName,
+              Children: ([]parser.AstNode) (len=1) {
+                (*parser.ParseError)({
+                  Phrase: (parser.Phrase) {
+                    Type: (parser.PhraseType) Error,
+                    Children: ([]parser.AstNode) {
                     }
                   },
-                  Unexpected: (*lexer.Token)(EndOfFile 24 0 ModeScripting),
-                  Expected: (lexer.TokenType) 
+                  Unexpected: (*parser.Token)(EndOfFile 24 0 ModeScripting),
+                  Expected: (parser.TokenType) 
                 })
               }
             })

@@ -1,107 +1,107 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=12) {
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenTag,
+([]struct { Type parser.TokenType; Offset int; Length int }) (len=12) {
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenTag,
     Offset: (int) 0,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Use,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Use,
     Offset: (int) 6,
     Length: (int) 3
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 9,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Name,
     Offset: (int) 10,
     Length: (int) 3
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Backslash,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Backslash,
     Offset: (int) 13,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Name,
     Offset: (int) 14,
     Length: (int) 3
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 17,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) As,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) As,
     Offset: (int) 18,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 20,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Name,
     Offset: (int) 21,
     Length: (int) 3
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 24,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EndOfFile,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EndOfFile,
     Offset: (int) 25,
     Length: (int) 0
   }
 }
-(*phrase.Phrase)({
-  Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=2) {
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) InlineText,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+(*parser.Phrase)({
+  Type: (parser.PhraseType) StatementList,
+  Children: ([]parser.AstNode) (len=2) {
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) InlineText,
+      Children: ([]parser.AstNode) (len=1) {
+        (*parser.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) NamespaceUseDeclaration,
-      Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Use 6 3 ModeScripting),
-        (*lexer.Token)(Whitespace 9 1 ModeScripting),
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) NamespaceUseClauseList,
-          Children: ([]phrase.AstNode) (len=1) {
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) NamespaceUseClause,
-              Children: ([]phrase.AstNode) (len=3) {
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) NamespaceName,
-                  Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(Name 10 3 ModeScripting),
-                    (*lexer.Token)(Backslash 13 1 ModeScripting),
-                    (*lexer.Token)(Name 14 3 ModeScripting)
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) NamespaceUseDeclaration,
+      Children: ([]parser.AstNode) (len=4) {
+        (*parser.Token)(Use 6 3 ModeScripting),
+        (*parser.Token)(Whitespace 9 1 ModeScripting),
+        (*parser.Phrase)({
+          Type: (parser.PhraseType) NamespaceUseClauseList,
+          Children: ([]parser.AstNode) (len=1) {
+            (*parser.Phrase)({
+              Type: (parser.PhraseType) NamespaceUseClause,
+              Children: ([]parser.AstNode) (len=3) {
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) NamespaceName,
+                  Children: ([]parser.AstNode) (len=3) {
+                    (*parser.Token)(Name 10 3 ModeScripting),
+                    (*parser.Token)(Backslash 13 1 ModeScripting),
+                    (*parser.Token)(Name 14 3 ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 17 1 ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) NamespaceAliasingClause,
-                  Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(As 18 2 ModeScripting),
-                    (*lexer.Token)(Whitespace 20 1 ModeScripting),
-                    (*lexer.Token)(Name 21 3 ModeScripting)
+                (*parser.Token)(Whitespace 17 1 ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) NamespaceAliasingClause,
+                  Children: ([]parser.AstNode) (len=3) {
+                    (*parser.Token)(As 18 2 ModeScripting),
+                    (*parser.Token)(Whitespace 20 1 ModeScripting),
+                    (*parser.Token)(Name 21 3 ModeScripting)
                   }
                 })
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 24 1 ModeScripting)
+        (*parser.Token)(Semicolon 24 1 ModeScripting)
       }
     })
   }

@@ -7,9 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/john-nguyen09/go-phpparser/lexer"
 	"github.com/john-nguyen09/go-phpparser/parser"
-	"github.com/john-nguyen09/go-phpparser/phrase"
 )
 
 func main() {
@@ -38,7 +36,7 @@ func main() {
 }
 
 func writeLex(filePath string, data []byte) {
-	lexerState := lexer.NewLexerState(string(data), nil, 0)
+	lexerState := parser.NewLexerState(string(data), nil, 0)
 	outFile, err := os.Create(filePath + ".lexed")
 
 	if err != nil {
@@ -47,7 +45,7 @@ func writeLex(filePath string, data []byte) {
 
 	writer := bufio.NewWriter(outFile)
 
-	for token := lexerState.Lex(); token.Type != lexer.EndOfFile; token = lexerState.Lex() {
+	for token := lexerState.Lex(); token.Type != parser.EndOfFile; token = lexerState.Lex() {
 		fmt.Fprintln(writer, token.String())
 	}
 
@@ -71,9 +69,9 @@ func writeParseTree(filePath string, data []byte) {
 	outFile.Close()
 }
 
-func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {
-	var p *phrase.Phrase
-	var err *phrase.ParseError
+func traverse(writer *bufio.Writer, node parser.AstNode, depth int) {
+	var p *parser.Phrase
+	var err *parser.ParseError
 	var isPhrase, isParseError bool
 	indent := ""
 
@@ -81,18 +79,18 @@ func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {
 		indent += "-"
 	}
 
-	if p, isPhrase = node.(*phrase.Phrase); isPhrase {
+	if p, isPhrase = node.(*parser.Phrase); isPhrase {
 		fmt.Fprintln(writer, indent+p.Type.String()+"[Phrase]")
-	} else if _, isToken := node.(*lexer.Token); isToken {
-		fmt.Fprintln(writer, indent+node.(*lexer.Token).String()+"[Token]")
-	} else if err, isParseError = node.(*phrase.ParseError); isParseError {
+	} else if _, isToken := node.(*parser.Token); isToken {
+		fmt.Fprintln(writer, indent+node.(*parser.Token).String()+"[Token]")
+	} else if err, isParseError = node.(*parser.ParseError); isParseError {
 		fmt.Fprintln(writer, indent+err.Type.String()+"[ParseError]")
 		thisIndent := indent + "-"
 		if len(err.Children) == 0 {
 			fmt.Fprintln(writer, thisIndent+"Unexpected: "+err.Unexpected.String())
 		} else {
 			for _, child := range err.Children {
-				if t, ok := child.(*lexer.Token); ok {
+				if t, ok := child.(*parser.Token); ok {
 					fmt.Fprintln(writer, thisIndent+t.Type.String())
 				}
 			}

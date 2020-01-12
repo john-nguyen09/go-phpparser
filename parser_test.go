@@ -8,7 +8,6 @@ import (
 	"testing"
 
 	"github.com/bradleyjkemp/cupaloy"
-	"github.com/john-nguyen09/go-phpparser/lexer"
 	"github.com/john-nguyen09/go-phpparser/parser"
 )
 
@@ -33,15 +32,15 @@ func TestParserAndLexer(t *testing.T) {
 		}
 
 		t.Run(strings.TrimSuffix(file.Name(), path.Ext(file.Name())), func(t *testing.T) {
-			tokens := lexer.Lex(string(data))
+			tokens := parser.Lex(string(data))
 			snapshotTokens := []struct {
-				Type   lexer.TokenType
+				Type   parser.TokenType
 				Offset int
 				Length int
 			}{}
 			for _, token := range tokens {
 				snapshotTokens = append(snapshotTokens, struct {
-					Type   lexer.TokenType
+					Type   parser.TokenType
 					Offset int
 					Length int
 				}{

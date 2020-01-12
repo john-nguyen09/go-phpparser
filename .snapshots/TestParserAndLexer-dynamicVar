@@ -1,94 +1,94 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=9) {
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenTag,
+([]struct { Type parser.TokenType; Offset int; Length int }) (len=9) {
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenTag,
     Offset: (int) 0,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Dollar,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Dollar,
     Offset: (int) 6,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenBrace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenBrace,
     Offset: (int) 7,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 8,
     Length: (int) 4
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Arrow,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Arrow,
     Offset: (int) 12,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Name,
     Offset: (int) 14,
     Length: (int) 3
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) CloseBrace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) CloseBrace,
     Offset: (int) 17,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 18,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EndOfFile,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EndOfFile,
     Offset: (int) 19,
     Length: (int) 0
   }
 }
-(*phrase.Phrase)({
-  Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=2) {
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) InlineText,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+(*parser.Phrase)({
+  Type: (parser.PhraseType) StatementList,
+  Children: ([]parser.AstNode) (len=2) {
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) InlineText,
+      Children: ([]parser.AstNode) (len=1) {
+        (*parser.Token)(OpenTag 0 6 ModeInitial)
       }
     }),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) ExpressionStatement,
-      Children: ([]phrase.AstNode) (len=2) {
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) SimpleVariable,
-          Children: ([]phrase.AstNode) (len=2) {
-            (*lexer.Token)(Dollar 6 1 ModeScripting),
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) EncapsulatedExpression,
-              Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(OpenBrace 7 1 ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyAccessExpression,
-                  Children: ([]phrase.AstNode) (len=3) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) SimpleVariable,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(VariableName 8 4 ModeScripting ModeScripting)
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) ExpressionStatement,
+      Children: ([]parser.AstNode) (len=2) {
+        (*parser.Phrase)({
+          Type: (parser.PhraseType) SimpleVariable,
+          Children: ([]parser.AstNode) (len=2) {
+            (*parser.Token)(Dollar 6 1 ModeScripting),
+            (*parser.Phrase)({
+              Type: (parser.PhraseType) EncapsulatedExpression,
+              Children: ([]parser.AstNode) (len=3) {
+                (*parser.Token)(OpenBrace 7 1 ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyAccessExpression,
+                  Children: ([]parser.AstNode) (len=3) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) SimpleVariable,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(VariableName 8 4 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Arrow 12 2 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberName,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 14 3 ModeScripting ModeScripting ModeLookingForProperty)
+                    (*parser.Token)(Arrow 12 2 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberName,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Name 14 3 ModeScripting ModeScripting ModeLookingForProperty)
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(CloseBrace 17 1 ModeScripting ModeScripting)
+                (*parser.Token)(CloseBrace 17 1 ModeScripting ModeScripting)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 18 1 ModeScripting)
+        (*parser.Token)(Semicolon 18 1 ModeScripting)
       }
     })
   }

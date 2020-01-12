@@ -1,590 +1,590 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=94) {
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenTag,
+([]struct { Type parser.TokenType; Offset int; Length int }) (len=94) {
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenTag,
     Offset: (int) 0,
     Length: (int) 7
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 7,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Class,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Class,
     Offset: (int) 9,
     Length: (int) 5
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 14,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Name,
     Offset: (int) 15,
     Length: (int) 19
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 34,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenBrace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenBrace,
     Offset: (int) 35,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 36,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Private,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Private,
     Offset: (int) 42,
     Length: (int) 7
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 49,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Static,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Static,
     Offset: (int) 50,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 56,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 57,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 69,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 70,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Protected,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Protected,
     Offset: (int) 76,
     Length: (int) 9
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 85,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Static,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Static,
     Offset: (int) 86,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 92,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 93,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 105,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 106,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Public,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Public,
     Offset: (int) 112,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 118,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Static,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Static,
     Offset: (int) 119,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 125,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 126,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 138,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Equals,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Equals,
     Offset: (int) 139,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 140,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Array,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Array,
     Offset: (int) 141,
     Length: (int) 5
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) OpenParenthesis,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) OpenParenthesis,
     Offset: (int) 146,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) CloseParenthesis,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) CloseParenthesis,
     Offset: (int) 147,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 148,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 149,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Static,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Static,
     Offset: (int) 155,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 161,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 162,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Comma,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Comma,
     Offset: (int) 174,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 175,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 176,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 188,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 189,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Private,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Private,
     Offset: (int) 195,
     Length: (int) 7
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 202,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Static,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Static,
     Offset: (int) 203,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 209,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 210,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Comma,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Comma,
     Offset: (int) 222,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 223,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 224,
     Length: (int) 12
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 236,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 237,
     Length: (int) 8
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Private,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Private,
     Offset: (int) 245,
     Length: (int) 7
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 252,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 253,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 259,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 260,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Protected,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Protected,
     Offset: (int) 266,
     Length: (int) 9
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 275,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 276,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 282,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 283,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Public,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Public,
     Offset: (int) 289,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 295,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 296,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 302,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 303,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Var,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Var,
     Offset: (int) 309,
     Length: (int) 3
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 312,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 313,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Comma,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Comma,
     Offset: (int) 319,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 320,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 321,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 327,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 328,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Protected,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Protected,
     Offset: (int) 334,
     Length: (int) 9
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 343,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 344,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Comma,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Comma,
     Offset: (int) 350,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 351,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 352,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 358,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 359,
     Length: (int) 8
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) DocumentComment,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) DocumentComment,
     Offset: (int) 367,
     Length: (int) 45
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 412,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Public,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Public,
     Offset: (int) 418,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 424,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) VariableName,
     Offset: (int) 425,
     Length: (int) 6
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Semicolon,
     Offset: (int) 431,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 432,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) CloseBrace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) CloseBrace,
     Offset: (int) 434,
     Length: (int) 1
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) Whitespace,
     Offset: (int) 435,
     Length: (int) 2
   },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EndOfFile,
+  (struct { Type parser.TokenType; Offset int; Length int }) {
+    Type: (parser.TokenType) EndOfFile,
     Offset: (int) 437,
     Length: (int) 0
   }
 }
-(*phrase.Phrase)({
-  Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=4) {
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) InlineText,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 7 ModeInitial)
+(*parser.Phrase)({
+  Type: (parser.PhraseType) StatementList,
+  Children: ([]parser.AstNode) (len=4) {
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) InlineText,
+      Children: ([]parser.AstNode) (len=1) {
+        (*parser.Token)(OpenTag 0 7 ModeInitial)
       }
     }),
-    (*lexer.Token)(Whitespace 7 2 ModeScripting),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) ClassDeclaration,
-      Children: ([]phrase.AstNode) (len=3) {
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) ClassDeclarationHeader,
-          Children: ([]phrase.AstNode) (len=3) {
-            (*lexer.Token)(Class 9 5 ModeScripting),
-            (*lexer.Token)(Whitespace 14 1 ModeScripting),
-            (*lexer.Token)(Name 15 19 ModeScripting)
+    (*parser.Token)(Whitespace 7 2 ModeScripting),
+    (*parser.Phrase)({
+      Type: (parser.PhraseType) ClassDeclaration,
+      Children: ([]parser.AstNode) (len=3) {
+        (*parser.Phrase)({
+          Type: (parser.PhraseType) ClassDeclarationHeader,
+          Children: ([]parser.AstNode) (len=3) {
+            (*parser.Token)(Class 9 5 ModeScripting),
+            (*parser.Token)(Whitespace 14 1 ModeScripting),
+            (*parser.Token)(Name 15 19 ModeScripting)
           }
         }),
-        (*lexer.Token)(Whitespace 34 1 ModeScripting),
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) ClassDeclarationBody,
-          Children: ([]phrase.AstNode) (len=5) {
-            (*lexer.Token)(OpenBrace 35 1 ModeScripting),
-            (*lexer.Token)(Whitespace 36 6 ModeScripting ModeScripting),
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) ClassMemberDeclarationList,
-              Children: ([]phrase.AstNode) (len=23) {
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=3) {
-                        (*lexer.Token)(Private 42 7 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 49 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Static 50 6 ModeScripting ModeScripting)
+        (*parser.Token)(Whitespace 34 1 ModeScripting),
+        (*parser.Phrase)({
+          Type: (parser.PhraseType) ClassDeclarationBody,
+          Children: ([]parser.AstNode) (len=5) {
+            (*parser.Token)(OpenBrace 35 1 ModeScripting),
+            (*parser.Token)(Whitespace 36 6 ModeScripting ModeScripting),
+            (*parser.Phrase)({
+              Type: (parser.PhraseType) ClassMemberDeclarationList,
+              Children: ([]parser.AstNode) (len=23) {
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=3) {
+                        (*parser.Token)(Private 42 7 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 49 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Static 50 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 56 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 57 12 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 56 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 57 12 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 69 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 69 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 70 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=3) {
-                        (*lexer.Token)(Protected 76 9 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 85 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Static 86 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 70 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=3) {
+                        (*parser.Token)(Protected 76 9 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 85 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Static 86 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 92 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 93 12 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 92 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 93 12 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 105 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 105 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 106 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=3) {
-                        (*lexer.Token)(Public 112 6 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 118 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Static 119 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 106 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=3) {
+                        (*parser.Token)(Public 112 6 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 118 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Static 119 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 125 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=3) {
-                            (*lexer.Token)(VariableName 126 12 ModeScripting ModeScripting),
-                            (*lexer.Token)(Whitespace 138 1 ModeScripting ModeScripting),
-                            (*phrase.Phrase)({
-                              Type: (phrase.PhraseType) PropertyInitialiser,
-                              Children: ([]phrase.AstNode) (len=3) {
-                                (*lexer.Token)(Equals 139 1 ModeScripting ModeScripting),
-                                (*lexer.Token)(Whitespace 140 1 ModeScripting ModeScripting),
-                                (*phrase.Phrase)({
-                                  Type: (phrase.PhraseType) ArrayCreationExpression,
-                                  Children: ([]phrase.AstNode) (len=3) {
-                                    (*lexer.Token)(Array 141 5 ModeScripting ModeScripting),
-                                    (*lexer.Token)(OpenParenthesis 146 1 ModeScripting ModeScripting),
-                                    (*lexer.Token)(CloseParenthesis 147 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 125 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=3) {
+                            (*parser.Token)(VariableName 126 12 ModeScripting ModeScripting),
+                            (*parser.Token)(Whitespace 138 1 ModeScripting ModeScripting),
+                            (*parser.Phrase)({
+                              Type: (parser.PhraseType) PropertyInitialiser,
+                              Children: ([]parser.AstNode) (len=3) {
+                                (*parser.Token)(Equals 139 1 ModeScripting ModeScripting),
+                                (*parser.Token)(Whitespace 140 1 ModeScripting ModeScripting),
+                                (*parser.Phrase)({
+                                  Type: (parser.PhraseType) ArrayCreationExpression,
+                                  Children: ([]parser.AstNode) (len=3) {
+                                    (*parser.Token)(Array 141 5 ModeScripting ModeScripting),
+                                    (*parser.Token)(OpenParenthesis 146 1 ModeScripting ModeScripting),
+                                    (*parser.Token)(CloseParenthesis 147 1 ModeScripting ModeScripting)
                                   }
                                 })
                               }
@@ -593,248 +593,248 @@
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 148 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 148 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 149 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Static 155 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 149 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Static 155 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 161 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=4) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 162 12 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 161 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=4) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 162 12 ModeScripting ModeScripting)
                           }
                         }),
-                        (*lexer.Token)(Comma 174 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 175 1 ModeScripting ModeScripting),
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 176 12 ModeScripting ModeScripting)
+                        (*parser.Token)(Comma 174 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 175 1 ModeScripting ModeScripting),
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 176 12 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 188 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 188 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 189 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=3) {
-                        (*lexer.Token)(Private 195 7 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 202 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Static 203 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 189 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=3) {
+                        (*parser.Token)(Private 195 7 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 202 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Static 203 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 209 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=4) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 210 12 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 209 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=4) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 210 12 ModeScripting ModeScripting)
                           }
                         }),
-                        (*lexer.Token)(Comma 222 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 223 1 ModeScripting ModeScripting),
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 224 12 ModeScripting ModeScripting)
+                        (*parser.Token)(Comma 222 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 223 1 ModeScripting ModeScripting),
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 224 12 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 236 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 236 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 237 8 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Private 245 7 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 237 8 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Private 245 7 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 252 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 253 6 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 252 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 253 6 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 259 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 259 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 260 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Protected 266 9 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 260 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Protected 266 9 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 275 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 276 6 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 275 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 276 6 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 282 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 282 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 283 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Public 289 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 283 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Public 289 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 295 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 296 6 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 295 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 296 6 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 302 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 302 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 303 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*lexer.Token)(Var 309 3 ModeScripting ModeScripting),
-                    (*lexer.Token)(Whitespace 312 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=4) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 313 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 303 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Token)(Var 309 3 ModeScripting ModeScripting),
+                    (*parser.Token)(Whitespace 312 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=4) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 313 6 ModeScripting ModeScripting)
                           }
                         }),
-                        (*lexer.Token)(Comma 319 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 320 1 ModeScripting ModeScripting),
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 321 6 ModeScripting ModeScripting)
+                        (*parser.Token)(Comma 319 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 320 1 ModeScripting ModeScripting),
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 321 6 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 327 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 327 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 328 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Protected 334 9 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 328 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Protected 334 9 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 343 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=4) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 344 6 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 343 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=4) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 344 6 ModeScripting ModeScripting)
                           }
                         }),
-                        (*lexer.Token)(Comma 350 1 ModeScripting ModeScripting),
-                        (*lexer.Token)(Whitespace 351 1 ModeScripting ModeScripting),
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 352 6 ModeScripting ModeScripting)
+                        (*parser.Token)(Comma 350 1 ModeScripting ModeScripting),
+                        (*parser.Token)(Whitespace 351 1 ModeScripting ModeScripting),
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 352 6 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 358 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 358 1 ModeScripting ModeScripting)
                   }
                 }),
-                (*lexer.Token)(Whitespace 359 8 ModeScripting ModeScripting),
-                (*lexer.Token)(DocumentComment 367 45 ModeScripting ModeScripting),
-                (*lexer.Token)(Whitespace 412 6 ModeScripting ModeScripting),
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) PropertyDeclaration,
-                  Children: ([]phrase.AstNode) (len=4) {
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) MemberModifierList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Public 418 6 ModeScripting ModeScripting)
+                (*parser.Token)(Whitespace 359 8 ModeScripting ModeScripting),
+                (*parser.Token)(DocumentComment 367 45 ModeScripting ModeScripting),
+                (*parser.Token)(Whitespace 412 6 ModeScripting ModeScripting),
+                (*parser.Phrase)({
+                  Type: (parser.PhraseType) PropertyDeclaration,
+                  Children: ([]parser.AstNode) (len=4) {
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) MemberModifierList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Token)(Public 418 6 ModeScripting ModeScripting)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 424 1 ModeScripting ModeScripting),
-                    (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) PropertyElementList,
-                      Children: ([]phrase.AstNode) (len=1) {
-                        (*phrase.Phrase)({
-                          Type: (phrase.PhraseType) PropertyElement,
-                          Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(VariableName 425 6 ModeScripting ModeScripting)
+                    (*parser.Token)(Whitespace 424 1 ModeScripting ModeScripting),
+                    (*parser.Phrase)({
+                      Type: (parser.PhraseType) PropertyElementList,
+                      Children: ([]parser.AstNode) (len=1) {
+                        (*parser.Phrase)({
+                          Type: (parser.PhraseType) PropertyElement,
+                          Children: ([]parser.AstNode) (len=1) {
+                            (*parser.Token)(VariableName 425 6 ModeScripting ModeScripting)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Semicolon 431 1 ModeScripting ModeScripting)
+                    (*parser.Token)(Semicolon 431 1 ModeScripting ModeScripting)
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 432 2 ModeScripting ModeScripting),
-            (*lexer.Token)(CloseBrace 434 1 ModeScripting ModeScripting)
+            (*parser.Token)(Whitespace 432 2 ModeScripting ModeScripting),
+            (*parser.Token)(CloseBrace 434 1 ModeScripting ModeScripting)
           }
         })
       }
     }),
-    (*lexer.Token)(Whitespace 435 2 ModeScripting)
+    (*parser.Token)(Whitespace 435 2 ModeScripting)
   }
 })
