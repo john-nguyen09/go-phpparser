@@ -659,7 +659,7 @@ func Sync(text string, change ChangeEvent, oldTokens []*Token) []*Token {
 	t := lexerState.Lex()
 	lastOffset := 0
 	newOffsetDiff := len(change.Text) - (change.End - change.Start)
-	for t.Offset < change.End+newOffsetDiff || t.Length == 0 {
+	for t.Offset < change.End+newOffsetDiff || (t.Type == EndOfFile && oldTokens == nil) {
 		changedTokens = append(changedTokens, t)
 		lastOffset = t.Offset + t.Length
 		if t.Type == EndOfFile {
