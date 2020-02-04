@@ -697,7 +697,8 @@ func (s *LexerState) initial() *Token {
 
 	if c == '<' && (s.position+1 < s.inputLength && s.input[s.position+1] == '?') {
 		if s.position+2 >= s.inputLength || isWhitespace(s.input[s.position+2]) {
-			if s.input[s.position+2] == '\r' && s.position+3 < s.inputLength && s.input[s.position+3] == '\n' {
+			if s.position+2 < s.inputLength && s.input[s.position+2] == '\r' &&
+				s.position+3 < s.inputLength && s.input[s.position+3] == '\n' {
 				s.position += 4
 			} else {
 				s.position += 3
