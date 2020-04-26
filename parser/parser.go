@@ -250,9 +250,9 @@ func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
 	return -1
 }
 
-func Parse(text string) *phrase.Phrase {
+func Parse(source []byte) *phrase.Phrase {
 	doc := &Parser{0,
-		lexer.Lex(text),
+		lexer.Lex(source),
 		make([]*phrase.Phrase, 0),
 		nil,
 		make([][]lexer.TokenType, 0)}

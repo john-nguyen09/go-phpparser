@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 type TokenType uint8
@@ -585,51 +586,131 @@ func (token Token) String() string {
 	return str
 }
 
-type LexerState struct {
-	position                 int
-	input                    []rune
-	inputLength              int
+type Lexer struct {
+	offset                   int
+	nextOffset               int
+	source                   []byte
 	modeStack                []LexerMode
 	doubleQuoteScannedLength int
 	heredocLabel             string
+	r                        rune
+	decodedQueue             []rune
+	decodedSizeQueue         []int
 }
 
-func NewLexerState(text string, modeStack []LexerMode, position int) *LexerState {
+func NewLexer(source []byte, modeStack []LexerMode, offset int) *Lexer {
 	if modeStack == nil {
 		modeStack = []LexerMode{ModeInitial}
 	}
-
-	// Consider utf-8 cases since len() returns number of bytes and utf-8 characters can
-	// take up more than 1 byte, so we convert string to rune slice first
-	characters := []rune(text)
-
-	return &LexerState{position, characters, len(characters), modeStack, -1, ""}
+	lexer := &Lexer{
+		offset:                   offset,
+		source:                   source,
+		modeStack:                modeStack,
+		doubleQuoteScannedLength: -1,
+		heredocLabel:             "",
+		r:                        0,
+		decodedQueue:             []rune{},
+		decodedSizeQueue:         []int{},
+	}
+	lexer.step()
+	return lexer
 }
 
-func Lex(text string) []*Token {
-	lexerState := NewLexerState(text, nil, 0)
+func Lex(source []byte) []*Token {
+	lexer := NewLexer(source, nil, 0)
 	tokens := []*Token{}
-	t := lexerState.Lex()
+	t := lexer.Lex()
 	for {
 		tokens = append(tokens, t)
 		if t.Type == EndOfFile {
 			break
 		}
-		t = lexerState.Lex()
+		t = lexer.Lex()
 	}
 	return tokens
 }
 
+func (s *Lexer) step() {
+	var (
+		r    rune
+		size int
+	)
+	if len(s.decodedQueue) != 0 {
+		r, size, s.decodedQueue, s.decodedSizeQueue = s.decodedQueue[0], s.decodedSizeQueue[0],
+			s.decodedQueue[1:], s.decodedSizeQueue[1:]
+	} else {
+		r, size = utf8.DecodeRune(s.source[s.nextOffset:])
+	}
+	if size == 0 {
+		r = -1
+	}
+	s.r = r
+	s.offset = s.nextOffset
+	s.nextOffset += size
+}
+
+func (s *Lexer) stepLoop(n int) {
+	for i := 0; i < n; i++ {
+		s.step()
+	}
+}
+
+// Param offset starts with 1 since 0 is just the current r
+func (s *Lexer) decodeRuneOffset(offset int) (rune, int) {
+	if offset <= 0 {
+		return s.r, 0
+	}
+	if offset-1 < len(s.decodedQueue) {
+		totalSize := 0
+		for _, size := range s.decodedSizeQueue[:offset-1] {
+			totalSize += size
+		}
+		return s.decodedQueue[offset-1], s.decodedSizeQueue[offset-1] + totalSize
+	}
+	if offset == 1 {
+		r, size := utf8.DecodeRune(s.source[s.nextOffset:])
+		s.decodedQueue = append(s.decodedQueue, r)
+		s.decodedSizeQueue = append(s.decodedSizeQueue, size)
+		return r, size
+	}
+	totalSize := 0
+	if offset-1 >= 1 {
+		_, totalSize = s.decodeRuneOffset(offset - 1)
+	}
+	r, size := utf8.DecodeRune(s.source[s.nextOffset+totalSize:])
+	if size == 0 {
+		r = -1
+	}
+	s.decodedQueue = append(s.decodedQueue, r)
+	s.decodedSizeQueue = append(s.decodedSizeQueue, size)
+	return r, totalSize + size
+}
+
+func (s *Lexer) peek(offset int) rune {
+	if offset == 0 {
+		return s.r
+	}
+	r, _ := s.decodeRuneOffset(offset)
+	return r
+}
+
+func (s *Lexer) peekSpanString(offset int, n int) string {
+	// Make sure the queue is filled
+	s.peek(offset + n)
+	return string(s.decodedQueue[offset : offset+n])
+}
+
 // ModeStack returns a copy of modeStack
-func (s *LexerState) ModeStack() []LexerMode {
+func (s *Lexer) ModeStack() []LexerMode {
 	modeStack := append(s.modeStack[:0:0], s.modeStack...)
 
 	return modeStack
 }
 
-func (s *LexerState) Lex() *Token {
-	if s.position >= s.inputLength {
-		return NewToken(EndOfFile, s.position, 0, s.ModeStack())
+// Lex runs the lexing and returns a token
+func (s *Lexer) Lex() *Token {
+	if s.r == -1 {
+		return NewToken(EndOfFile, s.offset, 0, s.ModeStack())
 	}
 
 	var t *Token
@@ -683,6 +764,7 @@ func (s *LexerState) Lex() *Token {
 	return t
 }
 
+// MarshalJSON marshals the token type into JSON
 func (tokenType *TokenType) MarshalJSON() ([]byte, error) {
 	buffer := bytes.NewBufferString(`"`)
 	buffer.WriteString(tokenType.String())
@@ -691,85 +773,76 @@ func (tokenType *TokenType) MarshalJSON() ([]byte, error) {
 	return buffer.Bytes(), nil
 }
 
-func (s *LexerState) initial() *Token {
-	c := s.input[s.position]
-	start := s.position
-
-	if c == '<' && (s.position+1 < s.inputLength && s.input[s.position+1] == '?') {
-		if s.position+2 >= s.inputLength || isWhitespace(s.input[s.position+2]) {
-			if s.position+2 < s.inputLength && s.input[s.position+2] == '\r' &&
-				s.position+3 < s.inputLength && s.input[s.position+3] == '\n' {
-				s.position += 4
+func (s *Lexer) initial() *Token {
+	start := s.offset
+	c := s.r
+	if c == '<' && s.peek(1) == '?' {
+		if isWhitespace(s.peek(2)) {
+			if s.peek(2) == '\r' && s.peek(3) == '\n' {
+				s.stepLoop(4)
 			} else {
-				s.position += 3
+				s.stepLoop(3)
 			}
-
-			token := NewToken(OpenTag, start, s.position-start, s.ModeStack())
+			token := NewToken(OpenTag, start, s.offset-start, s.ModeStack())
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			return token
 		}
-		if s.position+2 < s.inputLength && s.input[s.position+2] == '=' &&
-			(s.position+3 >= s.inputLength || isWhitespace(s.input[s.position+3])) {
-			if s.input[s.position+3] == '\r' && s.position+4 < s.inputLength && s.input[s.position+4] == '\n' {
-				s.position += 5
+		if s.peek(2) == '=' &&
+			(s.peek(3) == -1 || isWhitespace(s.peek(3))) {
+			if s.peek(3) == '\r' && s.peek(4) == '\n' {
+				s.stepLoop(5)
 			} else {
-				s.position += 4
+				s.stepLoop(4)
 			}
 
-			token := NewToken(OpenTagEcho, start, s.position-start, s.ModeStack())
+			token := NewToken(OpenTagEcho, start, s.offset-start, s.ModeStack())
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			return token
 		}
-		if s.position+5 < s.inputLength && strings.ToLower(string(s.input[s.position:s.position+5])) == "<?php" &&
-			(s.position+5 >= s.inputLength || isWhitespace(s.input[s.position+5])) {
-			if s.input[s.position+5] == '\r' && s.position+6 < s.inputLength && s.input[s.position+6] == '\n' {
-				s.position += 7
+		if strings.ToLower(string(s.peekSpanString(0, 4))) == "?php" && isWhitespace(s.peek(5)) {
+			if s.peek(5) == '\r' && s.peek(6) == '\n' {
+				s.stepLoop(7)
 			} else {
-				s.position += 6
+				s.stepLoop(6)
 			}
-
-			token := NewToken(OpenTag, start, s.position-start, s.ModeStack())
+			token := NewToken(OpenTag, start, s.offset-start, s.ModeStack())
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			return token
 		}
 	}
-
-	for s.position++; s.position < s.inputLength; s.position++ {
-		c = s.input[s.position]
-		if c == '<' && (s.position+1 < s.inputLength && s.input[s.position+1] == '?') {
-			if s.position+2 >= s.inputLength || isWhitespace(s.input[s.position+2]) {
+	for s.step(); s.r != -1; s.step() {
+		c = s.r
+		if c == '<' && (s.peek(1) == '?') {
+			if isWhitespace(s.peek(2)) {
 				break
 			}
-			if s.position+2 < s.inputLength && s.input[s.position+2] == '=' &&
-				(s.position+3 >= s.inputLength || isWhitespace(s.input[s.position+3])) {
+			if s.peek(2) == '=' && isWhitespace(s.peek(3)) {
 				break
 			}
-			if s.position+5 < s.inputLength && strings.ToLower(string(s.input[s.position:s.position+5])) == "<?php" &&
-				(s.position+5 >= s.inputLength || isWhitespace(s.input[s.position+5])) {
+			if strings.ToLower(s.peekSpanString(0, 4)) == "?php" && isWhitespace(s.peek(5)) {
 				break
 			}
 		}
 	}
-
-	return NewToken(Text, start, s.position-start, s.ModeStack())
+	return NewToken(Text, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scripting() *Token {
-	start := s.position
+func (s *Lexer) scripting() *Token {
+	start := s.offset
 	modeStack := s.ModeStack()
 
-	switch s.input[s.position] {
+	switch s.r {
 	case ' ', '\t', '\n', '\r':
-		for s.position++; s.position < s.inputLength && isWhitespace(s.input[s.position]); s.position++ {
+		for s.step(); isWhitespace(s.r); s.step() {
 		}
 
-		return NewToken(Whitespace, start, s.position-start, modeStack)
+		return NewToken(Whitespace, start, s.offset-start, modeStack)
 	case '-':
 		return s.scriptingMinus()
 	case ':':
-		s.position++
-		if s.position < s.inputLength && s.input[s.position] == ':' {
-			s.position++
+		s.step()
+		if s.r == ':' {
+			s.step()
 
 			return NewToken(ColonColon, start, 2, modeStack)
 		}
@@ -793,9 +866,9 @@ func (s *LexerState) scripting() *Token {
 	case '/':
 		return s.scriptingForwardSlash()
 	case '%':
-		s.position++
-		if s.position < s.inputLength && s.input[s.position] == '=' {
-			s.position++
+		s.step()
+		if s.r == '=' {
+			s.step()
 
 			return NewToken(PercentEquals, start, 2, modeStack)
 		}
@@ -806,50 +879,50 @@ func (s *LexerState) scripting() *Token {
 	case '|':
 		return s.scriptingBar()
 	case '^':
-		s.position++
-		if s.position < s.inputLength && s.input[s.position] == '=' {
-			s.position++
+		s.step()
+		if s.r == '=' {
+			s.step()
 
 			return NewToken(CaretEquals, start, 2, modeStack)
 		}
 
 		return NewToken(Caret, start, 1, modeStack)
 	case ';':
-		s.position++
+		s.step()
 
 		return NewToken(Semicolon, start, 1, modeStack)
 	case ',':
-		s.position++
+		s.step()
 
 		return NewToken(Comma, start, 1, modeStack)
 	case '[':
-		s.position++
+		s.step()
 
 		return NewToken(OpenBracket, start, 1, modeStack)
 	case ']':
-		s.position++
+		s.step()
 
 		return NewToken(CloseBracket, start, 1, modeStack)
 	case '(':
 		return s.scriptingOpenParenthesis()
 	case ')':
-		s.position++
+		s.step()
 
 		return NewToken(CloseParenthesis, start, 1, modeStack)
 	case '~':
-		s.position++
+		s.step()
 
 		return NewToken(Tilde, start, 1, modeStack)
 	case '?':
 		return s.scriptingQuestion()
 	case '@':
-		s.position++
+		s.step()
 
 		return NewToken(AtSymbol, start, 1, modeStack)
 	case '$':
 		return s.scriptingDollar()
 	case '#':
-		s.position++
+		s.step()
 
 		return s.scriptingComment(start)
 
@@ -857,13 +930,13 @@ func (s *LexerState) scripting() *Token {
 		return s.scriptingNumeric()
 
 	case '{':
-		s.position++
+		s.step()
 
 		s.modeStack = append(s.modeStack, ModeScripting)
 
 		return NewToken(OpenBrace, start, 1, modeStack)
 	case '}':
-		s.position++
+		s.step()
 
 		if len(s.modeStack) > 1 {
 			s.modeStack = s.modeStack[:len(s.modeStack)-1]
@@ -871,7 +944,7 @@ func (s *LexerState) scripting() *Token {
 
 		return NewToken(CloseBrace, start, 1, modeStack)
 	case '`':
-		s.position++
+		s.step()
 
 		s.modeStack[len(s.modeStack)-1] = ModeBacktick
 
@@ -884,121 +957,109 @@ func (s *LexerState) scripting() *Token {
 		return s.scriptingDoubleQuote(start)
 	}
 
-	if isLabelStart(s.input[s.position]) {
+	if isLabelStart(s.r) {
 		return s.scriptingLabelStart()
 	}
 
-	s.position++
+	s.step()
 
 	return NewToken(Unknown, start, 1, modeStack)
 }
 
-func (s *LexerState) scriptingMinus() *Token {
-	start := s.position
+func (s *Lexer) scriptingMinus() *Token {
+	start := s.offset
 	modeStack := s.ModeStack()
 
-	s.position++
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '>':
-			s.position++
-			s.modeStack = append(s.modeStack, ModeLookingForProperty)
+	s.step()
+	switch s.r {
+	case '>':
+		s.step()
+		s.modeStack = append(s.modeStack, ModeLookingForProperty)
 
-			return NewToken(Arrow, start, 2, modeStack)
-		case '-':
-			s.position++
+		return NewToken(Arrow, start, 2, modeStack)
+	case '-':
+		s.step()
 
-			return NewToken(MinusMinus, start, 2, modeStack)
-		case '=':
-			s.position++
+		return NewToken(MinusMinus, start, 2, modeStack)
+	case '=':
+		s.step()
 
-			return NewToken(MinusEquals, start, 2, modeStack)
-		default:
-			break
-		}
-
+		return NewToken(MinusEquals, start, 2, modeStack)
 	}
 
 	return NewToken(Minus, start, 1, modeStack)
 }
 
-func (s *LexerState) scriptingDot() *Token {
-	start := s.position
+func (s *Lexer) scriptingDot() *Token {
+	start := s.offset
 
-	s.position++
-	if s.position < s.inputLength {
-		c := s.input[s.position]
-		if c == '=' {
-			s.position++
+	s.step()
+	c := s.r
+	if c == '=' {
+		s.step()
 
-			return NewToken(DotEquals, start, 2, s.ModeStack())
-		} else if c == '.' && s.position+1 < s.inputLength && s.input[s.position+1] == '.' {
-			s.position += 2
+		return NewToken(DotEquals, start, 2, s.ModeStack())
+	} else if c == '.' && s.peek(1) == '.' {
+		s.stepLoop(2)
 
-			return NewToken(Ellipsis, start, 3, s.ModeStack())
-		} else if c >= '0' && c <= '9' {
-			// float
-			return s.scriptingNumericStartingWithDotOrE(start, true)
-		}
+		return NewToken(Ellipsis, start, 3, s.ModeStack())
+	} else if c >= '0' && c <= '9' {
+		// float
+		return s.scriptingNumericStartingWithDotOrE(start, true)
 	}
 
 	return NewToken(Dot, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingEquals() *Token {
-	start := s.position
+func (s *Lexer) scriptingEquals() *Token {
+	start := s.offset
 
-	s.position++
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '=':
-			s.position++
-			if s.position < s.inputLength && s.input[s.position] == '=' {
-				s.position++
+	s.step()
+	switch s.r {
+	case '=':
+		s.step()
+		if s.r == '=' {
+			s.step()
 
-				return NewToken(EqualsEqualsEquals, start, 3, s.ModeStack())
-			}
-
-			return NewToken(EqualsEquals, start, 2, s.ModeStack())
-		case '>':
-			s.position++
-
-			return NewToken(FatArrow, start, 2, s.ModeStack())
+			return NewToken(EqualsEqualsEquals, start, 3, s.ModeStack())
 		}
+
+		return NewToken(EqualsEquals, start, 2, s.ModeStack())
+	case '>':
+		s.step()
+
+		return NewToken(FatArrow, start, 2, s.ModeStack())
 	}
 
 	return NewToken(Equals, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingPlus() *Token {
-	start := s.position
+func (s *Lexer) scriptingPlus() *Token {
+	start := s.offset
 
-	s.position++
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '=':
-			s.position++
+	s.step()
+	switch s.r {
+	case '=':
+		s.step()
 
-			return NewToken(PlusEquals, start, 2, s.ModeStack())
-		case '+':
-			s.position++
+		return NewToken(PlusEquals, start, 2, s.ModeStack())
+	case '+':
+		s.step()
 
-			return NewToken(PlusPlus, start, 2, s.ModeStack())
-		}
-
+		return NewToken(PlusPlus, start, 2, s.ModeStack())
 	}
 
 	return NewToken(Plus, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingExclamation() *Token {
-	start := s.position
+func (s *Lexer) scriptingExclamation() *Token {
+	start := s.offset
 
-	s.position++
-	if s.position < s.inputLength && s.input[s.position] == '=' {
-		s.position++
-		if s.position < s.inputLength && s.input[s.position] == '=' {
-			s.position++
+	s.step()
+	if s.r == '=' {
+		s.step()
+		if s.r == '=' {
+			s.step()
 
 			return NewToken(ExclamationEqualsEquals, start, 3, s.ModeStack())
 		}
@@ -1009,201 +1070,140 @@ func (s *LexerState) scriptingExclamation() *Token {
 	return NewToken(Exclamation, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingLessThan() *Token {
-	start := s.position
+func (s *Lexer) scriptingLessThan() *Token {
+	start := s.offset
 
-	s.position++
-	if s.position < s.inputLength {
-
-		switch s.input[s.position] {
-		case '>':
-			s.position++
-
-			return NewToken(ExclamationEquals, start, 2, s.ModeStack())
-		case '<':
-			s.position++
-			if s.position < s.inputLength {
-				if s.input[s.position] == '=' {
-					s.position++
-
-					return NewToken(LessThanLessThanEquals, start, 3, s.ModeStack())
-				} else if s.input[s.position] == '<' {
-					//go back to first <
-					s.position -= 2
-					heredoc := s.scriptingHeredoc(start)
-
-					if heredoc != nil {
-						return heredoc
-					}
-
-					s.position += 2
-				}
+	switch s.peek(1) {
+	case '>':
+		s.stepLoop(2)
+		return NewToken(ExclamationEquals, start, 2, s.ModeStack())
+	case '<':
+		if s.peek(2) == '=' {
+			s.stepLoop(3)
+			return NewToken(LessThanLessThanEquals, start, 3, s.ModeStack())
+		} else if s.peek(2) == '<' {
+			heredoc := s.scriptingHeredoc(start)
+			if heredoc != nil {
+				return heredoc
 			}
-
-			return NewToken(LessThanLessThan, start, 2, s.ModeStack())
-		case '=':
-			s.position++
-
-			if s.position < s.inputLength && s.input[s.position] == '>' {
-				s.position++
-
-				return NewToken(Spaceship, start, 3, s.ModeStack())
-			}
-
-			return NewToken(LessThanEquals, start, 2, s.ModeStack())
+			s.stepLoop(2)
+		} else {
+			s.step()
 		}
-
+		return NewToken(LessThanLessThan, start, 2, s.ModeStack())
+	case '=':
+		s.stepLoop(2)
+		if s.r == '>' {
+			s.step()
+			return NewToken(Spaceship, start, 3, s.ModeStack())
+		}
+		return NewToken(LessThanEquals, start, 2, s.ModeStack())
+	default:
+		s.step()
 	}
-
 	return NewToken(LessThan, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingGreaterThan() *Token {
-	start := s.position
-
-	s.position++
-	if s.position < s.inputLength {
-
-		switch s.input[s.position] {
-		case '>':
-			s.position++
-
-			if s.position < s.inputLength && s.input[s.position] == '=' {
-				s.position++
-
-				return NewToken(GreaterThanGreaterThanEquals, start, 3, s.ModeStack())
-			}
-
-			return NewToken(GreaterThanGreaterThan, start, 2, s.ModeStack())
-		case '=':
-			s.position++
-
-			return NewToken(GreaterThanEquals, start, 2, s.ModeStack())
+func (s *Lexer) scriptingGreaterThan() *Token {
+	start := s.offset
+	s.step()
+	switch s.r {
+	case '>':
+		s.step()
+		if s.r == '=' {
+			s.step()
+			return NewToken(GreaterThanGreaterThanEquals, start, 3, s.ModeStack())
 		}
+		return NewToken(GreaterThanGreaterThan, start, 2, s.ModeStack())
+	case '=':
+		s.step()
+		return NewToken(GreaterThanEquals, start, 2, s.ModeStack())
 	}
-
 	return NewToken(GreaterThan, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingAsterisk() *Token {
-	start := s.position
-
-	s.position++
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '*':
-			s.position++
-
-			if s.position < s.inputLength && s.input[s.position] == '=' {
-				s.position++
-
-				return NewToken(AsteriskAsteriskEquals, start, 3, s.ModeStack())
-			}
-
-			return NewToken(AsteriskAsterisk, start, 2, s.ModeStack())
-		case '=':
-			s.position++
-
-			return NewToken(AsteriskEquals, start, 2, s.ModeStack())
+func (s *Lexer) scriptingAsterisk() *Token {
+	start := s.offset
+	s.step()
+	switch s.r {
+	case '*':
+		s.step()
+		if s.r == '=' {
+			s.step()
+			return NewToken(AsteriskAsteriskEquals, start, 3, s.ModeStack())
 		}
+		return NewToken(AsteriskAsterisk, start, 2, s.ModeStack())
+	case '=':
+		s.step()
+		return NewToken(AsteriskEquals, start, 2, s.ModeStack())
 	}
-
 	return NewToken(Asterisk, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingForwardSlash() *Token {
-	start := s.position
-	s.position++
-
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '=':
-			s.position++
-
-			return NewToken(ForwardslashEquals, start, 2, s.ModeStack())
-		case '*':
-			s.position++
-
-			return s.scriptingInlineCommentOrDocBlock()
-		case '/':
-			s.position++
-
-			return s.scriptingComment(start)
-		}
-
+func (s *Lexer) scriptingForwardSlash() *Token {
+	start := s.offset
+	s.step()
+	switch s.r {
+	case '=':
+		s.step()
+		return NewToken(ForwardslashEquals, start, 2, s.ModeStack())
+	case '*':
+		s.step()
+		return s.scriptingInlineCommentOrDocBlock()
+	case '/':
+		s.step()
+		return s.scriptingComment(start)
 	}
-
 	return NewToken(ForwardSlash, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingAmpersand() *Token {
-	start := s.position
-	s.position++
-
-	if s.position < s.inputLength {
-
-		switch s.input[s.position] {
-		case '=':
-			s.position++
-
-			return NewToken(AmpersandEquals, start, 2, s.ModeStack())
-		case '&':
-			s.position++
-
-			return NewToken(AmpersandAmpersand, start, 2, s.ModeStack())
-		}
-
+func (s *Lexer) scriptingAmpersand() *Token {
+	start := s.offset
+	s.step()
+	switch s.r {
+	case '=':
+		s.step()
+		return NewToken(AmpersandEquals, start, 2, s.ModeStack())
+	case '&':
+		s.step()
+		return NewToken(AmpersandAmpersand, start, 2, s.ModeStack())
 	}
-
 	return NewToken(Ampersand, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingBar() *Token {
-	start := s.position
+func (s *Lexer) scriptingBar() *Token {
+	start := s.offset
+	s.step()
+	switch s.r {
+	case '=':
+		s.step()
 
-	s.position++
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '=':
-			s.position++
+		return NewToken(BarEquals, start, 2, s.ModeStack())
+	case '|':
+		s.step()
 
-			return NewToken(BarEquals, start, 2, s.ModeStack())
-		case '|':
-			s.position++
-
-			return NewToken(BarBar, start, 2, s.ModeStack())
-		}
+		return NewToken(BarBar, start, 2, s.ModeStack())
 	}
-
 	return NewToken(Bar, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingOpenParenthesis() *Token {
-	start := s.position
-	k := start
-
+func (s *Lexer) scriptingOpenParenthesis() *Token {
+	start := s.offset
+	k := 0
 	//check for cast tokens
-	k++
-	for k < s.inputLength && (s.input[k] == ' ' || s.input[k] == '\t') {
-		k++
+	for k++; s.peek(k) == ' ' || s.peek(k) == '\t'; k++ {
 	}
-
-	keywordStart := k
-	for k < s.inputLength &&
-		((s.input[k] >= 'A' && s.input[k] <= 'Z') || (s.input[k] >= 'a' && s.input[k] <= 'z')) {
-		k++
+	keywordStart := k - 1
+	for ; (s.peek(k) >= 'A' && s.peek(k) <= 'Z') || (s.peek(k) >= 'a' && s.peek(k) <= 'z'); k++ {
 	}
-	keywordEnd := k
-
-	for k < s.inputLength && (s.input[k] == ' ' || s.input[k] == '\t') {
-		k++
+	keywordEnd := k - 1
+	for ; s.peek(k) == ' ' || s.peek(k) == '\t'; k++ {
 	}
 
 	//should have a ) here if valid cast token
-	if k < s.inputLength && s.input[k] == ')' {
-		keyword := strings.ToLower(string(s.input[keywordStart:keywordEnd]))
+	if s.peek(k) == ')' {
+		keyword := strings.ToLower(s.peekSpanString(keywordStart, keywordEnd-keywordStart))
 		tokenType := Unknown
-
 		switch keyword {
 		case "int", "integer":
 			tokenType = IntegerCast
@@ -1220,229 +1220,176 @@ func (s *LexerState) scriptingOpenParenthesis() *Token {
 		case "unset":
 			tokenType = UnsetCast
 		}
-
 		if tokenType > Unknown {
-			s.position = k + 1
-
-			return NewToken(tokenType, start, s.position-start, s.ModeStack())
+			s.stepLoop(k + 1)
+			return NewToken(tokenType, start, s.offset-start, s.ModeStack())
 		}
 	}
-
-	s.position++
-
+	s.step()
 	return NewToken(OpenParenthesis, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingQuestion() *Token {
-	start := s.position
+func (s *Lexer) scriptingQuestion() *Token {
+	start := s.offset
+	s.step()
+	if s.r == '?' {
+		s.step()
 
-	s.position++
-	if s.position < s.inputLength {
-		if s.input[s.position] == '?' {
-			s.position++
-
-			return NewToken(QuestionQuestion, start, 2, s.ModeStack())
-		} else if s.input[s.position] == '>' {
-			s.position++
-			modeStack := s.ModeStack()
-
-			s.modeStack[len(s.modeStack)-1] = ModeInitial
-
-			return NewToken(CloseTag, start, s.position-start, modeStack)
-		}
+		return NewToken(QuestionQuestion, start, 2, s.ModeStack())
+	} else if s.r == '>' {
+		s.step()
+		modeStack := s.ModeStack()
+		s.modeStack[len(s.modeStack)-1] = ModeInitial
+		return NewToken(CloseTag, start, s.offset-start, modeStack)
 	}
-
 	return NewToken(Question, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingDollar() *Token {
-	start := s.position
-	k := s.position
-
-	k++
-
-	if k < s.inputLength && isLabelStart(s.input[k]) {
-		for k++; k < s.inputLength && isLabelChar(s.input[k]); k++ {
+func (s *Lexer) scriptingDollar() *Token {
+	start := s.offset
+	k := 1
+	if isLabelStart(s.peek(k)) {
+		for k++; isLabelChar(s.peek(k)); k++ {
 		}
-		s.position = k
-
-		return NewToken(VariableName, start, s.position-start, s.ModeStack())
+		s.stepLoop(k)
+		return NewToken(VariableName, start, s.offset-start, s.ModeStack())
 	}
-
-	s.position++
-
+	s.step()
 	return NewToken(Dollar, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingComment(start int) *Token {
+func (s *Lexer) scriptingComment(start int) *Token {
 	//s.position will be on first char after # or //
 	//find first newline or closing tag
-	var c rune
-
-	for s.position < s.inputLength {
-		c = s.input[s.position]
-		s.position++
-
-		if c == '\n' ||
-			c == '\r' ||
-			(c == '?' && s.position < s.inputLength && s.input[s.position] == '>') {
-			s.position--
-
+	for c := s.r; c != -1; {
+		if c == '\n' || c == '\r' || (c == '?' && s.peek(1) == '>') {
 			break
 		}
+		s.step()
+		c = s.r
 	}
-
-	return NewToken(Comment, start, s.position-start, s.ModeStack())
+	return NewToken(Comment, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scriptingNumeric() *Token {
-	start := s.position
-	k := s.position
-
-	if s.input[s.position] == '0' && k < s.inputLength-1 {
-		k++
-		j := k + 1
-		if s.input[k] == 'b' && j < s.inputLength && (s.input[j] == '0' || s.input[j] == '1') {
-			for j++; j < s.inputLength && (s.input[j] == '0' || s.input[j] == '1'); j++ {
+func (s *Lexer) scriptingNumeric() *Token {
+	start := s.offset
+	if s.r == '0' {
+		j := 2
+		if s.peek(1) == 'b' && (s.peek(j) == '0' || s.peek(j) == '1') {
+			for j++; s.peek(j) == '0' || s.peek(j) == '1'; j++ {
 			}
-			s.position = j
-
-			return NewToken(IntegerLiteral, start, s.position-start, s.ModeStack())
+			s.stepLoop(j)
+			return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
 		}
-		if s.input[k] == 'x' && j < s.inputLength && isHexDigit(s.input[j]) {
-			for j++; j < s.inputLength && isHexDigit(s.input[j]); j++ {
+		if s.peek(1) == 'x' && isHexDigit(s.peek(j)) {
+			for j++; isHexDigit(s.peek(j)); j++ {
 			}
-			s.position = j
-
-			return NewToken(IntegerLiteral, start, s.position-start, s.ModeStack())
+			s.stepLoop(j)
+			return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
 		}
 	}
-
-	for s.position++; s.position < s.inputLength && s.input[s.position] >= '0' && s.input[s.position] <= '9'; s.position++ {
+	for s.step(); s.r >= '0' && s.r <= '9'; s.step() {
 	}
+	if s.r == '.' {
+		s.step()
 
-	if s.position < len(s.input) {
-		if s.input[s.position] == '.' {
-			s.position++
-
-			return s.scriptingNumericStartingWithDotOrE(start, true)
-		} else if s.input[s.position] == 'e' || s.input[s.position] == 'E' {
-			return s.scriptingNumericStartingWithDotOrE(start, false)
-		}
+		return s.scriptingNumericStartingWithDotOrE(start, true)
+	} else if s.r == 'e' || s.r == 'E' {
+		return s.scriptingNumericStartingWithDotOrE(start, false)
 	}
-
-	return NewToken(IntegerLiteral, start, s.position-start, s.ModeStack())
+	return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scriptingBackslash() *Token {
+func (s *Lexer) scriptingBackslash() *Token {
 	//single quote, double quote and heredoc open have optional \
-	start := s.position
-	s.position++
+	start := s.offset
+	s.step()
 	var t *Token
-
-	if s.position < s.inputLength {
-		switch s.input[s.position] {
-		case '\'':
-			return s.scriptingSingleQuote(start)
-
-		case '"':
-			return s.scriptingDoubleQuote(start)
-
-		case '<':
-			t = s.scriptingHeredoc(start)
-			if t != nil {
-				return t
-			}
+	switch s.r {
+	case '\'':
+		return s.scriptingSingleQuote(start)
+	case '"':
+		return s.scriptingDoubleQuote(start)
+	case '<':
+		t = s.scriptingHeredoc(start)
+		if t != nil {
+			return t
 		}
 	}
-
 	return NewToken(Backslash, start, 1, s.ModeStack())
 }
 
-func (s *LexerState) scriptingSingleQuote(start int) *Token {
+func (s *Lexer) scriptingSingleQuote(start int) *Token {
 	//optional \ already consumed
 	//find first unescaped '
-	s.position++
+	s.step()
 	for {
-		if s.position < s.inputLength {
-			if s.input[s.position] == '\'' {
-				s.position++
+		if s.r != -1 {
+			if s.r == '\'' {
+				s.step()
 				break
-			} else if s.input[s.position] == '\\' {
-				s.position++
-				if s.position < s.inputLength {
-					s.position++
-				}
+			} else if s.r == '\\' {
+				s.step()
+				s.step()
 			} else {
-				s.position++
+				s.step()
 			}
-
 			continue
 		}
-
-		return NewToken(EncapsulatedAndWhitespace, start, s.position-start, s.ModeStack())
+		return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, s.ModeStack())
 	}
-
-	return NewToken(StringLiteral, start, s.position-start, s.ModeStack())
+	return NewToken(StringLiteral, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scriptingDoubleQuote(start int) *Token {
+func (s *Lexer) scriptingDoubleQuote(start int) *Token {
 	//optional \ consumed
 	//consume until unescaped "
 	//if ${LABEL_START}, ${, {$ found or no match return " and consume none
-	s.position++
-	n := s.position
+	s.step()
+	n := 0
 	var c rune
-
-	for n < s.inputLength {
-		c = s.input[n]
+	for s.peek(n) != -1 {
+		c = s.peek(n)
 		n++
 		switch c {
 		case '"':
-			s.position = n
-
-			return NewToken(StringLiteral, start, s.position-start, s.ModeStack())
+			s.stepLoop(n)
+			return NewToken(StringLiteral, start, s.offset-start, s.ModeStack())
 		case '$':
-			if n < s.inputLength && (isLabelStart(s.input[n]) || s.input[n] == '{') {
+			if isLabelStart(s.peek(n)) || s.peek(n) == '{' {
 				break
 			}
 			continue
 		case '{':
-			if n < s.inputLength && s.input[n] == '$' {
+			if s.peek(n) == '$' {
 				break
 			}
 			continue
 		case '\\':
-			if n < s.inputLength {
+			if s.peek(n) != -1 {
 				n++
 			}
 			continue
-		/* fall through */
 		default:
 			continue
 		}
-
 		n--
 		break
 	}
-
 	s.doubleQuoteScannedLength = n
 	modeStack := s.ModeStack()
 	s.modeStack[len(s.modeStack)-1] = ModeDoubleQuotes
-
-	return NewToken(DoubleQuote, start, s.position-start, modeStack)
+	return NewToken(DoubleQuote, start, s.offset-start, modeStack)
 }
 
-func (s *LexerState) scriptingLabelStart() *Token {
-	start := s.position
-	for s.position++; s.position < s.inputLength && isLabelChar(s.input[s.position]); s.position++ {
-
+func (s *Lexer) scriptingLabelStart() *Token {
+	start := s.offset
+	firstRune := s.r
+	for s.step(); isLabelChar(s.r); s.step() {
 	}
 
-	firstRune := s.input[start]
-	text := string(s.input[start:s.position])
+	text := string(s.source[start:s.offset])
 	tokenType := Unknown
-
 	if firstRune == '_' {
 		switch text {
 		case "__CLASS__":
@@ -1462,14 +1409,11 @@ func (s *LexerState) scriptingLabelStart() *Token {
 		case "__NAMESPACE__":
 			tokenType = NamespaceConstant
 		}
-
 		if tokenType > Unknown {
-			return NewToken(tokenType, start, s.position-start, s.ModeStack())
+			return NewToken(tokenType, start, s.offset-start, s.ModeStack())
 		}
 	}
-
 	text = strings.ToLower(text)
-
 	switch text {
 	case "exit":
 		tokenType = Exit
@@ -1606,198 +1550,156 @@ func (s *LexerState) scriptingLabelStart() *Token {
 	case "xor":
 		tokenType = Xor
 	}
-
 	if tokenType > Unknown {
-		return NewToken(tokenType, start, s.position-start, s.ModeStack())
+		return NewToken(tokenType, start, s.offset-start, s.ModeStack())
 	}
-
-	return NewToken(Name, start, s.position-start, s.ModeStack())
+	return NewToken(Name, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scriptingNumericStartingWithDotOrE(start int, hasDot bool) *Token {
-	for ; s.position < s.inputLength && s.input[s.position] >= '0' && s.input[s.position] <= '9'; s.position++ {
+func (s *Lexer) scriptingNumericStartingWithDotOrE(start int, hasDot bool) *Token {
+	for ; s.r >= '0' && s.r <= '9'; s.step() {
 
 	}
-
-	if s.position < s.inputLength && (s.input[s.position] == 'e' || s.input[s.position] == 'E') {
-		k := s.position + 1
-		if k < s.inputLength && (s.input[k] == '+' || s.input[k] == '-') {
+	if s.r == 'e' || s.r == 'E' {
+		k := 1
+		if s.peek(k) == '+' || s.peek(k) == '-' {
 			k++
 		}
-		if k < s.inputLength && s.input[k] >= '0' && s.input[k] <= '9' {
-			for k++; k < s.inputLength && s.input[k] >= '0' && s.input[k] <= '9'; k++ {
+		if s.peek(k) >= '0' && s.peek(k) <= '9' {
+			for k++; s.peek(k) >= '0' && s.peek(k) <= '9'; k++ {
 			}
-			s.position = k
-
-			return NewToken(FloatingLiteral, start, s.position-start, s.ModeStack())
+			s.stepLoop(k)
+			return NewToken(FloatingLiteral, start, s.offset-start, s.ModeStack())
 		}
 	}
-
 	tokenType := IntegerLiteral
 	if hasDot {
 		tokenType = FloatingLiteral
 	}
-
-	return NewToken(tokenType, start, s.position-start, s.ModeStack())
+	return NewToken(tokenType, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scriptingHeredoc(start int) *Token {
+func (s *Lexer) scriptingHeredoc(start int) *Token {
 	//pos is on first <
-	k := s.position
-
+	k := 0
 	var labelStart int
 	var labelEnd int
-
 	for posPlus3 := k + 3; k < posPlus3; k++ {
-		if k >= s.inputLength || s.input[k] != '<' {
+		if s.peek(k) != '<' {
 			return nil
 		}
 	}
-
-	for ; k < s.inputLength && (s.input[k] == ' ' || s.input[k] == '\t'); k++ {
+	for ; s.peek(k) == ' ' || s.peek(k) == '\t'; k++ {
 	}
-
 	var quote rune
-	if k < s.inputLength && (s.input[k] == '\'' || s.input[k] == '"') {
-		quote = s.input[k]
+	if s.peek(k) == '\'' || s.peek(k) == '"' {
+		quote = s.peek(k)
 		k++
 	}
-
 	labelStart = k
-
-	if k < s.inputLength && isLabelStart(s.input[k]) {
-		for k++; k < s.inputLength && isLabelChar(s.input[k]); k++ {
+	if isLabelStart(s.peek(k)) {
+		for k++; isLabelChar(s.peek(k)); k++ {
 		}
 	} else {
 		return nil
 	}
-
 	labelEnd = k
-
 	if quote != 0 {
-		if k < s.inputLength && s.input[k] == quote {
+		if s.peek(k) == quote {
 			k++
 		} else {
 			return nil
 		}
 	}
-
-	if k < s.inputLength {
-		if s.input[k] == '\r' {
+	if s.peek(k) == '\r' {
+		k++
+		if s.peek(k) == '\n' {
 			k++
-			if s.input[k] == '\n' {
-				k++
-			}
-		} else if s.input[k] == '\n' {
-			k++
-		} else {
-			return nil
 		}
+	} else if s.peek(k) == '\n' {
+		k++
+	} else {
+		return nil
 	}
-
-	s.position = k
-	s.heredocLabel = string(s.input[labelStart:labelEnd])
-	t := NewToken(StartHeredoc, start, s.position-start, s.ModeStack())
-
+	s.heredocLabel = s.peekSpanString(labelStart-1, labelEnd-labelStart)
+	s.stepLoop(k)
+	t := NewToken(StartHeredoc, start, s.offset-start, s.ModeStack())
 	if quote == '\'' {
 		s.modeStack[len(s.modeStack)-1] = ModeNowDoc
 	} else {
 		s.modeStack[len(s.modeStack)-1] = ModeHereDoc
 	}
-
 	//check for end on next line
-	endHereDocLabel := string(
-		s.input[s.position+len(s.heredocLabel) : s.position+len(s.heredocLabel)+3])
+	endHereDocLabel := string(s.source[s.offset+len(s.heredocLabel) : s.offset+len(s.heredocLabel)+3])
 	isEndOfLine, err := regexp.MatchString("^;?(?:\r\n|\n|\r)", endHereDocLabel)
-	if err == nil &&
-		string(s.input[s.position:s.position+len(s.heredocLabel)]) == s.heredocLabel &&
-		isEndOfLine {
+	if err == nil && string(s.source[s.offset:s.offset+len(s.heredocLabel)]) == s.heredocLabel && isEndOfLine {
 		s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
 	}
-
 	return t
 }
 
-func (s *LexerState) scriptingInlineCommentOrDocBlock() *Token {
+func (s *Lexer) scriptingInlineCommentOrDocBlock() *Token {
 	// /* already read
 	tokenType := Comment
-	start := s.position - 2
-
-	if s.position < s.inputLength &&
-		s.input[s.position] == '*' &&
-		s.position+1 < s.inputLength && s.input[s.position+1] != '/' {
-		s.position++
+	start := s.offset - 2
+	if s.r == '*' && s.peek(1) != '/' {
+		s.step()
 		tokenType = DocumentComment
 	}
-
 	//find comment end */
-	for s.position < s.inputLength {
-		if s.input[s.position] == '*' &&
-			s.position+1 < s.inputLength &&
-			s.input[s.position+1] == '/' {
-			s.position += 2
+	for s.r != -1 {
+		if s.r == '*' && s.peek(1) == '/' {
+			s.stepLoop(2)
 			break
 		}
-		s.position++
+		s.step()
 	}
-
-	//todo WARN unterminated comment
-	return NewToken(tokenType, start, s.position-start, s.ModeStack())
+	// TODO: WARN unterminated comment
+	return NewToken(tokenType, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) scriptingYield(start int) *Token {
+func (s *Lexer) scriptingYield(start int) *Token {
 	//pos will be after yield keyword
 	//check for from
-	k := s.position
+	k := 0
 
-	if k < s.inputLength && isWhitespace(s.input[k]) {
-		for k++; k < s.inputLength && isWhitespace(s.input[k]); k++ {
+	if isWhitespace(s.peek(k)) {
+		for k++; isWhitespace(s.peek(k)); k++ {
 		}
-
-		if strings.ToLower(string(s.input[k:k+4])) == "from" {
-			s.position = k + 4
-
-			return NewToken(YieldFrom, start, s.position-start, s.ModeStack())
+		if strings.ToLower(string(s.source[k:k+4])) == "from" {
+			s.stepLoop(k + 4)
+			return NewToken(YieldFrom, start, s.offset-start, s.ModeStack())
 		}
-
 	}
-
-	return NewToken(Yield, start, s.position-start, s.ModeStack())
+	return NewToken(Yield, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) lookingForProperty() *Token {
-	start := s.position
+func (s *Lexer) lookingForProperty() *Token {
+	start := s.offset
 	modeStack := s.ModeStack()
-	c := s.input[s.position]
-
+	c := s.r
 	if isWhitespace(c) {
-		for s.position++; s.position < s.inputLength && isWhitespace(s.input[s.position]); s.position++ {
+		for s.step(); isWhitespace(s.r); s.step() {
 		}
-
-		return NewToken(Whitespace, start, s.position-start, modeStack)
+		return NewToken(Whitespace, start, s.offset-start, modeStack)
 	}
-
 	if isLabelStart(c) {
-		for s.position++; s.position < s.inputLength && isLabelChar(s.input[s.position]); s.position++ {
+		for s.step(); isLabelChar(s.r); s.step() {
 		}
 		s.modeStack = s.modeStack[:len(s.modeStack)-1]
-
-		return NewToken(Name, start, s.position-start, modeStack)
+		return NewToken(Name, start, s.offset-start, modeStack)
 	}
-
-	if c == '-' && s.position+1 < s.inputLength && s.input[s.position+1] == '>' {
-		s.position += 2
-
+	if c == '-' && s.peek(1) == '>' {
+		s.stepLoop(2)
 		return NewToken(Arrow, start, 2, modeStack)
 	}
-
 	s.modeStack = s.modeStack[:len(s.modeStack)-1]
 	return nil
 }
 
-func (s *LexerState) doubleQuotes() *Token {
-	c := s.input[s.position]
-	start := s.position
+func (s *Lexer) doubleQuotes() *Token {
+	c := s.r
+	start := s.offset
 	modeStack := s.ModeStack()
 	var t *Token
 
@@ -1807,102 +1709,85 @@ func (s *LexerState) doubleQuotes() *Token {
 			return t
 		}
 	case '{':
-		if s.position+1 < s.inputLength && s.input[s.position+1] == '$' {
+		if s.peek(1) == '$' {
 			s.modeStack = append(s.modeStack, ModeScripting)
-			s.position++
-
+			s.step()
 			return NewToken(CurlyOpen, start, 1, modeStack)
 		}
 	case '"':
 		s.modeStack[len(s.modeStack)-1] = ModeScripting
-		s.position++
-
+		s.step()
 		return NewToken(DoubleQuote, start, 1, modeStack)
 	}
-
 	return s.doubleQuotesAny()
 }
 
-func (s *LexerState) encapsulatedDollar() *Token {
-	start := s.position
-	k := s.position + 1
+func (s *Lexer) encapsulatedDollar() *Token {
+	start := s.offset
+	k := 1
 	modeStack := s.ModeStack()
-
-	if k >= s.inputLength {
+	if s.peek(k) == -1 {
 		return nil
 	}
-
-	if s.input[k] == '{' {
-		s.position += 2
+	if s.peek(k) == '{' {
+		s.stepLoop(2)
 		s.modeStack = append(s.modeStack, ModeLookingForVarName)
-
 		return NewToken(DollarCurlyOpen, start, 2, modeStack)
 	}
-
-	if !isLabelStart(s.input[k]) {
+	if !isLabelStart(s.peek(k)) {
 		return nil
 	}
-
-	for k++; k < s.inputLength && isLabelChar(s.input[k]); k++ {
+	for k++; isLabelChar(s.peek(k)); k++ {
 	}
-
-	if k < s.inputLength && s.input[k] == '[' {
+	if s.peek(k) == '[' {
 		s.modeStack = append(s.modeStack, ModeVarOffset)
-		s.position = k
-
-		return NewToken(VariableName, start, s.position-start, modeStack)
+		s.stepLoop(k)
+		return NewToken(VariableName, start, s.offset-start, modeStack)
 	}
-
-	if k < s.inputLength && s.input[k] == '-' {
-		if n := k + 1; n < s.inputLength && s.input[n] == '>' {
-			if n++; n < s.inputLength && isLabelStart(s.input[n]) {
+	if s.peek(k) == '-' {
+		if n := k + 1; s.peek(n) == '>' {
+			if n++; isLabelStart(s.peek(n)) {
 				s.modeStack = append(s.modeStack, ModeLookingForProperty)
-				s.position = k
-
-				return NewToken(VariableName, start, s.position-start, modeStack)
+				s.stepLoop(k)
+				return NewToken(VariableName, start, s.offset-start, modeStack)
 			}
 		}
 	}
-
-	s.position = k
-
-	return NewToken(VariableName, start, s.position-start, modeStack)
+	s.stepLoop(k)
+	return NewToken(VariableName, start, s.offset-start, modeStack)
 }
 
-func (s *LexerState) doubleQuotesAny() *Token {
-	start := s.position
-
+func (s *Lexer) doubleQuotesAny() *Token {
+	start := s.offset
 	if s.doubleQuoteScannedLength > 0 {
 		//already know position
-		s.position = s.doubleQuoteScannedLength
+		s.stepLoop(s.doubleQuoteScannedLength)
 		s.doubleQuoteScannedLength = -1
 	} else {
 		//find new pos
-		n := s.position + 1
-
-		if s.input[s.position] == '\\' && n+1 < s.inputLength {
+		n := 1
+		if s.r == '\\' && s.peek(n+1) != -1 {
 			n++
 		}
-
 		var c rune
-		for n < s.inputLength {
-			c = s.input[n]
+		for s.peek(n) != -1 {
+			c = s.peek(n)
 			n++
 			switch c {
 			case '"':
 				break
 			case '$':
-				if n < s.inputLength && (isLabelStart(s.input[n]) || s.input[n] == '{') {
+				if isLabelStart(s.peek(n)) || s.peek(n) == '{' {
 					break
 				}
 				continue
 			case '{':
-				if n < s.inputLength && s.input[n] == '$' {
+				if s.peek(n) == '$' {
 					break
 				}
 				continue
 			case '\\':
-				if n < s.inputLength {
+				if s.peek(n) != -1 {
 					n++
 				}
 				continue
@@ -1913,48 +1798,41 @@ func (s *LexerState) doubleQuotesAny() *Token {
 			n--
 			break
 		}
-
-		s.position = n
+		s.stepLoop(n)
 	}
-
-	return NewToken(EncapsulatedAndWhitespace, start, s.position-start, s.ModeStack())
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) nowdoc() *Token {
+func (s *Lexer) nowdoc() *Token {
 	//search for label
-	start := s.position
-	n := start
+	start := s.offset
+	n := 0
 	var c rune
 	modeStack := s.ModeStack()
 
-	for n < s.inputLength {
-		c = s.input[n]
+	for s.peek(n) != -1 {
+		c = s.peek(n)
 		n++
 		switch c {
 		case '\r', '\n':
-			if c == '\r' && n < s.inputLength && s.input[n] == '\n' {
+			if c == '\r' && s.peek(n) == '\n' {
 				n++
 			}
-
 			/* Check for ending label on the next line */
-			heredocLabel := string(s.input[n : n+len(s.heredocLabel)])
-			if n < s.inputLength && s.heredocLabel == heredocLabel {
+			heredocLabel := s.peekSpanString(n, len(s.heredocLabel))
+			if s.peek(n) != -1 && s.heredocLabel == heredocLabel {
 				k := n + len(s.heredocLabel)
-
-				if k < s.inputLength && s.input[k] == ';' {
+				if s.peek(k) == ';' {
 					k++
 				}
-
-				if k < s.inputLength && (s.input[k] == '\n' || s.input[k] == '\r') {
-
+				if s.peek(k) == '\n' || s.peek(k) == '\r' {
 					//set position to whitespace before label
-					nl := string(s.input[n-2 : n])
+					nl := s.peekSpanString(n-2, 2)
 					if nl == "\r\n" {
 						n -= 2
 					} else {
 						n--
 					}
-
 					s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
 					break
 				}
@@ -1966,18 +1844,15 @@ func (s *LexerState) nowdoc() *Token {
 
 		break
 	}
-
-	s.position = n
-
-	return NewToken(EncapsulatedAndWhitespace, start, s.position-start, modeStack)
+	s.stepLoop(n)
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, modeStack)
 }
 
-func (s *LexerState) heredoc() *Token {
-	c := s.input[s.position]
-	start := s.position
+func (s *Lexer) heredoc() *Token {
+	c := s.r
+	start := s.offset
 	modeStack := s.ModeStack()
 	var t *Token
-
 	switch c {
 	case '$':
 		t = s.encapsulatedDollar()
@@ -1985,106 +1860,85 @@ func (s *LexerState) heredoc() *Token {
 			return t
 		}
 	case '{':
-		if s.position+1 < s.inputLength && s.input[s.position+1] == '$' {
+		if s.peek(1) == '$' {
 			s.modeStack = append(s.modeStack, ModeScripting)
-			s.position++
-
+			s.step()
 			return NewToken(CurlyOpen, start, 1, modeStack)
 		}
 	}
-
 	return s.heredocAny()
 }
 
-func (s *LexerState) heredocAny() *Token {
-	start := s.position
-	n := start
+func (s *Lexer) heredocAny() *Token {
+	start := s.offset
+	n := 0
 	var c rune
 	modeStack := s.ModeStack()
-
-	for n < s.inputLength {
-		c = s.input[n]
+	for s.peek(n) != -1 {
+		c = s.peek(n)
 		n++
-
 		switch c {
 		case '\r', '\n':
-			if c == '\r' && n < s.inputLength && s.input[n] == '\n' {
+			mark := n - 1
+			if c == '\r' && s.peek(n) == '\n' {
 				n++
 			}
-
 			/* Check for ending label on the next line */
-			heredocLabel := string(s.input[n : n+len(s.heredocLabel)])
-			if n < s.inputLength && heredocLabel == s.heredocLabel {
+			heredocLabel := s.peekSpanString(n-1, len(s.heredocLabel))
+			if s.peek(n) != -1 && heredocLabel == s.heredocLabel {
 				k := n + len(s.heredocLabel)
-
-				if k < s.inputLength && s.input[k] == ';' {
+				if s.peek(k) == ';' {
 					k++
 				}
-
-				if k < s.inputLength && (s.input[k] == '\n' || s.input[k] == '\r') {
-					nl := string(s.input[n-2 : n])
-					if nl == "\r\n" {
-						n -= 2
-					} else {
-						n--
-					}
-
-					s.position = n
+				if s.peek(k) == '\n' || s.peek(k) == '\r' {
+					s.stepLoop(mark)
 					s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
-
-					return NewToken(EncapsulatedAndWhitespace, start, s.position-start, modeStack)
+					return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, modeStack)
 				}
 			}
-
 			continue
 		case '$':
-			if n < s.inputLength && (isLabelStart(s.input[n]) || s.input[n] == '{') {
+			if isLabelStart(s.peek(n)) || s.peek(n) == '{' {
 				break
 			}
 			continue
 		case '{':
-			if n < s.inputLength && s.input[n] == '$' {
+			if s.peek(n) == '$' {
 				break
 			}
 			continue
 		case '\\':
-			if n < s.inputLength && s.input[n] != '\n' && s.input[n] != '\r' {
+			if s.peek(n) != '\n' && s.peek(n) != '\r' {
 				n++
 			}
 			continue
 		default:
 			continue
 		}
-
 		n--
 		break
 	}
-
-	s.position = n
-
-	return NewToken(EncapsulatedAndWhitespace, start, s.position-start, modeStack)
+	s.stepLoop(n)
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, modeStack)
 }
 
-func (s *LexerState) endHeredoc() *Token {
-	start := s.position
+func (s *Lexer) endHeredoc() *Token {
+	start := s.offset
 	//consume ws
-	for s.position++; s.position < s.inputLength && (s.input[s.position] == '\r' || s.input[s.position] == '\n'); s.position++ {
+	for s.step(); s.r == '\r' || s.r == '\n'; s.step() {
 	}
-
-	s.position += len(s.heredocLabel)
+	s.stepLoop(len(s.heredocLabel))
 	s.heredocLabel = ""
-	t := NewToken(EndHeredoc, start, s.position-start, s.ModeStack())
+	t := NewToken(EndHeredoc, start, s.offset-start, s.ModeStack())
 	s.modeStack[len(s.modeStack)-1] = ModeScripting
-
 	return t
 }
 
-func (s *LexerState) backtick() *Token {
-	c := s.input[s.position]
-	start := s.position
+func (s *Lexer) backtick() *Token {
+	c := s.r
+	start := s.offset
 	modeStack := s.ModeStack()
 	var t *Token
-
 	switch c {
 	case '$':
 		t = s.encapsulatedDollar()
@@ -2092,163 +1946,138 @@ func (s *LexerState) backtick() *Token {
 			return t
 		}
 	case '{':
-		if s.position+1 < s.inputLength && s.input[s.position+1] == '$' {
+		if s.peek(1) == '$' {
 			s.modeStack = append(s.modeStack, ModeScripting)
-			s.position++
-
+			s.step()
 			return NewToken(CurlyOpen, start, 1, modeStack)
 		}
 	case '`':
 		s.modeStack[len(s.modeStack)-1] = ModeScripting
-		s.position++
-
+		s.step()
 		return NewToken(Backtick, start, 1, modeStack)
 	}
-
 	return s.backtickAny()
 }
 
-func (s *LexerState) backtickAny() *Token {
-	n := s.position
+func (s *Lexer) backtickAny() *Token {
+	n := s.offset
 	var c rune
-	start := n
-
-	if s.input[n] == '\\' && n < s.inputLength {
+	start := 0
+	if s.peek(n) == '\\' && s.peek(n+1) != -1 {
 		n++
 	}
-
-	for n < s.inputLength {
-		c = s.input[n]
+	for s.peek(n) != -1 {
+		c = s.peek(n)
 		n++
-
 		switch c {
 		case '`':
 			break
 		case '$':
-			if n < s.inputLength && (isLabelStart(s.input[n]) || s.input[n] == '{') {
+			if isLabelStart(s.peek(n)) || s.peek(n) == '{' {
 				break
 			}
 			continue
 		case '{':
-			if n < s.inputLength && s.input[n] == '$' {
+			if s.peek(n) == '$' {
 				break
 			}
 			continue
 		case '\\':
-			if n < s.inputLength {
+			if s.peek(n) != -1 {
 				n++
 			}
 			continue
 		default:
 			continue
 		}
-
 		n--
 		break
 	}
-
-	s.position = n
-
-	return NewToken(EncapsulatedAndWhitespace, start, s.position-start, s.modeStack)
+	s.stepLoop(n)
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, s.modeStack)
 }
 
-func (s *LexerState) varOffset() *Token {
-	start := s.position
-	c := s.input[s.position]
-
-	switch s.input[s.position] {
+func (s *Lexer) varOffset() *Token {
+	start := s.offset
+	c := s.r
+	switch s.r {
 	case '$':
-		if s.position+1 < s.inputLength && isLabelStart(s.input[s.position+1]) {
-			s.position++
-			for s.position++; s.position < s.inputLength && isLabelChar(s.input[s.position]); s.position++ {
+		if isLabelStart(s.peek(1)) {
+			s.step()
+			for s.step(); isLabelChar(s.r); s.step() {
 			}
-
-			return NewToken(VariableName, start, s.position-start, s.ModeStack())
+			return NewToken(VariableName, start, s.offset-start, s.ModeStack())
 		}
 	case '[':
-		s.position++
+		s.step()
 
 		return NewToken(OpenBracket, start, 1, s.ModeStack())
 	case ']':
 		s.modeStack = s.modeStack[0 : len(s.modeStack)-1]
-		s.position++
+		s.step()
 
 		return NewToken(CloseBracket, start, 1, s.ModeStack())
 	case '-':
-		s.position++
+		s.step()
 
 		return NewToken(Minus, start, 1, s.ModeStack())
 	default:
 		if c >= '0' && c <= '9' {
 			return s.varOffsetNumeric()
 		} else if isLabelStart(c) {
-			for s.position++; s.position < s.inputLength && isLabelChar(s.input[s.position]); s.position++ {
+			for s.step(); isLabelChar(s.r); s.step() {
 			}
-
-			return NewToken(Name, start, s.position-start, s.ModeStack())
+			return NewToken(Name, start, s.offset-start, s.ModeStack())
 		}
 	}
-
 	//unexpected char
 	modeStack := s.ModeStack()
 	s.modeStack = s.modeStack[0 : len(s.modeStack)-1]
-	s.position++
-
+	s.step()
 	return NewToken(Unknown, start, 1, modeStack)
 }
 
-func (s *LexerState) varOffsetNumeric() *Token {
-	start := s.position
-	c := s.input[s.position]
-
+func (s *Lexer) varOffsetNumeric() *Token {
+	start := s.offset
+	c := s.r
 	if c == '0' {
-		k := s.position + 1
-		if k < s.inputLength && s.input[k] == 'b' {
-			if k++; k < s.inputLength && (s.input[k] == '1' || s.input[k] == '0') {
-				for k++; k < s.inputLength && (s.input[k] == '1' || s.input[k] == '0'); k++ {
+		k := 1
+		if s.peek(k) == 'b' {
+			if k++; s.peek(k) == '1' || s.peek(k) == '0' {
+				for k++; s.peek(k) == '1' || s.peek(k) == '0'; k++ {
 				}
-				s.position = k
-
-				return NewToken(IntegerLiteral, start, s.position-start, s.ModeStack())
+				s.stepLoop(k)
+				return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
 			}
 		}
-
-		if k < s.inputLength && s.input[k] == 'x' {
-			if k++; k < s.inputLength && isHexDigit(s.input[k]) {
-				for k++; k < s.inputLength && isHexDigit(s.input[k]); k++ {
+		if s.peek(k) == 'x' {
+			if k++; isHexDigit(s.peek(k)) {
+				for k++; isHexDigit(s.peek(k)); k++ {
 				}
-				s.position = k
-
-				return NewToken(IntegerLiteral, start, s.position-start, s.ModeStack())
+				s.stepLoop(k)
+				return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
 			}
 		}
 	}
-
-	for s.position++; s.position < s.inputLength && s.input[s.position] >= '0' && s.input[s.position] <= '9'; s.position++ {
+	for s.step(); s.r >= '0' && s.r <= '9'; s.step() {
 	}
-
-	return NewToken(IntegerLiteral, start, s.position-start, s.ModeStack())
+	return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
 }
 
-func (s *LexerState) lookingForVarName() *Token {
-	start := s.position
+func (s *Lexer) lookingForVarName() *Token {
+	start := s.offset
 	modeStack := s.ModeStack()
-
-	if isLabelStart(s.input[s.position]) {
-		k := s.position + 1
-		for k++; k < s.inputLength && isLabelChar(s.input[k]); k++ {
+	if isLabelStart(s.r) {
+		k := 1
+		for k++; isLabelChar(s.peek(k)); k++ {
 		}
-
-		if k < s.inputLength && (s.input[k] == '[' || s.input[k] == '}') {
+		if s.peek(k) == '[' || s.peek(k) == '}' {
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
-			s.position = k
-
-			return NewToken(VariableName, start, s.position-start, modeStack)
+			s.stepLoop(k)
+			return NewToken(VariableName, start, s.offset-start, modeStack)
 		}
 	}
-
 	s.modeStack[len(s.modeStack)-1] = ModeScripting
-
 	return nil
 }
 

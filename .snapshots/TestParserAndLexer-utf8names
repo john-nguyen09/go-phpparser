@@ -7,36 +7,36 @@
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) VariableName,
     Offset: (int) 6,
-    Length: (int) 5
+    Length: (int) 9
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 11,
-    Length: (int) 1
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Equals,
-    Offset: (int) 12,
-    Length: (int) 1
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 13,
-    Length: (int) 1
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) IntegerLiteral,
-    Offset: (int) 14,
-    Length: (int) 1
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
     Offset: (int) 15,
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) EndOfFile,
+    Type: (lexer.TokenType) Equals,
     Offset: (int) 16,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 17,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) IntegerLiteral,
+    Offset: (int) 18,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 19,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 20,
     Length: (int) 0
   }
 }
@@ -58,16 +58,16 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 5 ModeScripting)
+                (*lexer.Token)(VariableName 6 9 ModeScripting)
               }
             }),
-            (*lexer.Token)(Whitespace 11 1 ModeScripting),
-            (*lexer.Token)(Equals 12 1 ModeScripting),
-            (*lexer.Token)(Whitespace 13 1 ModeScripting),
-            (*lexer.Token)(IntegerLiteral 14 1 ModeScripting)
+            (*lexer.Token)(Whitespace 15 1 ModeScripting),
+            (*lexer.Token)(Equals 16 1 ModeScripting),
+            (*lexer.Token)(Whitespace 17 1 ModeScripting),
+            (*lexer.Token)(IntegerLiteral 18 1 ModeScripting)
           }
         }),
-        (*lexer.Token)(Semicolon 15 1 ModeScripting)
+        (*lexer.Token)(Semicolon 19 1 ModeScripting)
       }
     })
   }

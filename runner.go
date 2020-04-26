@@ -38,7 +38,7 @@ func main() {
 }
 
 func writeLex(filePath string, data []byte) {
-	lexerState := lexer.NewLexerState(string(data), nil, 0)
+	lexerState := lexer.NewLexer(data, nil, 0)
 	outFile, err := os.Create(filePath + ".lexed")
 
 	if err != nil {
@@ -63,7 +63,7 @@ func writeParseTree(filePath string, data []byte) {
 	}
 
 	writer := bufio.NewWriter(outFile)
-	rootNode := parser.Parse(string(data))
+	rootNode := parser.Parse(data)
 
 	traverse(writer, rootNode, 0)
 
