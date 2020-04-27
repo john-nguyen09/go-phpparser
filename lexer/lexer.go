@@ -6,8 +6,6 @@ import (
 	"strconv"
 	"strings"
 	"unicode/utf8"
-
-	"github.com/john-nguyen09/go-phpparser/queue"
 )
 
 type TokenType uint8
@@ -588,31 +586,54 @@ func (token Token) String() string {
 	return str
 }
 
+func decodeAll(bs []byte) ([]rune, []uint8) {
+	runes := make([]rune, 0, len(bs))
+	sizes := make([]uint8, 0, len(bs))
+	lenBs := len(bs)
+	for i := 0; i < lenBs; {
+		c := bs[i]
+		var (
+			r    rune
+			size int
+		)
+		if c < utf8.RuneSelf {
+			r = rune(c)
+			size = 1
+		} else {
+			r, size = utf8.DecodeRune(bs[i:])
+		}
+		runes = append(runes, r)
+		sizes = append(sizes, uint8(size))
+		i += size
+	}
+	return runes, sizes
+}
+
 type Lexer struct {
 	offset                   int
 	nextOffset               int
-	source                   []byte
+	source                   []rune
+	sourceSizes              []uint8
 	modeStack                []LexerMode
 	doubleQuoteScannedLength int
 	heredocLabel             string
 	r                        rune
-	decodedQueue             *queue.Rune
-	decodedSizeQueue         *queue.Int
 }
 
 func NewLexer(source []byte, modeStack []LexerMode, offset int) *Lexer {
 	if modeStack == nil {
 		modeStack = []LexerMode{ModeInitial}
 	}
+	runes, sizes := decodeAll(source)
 	lexer := &Lexer{
 		offset:                   offset,
-		source:                   source,
+		nextOffset:               offset,
+		source:                   runes,
+		sourceSizes:              sizes,
 		modeStack:                modeStack,
 		doubleQuoteScannedLength: -1,
 		heredocLabel:             "",
 		r:                        0,
-		decodedQueue:             queue.NewRune(),
-		decodedSizeQueue:         queue.NewInt(),
 	}
 	lexer.step()
 	return lexer
@@ -633,21 +654,23 @@ func Lex(source []byte) []*Token {
 }
 
 func (s *Lexer) step() {
-	var (
-		r    rune
-		size int
-	)
-	if s.decodedQueue.Length() != 0 {
-		r, size = s.decodedQueue.Remove(), s.decodedSizeQueue.Remove()
-	} else {
-		r, size = utf8.DecodeRune(s.source[s.nextOffset:])
+	if s.nextOffset > len(s.source) {
+		return
 	}
-	if size == 0 {
-		r = -1
+	if s.nextOffset == len(s.source) {
+		s.r = -1
+		if s.nextOffset != 0 {
+			s.offset++
+		}
+		s.nextOffset++
+		return
 	}
+	r := s.source[s.nextOffset]
 	s.r = r
-	s.offset = s.nextOffset
-	s.nextOffset += size
+	if s.nextOffset > 0 {
+		s.offset += int(s.sourceSizes[s.nextOffset])
+	}
+	s.nextOffset++
 }
 
 func (s *Lexer) stepLoop(n int) {
@@ -656,49 +679,20 @@ func (s *Lexer) stepLoop(n int) {
 	}
 }
 
-// Param offset starts with 1 since 0 is just the current r
-func (s *Lexer) decodeRuneOffset(offset int) (rune, int) {
-	if offset <= 0 {
-		return s.r, 0
-	}
-	if offset-1 < s.decodedQueue.Length() {
-		totalSize := 0
-		for _, size := range s.decodedSizeQueue.Slice(0, offset-1) {
-			totalSize += size
-		}
-		return s.decodedQueue.Get(offset - 1), s.decodedSizeQueue.Get(offset-1) + totalSize
-	}
-	if offset == 1 {
-		r, size := utf8.DecodeRune(s.source[s.nextOffset:])
-		s.decodedQueue.Add(r)
-		s.decodedSizeQueue.Add(size)
-		return r, size
-	}
-	totalSize := 0
-	if offset-1 >= 1 {
-		_, totalSize = s.decodeRuneOffset(offset - 1)
-	}
-	r, size := utf8.DecodeRune(s.source[s.nextOffset+totalSize:])
-	if size == 0 {
-		r = -1
-	}
-	s.decodedQueue.Add(r)
-	s.decodedSizeQueue.Add(size)
-	return r, totalSize + size
-}
-
 func (s *Lexer) peek(offset int) rune {
-	if offset == 0 {
-		return s.r
+	if s.nextOffset+offset-1 >= len(s.source) {
+		return -1
 	}
-	r, _ := s.decodeRuneOffset(offset)
-	return r
+	return s.source[s.nextOffset+offset-1]
 }
 
 func (s *Lexer) peekSpanString(offset int, n int) string {
-	// Make sure the queue is filled
-	s.peek(offset + n)
-	return string(s.decodedQueue.Slice(offset, offset+n))
+	offset += s.nextOffset
+	end := offset + n
+	if end >= len(s.source) {
+		end = len(s.source) - 1
+	}
+	return string(s.source[offset:end])
 }
 
 // ModeStack returns a copy of modeStack
@@ -1385,11 +1379,12 @@ func (s *Lexer) scriptingDoubleQuote(start int) *Token {
 
 func (s *Lexer) scriptingLabelStart() *Token {
 	start := s.offset
+	startPosition := s.nextOffset - 1
 	firstRune := s.r
 	for s.step(); isLabelChar(s.r); s.step() {
 	}
 
-	text := string(s.source[start:s.offset])
+	text := string(s.source[startPosition : s.nextOffset-1])
 	tokenType := Unknown
 	if firstRune == '_' {
 		switch text {
@@ -1631,9 +1626,9 @@ func (s *Lexer) scriptingHeredoc(start int) *Token {
 		s.modeStack[len(s.modeStack)-1] = ModeHereDoc
 	}
 	//check for end on next line
-	endHereDocLabel := string(s.source[s.offset+len(s.heredocLabel) : s.offset+len(s.heredocLabel)+3])
+	endHereDocLabel := string(s.source[s.nextOffset-1+len(s.heredocLabel) : s.nextOffset-1+len(s.heredocLabel)+3])
 	isEndOfLine, err := regexp.MatchString("^;?(?:\r\n|\n|\r)", endHereDocLabel)
-	if err == nil && string(s.source[s.offset:s.offset+len(s.heredocLabel)]) == s.heredocLabel && isEndOfLine {
+	if err == nil && string(s.source[s.nextOffset-1:s.nextOffset-1+len(s.heredocLabel)]) == s.heredocLabel && isEndOfLine {
 		s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
 	}
 	return t
@@ -1667,7 +1662,7 @@ func (s *Lexer) scriptingYield(start int) *Token {
 	if isWhitespace(s.peek(k)) {
 		for k++; isWhitespace(s.peek(k)); k++ {
 		}
-		if strings.ToLower(string(s.source[k:k+4])) == "from" {
+		if strings.ToLower(string(s.peekSpanString(k, 4))) == "from" {
 			s.stepLoop(k + 4)
 			return NewToken(YieldFrom, start, s.offset-start, s.ModeStack())
 		}
