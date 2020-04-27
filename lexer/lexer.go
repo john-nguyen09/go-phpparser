@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/john-nguyen09/go-phpparser/queue"
 )
 
 type TokenType uint8
@@ -594,8 +596,8 @@ type Lexer struct {
 	doubleQuoteScannedLength int
 	heredocLabel             string
 	r                        rune
-	decodedQueue             []rune
-	decodedSizeQueue         []int
+	decodedQueue             *queue.Rune
+	decodedSizeQueue         *queue.Int
 }
 
 func NewLexer(source []byte, modeStack []LexerMode, offset int) *Lexer {
@@ -609,8 +611,8 @@ func NewLexer(source []byte, modeStack []LexerMode, offset int) *Lexer {
 		doubleQuoteScannedLength: -1,
 		heredocLabel:             "",
 		r:                        0,
-		decodedQueue:             []rune{},
-		decodedSizeQueue:         []int{},
+		decodedQueue:             queue.NewRune(),
+		decodedSizeQueue:         queue.NewInt(),
 	}
 	lexer.step()
 	return lexer
@@ -635,9 +637,8 @@ func (s *Lexer) step() {
 		r    rune
 		size int
 	)
-	if len(s.decodedQueue) != 0 {
-		r, size, s.decodedQueue, s.decodedSizeQueue = s.decodedQueue[0], s.decodedSizeQueue[0],
-			s.decodedQueue[1:], s.decodedSizeQueue[1:]
+	if s.decodedQueue.Length() != 0 {
+		r, size = s.decodedQueue.Remove(), s.decodedSizeQueue.Remove()
 	} else {
 		r, size = utf8.DecodeRune(s.source[s.nextOffset:])
 	}
@@ -660,17 +661,17 @@ func (s *Lexer) decodeRuneOffset(offset int) (rune, int) {
 	if offset <= 0 {
 		return s.r, 0
 	}
-	if offset-1 < len(s.decodedQueue) {
+	if offset-1 < s.decodedQueue.Length() {
 		totalSize := 0
-		for _, size := range s.decodedSizeQueue[:offset-1] {
+		for _, size := range s.decodedSizeQueue.Slice(0, offset-1) {
 			totalSize += size
 		}
-		return s.decodedQueue[offset-1], s.decodedSizeQueue[offset-1] + totalSize
+		return s.decodedQueue.Get(offset - 1), s.decodedSizeQueue.Get(offset-1) + totalSize
 	}
 	if offset == 1 {
 		r, size := utf8.DecodeRune(s.source[s.nextOffset:])
-		s.decodedQueue = append(s.decodedQueue, r)
-		s.decodedSizeQueue = append(s.decodedSizeQueue, size)
+		s.decodedQueue.Add(r)
+		s.decodedSizeQueue.Add(size)
 		return r, size
 	}
 	totalSize := 0
@@ -681,8 +682,8 @@ func (s *Lexer) decodeRuneOffset(offset int) (rune, int) {
 	if size == 0 {
 		r = -1
 	}
-	s.decodedQueue = append(s.decodedQueue, r)
-	s.decodedSizeQueue = append(s.decodedSizeQueue, size)
+	s.decodedQueue.Add(r)
+	s.decodedSizeQueue.Add(size)
 	return r, totalSize + size
 }
 
@@ -697,7 +698,7 @@ func (s *Lexer) peek(offset int) rune {
 func (s *Lexer) peekSpanString(offset int, n int) string {
 	// Make sure the queue is filled
 	s.peek(offset + n)
-	return string(s.decodedQueue[offset : offset+n])
+	return string(s.decodedQueue.Slice(offset, offset+n))
 }
 
 // ModeStack returns a copy of modeStack
