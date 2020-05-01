@@ -390,7 +390,7 @@
                     }
                   },
                   Unexpected: (*lexer.Token)(EndOfFile 134 0 ModeScripting ModeLookingForProperty),
-                  Expected: (lexer.TokenType) 
+                  Expected: (lexer.TokenType) Undefined
                 })
               }
             })

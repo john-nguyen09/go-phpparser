@@ -191,6 +191,21 @@ const (
 	WhileStatement
 	YieldExpression
 	YieldFromExpression
+	DocumentComment
+	DocumentCommentDescription
+	DocumentCommentTag
+	DocumentCommentAuthorTag
+	DocumentCommentAuthor
+	DocumentCommentEmail
+	DocumentCommentDeprecatedTag
+	DocumentCommentGlobalTag
+	DocumentCommentMethodTag
+	DocumentCommentParamTag
+	DocumentCommentPropertyTag
+	DocumentCommentReturnTag
+	DocumentCommentThrowsTag
+	DocumentCommentVarTag
+	TypeUnion
 )
 
 func (phraseType PhraseType) String() string {
@@ -559,6 +574,36 @@ func (phraseType PhraseType) String() string {
 		return "YieldExpression"
 	case YieldFromExpression:
 		return "YieldFromExpression"
+	case DocumentComment:
+		return "DocumentComment"
+	case DocumentCommentDescription:
+		return "DocumentCommentDescription"
+	case DocumentCommentTag:
+		return "DocumentCommentTag"
+	case DocumentCommentAuthorTag:
+		return "DocumentCommentAuthorTag"
+	case DocumentCommentAuthor:
+		return "DocumentCommentAuthor"
+	case DocumentCommentEmail:
+		return "DocumentCommentEmail"
+	case DocumentCommentDeprecatedTag:
+		return "DocumentCommentDeprecatedTag"
+	case DocumentCommentGlobalTag:
+		return "DocumentCommentGlobalTag"
+	case DocumentCommentMethodTag:
+		return "DocumentCommentMethodTag"
+	case DocumentCommentParamTag:
+		return "DocumentCommentParamTag"
+	case DocumentCommentPropertyTag:
+		return "DocumentCommentPropertyTag"
+	case DocumentCommentReturnTag:
+		return "DocumentCommentReturnTag"
+	case DocumentCommentThrowsTag:
+		return "DocumentCommentThrowsTag"
+	case DocumentCommentVarTag:
+		return "DocumentCommentVarTag"
+	case TypeUnion:
+		return "TypeUnion"
 	}
 
 	return ""

@@ -1,4 +1,4 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=25) {
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=29) {
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) OpenTag,
     Offset: (int) 0,
@@ -10,9 +10,29 @@
     Length: (int) 5
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) DocumentComment,
+    Type: (lexer.TokenType) DocumentCommentStart,
     Offset: (int) 11,
-    Length: (int) 15
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 14,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 15,
+    Length: (int) 8
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 23,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEnd,
+    Offset: (int) 24,
+    Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
@@ -135,7 +155,25 @@
       }
     }),
     (*lexer.Token)(Whitespace 6 5 ModeScripting),
-    (*lexer.Token)(DocumentComment 11 15 ModeScripting),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) DocumentComment,
+      Children: ([]phrase.AstNode) (len=3) {
+        (*lexer.Token)(DocumentCommentStart 11 3 ModeScripting ModeDocumentBlock),
+        (*phrase.ParseError)({
+          Phrase: (phrase.Phrase) {
+            Type: (phrase.PhraseType) Error,
+            Children: ([]phrase.AstNode) (len=3) {
+              (*lexer.Token)(Whitespace 14 1 ModeScripting ModeDocumentBlock),
+              (*lexer.Token)(Name 15 8 ModeScripting ModeDocumentBlock),
+              (*lexer.Token)(Whitespace 23 1 ModeScripting ModeDocumentBlock)
+            }
+          },
+          Unexpected: (*lexer.Token)(Name 15 8 ModeScripting ModeDocumentBlock),
+          Expected: (lexer.TokenType) Undefined
+        }),
+        (*lexer.Token)(DocumentCommentEnd 24 2 ModeScripting ModeDocumentBlock)
+      }
+    }),
     (*lexer.Token)(Whitespace 26 5 ModeScripting),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) FunctionDeclaration,

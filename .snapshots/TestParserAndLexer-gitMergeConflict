@@ -74,7 +74,7 @@
         }
       },
       Unexpected: (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
-      Expected: (lexer.TokenType) 
+      Expected: (lexer.TokenType) Undefined
     })
   }
 })

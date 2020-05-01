@@ -57,7 +57,7 @@
                     }
                   },
                   Unexpected: (*lexer.Token)(EndOfFile 24 0 ModeScripting),
-                  Expected: (lexer.TokenType) 
+                  Expected: (lexer.TokenType) Undefined
                 })
               }
             })

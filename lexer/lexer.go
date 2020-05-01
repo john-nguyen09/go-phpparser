@@ -3,588 +3,9 @@ package lexer
 import (
 	"bytes"
 	"regexp"
-	"strconv"
 	"strings"
 	"unicode/utf8"
 )
-
-type TokenType uint8
-
-const (
-	// Misc
-	Undefined TokenType = iota
-	Unknown
-	EndOfFile
-
-	Abstract
-	Array
-	As
-	Break
-	Callable
-	Case
-	Catch
-	Class
-	ClassConstant
-	Clone
-	Const
-	Continue
-	Declare
-	Default
-	Do
-	Echo
-	Else
-	ElseIf
-	Empty
-	EndDeclare
-	EndFor
-	EndForeach
-	EndIf
-	EndSwitch
-	EndWhile
-	EndHeredoc
-	Eval
-	Exit
-	Extends
-	Final
-	Finally
-	For
-	ForEach
-	Function
-	Global
-	Goto
-	HaltCompiler
-	If
-	Implements
-	Include
-	IncludeOnce
-	InstanceOf
-	InsteadOf
-	Interface
-	Isset
-	List
-	And
-	Or
-	Xor
-	Namespace
-	New
-	Print
-	Private
-	Public
-	Protected
-	Require
-	RequireOnce
-	Return
-	Static
-	Switch
-	Throw
-	Trait
-	Try
-	Unset
-	Use
-	Var
-	While
-	Yield
-	YieldFrom
-
-	//keyword magic constants
-	DirectoryConstant
-	FileConstant
-	LineConstant
-	FunctionConstant
-	MethodConstant
-	NamespaceConstant
-	TraitConstant
-
-	//literals
-	StringLiteral
-	FloatingLiteral
-	EncapsulatedAndWhitespace
-	Text
-	IntegerLiteral
-
-	//Names
-	Name
-	VariableName
-
-	//Operators and Punctuation
-	Equals
-	Tilde
-	Colon
-	Semicolon
-	Exclamation
-	Dollar
-	ForwardSlash
-	Percent
-	Comma
-	AtSymbol
-	Backtick
-	Question
-	DoubleQuote
-	SingleQuote
-	LessThan
-	GreaterThan
-	Asterisk
-	AmpersandAmpersand
-	Ampersand
-	AmpersandEquals
-	CaretEquals
-	LessThanLessThan
-	LessThanLessThanEquals
-	GreaterThanGreaterThan
-	GreaterThanGreaterThanEquals
-	BarEquals
-	Plus
-	PlusEquals
-	AsteriskAsterisk
-	AsteriskAsteriskEquals
-	Arrow
-	OpenBrace
-	OpenBracket
-	OpenParenthesis
-	CloseBrace
-	CloseBracket
-	CloseParenthesis
-	QuestionQuestion
-	Bar
-	BarBar
-	Caret
-	Dot
-	DotEquals
-	CurlyOpen
-	MinusMinus
-	ForwardslashEquals
-	DollarCurlyOpen
-	FatArrow
-	ColonColon
-	Ellipsis
-	PlusPlus
-	EqualsEquals
-	GreaterThanEquals
-	EqualsEqualsEquals
-	ExclamationEquals
-	ExclamationEqualsEquals
-	LessThanEquals
-	Spaceship
-	Minus
-	MinusEquals
-	PercentEquals
-	AsteriskEquals
-	Backslash
-	BooleanCast
-	UnsetCast
-	StringCast
-	ObjectCast
-	IntegerCast
-	FloatCast
-	StartHeredoc
-	ArrayCast
-	OpenTag
-	OpenTagEcho
-	CloseTag
-
-	//Comments whitespace
-	Comment
-	DocumentComment
-	Whitespace
-)
-
-func (tokenType TokenType) String() string {
-	switch tokenType {
-	case Unknown:
-		return "Unknown"
-	case EndOfFile:
-		return "EndOfFile"
-	case Abstract:
-		return "Abstract"
-	case Array:
-		return "Array"
-	case As:
-		return "As"
-	case Break:
-		return "Break"
-	case Callable:
-		return "Callable"
-	case Case:
-		return "Case"
-	case Catch:
-		return "Catch"
-	case Class:
-		return "Class"
-	case ClassConstant:
-		return "ClassConstant"
-	case Clone:
-		return "Clone"
-	case Const:
-		return "Const"
-	case Continue:
-		return "Continue"
-	case Declare:
-		return "Declare"
-	case Default:
-		return "Default"
-	case Do:
-		return "Do"
-	case Echo:
-		return "Echo"
-	case Else:
-		return "Else"
-	case ElseIf:
-		return "ElseIf"
-	case Empty:
-		return "Empty"
-	case EndDeclare:
-		return "EndDeclare"
-	case EndFor:
-		return "EndFor"
-	case EndForeach:
-		return "EndForeach"
-	case EndIf:
-		return "EndIf"
-	case EndSwitch:
-		return "EndSwitch"
-	case EndWhile:
-		return "EndWhile"
-	case EndHeredoc:
-		return "EndHeredoc"
-	case Eval:
-		return "Eval"
-	case Exit:
-		return "Exit"
-	case Extends:
-		return "Extends"
-	case Final:
-		return "Final"
-	case Finally:
-		return "Finally"
-	case For:
-		return "For"
-	case ForEach:
-		return "ForEach"
-	case Function:
-		return "Function"
-	case Global:
-		return "Global"
-	case Goto:
-		return "Goto"
-	case HaltCompiler:
-		return "HaltCompiler"
-	case If:
-		return "If"
-	case Implements:
-		return "Implements"
-	case Include:
-		return "Include"
-	case IncludeOnce:
-		return "IncludeOnce"
-	case InstanceOf:
-		return "InstanceOf"
-	case InsteadOf:
-		return "InsteadOf"
-	case Interface:
-		return "Interface"
-	case Isset:
-		return "Isset"
-	case List:
-		return "List"
-	case And:
-		return "And"
-	case Or:
-		return "Or"
-	case Xor:
-		return "Xor"
-	case Namespace:
-		return "Namespace"
-	case New:
-		return "New"
-	case Print:
-		return "Print"
-	case Private:
-		return "Private"
-	case Public:
-		return "Public"
-	case Protected:
-		return "Protected"
-	case Require:
-		return "Require"
-	case RequireOnce:
-		return "RequireOnce"
-	case Return:
-		return "Return"
-	case Static:
-		return "Static"
-	case Switch:
-		return "Switch"
-	case Throw:
-		return "Throw"
-	case Trait:
-		return "Trait"
-	case Try:
-		return "Try"
-	case Unset:
-		return "Unset"
-	case Use:
-		return "Use"
-	case Var:
-		return "Var"
-	case While:
-		return "While"
-	case Yield:
-		return "Yield"
-	case YieldFrom:
-		return "YieldFrom"
-	case DirectoryConstant:
-		return "DirectoryConstant"
-	case FileConstant:
-		return "FileConstant"
-	case LineConstant:
-		return "LineConstant"
-	case FunctionConstant:
-		return "FunctionConstant"
-	case MethodConstant:
-		return "MethodConstant"
-	case NamespaceConstant:
-		return "NamespaceConstant"
-	case TraitConstant:
-		return "TraitConstant"
-	case StringLiteral:
-		return "StringLiteral"
-	case FloatingLiteral:
-		return "FloatingLiteral"
-	case EncapsulatedAndWhitespace:
-		return "EncapsulatedAndWhitespace"
-	case Text:
-		return "Text"
-	case IntegerLiteral:
-		return "IntegerLiteral"
-	case Name:
-		return "Name"
-	case VariableName:
-		return "VariableName"
-	case Equals:
-		return "Equals"
-	case Tilde:
-		return "Tilde"
-	case Colon:
-		return "Colon"
-	case Semicolon:
-		return "Semicolon"
-	case Exclamation:
-		return "Exclamation"
-	case Dollar:
-		return "Dollar"
-	case ForwardSlash:
-		return "ForwardSlash"
-	case Percent:
-		return "Percent"
-	case Comma:
-		return "Comma"
-	case AtSymbol:
-		return "AtSymbol"
-	case Backtick:
-		return "Backtick"
-	case Question:
-		return "Question"
-	case DoubleQuote:
-		return "DoubleQuote"
-	case SingleQuote:
-		return "SingleQuote"
-	case LessThan:
-		return "LessThan"
-	case GreaterThan:
-		return "GreaterThan"
-	case Asterisk:
-		return "Asterisk"
-	case AmpersandAmpersand:
-		return "AmpersandAmpersand"
-	case Ampersand:
-		return "Ampersand"
-	case AmpersandEquals:
-		return "AmpersandEquals"
-	case CaretEquals:
-		return "CaretEquals"
-	case LessThanLessThan:
-		return "LessThanLessThan"
-	case LessThanLessThanEquals:
-		return "LessThanLessThanEquals"
-	case GreaterThanGreaterThan:
-		return "GreaterThanGreaterThan"
-	case GreaterThanGreaterThanEquals:
-		return "GreaterThanGreaterThanEquals"
-	case BarEquals:
-		return "BarEquals"
-	case Plus:
-		return "Plus"
-	case PlusEquals:
-		return "PlusEquals"
-	case AsteriskAsterisk:
-		return "AsteriskAsterisk"
-	case AsteriskAsteriskEquals:
-		return "AsteriskAsteriskEquals"
-	case Arrow:
-		return "Arrow"
-	case OpenBrace:
-		return "OpenBrace"
-	case OpenBracket:
-		return "OpenBracket"
-	case OpenParenthesis:
-		return "OpenParenthesis"
-	case CloseBrace:
-		return "CloseBrace"
-	case CloseBracket:
-		return "CloseBracket"
-	case CloseParenthesis:
-		return "CloseParenthesis"
-	case QuestionQuestion:
-		return "QuestionQuestion"
-	case Bar:
-		return "Bar"
-	case BarBar:
-		return "BarBar"
-	case Caret:
-		return "Caret"
-	case Dot:
-		return "Dot"
-	case DotEquals:
-		return "DotEquals"
-	case CurlyOpen:
-		return "CurlyOpen"
-	case MinusMinus:
-		return "MinusMinus"
-	case ForwardslashEquals:
-		return "ForwardslashEquals"
-	case DollarCurlyOpen:
-		return "DollarCurlyOpen"
-	case FatArrow:
-		return "FatArrow"
-	case ColonColon:
-		return "ColonColon"
-	case Ellipsis:
-		return "Ellipsis"
-	case PlusPlus:
-		return "PlusPlus"
-	case EqualsEquals:
-		return "EqualsEquals"
-	case GreaterThanEquals:
-		return "GreaterThanEquals"
-	case EqualsEqualsEquals:
-		return "EqualsEqualsEquals"
-	case ExclamationEquals:
-		return "ExclamationEquals"
-	case ExclamationEqualsEquals:
-		return "ExclamationEqualsEquals"
-	case LessThanEquals:
-		return "LessThanEquals"
-	case Spaceship:
-		return "Spaceship"
-	case Minus:
-		return "Minus"
-	case MinusEquals:
-		return "MinusEquals"
-	case PercentEquals:
-		return "PercentEquals"
-	case AsteriskEquals:
-		return "AsteriskEquals"
-	case Backslash:
-		return "Backslash"
-	case BooleanCast:
-		return "BooleanCast"
-	case UnsetCast:
-		return "UnsetCast"
-	case StringCast:
-		return "StringCast"
-	case ObjectCast:
-		return "ObjectCast"
-	case IntegerCast:
-		return "IntegerCast"
-	case FloatCast:
-		return "FloatCast"
-	case StartHeredoc:
-		return "StartHeredoc"
-	case ArrayCast:
-		return "ArrayCast"
-	case OpenTag:
-		return "OpenTag"
-	case OpenTagEcho:
-		return "OpenTagEcho"
-	case CloseTag:
-		return "CloseTag"
-	case Comment:
-		return "Comment"
-	case DocumentComment:
-		return "DocumentComment"
-	case Whitespace:
-		return "Whitespace"
-	}
-
-	return ""
-}
-
-type LexerMode uint8
-
-const (
-	ModeInitial LexerMode = iota
-	ModeScripting
-	ModeLookingForProperty
-	ModeDoubleQuotes
-	ModeNowDoc
-	ModeHereDoc
-	ModeEndHereDoc
-	ModeBacktick
-	ModeVarOffset
-	ModeLookingForVarName
-)
-
-func (mode LexerMode) String() string {
-	switch mode {
-	case ModeInitial:
-		return "ModeInitial"
-	case ModeScripting:
-		return "ModeScripting"
-	case ModeLookingForProperty:
-		return "ModeLookingForProperty"
-	case ModeDoubleQuotes:
-		return "ModeDoubleQuotes"
-	case ModeNowDoc:
-		return "ModeNowDoc"
-	case ModeHereDoc:
-		return "ModeHereDoc"
-	case ModeEndHereDoc:
-		return "ModeEndHereDoc"
-	case ModeBacktick:
-		return "ModeBacktick"
-	case ModeVarOffset:
-		return "ModeVarOffset"
-	case ModeLookingForVarName:
-		return "ModeLookingForVarName"
-	}
-
-	return ""
-}
-
-type Token struct {
-	Type      TokenType   `json:"TokenType"`
-	Offset    int         `json:"Offset"`
-	Length    int         `json:"Length"`
-	ModeStack []LexerMode `json:"-"`
-}
-
-func NewToken(tokenType TokenType, offset int, length int, modeStack []LexerMode) *Token {
-	return &Token{tokenType, offset, length, modeStack}
-}
-
-// AstNode is a boilerplate for extending interface
-func (token Token) AstNode() {
-}
-
-func (token Token) String() string {
-	str := token.Type.String() + " " + strconv.Itoa(token.Offset) + " " + strconv.Itoa(token.Length)
-
-	for _, mode := range token.ModeStack {
-		str += " " + mode.String()
-	}
-
-	return str
-}
 
 func decodeAll(bs []byte) ([]rune, []uint8) {
 	runes := make([]rune, 0, len(bs))
@@ -683,7 +104,11 @@ func (s *Lexer) peek(offset int) rune {
 	if s.nextOffset+offset-1 >= len(s.source) {
 		return -1
 	}
-	return s.source[s.nextOffset+offset-1]
+	if s.nextOffset+offset-1 < 0 {
+		return -1
+	}
+	c := s.source[s.nextOffset+offset-1]
+	return c
 }
 
 func (s *Lexer) peekSpanString(offset int, n int) string {
@@ -713,43 +138,26 @@ func (s *Lexer) Lex() *Token {
 	switch s.modeStack[len(s.modeStack)-1] {
 	case ModeInitial:
 		t = s.initial()
-		break
-
 	case ModeScripting:
 		t = s.scripting()
-		break
-
 	case ModeLookingForProperty:
 		t = s.lookingForProperty()
-		break
-
 	case ModeDoubleQuotes:
 		t = s.doubleQuotes()
-		break
-
 	case ModeNowDoc:
 		t = s.nowdoc()
-		break
-
 	case ModeHereDoc:
 		t = s.heredoc()
-		break
-
 	case ModeEndHereDoc:
 		t = s.endHeredoc()
-		break
-
 	case ModeBacktick:
 		t = s.backtick()
-		break
-
 	case ModeVarOffset:
 		t = s.varOffset()
-		break
-
 	case ModeLookingForVarName:
 		t = s.lookingForVarName()
-		break
+	case ModeDocumentBlock:
+		t = s.scriptingDocBlock()
 	}
 
 	if t == nil {
@@ -1640,7 +1048,8 @@ func (s *Lexer) scriptingInlineCommentOrDocBlock() *Token {
 	start := s.offset - 2
 	if s.r == '*' && s.peek(1) != '/' {
 		s.step()
-		tokenType = DocumentComment
+		s.modeStack = append(s.modeStack, ModeDocumentBlock)
+		return NewToken(DocumentCommentStart, start, s.offset-start, s.ModeStack())
 	}
 	//find comment end */
 	for s.r != -1 {
@@ -2078,21 +1487,25 @@ func (s *Lexer) lookingForVarName() *Token {
 }
 
 func isLabelStart(cp rune) bool {
-	return (cp > 0x40 && cp < 0x5b) || (cp > 0x60 && cp < 0x7b) || cp == 0x5f || cp > 0x7f
+	return (cp >= 'A' && cp <= 'Z') || (cp >= 'a' && cp <= 'z') || cp == '_' || cp >= utf8.RuneSelf
 }
 
 func isLabelChar(cp rune) bool {
-	return (cp > 0x2f && cp < 0x3a) ||
-		(cp > 0x40 && cp < 0x5b) ||
-		(cp > 0x60 && cp < 0x7b) ||
-		cp == 0x5f ||
-		cp > 0x7f
+	return (cp >= '0' && cp <= '9') ||
+		(cp >= 'A' && cp <= 'Z') ||
+		(cp >= 'a' && cp <= 'z') ||
+		cp == '_' ||
+		cp >= utf8.RuneSelf
 }
 
 func isWhitespace(c rune) bool {
 	return c == ' ' || c == '\n' || c == '\r' || c == '\t'
 }
 
+func isDigit(c rune) bool {
+	return c >= '0' && c <= '9'
+}
+
 func isHexDigit(c rune) bool {
-	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')
+	return isDigit(c) || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')
 }

@@ -307,6 +307,8 @@ func (doc *Parser) hidden(p *phrase.Phrase) {
 		if doc.tokenOffset < len(doc.tokenBuffer) {
 			t = doc.tokenBuffer[doc.tokenOffset]
 			doc.tokenOffset++
+		} else {
+			break
 		}
 
 		if t.Type < lexer.Comment {
@@ -339,6 +341,9 @@ func (doc *Parser) optionalOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
 }
 
 func (doc *Parser) next(doNotPush bool) *lexer.Token {
+	if doc.tokenOffset >= len(doc.tokenBuffer) {
+		return doc.tokenBuffer[len(doc.tokenBuffer)-1]
+	}
 	t := doc.tokenBuffer[doc.tokenOffset]
 	doc.tokenOffset++
 
@@ -417,6 +422,9 @@ func (doc *Parser) peek(n int) *lexer.Token {
 
 	for {
 		bufferPos++
+		if bufferPos >= len(doc.tokenBuffer) {
+			return doc.tokenBuffer[len(doc.tokenBuffer)-1]
+		}
 		t = doc.tokenBuffer[bufferPos]
 
 		if t.Type < lexer.Comment {
@@ -444,6 +452,8 @@ func (doc *Parser) skip(predicate func(*lexer.Token) bool) {
 		if doc.tokenOffset < len(doc.tokenBuffer) {
 			t = doc.tokenBuffer[doc.tokenOffset]
 			doc.tokenOffset++
+		} else {
+			break
 		}
 
 		if predicate(t) || t.Type == lexer.EndOfFile {
@@ -1124,7 +1134,8 @@ func isClassMemberStart(t *lexer.Token) bool {
 		lexer.Function,
 		lexer.Var,
 		lexer.Const,
-		lexer.Use:
+		lexer.Use,
+		lexer.DocumentCommentStart:
 		return true
 	}
 
@@ -1171,6 +1182,9 @@ func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 		return doc.classConstDeclaration(p)
 	case lexer.Use:
 		return doc.traitUseClause(p)
+	case lexer.DocumentCommentStart:
+		doc.end()
+		return doc.docComment()
 	}
 
 	panic(errors.New("Unexpected token: " + t.Type.String()))
@@ -1614,6 +1628,8 @@ func (doc *Parser) statement() phrase.AstNode {
 		return doc.unsetIntrinsic()
 	case lexer.Semicolon:
 		return doc.nullStatement()
+	case lexer.DocumentCommentStart:
+		return doc.docComment()
 	case lexer.Name:
 		if doc.peek(1).Type == lexer.Colon {
 			return doc.namedLabelStatement()
@@ -3361,7 +3377,8 @@ func isStatementStart(t *lexer.Token) bool {
 		lexer.CloseTag,
 		lexer.Text,
 		lexer.OpenTag,
-		lexer.OpenTagEcho:
+		lexer.OpenTagEcho,
+		lexer.DocumentCommentStart:
 		return true
 	}
 
