@@ -1,4 +1,4 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=556) {
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=636) {
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) OpenTag,
     Offset: (int) 0,
@@ -1080,9 +1080,159 @@
     Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) DocumentComment,
+    Type: (lexer.TokenType) DocumentCommentStart,
     Offset: (int) 1269,
-    Length: (int) 110
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1272,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1273,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1274,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1276,
+    Length: (int) 8
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1284,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1285,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1291,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1292,
+    Length: (int) 8
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1300,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1301,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1307,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1308,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1310,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1311,
+    Length: (int) 11
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentText,
+    Offset: (int) 1322,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1323,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1324,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1325,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) AtAuthor,
+    Offset: (int) 1330,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1337,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1338,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1344,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1345,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1354,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) LessThan,
+    Offset: (int) 1355,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1356,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentTagName,
+    Offset: (int) 1362,
+    Length: (int) 13
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1375,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1376,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEnd,
+    Offset: (int) 1377,
+    Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
@@ -1175,9 +1325,54 @@
     Length: (int) 6
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) DocumentComment,
+    Type: (lexer.TokenType) DocumentCommentStart,
     Offset: (int) 1484,
-    Length: (int) 42
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1487,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1488,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1493,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) AtVar,
+    Offset: (int) 1495,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1499,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1500,
+    Length: (int) 18
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1518,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1519,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEnd,
+    Offset: (int) 1524,
+    Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
@@ -1210,9 +1405,64 @@
     Length: (int) 6
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) DocumentComment,
+    Type: (lexer.TokenType) DocumentCommentStart,
     Offset: (int) 1558,
-    Length: (int) 45
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1561,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1562,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1567,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentTagName,
+    Offset: (int) 1569,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1578,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1579,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1584,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentTagName,
+    Offset: (int) 1586,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1595,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1596,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEnd,
+    Offset: (int) 1601,
+    Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
@@ -1410,9 +1660,159 @@
     Length: (int) 6
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) DocumentComment,
+    Type: (lexer.TokenType) DocumentCommentStart,
     Offset: (int) 1789,
-    Length: (int) 107
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1792,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1793,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1798,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1800,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1804,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1805,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1806,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1807,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1816,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1817,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1826,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1827,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1829,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1830,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1833,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1834,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentText,
+    Offset: (int) 1838,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1839,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1840,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1845,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) AtReturn,
+    Offset: (int) 1854,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1861,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 1862,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1867,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1868,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentStartline,
+    Offset: (int) 1873,
+    Length: (int) 9
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentTagName,
+    Offset: (int) 1882,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEndline,
+    Offset: (int) 1888,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 1889,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) DocumentCommentEnd,
+    Offset: (int) 1894,
+    Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
@@ -3354,7 +3754,62 @@
       }
     }),
     (*lexer.Token)(Whitespace 1267 2 ModeScripting),
-    (*lexer.Token)(DocumentComment 1269 110 ModeScripting),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) DocumentComment,
+      Children: ([]phrase.AstNode) (len=8) {
+        (*lexer.Token)(DocumentCommentStart 1269 3 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1272 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 1273 1 ModeScripting ModeDocumentBlock),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) DocumentCommentDescription,
+          Children: ([]phrase.AstNode) (len=14) {
+            (*lexer.Token)(DocumentCommentStartline 1274 2 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Name 1276 8 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1284 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Name 1285 6 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1291 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Name 1292 8 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1300 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Name 1301 6 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1307 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Name 1308 2 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1310 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Name 1311 11 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentText 1322 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentEndline 1323 1 ModeScripting ModeDocumentBlock)
+          }
+        }),
+        (*lexer.Token)(Whitespace 1324 1 ModeScripting ModeDocumentBlock),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) DocumentCommentAuthorTag,
+          Children: ([]phrase.AstNode) (len=6) {
+            (*lexer.Token)(DocumentCommentStartline 1325 5 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(AtAuthor 1330 7 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1337 1 ModeScripting ModeDocumentBlock),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) DocumentCommentAuthor,
+              Children: ([]phrase.AstNode) (len=3) {
+                (*lexer.Token)(Name 1338 6 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Whitespace 1344 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Name 1345 9 ModeScripting ModeDocumentBlock)
+              }
+            }),
+            (*lexer.Token)(Whitespace 1354 1 ModeScripting ModeDocumentBlock),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) DocumentCommentEmail,
+              Children: ([]phrase.AstNode) (len=4) {
+                (*lexer.Token)(LessThan 1355 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Name 1356 6 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(DocumentCommentTagName 1362 13 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(DocumentCommentEndline 1375 1 ModeScripting ModeDocumentBlock)
+              }
+            })
+          }
+        }),
+        (*lexer.Token)(Whitespace 1376 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEnd 1377 2 ModeScripting ModeDocumentBlock)
+      }
+    }),
     (*lexer.Token)(Whitespace 1379 1 ModeScripting),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ClassDeclaration,
@@ -3432,7 +3887,41 @@
                   }
                 }),
                 (*lexer.Token)(Whitespace 1478 6 ModeScripting ModeScripting),
-                (*lexer.Token)(DocumentComment 1484 42 ModeScripting ModeScripting),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) DocumentComment,
+                  Children: ([]phrase.AstNode) (len=7) {
+                    (*lexer.Token)(DocumentCommentStart 1484 3 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(DocumentCommentEndline 1487 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1488 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) DocumentCommentVarTag,
+                      Children: ([]phrase.AstNode) (len=4) {
+                        (*lexer.Token)(DocumentCommentStartline 1493 2 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(AtVar 1495 4 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1499 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) TypeDeclaration,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) QualifiedName,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) NamespaceName,
+                                  Children: ([]phrase.AstNode) (len=1) {
+                                    (*lexer.Token)(Name 1500 18 ModeScripting ModeScripting ModeDocumentBlock)
+                                  }
+                                })
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(DocumentCommentEndline 1518 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1519 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(DocumentCommentEnd 1524 2 ModeScripting ModeScripting ModeDocumentBlock)
+                  }
+                }),
                 (*lexer.Token)(Whitespace 1526 5 ModeScripting ModeScripting),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) PropertyDeclaration,
@@ -3459,7 +3948,43 @@
                   }
                 }),
                 (*lexer.Token)(Whitespace 1552 6 ModeScripting ModeScripting),
-                (*lexer.Token)(DocumentComment 1558 45 ModeScripting ModeScripting),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) DocumentComment,
+                  Children: ([]phrase.AstNode) (len=10) {
+                    (*lexer.Token)(DocumentCommentStart 1558 3 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(DocumentCommentEndline 1561 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1562 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) DocumentCommentTag,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(DocumentCommentStartline 1567 2 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(DocumentCommentTagName 1569 9 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) DocumentCommentDescription,
+                          Children: ([]phrase.AstNode) {
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(DocumentCommentEndline 1578 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1579 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) DocumentCommentTag,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(DocumentCommentStartline 1584 2 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(DocumentCommentTagName 1586 9 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) DocumentCommentDescription,
+                          Children: ([]phrase.AstNode) {
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(DocumentCommentEndline 1595 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1596 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(DocumentCommentEnd 1601 2 ModeScripting ModeScripting ModeDocumentBlock)
+                  }
+                }),
                 (*lexer.Token)(Whitespace 1603 5 ModeScripting ModeScripting),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) MethodDeclaration,
@@ -3629,7 +4154,77 @@
                   }
                 }),
                 (*lexer.Token)(Whitespace 1783 6 ModeScripting ModeScripting),
-                (*lexer.Token)(DocumentComment 1789 107 ModeScripting ModeScripting),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) DocumentComment,
+                  Children: ([]phrase.AstNode) (len=12) {
+                    (*lexer.Token)(DocumentCommentStart 1789 3 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(DocumentCommentEndline 1792 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1793 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) DocumentCommentDescription,
+                      Children: ([]phrase.AstNode) (len=16) {
+                        (*lexer.Token)(DocumentCommentStartline 1798 2 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1800 4 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1804 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1805 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1806 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1807 9 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1816 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1817 9 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1826 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1827 2 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1829 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1830 3 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1833 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Name 1834 4 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(DocumentCommentText 1838 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(DocumentCommentEndline 1839 1 ModeScripting ModeScripting ModeDocumentBlock)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 1840 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) DocumentCommentReturnTag,
+                      Children: ([]phrase.AstNode) (len=4) {
+                        (*lexer.Token)(DocumentCommentStartline 1845 9 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(AtReturn 1854 7 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Whitespace 1861 1 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) TypeDeclaration,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) QualifiedName,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) NamespaceName,
+                                  Children: ([]phrase.AstNode) (len=1) {
+                                    (*lexer.Token)(Name 1862 5 ModeScripting ModeScripting ModeDocumentBlock)
+                                  }
+                                })
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(DocumentCommentEndline 1867 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1868 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) DocumentCommentTag,
+                      Children: ([]phrase.AstNode) (len=3) {
+                        (*lexer.Token)(DocumentCommentStartline 1873 9 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(DocumentCommentTagName 1882 6 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) DocumentCommentDescription,
+                          Children: ([]phrase.AstNode) {
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(DocumentCommentEndline 1888 1 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 1889 5 ModeScripting ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(DocumentCommentEnd 1894 2 ModeScripting ModeScripting ModeDocumentBlock)
+                  }
+                }),
                 (*lexer.Token)(Whitespace 1896 5 ModeScripting ModeScripting),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) MethodDeclaration,

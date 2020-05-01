@@ -38,7 +38,7 @@
         }
       },
       Unexpected: (*lexer.Token)(CloseBracket 6 1 ModeScripting),
-      Expected: (lexer.TokenType) 
+      Expected: (lexer.TokenType) Undefined
     })
   }
 })

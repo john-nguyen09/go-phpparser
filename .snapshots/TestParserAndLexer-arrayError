@@ -114,7 +114,7 @@
                         }
                       },
                       Unexpected: (*lexer.Token)(StringLiteral 19 3 ModeScripting),
-                      Expected: (lexer.TokenType) 
+                      Expected: (lexer.TokenType) Undefined
                     }),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) ArrayElement,

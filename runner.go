@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -11,6 +12,8 @@ import (
 	"github.com/john-nguyen09/go-phpparser/parser"
 	"github.com/john-nguyen09/go-phpparser/phrase"
 )
+
+const indentCh = "    "
 
 func main() {
 	dir := "cases"
@@ -23,6 +26,9 @@ func main() {
 
 	for _, file := range files {
 		if !strings.HasSuffix(file.Name(), ".php") {
+			continue
+		}
+		if file.Name() != "String_.php" {
 			continue
 		}
 
@@ -71,14 +77,14 @@ func writeParseTree(filePath string, data []byte) {
 	outFile.Close()
 }
 
-func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {
+func traverse(writer io.Writer, node phrase.AstNode, depth int) {
 	var p *phrase.Phrase
 	var err *phrase.ParseError
 	var isPhrase, isParseError bool
 	indent := ""
 
 	for i := 0; i < depth; i++ {
-		indent += "-"
+		indent += indentCh
 	}
 
 	if p, isPhrase = node.(*phrase.Phrase); isPhrase {
@@ -87,14 +93,12 @@ func traverse(writer *bufio.Writer, node phrase.AstNode, depth int) {
 		fmt.Fprintln(writer, indent+node.(*lexer.Token).String()+"[Token]")
 	} else if err, isParseError = node.(*phrase.ParseError); isParseError {
 		fmt.Fprintln(writer, indent+err.Type.String()+"[ParseError]")
-		thisIndent := indent + "-"
+		thisIndent := indent + indentCh
 		if len(err.Children) == 0 {
 			fmt.Fprintln(writer, thisIndent+"Unexpected: "+err.Unexpected.String())
 		} else {
 			for _, child := range err.Children {
-				if t, ok := child.(*lexer.Token); ok {
-					fmt.Fprintln(writer, thisIndent+t.Type.String())
-				}
+				traverse(writer, child, depth+1)
 			}
 		}
 	}
