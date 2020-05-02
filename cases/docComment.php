@@ -69,3 +69,13 @@ function count(array $items)
   * @var string $name        Should contain a description
   * @var string $description Should contain a description
   */
+
+/**
+	* Run the validation routine against the given validator.
+	*
+	* @param  \Illuminate\Contracts\Validation\Validator|array  $validator
+	* @param  \Illuminate\Http\Request|null  $request
+	* @return array
+	*
+	* @throws \Illuminate\Validation\ValidationException
+	*/

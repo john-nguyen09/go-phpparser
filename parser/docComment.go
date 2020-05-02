@@ -67,9 +67,11 @@ func (doc *Parser) docCommentTypeName() phrase.AstNode {
 		doc.next(false)
 	case lexer.Name, lexer.Backslash:
 		p.Children = append(p.Children, doc.qualifiedName())
-		if doc.peek(0).Type == lexer.Array {
+		for doc.peek(0).Type == lexer.Array {
 			doc.next(false)
 		}
+	case lexer.VariableName:
+		doc.next(false)
 	default:
 		doc.end()
 		return nil
@@ -274,6 +276,10 @@ func (doc *Parser) propertyTag(p *phrase.Phrase) {
 		}
 	}
 	doc.expect(lexer.VariableName)
+	desc := doc.docCommentDescription()
+	if len(desc.Children) > 0 {
+		p.Children = append(p.Children, desc)
+	}
 }
 
 func (doc *Parser) returnTag(p *phrase.Phrase) {
