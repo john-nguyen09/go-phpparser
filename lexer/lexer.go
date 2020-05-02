@@ -113,6 +113,9 @@ func (s *Lexer) peek(offset int) rune {
 
 func (s *Lexer) peekSpanString(offset int, n int) string {
 	offset += s.nextOffset
+	if offset >= len(s.source) {
+		return ""
+	}
 	end := offset + n
 	if end >= len(s.source) {
 		end = len(s.source) - 1
