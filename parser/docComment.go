@@ -202,7 +202,17 @@ func (doc *Parser) docCommentParameterDeclaration() phrase.AstNode {
 	doc.expect(lexer.VariableName)
 	if doc.peek(0).Type == lexer.Equals {
 		doc.next(false)
-		p.Children = append(p.Children, doc.expression(0))
+		p.Children = append(p.Children, doc.docCommentParameterValue())
+	}
+	return doc.end()
+}
+
+func (doc *Parser) docCommentParameterValue() *phrase.Phrase {
+	doc.start(phrase.ParameterValue, false)
+	t := doc.peek(0)
+	for t.Type != lexer.CloseParenthesis && t.Type != lexer.Comma {
+		doc.next(false)
+		t = doc.peek(0)
 	}
 	return doc.end()
 }

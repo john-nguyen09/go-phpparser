@@ -210,6 +210,7 @@ const (
 	DocumentCommentTagAnchorEnd
 
 	TypeUnion
+	ParameterValue
 )
 
 func (phraseType PhraseType) String() string {
@@ -613,6 +614,8 @@ func (phraseType PhraseType) String() string {
 		return "DocumentCommentTagAnchorEnd"
 	case TypeUnion:
 		return "TypeUnion"
+	case ParameterValue:
+		return "ParameterValue"
 	}
 
 	return ""
