@@ -195,9 +195,9 @@ const (
 	DocumentCommentDescription
 	DocumentCommentAuthor
 	DocumentCommentEmail
-	DocumentCommentTag
 
 	DocumentCommentTagAnchorStart
+	DocumentCommentTag
 	DocumentCommentAuthorTag
 	DocumentCommentDeprecatedTag
 	DocumentCommentGlobalTag

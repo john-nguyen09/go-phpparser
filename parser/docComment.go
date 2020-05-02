@@ -27,7 +27,7 @@ func (doc *Parser) docCommentStatement() phrase.AstNode {
 	switch t.Type {
 	case lexer.DocumentCommentStart:
 		return doc.next(true)
-	case lexer.DocumentCommentStartline:
+	case lexer.DocumentCommentStartline, lexer.Name, lexer.DocumentCommentText:
 		return doc.documentCommentStatementStart()
 	case lexer.DocumentCommentEndline, lexer.Whitespace:
 		return doc.next(true)
@@ -110,7 +110,9 @@ func (doc *Parser) documentCommentStatementStart() phrase.AstNode {
 
 func (doc *Parser) docCommentTag() phrase.AstNode {
 	p := doc.start(phrase.DocumentCommentTag, false)
-	doc.next(false) // Start line
+	if doc.peek(0).Type == lexer.DocumentCommentStartline {
+		doc.next(false)
+	}
 	t := doc.next(false)
 	switch t.Type {
 	case lexer.AtAuthor:
@@ -325,7 +327,8 @@ func isDocumentCommentStatementStart(t *lexer.Token) bool {
 	case lexer.DocumentCommentStart,
 		lexer.DocumentCommentStartline,
 		lexer.DocumentCommentEndline,
-		lexer.Whitespace:
+		lexer.Name,
+		lexer.DocumentCommentText:
 		return true
 	}
 	return isTagName(t)
