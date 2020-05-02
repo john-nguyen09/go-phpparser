@@ -193,10 +193,12 @@ const (
 	YieldFromExpression
 	DocumentComment
 	DocumentCommentDescription
-	DocumentCommentTag
-	DocumentCommentAuthorTag
 	DocumentCommentAuthor
 	DocumentCommentEmail
+	DocumentCommentTag
+
+	DocumentCommentTagAnchorStart
+	DocumentCommentAuthorTag
 	DocumentCommentDeprecatedTag
 	DocumentCommentGlobalTag
 	DocumentCommentMethodTag
@@ -205,6 +207,8 @@ const (
 	DocumentCommentReturnTag
 	DocumentCommentThrowsTag
 	DocumentCommentVarTag
+	DocumentCommentTagAnchorEnd
+
 	TypeUnion
 )
 
@@ -578,14 +582,17 @@ func (phraseType PhraseType) String() string {
 		return "DocumentComment"
 	case DocumentCommentDescription:
 		return "DocumentCommentDescription"
-	case DocumentCommentTag:
-		return "DocumentCommentTag"
-	case DocumentCommentAuthorTag:
-		return "DocumentCommentAuthorTag"
 	case DocumentCommentAuthor:
 		return "DocumentCommentAuthor"
 	case DocumentCommentEmail:
 		return "DocumentCommentEmail"
+	case DocumentCommentTag:
+		return "DocumentCommentTag"
+
+	case DocumentCommentTagAnchorStart:
+		return "DocumentCommentTagAnchorStart"
+	case DocumentCommentAuthorTag:
+		return "DocumentCommentAuthorTag"
 	case DocumentCommentDeprecatedTag:
 		return "DocumentCommentDeprecatedTag"
 	case DocumentCommentGlobalTag:
@@ -602,6 +609,8 @@ func (phraseType PhraseType) String() string {
 		return "DocumentCommentThrowsTag"
 	case DocumentCommentVarTag:
 		return "DocumentCommentVarTag"
+	case DocumentCommentTagAnchorEnd:
+		return "DocumentCommentTagAnchorEnd"
 	case TypeUnion:
 		return "TypeUnion"
 	}
