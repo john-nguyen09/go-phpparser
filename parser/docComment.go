@@ -191,6 +191,22 @@ func (doc *Parser) globalTag(p *phrase.Phrase) {
 	}
 }
 
+func (doc *Parser) docCommentParameterDeclaration() phrase.AstNode {
+	p := doc.start(phrase.ParameterDeclaration, false)
+	typeListOrName := doc.docCommentTypeUnionOrTypeDeclaration()
+	if typeListOrName != nil {
+		p.Children = append(p.Children, typeListOrName)
+	}
+	doc.optional(lexer.Ampersand)
+	doc.optional(lexer.Ellipsis)
+	doc.expect(lexer.VariableName)
+	if doc.peek(0).Type == lexer.Equals {
+		doc.next(false)
+		p.Children = append(p.Children, doc.expression(0))
+	}
+	return doc.end()
+}
+
 func (doc *Parser) methodTag(p *phrase.Phrase) {
 	p.Type = phrase.DocumentCommentMethodTag
 
@@ -206,7 +222,7 @@ func (doc *Parser) methodTag(p *phrase.Phrase) {
 	if isParameterStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.delimitedList(
 			phrase.ParameterDeclarationList,
-			doc.parameterDeclaration,
+			doc.docCommentParameterDeclaration,
 			isParameterStart,
 			lexer.Comma,
 			[]lexer.TokenType{lexer.CloseParenthesis}, false))

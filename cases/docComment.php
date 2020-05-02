@@ -24,6 +24,8 @@
  * @method setString(integer $integer) But containing the word static results
  *                                     in weird tokens
  * @method static string staticGetter()
+ * @method void superMethod(array|DateTime|database|mixed $superParam) This method does
+ * a lot of things automagically
  */
 
  /**

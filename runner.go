@@ -28,9 +28,6 @@ func main() {
 		if !strings.HasSuffix(file.Name(), ".php") {
 			continue
 		}
-		if file.Name() != "String_.php" {
-			continue
-		}
 
 		filePath := dir + "/" + file.Name()
 		data, err := ioutil.ReadFile(filePath)
