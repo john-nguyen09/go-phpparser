@@ -70,6 +70,9 @@ func (s *Lexer) scriptingDocumentBlockLabel() *Token {
 	if c == '=' {
 		return NewToken(Equals, start, s.offset-start, modeStack)
 	}
+	if c == ',' {
+		return NewToken(Comma, start, s.offset-start, modeStack)
+	}
 	if (c == 's' || c == 'S') &&
 		(s.r == 't' || s.r == 'T') &&
 		strings.ToLower(s.peekSpanString(0, 4)) == "atic" &&
