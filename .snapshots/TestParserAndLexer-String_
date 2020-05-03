@@ -6255,11 +6255,26 @@
                     (*lexer.Token)(DocumentCommentStart 312 3 ModeScripting ModeScripting ModeDocumentBlock),
                     (*lexer.Token)(Whitespace 315 1 ModeScripting ModeScripting ModeDocumentBlock),
                     (*phrase.Phrase)({
-                      Type: (phrase.PhraseType) DocumentCommentTag,
+                      Type: (phrase.PhraseType) DocumentCommentVarTag,
                       Children: ([]phrase.AstNode) (len=5) {
                         (*lexer.Token)(AtVar 316 4 ModeScripting ModeScripting ModeDocumentBlock),
                         (*lexer.Token)(Whitespace 320 1 ModeScripting ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Name 321 6 ModeScripting ModeScripting ModeDocumentBlock),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) TypeDeclaration,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) QualifiedName,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) NamespaceName,
+                                  Children: ([]phrase.AstNode) (len=1) {
+                                    (*lexer.Token)(Name 321 6 ModeScripting ModeScripting ModeDocumentBlock)
+                                  }
+                                })
+                              }
+                            })
+                          }
+                        }),
                         (*lexer.Token)(Whitespace 327 1 ModeScripting ModeScripting ModeDocumentBlock),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) DocumentCommentDescription,

@@ -157,20 +157,16 @@
     (*lexer.Token)(Whitespace 6 5 ModeScripting),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
-      Children: ([]phrase.AstNode) (len=3) {
+      Children: ([]phrase.AstNode) (len=5) {
         (*lexer.Token)(DocumentCommentStart 11 3 ModeScripting ModeDocumentBlock),
-        (*phrase.ParseError)({
-          Phrase: (phrase.Phrase) {
-            Type: (phrase.PhraseType) Error,
-            Children: ([]phrase.AstNode) (len=3) {
-              (*lexer.Token)(Whitespace 14 1 ModeScripting ModeDocumentBlock),
-              (*lexer.Token)(Name 15 8 ModeScripting ModeDocumentBlock),
-              (*lexer.Token)(Whitespace 23 1 ModeScripting ModeDocumentBlock)
-            }
-          },
-          Unexpected: (*lexer.Token)(Name 15 8 ModeScripting ModeDocumentBlock),
-          Expected: (lexer.TokenType) Undefined
+        (*lexer.Token)(Whitespace 14 1 ModeScripting ModeDocumentBlock),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) DocumentCommentDescription,
+          Children: ([]phrase.AstNode) (len=1) {
+            (*lexer.Token)(Name 15 8 ModeScripting ModeDocumentBlock)
+          }
         }),
+        (*lexer.Token)(Whitespace 23 1 ModeScripting ModeDocumentBlock),
         (*lexer.Token)(DocumentCommentEnd 24 2 ModeScripting ModeDocumentBlock)
       }
     }),

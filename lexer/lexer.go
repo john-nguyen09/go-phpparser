@@ -494,7 +494,7 @@ func (s *Lexer) scriptingLessThan() *Token {
 			}
 			s.stepLoop(2)
 		} else {
-			s.step()
+			s.stepLoop(2)
 		}
 		return NewToken(LessThanLessThan, start, 2, s.ModeStack())
 	case '=':
@@ -1368,9 +1368,9 @@ func (s *Lexer) backtick() *Token {
 }
 
 func (s *Lexer) backtickAny() *Token {
-	n := s.offset
+	n := 0
 	var c rune
-	start := 0
+	start := s.offset
 	if s.peek(n) == '\\' && s.peek(n+1) != -1 {
 		n++
 	}
