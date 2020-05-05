@@ -2927,9 +2927,15 @@ func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase 
 	doc.recoverSetStack = append(doc.recoverSetStack, arrayInitialiserListRecoverSet)
 
 	for {
+		if doc.peek(0).Type == lexer.DocumentCommentStart {
+			p.Children = append(p.Children, doc.docComment())
+		}
 		//an array can have empty elements
 		if isArrayElementStart(doc.peek(0)) {
 			p.Children = append(p.Children, doc.arrayElement())
+		}
+		if doc.peek(0).Type == lexer.DocumentCommentStart {
+			p.Children = append(p.Children, doc.docComment())
 		}
 
 		t = doc.peek(0)
