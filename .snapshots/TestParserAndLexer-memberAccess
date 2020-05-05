@@ -265,7 +265,7 @@
       Children: ([]phrase.AstNode) (len=2) {
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) ScopedCallExpression,
-          Children: ([]phrase.AstNode) (len=5) {
+          Children: ([]phrase.AstNode) (len=4) {
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) QualifiedName,
               Children: ([]phrase.AstNode) (len=1) {
@@ -289,8 +289,13 @@
                 })
               }
             }),
-            (*lexer.Token)(OpenParenthesis 67 1 ModeScripting),
-            (*lexer.Token)(CloseParenthesis 68 1 ModeScripting)
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArgumentExpressionList,
+              Children: ([]phrase.AstNode) (len=2) {
+                (*lexer.Token)(OpenParenthesis 67 1 ModeScripting),
+                (*lexer.Token)(CloseParenthesis 68 1 ModeScripting)
+              }
+            })
           }
         }),
         (*lexer.Token)(Semicolon 69 1 ModeScripting)

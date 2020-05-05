@@ -415,7 +415,7 @@
       Children: ([]phrase.AstNode) (len=2) {
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) MethodCallExpression,
-          Children: ([]phrase.AstNode) (len=5) {
+          Children: ([]phrase.AstNode) (len=4) {
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
@@ -429,8 +429,13 @@
                 (*lexer.Token)(Name 177 10 ModeScripting ModeLookingForProperty)
               }
             }),
-            (*lexer.Token)(OpenParenthesis 187 1 ModeScripting),
-            (*lexer.Token)(CloseParenthesis 188 1 ModeScripting)
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArgumentExpressionList,
+              Children: ([]phrase.AstNode) (len=2) {
+                (*lexer.Token)(OpenParenthesis 187 1 ModeScripting),
+                (*lexer.Token)(CloseParenthesis 188 1 ModeScripting)
+              }
+            })
           }
         }),
         (*lexer.Token)(Semicolon 189 1 ModeScripting)
@@ -442,7 +447,7 @@
       Children: ([]phrase.AstNode) (len=2) {
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) FunctionCallExpression,
-          Children: ([]phrase.AstNode) (len=3) {
+          Children: ([]phrase.AstNode) (len=2) {
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) QualifiedName,
               Children: ([]phrase.AstNode) (len=1) {
@@ -454,8 +459,13 @@
                 })
               }
             }),
-            (*lexer.Token)(OpenParenthesis 206 1 ModeScripting),
-            (*lexer.Token)(CloseParenthesis 207 1 ModeScripting)
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArgumentExpressionList,
+              Children: ([]phrase.AstNode) (len=2) {
+                (*lexer.Token)(OpenParenthesis 206 1 ModeScripting),
+                (*lexer.Token)(CloseParenthesis 207 1 ModeScripting)
+              }
+            })
           }
         }),
         (*lexer.Token)(Semicolon 208 1 ModeScripting)

@@ -302,7 +302,7 @@
             (*lexer.Token)(Whitespace 94 1 ModeScripting),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ObjectCreationExpression,
-              Children: ([]phrase.AstNode) (len=5) {
+              Children: ([]phrase.AstNode) (len=4) {
                 (*lexer.Token)(New 95 3 ModeScripting),
                 (*lexer.Token)(Whitespace 98 1 ModeScripting),
                 (*phrase.Phrase)({
@@ -321,8 +321,13 @@
                     })
                   }
                 }),
-                (*lexer.Token)(OpenParenthesis 114 1 ModeScripting),
-                (*lexer.Token)(CloseParenthesis 115 1 ModeScripting)
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) ArgumentExpressionList,
+                  Children: ([]phrase.AstNode) (len=2) {
+                    (*lexer.Token)(OpenParenthesis 114 1 ModeScripting),
+                    (*lexer.Token)(CloseParenthesis 115 1 ModeScripting)
+                  }
+                })
               }
             })
           }

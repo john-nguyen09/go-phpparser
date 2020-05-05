@@ -3770,7 +3770,7 @@
                                                     (*lexer.Token)(Whitespace 825 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                     (*phrase.Phrase)({
                                                       Type: (phrase.PhraseType) ScopedCallExpression,
-                                                      Children: ([]phrase.AstNode) (len=6) {
+                                                      Children: ([]phrase.AstNode) (len=4) {
                                                         (*phrase.Phrase)({
                                                           Type: (phrase.PhraseType) QualifiedName,
                                                           Children: ([]phrase.AstNode) (len=1) {
@@ -3794,10 +3794,10 @@
                                                             })
                                                           }
                                                         }),
-                                                        (*lexer.Token)(OpenParenthesis 840 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                         (*phrase.Phrase)({
                                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                                          Children: ([]phrase.AstNode) (len=7) {
+                                                          Children: ([]phrase.AstNode) (len=9) {
+                                                            (*lexer.Token)(OpenParenthesis 840 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                             (*phrase.Phrase)({
                                                               Type: (phrase.PhraseType) SimpleVariable,
                                                               Children: ([]phrase.AstNode) (len=1) {
@@ -3819,10 +3819,10 @@
                                                               Children: ([]phrase.AstNode) (len=1) {
                                                                 (*lexer.Token)(VariableName 858 6 ModeScripting ModeScripting ModeScripting ModeScripting)
                                                               }
-                                                            })
+                                                            }),
+                                                            (*lexer.Token)(CloseParenthesis 864 1 ModeScripting ModeScripting ModeScripting ModeScripting)
                                                           }
-                                                        }),
-                                                        (*lexer.Token)(CloseParenthesis 864 1 ModeScripting ModeScripting ModeScripting ModeScripting)
+                                                        })
                                                       }
                                                     })
                                                   }
@@ -3948,7 +3948,7 @@
                                                                     (*lexer.Token)(Whitespace 1216 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                     (*phrase.Phrase)({
                                                                       Type: (phrase.PhraseType) ObjectCreationExpression,
-                                                                      Children: ([]phrase.AstNode) (len=6) {
+                                                                      Children: ([]phrase.AstNode) (len=4) {
                                                                         (*lexer.Token)(New 1217 3 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                         (*lexer.Token)(Whitespace 1220 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                         (*phrase.Phrase)({
@@ -3967,10 +3967,10 @@
                                                                             })
                                                                           }
                                                                         }),
-                                                                        (*lexer.Token)(OpenParenthesis 1229 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                         (*phrase.Phrase)({
                                                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                                                          Children: ([]phrase.AstNode) (len=4) {
+                                                                          Children: ([]phrase.AstNode) (len=6) {
+                                                                            (*lexer.Token)(OpenParenthesis 1229 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                             (*lexer.Token)(StringLiteral 1230 2 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                             (*lexer.Token)(Comma 1232 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                             (*lexer.Token)(Whitespace 1233 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
@@ -4001,10 +4001,10 @@
                                                                                   }
                                                                                 })
                                                                               }
-                                                                            })
+                                                                            }),
+                                                                            (*lexer.Token)(CloseParenthesis 1258 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting)
                                                                           }
-                                                                        }),
-                                                                        (*lexer.Token)(CloseParenthesis 1258 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting)
+                                                                        })
                                                                       }
                                                                     }),
                                                                     (*lexer.Token)(Semicolon 1259 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting)
@@ -4026,7 +4026,7 @@
                                                         (*lexer.Token)(Whitespace 1294 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                         (*phrase.Phrase)({
                                                           Type: (phrase.PhraseType) ObjectCreationExpression,
-                                                          Children: ([]phrase.AstNode) (len=6) {
+                                                          Children: ([]phrase.AstNode) (len=4) {
                                                             (*lexer.Token)(New 1295 3 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                             (*lexer.Token)(Whitespace 1298 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                             (*phrase.Phrase)({
@@ -4045,10 +4045,10 @@
                                                                 })
                                                               }
                                                             }),
-                                                            (*lexer.Token)(OpenParenthesis 1307 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                             (*phrase.Phrase)({
                                                               Type: (phrase.PhraseType) ArgumentExpressionList,
-                                                              Children: ([]phrase.AstNode) (len=4) {
+                                                              Children: ([]phrase.AstNode) (len=6) {
+                                                                (*lexer.Token)(OpenParenthesis 1307 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                 (*lexer.Token)(StringLiteral 1308 2 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                 (*lexer.Token)(Comma 1310 1 ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                 (*lexer.Token)(Whitespace 1311 1 ModeScripting ModeScripting ModeScripting ModeScripting),
@@ -4079,10 +4079,10 @@
                                                                       }
                                                                     })
                                                                   }
-                                                                })
+                                                                }),
+                                                                (*lexer.Token)(CloseParenthesis 1348 1 ModeScripting ModeScripting ModeScripting ModeScripting)
                                                               }
-                                                            }),
-                                                            (*lexer.Token)(CloseParenthesis 1348 1 ModeScripting ModeScripting ModeScripting ModeScripting)
+                                                            })
                                                           }
                                                         }),
                                                         (*lexer.Token)(Semicolon 1349 1 ModeScripting ModeScripting ModeScripting ModeScripting)
@@ -4196,7 +4196,7 @@
                                               Children: ([]phrase.AstNode) (len=3) {
                                                 (*phrase.Phrase)({
                                                   Type: (phrase.PhraseType) MethodCallExpression,
-                                                  Children: ([]phrase.AstNode) (len=5) {
+                                                  Children: ([]phrase.AstNode) (len=4) {
                                                     (*phrase.Phrase)({
                                                       Type: (phrase.PhraseType) SimpleVariable,
                                                       Children: ([]phrase.AstNode) (len=1) {
@@ -4210,8 +4210,13 @@
                                                         (*lexer.Token)(Name 1457 13 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                                       }
                                                     }),
-                                                    (*lexer.Token)(OpenParenthesis 1470 1 ModeScripting ModeScripting ModeScripting),
-                                                    (*lexer.Token)(CloseParenthesis 1471 1 ModeScripting ModeScripting ModeScripting)
+                                                    (*phrase.Phrase)({
+                                                      Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                      Children: ([]phrase.AstNode) (len=2) {
+                                                        (*lexer.Token)(OpenParenthesis 1470 1 ModeScripting ModeScripting ModeScripting),
+                                                        (*lexer.Token)(CloseParenthesis 1471 1 ModeScripting ModeScripting ModeScripting)
+                                                      }
+                                                    })
                                                   }
                                                 }),
                                                 (*lexer.Token)(Dot 1472 1 ModeScripting ModeScripting ModeScripting),
@@ -4384,7 +4389,7 @@
                                                                 (*lexer.Token)(Whitespace 1636 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                 (*phrase.Phrase)({
                                                                   Type: (phrase.PhraseType) ObjectCreationExpression,
-                                                                  Children: ([]phrase.AstNode) (len=5) {
+                                                                  Children: ([]phrase.AstNode) (len=4) {
                                                                     (*lexer.Token)(New 1637 3 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                     (*lexer.Token)(Whitespace 1640 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
                                                                     (*phrase.Phrase)({
@@ -4398,8 +4403,13 @@
                                                                         })
                                                                       }
                                                                     }),
-                                                                    (*lexer.Token)(OpenParenthesis 1647 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
-                                                                    (*lexer.Token)(CloseParenthesis 1648 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting)
+                                                                    (*phrase.Phrase)({
+                                                                      Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                                      Children: ([]phrase.AstNode) (len=2) {
+                                                                        (*lexer.Token)(OpenParenthesis 1647 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting),
+                                                                        (*lexer.Token)(CloseParenthesis 1648 1 ModeScripting ModeScripting ModeScripting ModeScripting ModeScripting)
+                                                                      }
+                                                                    })
                                                                   }
                                                                 })
                                                               }
@@ -4501,7 +4511,7 @@
                                     (*lexer.Token)(Whitespace 1746 1 ModeScripting ModeScripting ModeScripting),
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) FunctionCallExpression,
-                                      Children: ([]phrase.AstNode) (len=4) {
+                                      Children: ([]phrase.AstNode) (len=2) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) FullyQualifiedName,
                                           Children: ([]phrase.AstNode) (len=2) {
@@ -4514,14 +4524,14 @@
                                             })
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 1755 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=1) {
-                                            (*lexer.Token)(DirectoryConstant 1756 7 ModeScripting ModeScripting ModeScripting)
+                                          Children: ([]phrase.AstNode) (len=3) {
+                                            (*lexer.Token)(OpenParenthesis 1755 1 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(DirectoryConstant 1756 7 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 1763 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 1763 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 1764 1 ModeScripting ModeScripting ModeScripting)
@@ -4656,7 +4666,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -4670,13 +4680,13 @@
                                             (*lexer.Token)(Name 1901 11 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 1912 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=1) {
+                                          Children: ([]phrase.AstNode) (len=3) {
+                                            (*lexer.Token)(OpenParenthesis 1912 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) ObjectCreationExpression,
-                                              Children: ([]phrase.AstNode) (len=6) {
+                                              Children: ([]phrase.AstNode) (len=4) {
                                                 (*lexer.Token)(New 1913 3 ModeScripting ModeScripting ModeScripting),
                                                 (*lexer.Token)(Whitespace 1916 1 ModeScripting ModeScripting ModeScripting),
                                                 (*phrase.Phrase)({
@@ -4695,16 +4705,16 @@
                                                     })
                                                   }
                                                 }),
-                                                (*lexer.Token)(OpenParenthesis 1929 1 ModeScripting ModeScripting ModeScripting),
                                                 (*phrase.Phrase)({
                                                   Type: (phrase.PhraseType) ArgumentExpressionList,
-                                                  Children: ([]phrase.AstNode) (len=1) {
+                                                  Children: ([]phrase.AstNode) (len=3) {
+                                                    (*lexer.Token)(OpenParenthesis 1929 1 ModeScripting ModeScripting ModeScripting),
                                                     (*phrase.Phrase)({
                                                       Type: (phrase.PhraseType) AdditiveExpression,
                                                       Children: ([]phrase.AstNode) (len=3) {
                                                         (*phrase.Phrase)({
                                                           Type: (phrase.PhraseType) MethodCallExpression,
-                                                          Children: ([]phrase.AstNode) (len=5) {
+                                                          Children: ([]phrase.AstNode) (len=4) {
                                                             (*phrase.Phrase)({
                                                               Type: (phrase.PhraseType) SimpleVariable,
                                                               Children: ([]phrase.AstNode) (len=1) {
@@ -4718,22 +4728,27 @@
                                                                 (*lexer.Token)(Name 1937 13 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                                               }
                                                             }),
-                                                            (*lexer.Token)(OpenParenthesis 1950 1 ModeScripting ModeScripting ModeScripting),
-                                                            (*lexer.Token)(CloseParenthesis 1951 1 ModeScripting ModeScripting ModeScripting)
+                                                            (*phrase.Phrase)({
+                                                              Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                              Children: ([]phrase.AstNode) (len=2) {
+                                                                (*lexer.Token)(OpenParenthesis 1950 1 ModeScripting ModeScripting ModeScripting),
+                                                                (*lexer.Token)(CloseParenthesis 1951 1 ModeScripting ModeScripting ModeScripting)
+                                                              }
+                                                            })
                                                           }
                                                         }),
                                                         (*lexer.Token)(Dot 1952 1 ModeScripting ModeScripting ModeScripting),
                                                         (*lexer.Token)(StringLiteral 1953 21 ModeScripting ModeScripting ModeScripting)
                                                       }
-                                                    })
+                                                    }),
+                                                    (*lexer.Token)(CloseParenthesis 1974 1 ModeScripting ModeScripting ModeScripting)
                                                   }
-                                                }),
-                                                (*lexer.Token)(CloseParenthesis 1974 1 ModeScripting ModeScripting ModeScripting)
+                                                })
                                               }
-                                            })
+                                            }),
+                                            (*lexer.Token)(CloseParenthesis 1975 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 1975 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 1976 1 ModeScripting ModeScripting ModeScripting)
@@ -4745,7 +4760,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -4759,10 +4774,10 @@
                                             (*lexer.Token)(Name 1998 12 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2010 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=4) {
+                                          Children: ([]phrase.AstNode) (len=6) {
+                                            (*lexer.Token)(OpenParenthesis 2010 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(StringLiteral 2011 38 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Comma 2049 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2050 1 ModeScripting ModeScripting ModeScripting),
@@ -4781,10 +4796,10 @@
                                                   }
                                                 })
                                               }
-                                            })
+                                            }),
+                                            (*lexer.Token)(CloseParenthesis 2055 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2055 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2056 1 ModeScripting ModeScripting ModeScripting)
@@ -4811,7 +4826,7 @@
                                           Children: ([]phrase.AstNode) (len=3) {
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) MethodCallExpression,
-                                              Children: ([]phrase.AstNode) (len=5) {
+                                              Children: ([]phrase.AstNode) (len=4) {
                                                 (*phrase.Phrase)({
                                                   Type: (phrase.PhraseType) SimpleVariable,
                                                   Children: ([]phrase.AstNode) (len=1) {
@@ -4825,8 +4840,13 @@
                                                     (*lexer.Token)(Name 2084 13 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                                   }
                                                 }),
-                                                (*lexer.Token)(OpenParenthesis 2097 1 ModeScripting ModeScripting ModeScripting),
-                                                (*lexer.Token)(CloseParenthesis 2098 1 ModeScripting ModeScripting ModeScripting)
+                                                (*phrase.Phrase)({
+                                                  Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                  Children: ([]phrase.AstNode) (len=2) {
+                                                    (*lexer.Token)(OpenParenthesis 2097 1 ModeScripting ModeScripting ModeScripting),
+                                                    (*lexer.Token)(CloseParenthesis 2098 1 ModeScripting ModeScripting ModeScripting)
+                                                  }
+                                                })
                                               }
                                             }),
                                             (*lexer.Token)(Dot 2099 1 ModeScripting ModeScripting ModeScripting),
@@ -4844,7 +4864,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -4858,10 +4878,10 @@
                                             (*lexer.Token)(Name 2129 4 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2133 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=4) {
+                                          Children: ([]phrase.AstNode) (len=6) {
+                                            (*lexer.Token)(OpenParenthesis 2133 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -4911,10 +4931,10 @@
                                             }),
                                             (*lexer.Token)(Comma 2176 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2177 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2178 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2178 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2184 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2184 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2185 1 ModeScripting ModeScripting ModeScripting)
@@ -4926,7 +4946,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -4940,10 +4960,10 @@
                                             (*lexer.Token)(Name 2204 4 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2208 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=4) {
+                                          Children: ([]phrase.AstNode) (len=6) {
+                                            (*lexer.Token)(OpenParenthesis 2208 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -5024,10 +5044,10 @@
                                             }),
                                             (*lexer.Token)(Comma 2277 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2278 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2279 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2279 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2285 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2285 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2286 1 ModeScripting ModeScripting ModeScripting)
@@ -5039,7 +5059,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -5053,10 +5073,10 @@
                                             (*lexer.Token)(Name 2305 4 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2309 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=4) {
+                                          Children: ([]phrase.AstNode) (len=6) {
+                                            (*lexer.Token)(OpenParenthesis 2309 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -5106,10 +5126,10 @@
                                             }),
                                             (*lexer.Token)(Comma 2350 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2351 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2352 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2352 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2358 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2358 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2359 1 ModeScripting ModeScripting ModeScripting)
@@ -5121,7 +5141,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -5135,10 +5155,10 @@
                                             (*lexer.Token)(Name 2378 4 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2382 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=4) {
+                                          Children: ([]phrase.AstNode) (len=6) {
+                                            (*lexer.Token)(OpenParenthesis 2382 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -5212,10 +5232,10 @@
                                             }),
                                             (*lexer.Token)(Comma 2443 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2444 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2445 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2445 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2451 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2451 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2452 1 ModeScripting ModeScripting ModeScripting)
@@ -5340,7 +5360,7 @@
                                           Children: ([]phrase.AstNode) (len=3) {
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) MethodCallExpression,
-                                              Children: ([]phrase.AstNode) (len=5) {
+                                              Children: ([]phrase.AstNode) (len=4) {
                                                 (*phrase.Phrase)({
                                                   Type: (phrase.PhraseType) SimpleVariable,
                                                   Children: ([]phrase.AstNode) (len=1) {
@@ -5354,8 +5374,13 @@
                                                     (*lexer.Token)(Name 2570 13 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                                   }
                                                 }),
-                                                (*lexer.Token)(OpenParenthesis 2583 1 ModeScripting ModeScripting ModeScripting),
-                                                (*lexer.Token)(CloseParenthesis 2584 1 ModeScripting ModeScripting ModeScripting)
+                                                (*phrase.Phrase)({
+                                                  Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                  Children: ([]phrase.AstNode) (len=2) {
+                                                    (*lexer.Token)(OpenParenthesis 2583 1 ModeScripting ModeScripting ModeScripting),
+                                                    (*lexer.Token)(CloseParenthesis 2584 1 ModeScripting ModeScripting ModeScripting)
+                                                  }
+                                                })
                                               }
                                             }),
                                             (*lexer.Token)(Dot 2585 1 ModeScripting ModeScripting ModeScripting),
@@ -5373,7 +5398,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -5387,10 +5412,10 @@
                                             (*lexer.Token)(Name 2615 6 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2621 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=7) {
+                                          Children: ([]phrase.AstNode) (len=9) {
+                                            (*lexer.Token)(OpenParenthesis 2621 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -5474,10 +5499,10 @@
                                             (*lexer.Token)(StringLiteral 2690 3 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Comma 2693 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2694 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2695 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2695 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2701 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2701 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2702 1 ModeScripting ModeScripting ModeScripting)
@@ -5489,7 +5514,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -5503,10 +5528,10 @@
                                             (*lexer.Token)(Name 2721 6 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2727 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=7) {
+                                          Children: ([]phrase.AstNode) (len=9) {
+                                            (*lexer.Token)(OpenParenthesis 2727 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -5559,10 +5584,10 @@
                                             (*lexer.Token)(StringLiteral 2770 3 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Comma 2773 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2774 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2775 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2775 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2781 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2781 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2782 1 ModeScripting ModeScripting ModeScripting)
@@ -5574,7 +5599,7 @@
                                   Children: ([]phrase.AstNode) (len=2) {
                                     (*phrase.Phrase)({
                                       Type: (phrase.PhraseType) MethodCallExpression,
-                                      Children: ([]phrase.AstNode) (len=6) {
+                                      Children: ([]phrase.AstNode) (len=4) {
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) SimpleVariable,
                                           Children: ([]phrase.AstNode) (len=1) {
@@ -5588,10 +5613,10 @@
                                             (*lexer.Token)(Name 2801 6 ModeScripting ModeScripting ModeScripting ModeLookingForProperty)
                                           }
                                         }),
-                                        (*lexer.Token)(OpenParenthesis 2807 1 ModeScripting ModeScripting ModeScripting),
                                         (*phrase.Phrase)({
                                           Type: (phrase.PhraseType) ArgumentExpressionList,
-                                          Children: ([]phrase.AstNode) (len=7) {
+                                          Children: ([]phrase.AstNode) (len=9) {
+                                            (*lexer.Token)(OpenParenthesis 2807 1 ModeScripting ModeScripting ModeScripting),
                                             (*phrase.Phrase)({
                                               Type: (phrase.PhraseType) AdditiveExpression,
                                               Children: ([]phrase.AstNode) (len=3) {
@@ -5644,10 +5669,10 @@
                                             (*lexer.Token)(StringLiteral 2848 3 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Comma 2851 1 ModeScripting ModeScripting ModeScripting),
                                             (*lexer.Token)(Whitespace 2852 1 ModeScripting ModeScripting ModeScripting),
-                                            (*lexer.Token)(StringLiteral 2853 6 ModeScripting ModeScripting ModeScripting)
+                                            (*lexer.Token)(StringLiteral 2853 6 ModeScripting ModeScripting ModeScripting),
+                                            (*lexer.Token)(CloseParenthesis 2859 1 ModeScripting ModeScripting ModeScripting)
                                           }
-                                        }),
-                                        (*lexer.Token)(CloseParenthesis 2859 1 ModeScripting ModeScripting ModeScripting)
+                                        })
                                       }
                                     }),
                                     (*lexer.Token)(Semicolon 2860 1 ModeScripting ModeScripting ModeScripting)

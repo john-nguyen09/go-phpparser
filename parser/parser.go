@@ -364,6 +364,26 @@ func (doc *Parser) next(doNotPush bool) *lexer.Token {
 	return t
 }
 
+func (doc *Parser) expectNoPush(tokenType lexer.TokenType) *lexer.Token {
+	t := doc.peek(0)
+	if t.Type == tokenType {
+		doc.errorPhrase = nil
+		return t
+	} else if tokenType == lexer.Semicolon && t.Type == lexer.CloseTag {
+		return t
+	} else {
+		doc.error(tokenType)
+		if doc.peek(1).Type == tokenType {
+			doc.skip(func(x *lexer.Token) bool {
+				return x.Type == tokenType
+			})
+			doc.errorPhrase = nil
+			return doc.next(false)
+		}
+	}
+	return nil
+}
+
 func (doc *Parser) expect(tokenType lexer.TokenType) *lexer.Token {
 	t := doc.peek(0)
 
@@ -1088,11 +1108,8 @@ func (doc *Parser) anonymousClassDeclaration() *phrase.Phrase {
 func (doc *Parser) anonymousClassDeclarationHeader() *phrase.Phrase {
 	p := doc.start(phrase.AnonymousClassDeclarationHeader, false)
 	doc.next(false) //class
-	if doc.optional(lexer.OpenParenthesis) != nil {
-		if isArgumentStart(doc.peek(0)) {
-			p.Children = append(p.Children, doc.argumentList())
-		}
-		doc.expect(lexer.CloseParenthesis)
+	if doc.peek(0).Type == lexer.OpenParenthesis {
+		p.Children = append(p.Children, doc.argumentList())
 	}
 
 	if doc.peek(0).Type == lexer.Extends {
@@ -2448,12 +2465,8 @@ func (doc *Parser) objectCreationExpression() *phrase.Phrase {
 
 	p.Children = append(p.Children, doc.typeDesignator(phrase.ClassTypeDesignator))
 
-	if doc.optional(lexer.OpenParenthesis) != nil {
-		if isArgumentStart(doc.peek(0)) {
-			p.Children = append(p.Children, doc.argumentList())
-		}
-
-		doc.expect(lexer.CloseParenthesis)
+	if doc.peek(0).Type == lexer.OpenParenthesis {
+		p.Children = append(p.Children, doc.argumentList())
 	}
 
 	return doc.end()
@@ -2706,11 +2719,9 @@ func (doc *Parser) variable(variableAtomNode phrase.AstNode) phrase.AstNode {
 func (doc *Parser) functionCallExpression(lhs phrase.AstNode) *phrase.Phrase {
 	p := doc.start(phrase.FunctionCallExpression, true)
 	p.Children = append(p.Children, lhs)
-	doc.expect(lexer.OpenParenthesis)
-	if isArgumentStart(doc.peek(0)) {
+	if doc.expectNoPush(lexer.OpenParenthesis) != nil {
 		p.Children = append(p.Children, doc.argumentList())
 	}
-	doc.expect(lexer.CloseParenthesis)
 
 	return doc.end()
 }
@@ -2721,18 +2732,13 @@ func (doc *Parser) scopedAccessExpression(lhs phrase.AstNode) *phrase.Phrase {
 	doc.next(false) //::
 	p.Children = append(p.Children, doc.scopedMemberName(p))
 
-	if doc.optional(lexer.OpenParenthesis) != nil {
+	if doc.peek(0).Type == lexer.OpenParenthesis {
 		p.Type = phrase.ScopedCallExpression
-		if isArgumentStart(doc.peek(0)) {
-			p.Children = append(p.Children, doc.argumentList())
-		}
-
-		doc.expect(lexer.CloseParenthesis)
-
+		p.Children = append(p.Children, doc.argumentList())
 		return doc.end()
 	} else if p.Type == phrase.ScopedCallExpression {
 		//error
-		doc.error(lexer.Undefined)
+		doc.error(lexer.OpenParenthesis)
 	}
 
 	return doc.end()
@@ -2787,12 +2793,9 @@ func (doc *Parser) propertyOrMethodAccessExpression(lhs phrase.AstNode) *phrase.
 	doc.next(false) //->
 	p.Children = append(p.Children, doc.memberName())
 
-	if doc.optional(lexer.OpenParenthesis) != nil {
-		if isArgumentStart(doc.peek(0)) {
-			p.Children = append(p.Children, doc.argumentList())
-		}
+	if doc.peek(0).Type == lexer.OpenParenthesis {
+		p.Children = append(p.Children, doc.argumentList())
 		p.Type = phrase.MethodCallExpression
-		doc.expect(lexer.CloseParenthesis)
 	}
 
 	return doc.end()
@@ -2833,13 +2836,25 @@ func (doc *Parser) subscriptExpression(
 }
 
 func (doc *Parser) argumentList() *phrase.Phrase {
-	return doc.delimitedList(
-		phrase.ArgumentExpressionList,
-		doc.argumentExpression,
-		isArgumentStart,
-		lexer.Comma,
-		[]lexer.TokenType{lexer.CloseParenthesis},
-		false)
+	t := doc.next(true)
+	var p *phrase.Phrase
+	if isArgumentStart(doc.peek(0)) {
+		p = doc.delimitedList(
+			phrase.ArgumentExpressionList,
+			doc.argumentExpression,
+			isArgumentStart,
+			lexer.Comma,
+			[]lexer.TokenType{lexer.CloseParenthesis},
+			false)
+	} else {
+		p = doc.start(phrase.ArgumentExpressionList, false)
+		doc.end()
+	}
+	p.Children = append([]phrase.AstNode{t}, p.Children...)
+	if doc.peek(0).Type == lexer.CloseParenthesis {
+		p.Children = append(p.Children, doc.next(true))
+	}
+	return p
 }
 
 func isArgumentStart(t *lexer.Token) bool {
@@ -2857,9 +2872,8 @@ func (doc *Parser) variadicUnpacking() *phrase.Phrase {
 func (doc *Parser) argumentExpression() phrase.AstNode {
 	if doc.peek(0).Type == lexer.Ellipsis {
 		return doc.variadicUnpacking()
-	} else {
-		return doc.expression(0)
 	}
+	return doc.expression(0)
 }
 
 func (doc *Parser) qualifiedName() phrase.AstNode {
