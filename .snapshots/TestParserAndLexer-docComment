@@ -2740,7 +2740,7 @@
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Array,
+    Type: (lexer.TokenType) Name,
     Offset: (int) 1691,
     Length: (int) 5
   },
@@ -4781,7 +4781,17 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) TypeDeclaration,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Array 1691 5 ModeScripting)
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) QualifiedName,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) NamespaceName,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*lexer.Token)(Name 1691 5 ModeScripting)
+                              }
+                            })
+                          }
+                        })
                       }
                     }),
                     (*lexer.Token)(Whitespace 1696 1 ModeScripting),

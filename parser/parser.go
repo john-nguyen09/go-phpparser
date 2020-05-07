@@ -2610,7 +2610,9 @@ func (doc *Parser) anonymousFunctionCreationExpression() *phrase.Phrase {
 	p := doc.start(phrase.AnonymousFunctionCreationExpression, false)
 
 	p.Children = append(p.Children, doc.anonymousFunctionHeader())
-	p.Children = append(p.Children, doc.functionDeclarationBody())
+	if doc.peek(0).Type == lexer.OpenBrace {
+		p.Children = append(p.Children, doc.functionDeclarationBody())
+	}
 
 	return doc.end()
 }

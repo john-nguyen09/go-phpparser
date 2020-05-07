@@ -794,6 +794,10 @@ func (s *Lexer) scriptingLabelStart() *Token {
 	firstRune := s.r
 	for s.step(); isLabelChar(s.r); s.step() {
 	}
+	i := 0
+	for ; isWhitespace(s.peek(i)); i++ {
+	}
+	nextNonWhitespace := s.peek(i)
 
 	text := string(s.source[startPosition : s.nextOffset-1])
 	tokenType := Unknown
@@ -947,7 +951,9 @@ func (s *Lexer) scriptingLabelStart() *Token {
 	case "list":
 		tokenType = List
 	case "array":
-		tokenType = Array
+		if nextNonWhitespace == '(' {
+			tokenType = Array
+		}
 	case "callable":
 		tokenType = Callable
 	case "or":

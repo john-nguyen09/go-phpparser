@@ -1125,7 +1125,7 @@
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Array,
+    Type: (lexer.TokenType) Name,
     Offset: (int) 807,
     Length: (int) 5
   },
@@ -1335,7 +1335,7 @@
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Array,
+    Type: (lexer.TokenType) Name,
     Offset: (int) 952,
     Length: (int) 5
   },
@@ -6702,7 +6702,17 @@
                                 (*phrase.Phrase)({
                                   Type: (phrase.PhraseType) TypeDeclaration,
                                   Children: ([]phrase.AstNode) (len=1) {
-                                    (*lexer.Token)(Array 807 5 ModeScripting ModeScripting)
+                                    (*phrase.Phrase)({
+                                      Type: (phrase.PhraseType) QualifiedName,
+                                      Children: ([]phrase.AstNode) (len=1) {
+                                        (*phrase.Phrase)({
+                                          Type: (phrase.PhraseType) NamespaceName,
+                                          Children: ([]phrase.AstNode) (len=1) {
+                                            (*lexer.Token)(Name 807 5 ModeScripting ModeScripting)
+                                          }
+                                        })
+                                      }
+                                    })
                                   }
                                 }),
                                 (*lexer.Token)(Whitespace 812 1 ModeScripting ModeScripting),
@@ -6856,7 +6866,17 @@
                             (*phrase.Phrase)({
                               Type: (phrase.PhraseType) TypeDeclaration,
                               Children: ([]phrase.AstNode) (len=1) {
-                                (*lexer.Token)(Array 952 5 ModeScripting ModeScripting)
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) QualifiedName,
+                                  Children: ([]phrase.AstNode) (len=1) {
+                                    (*phrase.Phrase)({
+                                      Type: (phrase.PhraseType) NamespaceName,
+                                      Children: ([]phrase.AstNode) (len=1) {
+                                        (*lexer.Token)(Name 952 5 ModeScripting ModeScripting)
+                                      }
+                                    })
+                                  }
+                                })
                               }
                             })
                           }
