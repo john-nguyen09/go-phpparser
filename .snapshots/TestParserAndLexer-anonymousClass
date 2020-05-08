@@ -71,7 +71,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
@@ -83,32 +83,32 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 2 ModeScripting)
+                (*lexer.Token)(VariableName 6 2)
               }
             }),
-            (*lexer.Token)(Whitespace 8 1 ModeScripting),
-            (*lexer.Token)(Equals 9 1 ModeScripting),
-            (*lexer.Token)(Whitespace 10 1 ModeScripting),
+            (*lexer.Token)(Whitespace 8 1),
+            (*lexer.Token)(Equals 9 1),
+            (*lexer.Token)(Whitespace 10 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ObjectCreationExpression,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(New 11 3 ModeScripting),
-                (*lexer.Token)(Whitespace 14 1 ModeScripting),
+                (*lexer.Token)(New 11 3),
+                (*lexer.Token)(Whitespace 14 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) AnonymousClassDeclaration,
                   Children: ([]phrase.AstNode) (len=3) {
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) AnonymousClassDeclarationHeader,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Class 15 5 ModeScripting)
+                        (*lexer.Token)(Class 15 5)
                       }
                     }),
-                    (*lexer.Token)(Whitespace 20 1 ModeScripting),
+                    (*lexer.Token)(Whitespace 20 1),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) ClassDeclarationBody,
                       Children: ([]phrase.AstNode) (len=2) {
-                        (*lexer.Token)(OpenBrace 21 1 ModeScripting),
-                        (*lexer.Token)(CloseBrace 22 1 ModeScripting ModeScripting)
+                        (*lexer.Token)(OpenBrace 21 1),
+                        (*lexer.Token)(CloseBrace 22 1)
                       }
                     })
                   }
@@ -117,7 +117,7 @@
             })
           }
         }),
-        (*lexer.Token)(Semicolon 23 1 ModeScripting)
+        (*lexer.Token)(Semicolon 23 1)
       }
     })
   }

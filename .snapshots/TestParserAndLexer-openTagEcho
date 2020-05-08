@@ -81,30 +81,30 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) EchoIntrinsic,
       Children: ([]phrase.AstNode) (len=3) {
-        (*lexer.Token)(OpenTagEcho 0 4 ModeInitial),
+        (*lexer.Token)(OpenTagEcho 0 4),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) ExpressionList,
           Children: ([]phrase.AstNode) (len=4) {
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 4 2 ModeScripting)
+                (*lexer.Token)(VariableName 4 2)
               }
             }),
-            (*lexer.Token)(Comma 6 1 ModeScripting),
-            (*lexer.Token)(Whitespace 7 1 ModeScripting),
+            (*lexer.Token)(Comma 6 1),
+            (*lexer.Token)(Whitespace 7 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 8 2 ModeScripting)
+                (*lexer.Token)(VariableName 8 2)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 10 1 ModeScripting)
+        (*lexer.Token)(Semicolon 10 1)
       }
     }),
-    (*lexer.Token)(Whitespace 11 1 ModeScripting),
+    (*lexer.Token)(Whitespace 11 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=1) {
@@ -114,27 +114,27 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 12 2 ModeScripting)
+                (*lexer.Token)(VariableName 12 2)
               }
             }),
-            (*lexer.Token)(Whitespace 14 1 ModeScripting),
-            (*lexer.Token)(Equals 15 1 ModeScripting),
-            (*lexer.Token)(Whitespace 16 1 ModeScripting),
+            (*lexer.Token)(Whitespace 14 1),
+            (*lexer.Token)(Equals 15 1),
+            (*lexer.Token)(Whitespace 16 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 17 2 ModeScripting)
+                (*lexer.Token)(VariableName 17 2)
               }
             })
           }
         })
       }
     }),
-    (*lexer.Token)(Whitespace 19 1 ModeScripting),
+    (*lexer.Token)(Whitespace 19 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(CloseTag 20 2 ModeScripting)
+        (*lexer.Token)(CloseTag 20 2)
       }
     })
   }

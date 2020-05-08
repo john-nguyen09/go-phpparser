@@ -41,22 +41,22 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
-        (*lexer.Token)(IntegerLiteral 6 6 ModeScripting),
-        (*lexer.Token)(Semicolon 12 1 ModeScripting)
+        (*lexer.Token)(IntegerLiteral 6 6),
+        (*lexer.Token)(Semicolon 12 1)
       }
     }),
-    (*lexer.Token)(Whitespace 13 1 ModeScripting),
+    (*lexer.Token)(Whitespace 13 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
-        (*lexer.Token)(IntegerLiteral 14 4 ModeScripting),
-        (*lexer.Token)(Semicolon 18 1 ModeScripting)
+        (*lexer.Token)(IntegerLiteral 14 4),
+        (*lexer.Token)(Semicolon 18 1)
       }
     })
   }

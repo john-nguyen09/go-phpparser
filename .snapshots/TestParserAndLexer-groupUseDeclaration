@@ -76,25 +76,25 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceUseDeclaration,
       Children: ([]phrase.AstNode) (len=10) {
-        (*lexer.Token)(Use 6 3 ModeScripting),
-        (*lexer.Token)(Whitespace 9 1 ModeScripting),
+        (*lexer.Token)(Use 6 3),
+        (*lexer.Token)(Whitespace 9 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceName,
           Children: ([]phrase.AstNode) (len=3) {
-            (*lexer.Token)(Name 10 3 ModeScripting),
-            (*lexer.Token)(Backslash 13 1 ModeScripting),
-            (*lexer.Token)(Name 14 3 ModeScripting)
+            (*lexer.Token)(Name 10 3),
+            (*lexer.Token)(Backslash 13 1),
+            (*lexer.Token)(Name 14 3)
           }
         }),
-        (*lexer.Token)(Backslash 17 1 ModeScripting),
-        (*lexer.Token)(OpenBrace 18 1 ModeScripting),
-        (*lexer.Token)(Whitespace 19 5 ModeScripting ModeScripting),
+        (*lexer.Token)(Backslash 17 1),
+        (*lexer.Token)(OpenBrace 18 1),
+        (*lexer.Token)(Whitespace 19 5),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceUseGroupClauseList,
           Children: ([]phrase.AstNode) (len=1) {
@@ -104,16 +104,16 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 24 3 ModeScripting ModeScripting)
+                    (*lexer.Token)(Name 24 3)
                   }
                 })
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 27 1 ModeScripting ModeScripting),
-        (*lexer.Token)(CloseBrace 28 1 ModeScripting ModeScripting),
-        (*lexer.Token)(Semicolon 29 1 ModeScripting)
+        (*lexer.Token)(Whitespace 27 1),
+        (*lexer.Token)(CloseBrace 28 1),
+        (*lexer.Token)(Semicolon 29 1)
       }
     })
   }

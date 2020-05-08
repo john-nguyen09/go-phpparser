@@ -61,7 +61,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
@@ -73,24 +73,24 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) AnonymousFunctionHeader,
               Children: ([]phrase.AstNode) (len=4) {
-                (*lexer.Token)(Function 6 8 ModeScripting),
-                (*lexer.Token)(Whitespace 14 1 ModeScripting),
-                (*lexer.Token)(OpenParenthesis 15 1 ModeScripting),
-                (*lexer.Token)(CloseParenthesis 16 1 ModeScripting)
+                (*lexer.Token)(Function 6 8),
+                (*lexer.Token)(Whitespace 14 1),
+                (*lexer.Token)(OpenParenthesis 15 1),
+                (*lexer.Token)(CloseParenthesis 16 1)
               }
             }),
-            (*lexer.Token)(Whitespace 17 1 ModeScripting),
+            (*lexer.Token)(Whitespace 17 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) FunctionDeclarationBody,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(OpenBrace 18 1 ModeScripting),
-                (*lexer.Token)(Whitespace 19 1 ModeScripting ModeScripting),
-                (*lexer.Token)(CloseBrace 20 1 ModeScripting ModeScripting)
+                (*lexer.Token)(OpenBrace 18 1),
+                (*lexer.Token)(Whitespace 19 1),
+                (*lexer.Token)(CloseBrace 20 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 21 1 ModeScripting)
+        (*lexer.Token)(Semicolon 21 1)
       }
     })
   }

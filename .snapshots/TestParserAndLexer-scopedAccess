@@ -26,7 +26,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 7 ModeInitial)
+        (*lexer.Token)(OpenTag 0 7)
       }
     }),
     (*phrase.Phrase)({
@@ -41,12 +41,12 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 7 15 ModeScripting)
+                    (*lexer.Token)(Name 7 15)
                   }
                 })
               }
             }),
-            (*lexer.Token)(ColonColon 22 2 ModeScripting),
+            (*lexer.Token)(ColonColon 22 2),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ScopedMemberName,
               Children: ([]phrase.AstNode) (len=1) {
@@ -56,7 +56,7 @@
                     Children: ([]phrase.AstNode) {
                     }
                   },
-                  Unexpected: (*lexer.Token)(EndOfFile 24 0 ModeScripting),
+                  Unexpected: (*lexer.Token)(EndOfFile 24 0),
                   Expected: (lexer.TokenType) Undefined
                 })
               }

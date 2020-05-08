@@ -256,30 +256,30 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 7 ModeInitial)
+        (*lexer.Token)(OpenTag 0 7)
       }
     }),
-    (*lexer.Token)(Whitespace 7 2 ModeScripting),
+    (*lexer.Token)(Whitespace 7 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceDefinition,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Namespace 9 9 ModeScripting),
-        (*lexer.Token)(Whitespace 18 1 ModeScripting),
+        (*lexer.Token)(Namespace 9 9),
+        (*lexer.Token)(Whitespace 18 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceName,
           Children: ([]phrase.AstNode) (len=1) {
-            (*lexer.Token)(Name 19 14 ModeScripting)
+            (*lexer.Token)(Name 19 14)
           }
         }),
-        (*lexer.Token)(Semicolon 33 1 ModeScripting)
+        (*lexer.Token)(Semicolon 33 1)
       }
     }),
-    (*lexer.Token)(Whitespace 34 4 ModeScripting),
+    (*lexer.Token)(Whitespace 34 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceUseDeclaration,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Use 38 3 ModeScripting),
-        (*lexer.Token)(Whitespace 41 1 ModeScripting),
+        (*lexer.Token)(Use 38 3),
+        (*lexer.Token)(Whitespace 41 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceUseClauseList,
           Children: ([]phrase.AstNode) (len=1) {
@@ -289,26 +289,26 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(Name 42 14 ModeScripting),
-                    (*lexer.Token)(Backslash 56 1 ModeScripting),
-                    (*lexer.Token)(Name 57 9 ModeScripting)
+                    (*lexer.Token)(Name 42 14),
+                    (*lexer.Token)(Backslash 56 1),
+                    (*lexer.Token)(Name 57 9)
                   }
                 })
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 66 1 ModeScripting)
+        (*lexer.Token)(Semicolon 66 1)
       }
     }),
-    (*lexer.Token)(Whitespace 67 2 ModeScripting),
+    (*lexer.Token)(Whitespace 67 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceUseDeclaration,
       Children: ([]phrase.AstNode) (len=6) {
-        (*lexer.Token)(Use 69 3 ModeScripting),
-        (*lexer.Token)(Whitespace 72 1 ModeScripting),
-        (*lexer.Token)(Function 73 8 ModeScripting),
-        (*lexer.Token)(Whitespace 81 1 ModeScripting),
+        (*lexer.Token)(Use 69 3),
+        (*lexer.Token)(Whitespace 72 1),
+        (*lexer.Token)(Function 73 8),
+        (*lexer.Token)(Whitespace 81 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceUseClauseList,
           Children: ([]phrase.AstNode) (len=1) {
@@ -318,19 +318,19 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(Name 82 14 ModeScripting),
-                    (*lexer.Token)(Backslash 96 1 ModeScripting),
-                    (*lexer.Token)(Name 97 12 ModeScripting)
+                    (*lexer.Token)(Name 82 14),
+                    (*lexer.Token)(Backslash 96 1),
+                    (*lexer.Token)(Name 97 12)
                   }
                 })
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 109 1 ModeScripting)
+        (*lexer.Token)(Semicolon 109 1)
       }
     }),
-    (*lexer.Token)(Whitespace 110 4 ModeScripting),
+    (*lexer.Token)(Whitespace 110 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
@@ -343,29 +343,29 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 114 9 ModeScripting)
+                    (*lexer.Token)(Name 114 9)
                   }
                 })
               }
             }),
-            (*lexer.Token)(ColonColon 123 2 ModeScripting),
+            (*lexer.Token)(ColonColon 123 2),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ScopedMemberName,
               Children: ([]phrase.AstNode) (len=1) {
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) Identifier,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 125 6 ModeScripting)
+                    (*lexer.Token)(Name 125 6)
                   }
                 })
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 131 1 ModeScripting)
+        (*lexer.Token)(Semicolon 131 1)
       }
     }),
-    (*lexer.Token)(Whitespace 132 4 ModeScripting),
+    (*lexer.Token)(Whitespace 132 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
@@ -375,17 +375,17 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 136 10 ModeScripting)
+                (*lexer.Token)(VariableName 136 10)
               }
             }),
-            (*lexer.Token)(Whitespace 146 1 ModeScripting),
-            (*lexer.Token)(Equals 147 1 ModeScripting),
-            (*lexer.Token)(Whitespace 148 1 ModeScripting),
+            (*lexer.Token)(Whitespace 146 1),
+            (*lexer.Token)(Equals 147 1),
+            (*lexer.Token)(Whitespace 148 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ObjectCreationExpression,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(New 149 3 ModeScripting),
-                (*lexer.Token)(Whitespace 152 1 ModeScripting),
+                (*lexer.Token)(New 149 3),
+                (*lexer.Token)(Whitespace 152 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) ClassTypeDesignator,
                   Children: ([]phrase.AstNode) (len=1) {
@@ -395,7 +395,7 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 153 9 ModeScripting)
+                            (*lexer.Token)(Name 153 9)
                           }
                         })
                       }
@@ -406,10 +406,10 @@
             })
           }
         }),
-        (*lexer.Token)(Semicolon 162 1 ModeScripting)
+        (*lexer.Token)(Semicolon 162 1)
       }
     }),
-    (*lexer.Token)(Whitespace 163 2 ModeScripting),
+    (*lexer.Token)(Whitespace 163 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
@@ -419,29 +419,29 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 165 10 ModeScripting)
+                (*lexer.Token)(VariableName 165 10)
               }
             }),
-            (*lexer.Token)(Arrow 175 2 ModeScripting),
+            (*lexer.Token)(Arrow 175 2),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) MemberName,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(Name 177 10 ModeScripting ModeLookingForProperty)
+                (*lexer.Token)(Name 177 10)
               }
             }),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ArgumentExpressionList,
               Children: ([]phrase.AstNode) (len=2) {
-                (*lexer.Token)(OpenParenthesis 187 1 ModeScripting),
-                (*lexer.Token)(CloseParenthesis 188 1 ModeScripting)
+                (*lexer.Token)(OpenParenthesis 187 1),
+                (*lexer.Token)(CloseParenthesis 188 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 189 1 ModeScripting)
+        (*lexer.Token)(Semicolon 189 1)
       }
     }),
-    (*lexer.Token)(Whitespace 190 4 ModeScripting),
+    (*lexer.Token)(Whitespace 190 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
@@ -454,7 +454,7 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 194 12 ModeScripting)
+                    (*lexer.Token)(Name 194 12)
                   }
                 })
               }
@@ -462,15 +462,15 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ArgumentExpressionList,
               Children: ([]phrase.AstNode) (len=2) {
-                (*lexer.Token)(OpenParenthesis 206 1 ModeScripting),
-                (*lexer.Token)(CloseParenthesis 207 1 ModeScripting)
+                (*lexer.Token)(OpenParenthesis 206 1),
+                (*lexer.Token)(CloseParenthesis 207 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 208 1 ModeScripting)
+        (*lexer.Token)(Semicolon 208 1)
       }
     }),
-    (*lexer.Token)(Whitespace 209 2 ModeScripting)
+    (*lexer.Token)(Whitespace 209 2)
   }
 })

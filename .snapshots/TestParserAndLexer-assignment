@@ -51,10 +51,10 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
-    (*lexer.Token)(Whitespace 6 4 ModeScripting),
+    (*lexer.Token)(Whitespace 6 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
@@ -64,16 +64,16 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 10 6 ModeScripting)
+                (*lexer.Token)(VariableName 10 6)
               }
             }),
-            (*lexer.Token)(Whitespace 16 1 ModeScripting),
-            (*lexer.Token)(Equals 17 1 ModeScripting),
-            (*lexer.Token)(Whitespace 18 1 ModeScripting),
-            (*lexer.Token)(IntegerLiteral 19 1 ModeScripting)
+            (*lexer.Token)(Whitespace 16 1),
+            (*lexer.Token)(Equals 17 1),
+            (*lexer.Token)(Whitespace 18 1),
+            (*lexer.Token)(IntegerLiteral 19 1)
           }
         }),
-        (*lexer.Token)(Semicolon 20 1 ModeScripting)
+        (*lexer.Token)(Semicolon 20 1)
       }
     })
   }

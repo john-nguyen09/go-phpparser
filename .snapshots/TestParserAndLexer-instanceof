@@ -81,27 +81,27 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) IfStatement,
       Children: ([]phrase.AstNode) (len=7) {
-        (*lexer.Token)(If 6 2 ModeScripting),
-        (*lexer.Token)(Whitespace 8 1 ModeScripting),
-        (*lexer.Token)(OpenParenthesis 9 1 ModeScripting),
+        (*lexer.Token)(If 6 2),
+        (*lexer.Token)(Whitespace 8 1),
+        (*lexer.Token)(OpenParenthesis 9 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) InstanceOfExpression,
           Children: ([]phrase.AstNode) (len=5) {
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 10 5 ModeScripting)
+                (*lexer.Token)(VariableName 10 5)
               }
             }),
-            (*lexer.Token)(Whitespace 15 1 ModeScripting),
-            (*lexer.Token)(InstanceOf 16 10 ModeScripting),
-            (*lexer.Token)(Whitespace 26 1 ModeScripting),
+            (*lexer.Token)(Whitespace 15 1),
+            (*lexer.Token)(InstanceOf 16 10),
+            (*lexer.Token)(Whitespace 26 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) InstanceofTypeDesignator,
               Children: ([]phrase.AstNode) (len=1) {
@@ -111,7 +111,7 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 27 8 ModeScripting)
+                        (*lexer.Token)(Name 27 8)
                       }
                     })
                   }
@@ -120,14 +120,14 @@
             })
           }
         }),
-        (*lexer.Token)(CloseParenthesis 35 1 ModeScripting),
-        (*lexer.Token)(Whitespace 36 1 ModeScripting),
+        (*lexer.Token)(CloseParenthesis 35 1),
+        (*lexer.Token)(Whitespace 36 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) CompoundStatement,
           Children: ([]phrase.AstNode) (len=3) {
-            (*lexer.Token)(OpenBrace 37 1 ModeScripting),
-            (*lexer.Token)(Whitespace 38 1 ModeScripting ModeScripting),
-            (*lexer.Token)(CloseBrace 39 1 ModeScripting ModeScripting)
+            (*lexer.Token)(OpenBrace 37 1),
+            (*lexer.Token)(Whitespace 38 1),
+            (*lexer.Token)(CloseBrace 39 1)
           }
         })
       }

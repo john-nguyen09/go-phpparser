@@ -133,7 +133,7 @@ func (s *Lexer) ModeStack() []LexerMode {
 // Lex runs the lexing and returns a token
 func (s *Lexer) Lex() *Token {
 	if s.r == -1 {
-		return NewToken(EndOfFile, s.offset, 0, s.ModeStack())
+		return NewToken(EndOfFile, s.offset, 0)
 	}
 
 	var t *Token
@@ -189,7 +189,7 @@ func (s *Lexer) initial() *Token {
 			} else {
 				s.stepLoop(3)
 			}
-			token := NewToken(OpenTag, start, s.offset-start, s.ModeStack())
+			token := NewToken(OpenTag, start, s.offset-start)
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			return token
 		}
@@ -201,7 +201,7 @@ func (s *Lexer) initial() *Token {
 				s.stepLoop(4)
 			}
 
-			token := NewToken(OpenTagEcho, start, s.offset-start, s.ModeStack())
+			token := NewToken(OpenTagEcho, start, s.offset-start)
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			return token
 		}
@@ -211,7 +211,7 @@ func (s *Lexer) initial() *Token {
 			} else {
 				s.stepLoop(6)
 			}
-			token := NewToken(OpenTag, start, s.offset-start, s.ModeStack())
+			token := NewToken(OpenTag, start, s.offset-start)
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			return token
 		}
@@ -230,19 +230,18 @@ func (s *Lexer) initial() *Token {
 			}
 		}
 	}
-	return NewToken(Text, start, s.offset-start, s.ModeStack())
+	return NewToken(Text, start, s.offset-start)
 }
 
 func (s *Lexer) scripting() *Token {
 	start := s.offset
-	modeStack := s.ModeStack()
 
 	switch s.r {
 	case ' ', '\t', '\n', '\r':
 		for s.step(); isWhitespace(s.r); s.step() {
 		}
 
-		return NewToken(Whitespace, start, s.offset-start, modeStack)
+		return NewToken(Whitespace, start, s.offset-start)
 	case '-':
 		return s.scriptingMinus()
 	case ':':
@@ -250,10 +249,10 @@ func (s *Lexer) scripting() *Token {
 		if s.r == ':' {
 			s.step()
 
-			return NewToken(ColonColon, start, 2, modeStack)
+			return NewToken(ColonColon, start, 2)
 		}
 
-		return NewToken(Colon, start, 1, modeStack)
+		return NewToken(Colon, start, 1)
 
 	case '.':
 		return s.scriptingDot()
@@ -276,10 +275,10 @@ func (s *Lexer) scripting() *Token {
 		if s.r == '=' {
 			s.step()
 
-			return NewToken(PercentEquals, start, 2, modeStack)
+			return NewToken(PercentEquals, start, 2)
 		}
 
-		return NewToken(Percent, start, 1, modeStack)
+		return NewToken(Percent, start, 1)
 	case '&':
 		return s.scriptingAmpersand()
 	case '|':
@@ -289,42 +288,42 @@ func (s *Lexer) scripting() *Token {
 		if s.r == '=' {
 			s.step()
 
-			return NewToken(CaretEquals, start, 2, modeStack)
+			return NewToken(CaretEquals, start, 2)
 		}
 
-		return NewToken(Caret, start, 1, modeStack)
+		return NewToken(Caret, start, 1)
 	case ';':
 		s.step()
 
-		return NewToken(Semicolon, start, 1, modeStack)
+		return NewToken(Semicolon, start, 1)
 	case ',':
 		s.step()
 
-		return NewToken(Comma, start, 1, modeStack)
+		return NewToken(Comma, start, 1)
 	case '[':
 		s.step()
 
-		return NewToken(OpenBracket, start, 1, modeStack)
+		return NewToken(OpenBracket, start, 1)
 	case ']':
 		s.step()
 
-		return NewToken(CloseBracket, start, 1, modeStack)
+		return NewToken(CloseBracket, start, 1)
 	case '(':
 		return s.scriptingOpenParenthesis()
 	case ')':
 		s.step()
 
-		return NewToken(CloseParenthesis, start, 1, modeStack)
+		return NewToken(CloseParenthesis, start, 1)
 	case '~':
 		s.step()
 
-		return NewToken(Tilde, start, 1, modeStack)
+		return NewToken(Tilde, start, 1)
 	case '?':
 		return s.scriptingQuestion()
 	case '@':
 		s.step()
 
-		return NewToken(AtSymbol, start, 1, modeStack)
+		return NewToken(AtSymbol, start, 1)
 	case '$':
 		return s.scriptingDollar()
 	case '#':
@@ -340,7 +339,7 @@ func (s *Lexer) scripting() *Token {
 
 		s.modeStack = append(s.modeStack, ModeScripting)
 
-		return NewToken(OpenBrace, start, 1, modeStack)
+		return NewToken(OpenBrace, start, 1)
 	case '}':
 		s.step()
 
@@ -348,13 +347,13 @@ func (s *Lexer) scripting() *Token {
 			s.modeStack = s.modeStack[:len(s.modeStack)-1]
 		}
 
-		return NewToken(CloseBrace, start, 1, modeStack)
+		return NewToken(CloseBrace, start, 1)
 	case '`':
 		s.step()
 
 		s.modeStack[len(s.modeStack)-1] = ModeBacktick
 
-		return NewToken(Backtick, start, 1, modeStack)
+		return NewToken(Backtick, start, 1)
 	case '\\':
 		return s.scriptingBackslash()
 	case '\'':
@@ -369,12 +368,11 @@ func (s *Lexer) scripting() *Token {
 
 	s.step()
 
-	return NewToken(Unknown, start, 1, modeStack)
+	return NewToken(Unknown, start, 1)
 }
 
 func (s *Lexer) scriptingMinus() *Token {
 	start := s.offset
-	modeStack := s.ModeStack()
 
 	s.step()
 	switch s.r {
@@ -382,18 +380,18 @@ func (s *Lexer) scriptingMinus() *Token {
 		s.step()
 		s.modeStack = append(s.modeStack, ModeLookingForProperty)
 
-		return NewToken(Arrow, start, 2, modeStack)
+		return NewToken(Arrow, start, 2)
 	case '-':
 		s.step()
 
-		return NewToken(MinusMinus, start, 2, modeStack)
+		return NewToken(MinusMinus, start, 2)
 	case '=':
 		s.step()
 
-		return NewToken(MinusEquals, start, 2, modeStack)
+		return NewToken(MinusEquals, start, 2)
 	}
 
-	return NewToken(Minus, start, 1, modeStack)
+	return NewToken(Minus, start, 1)
 }
 
 func (s *Lexer) scriptingDot() *Token {
@@ -404,17 +402,17 @@ func (s *Lexer) scriptingDot() *Token {
 	if c == '=' {
 		s.step()
 
-		return NewToken(DotEquals, start, 2, s.ModeStack())
+		return NewToken(DotEquals, start, 2)
 	} else if c == '.' && s.peek(1) == '.' {
 		s.stepLoop(2)
 
-		return NewToken(Ellipsis, start, 3, s.ModeStack())
+		return NewToken(Ellipsis, start, 3)
 	} else if c >= '0' && c <= '9' {
 		// float
 		return s.scriptingNumericStartingWithDotOrE(start, true)
 	}
 
-	return NewToken(Dot, start, 1, s.ModeStack())
+	return NewToken(Dot, start, 1)
 }
 
 func (s *Lexer) scriptingEquals() *Token {
@@ -427,17 +425,17 @@ func (s *Lexer) scriptingEquals() *Token {
 		if s.r == '=' {
 			s.step()
 
-			return NewToken(EqualsEqualsEquals, start, 3, s.ModeStack())
+			return NewToken(EqualsEqualsEquals, start, 3)
 		}
 
-		return NewToken(EqualsEquals, start, 2, s.ModeStack())
+		return NewToken(EqualsEquals, start, 2)
 	case '>':
 		s.step()
 
-		return NewToken(FatArrow, start, 2, s.ModeStack())
+		return NewToken(FatArrow, start, 2)
 	}
 
-	return NewToken(Equals, start, 1, s.ModeStack())
+	return NewToken(Equals, start, 1)
 }
 
 func (s *Lexer) scriptingPlus() *Token {
@@ -448,14 +446,14 @@ func (s *Lexer) scriptingPlus() *Token {
 	case '=':
 		s.step()
 
-		return NewToken(PlusEquals, start, 2, s.ModeStack())
+		return NewToken(PlusEquals, start, 2)
 	case '+':
 		s.step()
 
-		return NewToken(PlusPlus, start, 2, s.ModeStack())
+		return NewToken(PlusPlus, start, 2)
 	}
 
-	return NewToken(Plus, start, 1, s.ModeStack())
+	return NewToken(Plus, start, 1)
 }
 
 func (s *Lexer) scriptingExclamation() *Token {
@@ -467,13 +465,13 @@ func (s *Lexer) scriptingExclamation() *Token {
 		if s.r == '=' {
 			s.step()
 
-			return NewToken(ExclamationEqualsEquals, start, 3, s.ModeStack())
+			return NewToken(ExclamationEqualsEquals, start, 3)
 		}
 
-		return NewToken(ExclamationEquals, start, 2, s.ModeStack())
+		return NewToken(ExclamationEquals, start, 2)
 	}
 
-	return NewToken(Exclamation, start, 1, s.ModeStack())
+	return NewToken(Exclamation, start, 1)
 }
 
 func (s *Lexer) scriptingLessThan() *Token {
@@ -482,11 +480,11 @@ func (s *Lexer) scriptingLessThan() *Token {
 	switch s.peek(1) {
 	case '>':
 		s.stepLoop(2)
-		return NewToken(ExclamationEquals, start, 2, s.ModeStack())
+		return NewToken(ExclamationEquals, start, 2)
 	case '<':
 		if s.peek(2) == '=' {
 			s.stepLoop(3)
-			return NewToken(LessThanLessThanEquals, start, 3, s.ModeStack())
+			return NewToken(LessThanLessThanEquals, start, 3)
 		} else if s.peek(2) == '<' {
 			heredoc := s.scriptingHeredoc(start)
 			if heredoc != nil {
@@ -496,18 +494,18 @@ func (s *Lexer) scriptingLessThan() *Token {
 		} else {
 			s.stepLoop(2)
 		}
-		return NewToken(LessThanLessThan, start, 2, s.ModeStack())
+		return NewToken(LessThanLessThan, start, 2)
 	case '=':
 		s.stepLoop(2)
 		if s.r == '>' {
 			s.step()
-			return NewToken(Spaceship, start, 3, s.ModeStack())
+			return NewToken(Spaceship, start, 3)
 		}
-		return NewToken(LessThanEquals, start, 2, s.ModeStack())
+		return NewToken(LessThanEquals, start, 2)
 	default:
 		s.step()
 	}
-	return NewToken(LessThan, start, 1, s.ModeStack())
+	return NewToken(LessThan, start, 1)
 }
 
 func (s *Lexer) scriptingGreaterThan() *Token {
@@ -518,14 +516,14 @@ func (s *Lexer) scriptingGreaterThan() *Token {
 		s.step()
 		if s.r == '=' {
 			s.step()
-			return NewToken(GreaterThanGreaterThanEquals, start, 3, s.ModeStack())
+			return NewToken(GreaterThanGreaterThanEquals, start, 3)
 		}
-		return NewToken(GreaterThanGreaterThan, start, 2, s.ModeStack())
+		return NewToken(GreaterThanGreaterThan, start, 2)
 	case '=':
 		s.step()
-		return NewToken(GreaterThanEquals, start, 2, s.ModeStack())
+		return NewToken(GreaterThanEquals, start, 2)
 	}
-	return NewToken(GreaterThan, start, 1, s.ModeStack())
+	return NewToken(GreaterThan, start, 1)
 }
 
 func (s *Lexer) scriptingAsterisk() *Token {
@@ -536,14 +534,14 @@ func (s *Lexer) scriptingAsterisk() *Token {
 		s.step()
 		if s.r == '=' {
 			s.step()
-			return NewToken(AsteriskAsteriskEquals, start, 3, s.ModeStack())
+			return NewToken(AsteriskAsteriskEquals, start, 3)
 		}
-		return NewToken(AsteriskAsterisk, start, 2, s.ModeStack())
+		return NewToken(AsteriskAsterisk, start, 2)
 	case '=':
 		s.step()
-		return NewToken(AsteriskEquals, start, 2, s.ModeStack())
+		return NewToken(AsteriskEquals, start, 2)
 	}
-	return NewToken(Asterisk, start, 1, s.ModeStack())
+	return NewToken(Asterisk, start, 1)
 }
 
 func (s *Lexer) scriptingForwardSlash() *Token {
@@ -552,7 +550,7 @@ func (s *Lexer) scriptingForwardSlash() *Token {
 	switch s.r {
 	case '=':
 		s.step()
-		return NewToken(ForwardslashEquals, start, 2, s.ModeStack())
+		return NewToken(ForwardslashEquals, start, 2)
 	case '*':
 		s.step()
 		return s.scriptingInlineCommentOrDocBlock()
@@ -560,7 +558,7 @@ func (s *Lexer) scriptingForwardSlash() *Token {
 		s.step()
 		return s.scriptingComment(start)
 	}
-	return NewToken(ForwardSlash, start, 1, s.ModeStack())
+	return NewToken(ForwardSlash, start, 1)
 }
 
 func (s *Lexer) scriptingAmpersand() *Token {
@@ -569,12 +567,12 @@ func (s *Lexer) scriptingAmpersand() *Token {
 	switch s.r {
 	case '=':
 		s.step()
-		return NewToken(AmpersandEquals, start, 2, s.ModeStack())
+		return NewToken(AmpersandEquals, start, 2)
 	case '&':
 		s.step()
-		return NewToken(AmpersandAmpersand, start, 2, s.ModeStack())
+		return NewToken(AmpersandAmpersand, start, 2)
 	}
-	return NewToken(Ampersand, start, 1, s.ModeStack())
+	return NewToken(Ampersand, start, 1)
 }
 
 func (s *Lexer) scriptingBar() *Token {
@@ -584,13 +582,13 @@ func (s *Lexer) scriptingBar() *Token {
 	case '=':
 		s.step()
 
-		return NewToken(BarEquals, start, 2, s.ModeStack())
+		return NewToken(BarEquals, start, 2)
 	case '|':
 		s.step()
 
-		return NewToken(BarBar, start, 2, s.ModeStack())
+		return NewToken(BarBar, start, 2)
 	}
-	return NewToken(Bar, start, 1, s.ModeStack())
+	return NewToken(Bar, start, 1)
 }
 
 func (s *Lexer) scriptingOpenParenthesis() *Token {
@@ -628,11 +626,11 @@ func (s *Lexer) scriptingOpenParenthesis() *Token {
 		}
 		if tokenType > Unknown {
 			s.stepLoop(k + 1)
-			return NewToken(tokenType, start, s.offset-start, s.ModeStack())
+			return NewToken(tokenType, start, s.offset-start)
 		}
 	}
 	s.step()
-	return NewToken(OpenParenthesis, start, 1, s.ModeStack())
+	return NewToken(OpenParenthesis, start, 1)
 }
 
 func (s *Lexer) scriptingQuestion() *Token {
@@ -641,14 +639,13 @@ func (s *Lexer) scriptingQuestion() *Token {
 	if s.r == '?' {
 		s.step()
 
-		return NewToken(QuestionQuestion, start, 2, s.ModeStack())
+		return NewToken(QuestionQuestion, start, 2)
 	} else if s.r == '>' {
 		s.step()
-		modeStack := s.ModeStack()
 		s.modeStack[len(s.modeStack)-1] = ModeInitial
-		return NewToken(CloseTag, start, s.offset-start, modeStack)
+		return NewToken(CloseTag, start, s.offset-start)
 	}
-	return NewToken(Question, start, 1, s.ModeStack())
+	return NewToken(Question, start, 1)
 }
 
 func (s *Lexer) scriptingDollar() *Token {
@@ -658,10 +655,10 @@ func (s *Lexer) scriptingDollar() *Token {
 		for k++; isLabelChar(s.peek(k)); k++ {
 		}
 		s.stepLoop(k)
-		return NewToken(VariableName, start, s.offset-start, s.ModeStack())
+		return NewToken(VariableName, start, s.offset-start)
 	}
 	s.step()
-	return NewToken(Dollar, start, 1, s.ModeStack())
+	return NewToken(Dollar, start, 1)
 }
 
 func (s *Lexer) scriptingComment(start int) *Token {
@@ -674,7 +671,7 @@ func (s *Lexer) scriptingComment(start int) *Token {
 		s.step()
 		c = s.r
 	}
-	return NewToken(Comment, start, s.offset-start, s.ModeStack())
+	return NewToken(Comment, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingNumeric() *Token {
@@ -685,13 +682,13 @@ func (s *Lexer) scriptingNumeric() *Token {
 			for j++; s.peek(j) == '0' || s.peek(j) == '1'; j++ {
 			}
 			s.stepLoop(j)
-			return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
+			return NewToken(IntegerLiteral, start, s.offset-start)
 		}
 		if s.peek(1) == 'x' && isHexDigit(s.peek(j)) {
 			for j++; isHexDigit(s.peek(j)); j++ {
 			}
 			s.stepLoop(j)
-			return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
+			return NewToken(IntegerLiteral, start, s.offset-start)
 		}
 	}
 	for s.step(); s.r >= '0' && s.r <= '9'; s.step() {
@@ -703,7 +700,7 @@ func (s *Lexer) scriptingNumeric() *Token {
 	} else if s.r == 'e' || s.r == 'E' {
 		return s.scriptingNumericStartingWithDotOrE(start, false)
 	}
-	return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
+	return NewToken(IntegerLiteral, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingBackslash() *Token {
@@ -722,7 +719,7 @@ func (s *Lexer) scriptingBackslash() *Token {
 			return t
 		}
 	}
-	return NewToken(Backslash, start, 1, s.ModeStack())
+	return NewToken(Backslash, start, 1)
 }
 
 func (s *Lexer) scriptingSingleQuote(start int) *Token {
@@ -742,9 +739,9 @@ func (s *Lexer) scriptingSingleQuote(start int) *Token {
 			}
 			continue
 		}
-		return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, s.ModeStack())
+		return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 	}
-	return NewToken(StringLiteral, start, s.offset-start, s.ModeStack())
+	return NewToken(StringLiteral, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingDoubleQuote(start int) *Token {
@@ -760,7 +757,7 @@ func (s *Lexer) scriptingDoubleQuote(start int) *Token {
 		switch c {
 		case '"':
 			s.stepLoop(n)
-			return NewToken(StringLiteral, start, s.offset-start, s.ModeStack())
+			return NewToken(StringLiteral, start, s.offset-start)
 		case '$':
 			if isLabelStart(s.peek(n)) || s.peek(n) == '{' {
 				break
@@ -783,9 +780,8 @@ func (s *Lexer) scriptingDoubleQuote(start int) *Token {
 		break
 	}
 	s.doubleQuoteScannedLength = n
-	modeStack := s.ModeStack()
 	s.modeStack[len(s.modeStack)-1] = ModeDoubleQuotes
-	return NewToken(DoubleQuote, start, s.offset-start, modeStack)
+	return NewToken(DoubleQuote, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingLabelStart() *Token {
@@ -821,7 +817,7 @@ func (s *Lexer) scriptingLabelStart() *Token {
 			tokenType = NamespaceConstant
 		}
 		if tokenType > Unknown {
-			return NewToken(tokenType, start, s.offset-start, s.ModeStack())
+			return NewToken(tokenType, start, s.offset-start)
 		}
 	}
 	text = strings.ToLower(text)
@@ -964,9 +960,9 @@ func (s *Lexer) scriptingLabelStart() *Token {
 		tokenType = Xor
 	}
 	if tokenType > Unknown {
-		return NewToken(tokenType, start, s.offset-start, s.ModeStack())
+		return NewToken(tokenType, start, s.offset-start)
 	}
-	return NewToken(Name, start, s.offset-start, s.ModeStack())
+	return NewToken(Name, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingNumericStartingWithDotOrE(start int, hasDot bool) *Token {
@@ -982,14 +978,14 @@ func (s *Lexer) scriptingNumericStartingWithDotOrE(start int, hasDot bool) *Toke
 			for k++; s.peek(k) >= '0' && s.peek(k) <= '9'; k++ {
 			}
 			s.stepLoop(k)
-			return NewToken(FloatingLiteral, start, s.offset-start, s.ModeStack())
+			return NewToken(FloatingLiteral, start, s.offset-start)
 		}
 	}
 	tokenType := IntegerLiteral
 	if hasDot {
 		tokenType = FloatingLiteral
 	}
-	return NewToken(tokenType, start, s.offset-start, s.ModeStack())
+	return NewToken(tokenType, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingHeredoc(start int) *Token {
@@ -1036,7 +1032,7 @@ func (s *Lexer) scriptingHeredoc(start int) *Token {
 	}
 	s.heredocLabel = s.peekSpanString(labelStart-1, labelEnd-labelStart)
 	s.stepLoop(k)
-	t := NewToken(StartHeredoc, start, s.offset-start, s.ModeStack())
+	t := NewToken(StartHeredoc, start, s.offset-start)
 	if quote == '\'' {
 		s.modeStack[len(s.modeStack)-1] = ModeNowDoc
 	} else {
@@ -1058,7 +1054,7 @@ func (s *Lexer) scriptingInlineCommentOrDocBlock() *Token {
 	if s.r == '*' && s.peek(1) != '/' {
 		s.step()
 		s.modeStack = append(s.modeStack, ModeDocumentBlock)
-		return NewToken(DocumentCommentStart, start, s.offset-start, s.ModeStack())
+		return NewToken(DocumentCommentStart, start, s.offset-start)
 	}
 	//find comment end */
 	for s.r != -1 {
@@ -1069,7 +1065,7 @@ func (s *Lexer) scriptingInlineCommentOrDocBlock() *Token {
 		s.step()
 	}
 	// TODO: WARN unterminated comment
-	return NewToken(tokenType, start, s.offset-start, s.ModeStack())
+	return NewToken(tokenType, start, s.offset-start)
 }
 
 func (s *Lexer) scriptingYield(start int) *Token {
@@ -1082,30 +1078,29 @@ func (s *Lexer) scriptingYield(start int) *Token {
 		}
 		if strings.ToLower(string(s.peekSpanString(k, 4))) == "from" {
 			s.stepLoop(k + 4)
-			return NewToken(YieldFrom, start, s.offset-start, s.ModeStack())
+			return NewToken(YieldFrom, start, s.offset-start)
 		}
 	}
-	return NewToken(Yield, start, s.offset-start, s.ModeStack())
+	return NewToken(Yield, start, s.offset-start)
 }
 
 func (s *Lexer) lookingForProperty() *Token {
 	start := s.offset
-	modeStack := s.ModeStack()
 	c := s.r
 	if isWhitespace(c) {
 		for s.step(); isWhitespace(s.r); s.step() {
 		}
-		return NewToken(Whitespace, start, s.offset-start, modeStack)
+		return NewToken(Whitespace, start, s.offset-start)
 	}
 	if isLabelStart(c) {
 		for s.step(); isLabelChar(s.r); s.step() {
 		}
 		s.modeStack = s.modeStack[:len(s.modeStack)-1]
-		return NewToken(Name, start, s.offset-start, modeStack)
+		return NewToken(Name, start, s.offset-start)
 	}
 	if c == '-' && s.peek(1) == '>' {
 		s.stepLoop(2)
-		return NewToken(Arrow, start, 2, modeStack)
+		return NewToken(Arrow, start, 2)
 	}
 	s.modeStack = s.modeStack[:len(s.modeStack)-1]
 	return nil
@@ -1114,7 +1109,6 @@ func (s *Lexer) lookingForProperty() *Token {
 func (s *Lexer) doubleQuotes() *Token {
 	c := s.r
 	start := s.offset
-	modeStack := s.ModeStack()
 	var t *Token
 
 	switch c {
@@ -1126,12 +1120,12 @@ func (s *Lexer) doubleQuotes() *Token {
 		if s.peek(1) == '$' {
 			s.modeStack = append(s.modeStack, ModeScripting)
 			s.step()
-			return NewToken(CurlyOpen, start, 1, modeStack)
+			return NewToken(CurlyOpen, start, 1)
 		}
 	case '"':
 		s.modeStack[len(s.modeStack)-1] = ModeScripting
 		s.step()
-		return NewToken(DoubleQuote, start, 1, modeStack)
+		return NewToken(DoubleQuote, start, 1)
 	}
 	return s.doubleQuotesAny()
 }
@@ -1139,14 +1133,13 @@ func (s *Lexer) doubleQuotes() *Token {
 func (s *Lexer) encapsulatedDollar() *Token {
 	start := s.offset
 	k := 1
-	modeStack := s.ModeStack()
 	if s.peek(k) == -1 {
 		return nil
 	}
 	if s.peek(k) == '{' {
 		s.stepLoop(2)
 		s.modeStack = append(s.modeStack, ModeLookingForVarName)
-		return NewToken(DollarCurlyOpen, start, 2, modeStack)
+		return NewToken(DollarCurlyOpen, start, 2)
 	}
 	if !isLabelStart(s.peek(k)) {
 		return nil
@@ -1156,19 +1149,19 @@ func (s *Lexer) encapsulatedDollar() *Token {
 	if s.peek(k) == '[' {
 		s.modeStack = append(s.modeStack, ModeVarOffset)
 		s.stepLoop(k)
-		return NewToken(VariableName, start, s.offset-start, modeStack)
+		return NewToken(VariableName, start, s.offset-start)
 	}
 	if s.peek(k) == '-' {
 		if n := k + 1; s.peek(n) == '>' {
 			if n++; isLabelStart(s.peek(n)) {
 				s.modeStack = append(s.modeStack, ModeLookingForProperty)
 				s.stepLoop(k)
-				return NewToken(VariableName, start, s.offset-start, modeStack)
+				return NewToken(VariableName, start, s.offset-start)
 			}
 		}
 	}
 	s.stepLoop(k)
-	return NewToken(VariableName, start, s.offset-start, modeStack)
+	return NewToken(VariableName, start, s.offset-start)
 }
 
 func (s *Lexer) doubleQuotesAny() *Token {
@@ -1214,7 +1207,7 @@ func (s *Lexer) doubleQuotesAny() *Token {
 		}
 		s.stepLoop(n)
 	}
-	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, s.ModeStack())
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 }
 
 func (s *Lexer) nowdoc() *Token {
@@ -1222,7 +1215,6 @@ func (s *Lexer) nowdoc() *Token {
 	start := s.offset
 	n := 0
 	var c rune
-	modeStack := s.ModeStack()
 
 	for s.peek(n) != -1 {
 		c = s.peek(n)
@@ -1259,13 +1251,12 @@ func (s *Lexer) nowdoc() *Token {
 		break
 	}
 	s.stepLoop(n)
-	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, modeStack)
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 }
 
 func (s *Lexer) heredoc() *Token {
 	c := s.r
 	start := s.offset
-	modeStack := s.ModeStack()
 	var t *Token
 	switch c {
 	case '$':
@@ -1277,7 +1268,7 @@ func (s *Lexer) heredoc() *Token {
 		if s.peek(1) == '$' {
 			s.modeStack = append(s.modeStack, ModeScripting)
 			s.step()
-			return NewToken(CurlyOpen, start, 1, modeStack)
+			return NewToken(CurlyOpen, start, 1)
 		}
 	}
 	return s.heredocAny()
@@ -1287,7 +1278,6 @@ func (s *Lexer) heredocAny() *Token {
 	start := s.offset
 	n := 0
 	var c rune
-	modeStack := s.ModeStack()
 	for s.peek(n) != -1 {
 		c = s.peek(n)
 		n++
@@ -1307,7 +1297,7 @@ func (s *Lexer) heredocAny() *Token {
 				if s.peek(k) == '\n' || s.peek(k) == '\r' {
 					s.stepLoop(mark)
 					s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
-					return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, modeStack)
+					return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 				}
 			}
 			continue
@@ -1333,7 +1323,7 @@ func (s *Lexer) heredocAny() *Token {
 		break
 	}
 	s.stepLoop(n)
-	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, modeStack)
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 }
 
 func (s *Lexer) endHeredoc() *Token {
@@ -1343,7 +1333,7 @@ func (s *Lexer) endHeredoc() *Token {
 	}
 	s.stepLoop(len(s.heredocLabel))
 	s.heredocLabel = ""
-	t := NewToken(EndHeredoc, start, s.offset-start, s.ModeStack())
+	t := NewToken(EndHeredoc, start, s.offset-start)
 	s.modeStack[len(s.modeStack)-1] = ModeScripting
 	return t
 }
@@ -1351,7 +1341,6 @@ func (s *Lexer) endHeredoc() *Token {
 func (s *Lexer) backtick() *Token {
 	c := s.r
 	start := s.offset
-	modeStack := s.ModeStack()
 	var t *Token
 	switch c {
 	case '$':
@@ -1363,12 +1352,12 @@ func (s *Lexer) backtick() *Token {
 		if s.peek(1) == '$' {
 			s.modeStack = append(s.modeStack, ModeScripting)
 			s.step()
-			return NewToken(CurlyOpen, start, 1, modeStack)
+			return NewToken(CurlyOpen, start, 1)
 		}
 	case '`':
 		s.modeStack[len(s.modeStack)-1] = ModeScripting
 		s.step()
-		return NewToken(Backtick, start, 1, modeStack)
+		return NewToken(Backtick, start, 1)
 	}
 	return s.backtickAny()
 }
@@ -1408,7 +1397,7 @@ func (s *Lexer) backtickAny() *Token {
 		break
 	}
 	s.stepLoop(n)
-	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start, s.modeStack)
+	return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 }
 
 func (s *Lexer) varOffset() *Token {
@@ -1420,35 +1409,34 @@ func (s *Lexer) varOffset() *Token {
 			s.step()
 			for s.step(); isLabelChar(s.r); s.step() {
 			}
-			return NewToken(VariableName, start, s.offset-start, s.ModeStack())
+			return NewToken(VariableName, start, s.offset-start)
 		}
 	case '[':
 		s.step()
 
-		return NewToken(OpenBracket, start, 1, s.ModeStack())
+		return NewToken(OpenBracket, start, 1)
 	case ']':
 		s.modeStack = s.modeStack[0 : len(s.modeStack)-1]
 		s.step()
 
-		return NewToken(CloseBracket, start, 1, s.ModeStack())
+		return NewToken(CloseBracket, start, 1)
 	case '-':
 		s.step()
 
-		return NewToken(Minus, start, 1, s.ModeStack())
+		return NewToken(Minus, start, 1)
 	default:
 		if c >= '0' && c <= '9' {
 			return s.varOffsetNumeric()
 		} else if isLabelStart(c) {
 			for s.step(); isLabelChar(s.r); s.step() {
 			}
-			return NewToken(Name, start, s.offset-start, s.ModeStack())
+			return NewToken(Name, start, s.offset-start)
 		}
 	}
 	//unexpected char
-	modeStack := s.ModeStack()
 	s.modeStack = s.modeStack[0 : len(s.modeStack)-1]
 	s.step()
-	return NewToken(Unknown, start, 1, modeStack)
+	return NewToken(Unknown, start, 1)
 }
 
 func (s *Lexer) varOffsetNumeric() *Token {
@@ -1461,7 +1449,7 @@ func (s *Lexer) varOffsetNumeric() *Token {
 				for k++; s.peek(k) == '1' || s.peek(k) == '0'; k++ {
 				}
 				s.stepLoop(k)
-				return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
+				return NewToken(IntegerLiteral, start, s.offset-start)
 			}
 		}
 		if s.peek(k) == 'x' {
@@ -1469,18 +1457,17 @@ func (s *Lexer) varOffsetNumeric() *Token {
 				for k++; isHexDigit(s.peek(k)); k++ {
 				}
 				s.stepLoop(k)
-				return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
+				return NewToken(IntegerLiteral, start, s.offset-start)
 			}
 		}
 	}
 	for s.step(); s.r >= '0' && s.r <= '9'; s.step() {
 	}
-	return NewToken(IntegerLiteral, start, s.offset-start, s.ModeStack())
+	return NewToken(IntegerLiteral, start, s.offset-start)
 }
 
 func (s *Lexer) lookingForVarName() *Token {
 	start := s.offset
-	modeStack := s.ModeStack()
 	if isLabelStart(s.r) {
 		k := 1
 		for k++; isLabelChar(s.peek(k)); k++ {
@@ -1488,7 +1475,7 @@ func (s *Lexer) lookingForVarName() *Token {
 		if s.peek(k) == '[' || s.peek(k) == '}' {
 			s.modeStack[len(s.modeStack)-1] = ModeScripting
 			s.stepLoop(k)
-			return NewToken(VariableName, start, s.offset-start, modeStack)
+			return NewToken(VariableName, start, s.offset-start)
 		}
 	}
 	s.modeStack[len(s.modeStack)-1] = ModeScripting

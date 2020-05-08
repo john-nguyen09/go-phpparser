@@ -407,14 +407,13 @@ func (tokenType TokenType) String() string {
 }
 
 type Token struct {
-	Type      TokenType   `json:"TokenType"`
-	Offset    int         `json:"Offset"`
-	Length    int         `json:"Length"`
-	ModeStack []LexerMode `json:"-"`
+	Type   TokenType `json:"TokenType"`
+	Offset int       `json:"Offset"`
+	Length int       `json:"Length"`
 }
 
-func NewToken(tokenType TokenType, offset int, length int, modeStack []LexerMode) *Token {
-	return &Token{tokenType, offset, length, modeStack}
+func NewToken(tokenType TokenType, offset int, length int) *Token {
+	return &Token{tokenType, offset, length}
 }
 
 // AstNode is a boilerplate for extending interface
@@ -423,10 +422,6 @@ func (token Token) AstNode() {
 
 func (token Token) String() string {
 	str := token.Type.String() + " " + strconv.Itoa(token.Offset) + " " + strconv.Itoa(token.Length)
-
-	for _, mode := range token.ModeStack {
-		str += " " + mode.String()
-	}
 
 	return str
 }

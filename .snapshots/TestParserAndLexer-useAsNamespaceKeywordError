@@ -61,15 +61,15 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
-    (*lexer.Token)(Whitespace 6 4 ModeScripting),
+    (*lexer.Token)(Whitespace 6 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceUseDeclaration,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Use 10 3 ModeScripting),
-        (*lexer.Token)(Whitespace 13 1 ModeScripting),
+        (*lexer.Token)(Use 10 3),
+        (*lexer.Token)(Whitespace 13 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceUseClauseList,
           Children: ([]phrase.AstNode) (len=1) {
@@ -79,23 +79,23 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 14 6 ModeScripting)
+                    (*lexer.Token)(Name 14 6)
                   }
                 }),
-                (*lexer.Token)(Whitespace 20 1 ModeScripting),
+                (*lexer.Token)(Whitespace 20 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceAliasingClause,
                   Children: ([]phrase.AstNode) (len=2) {
-                    (*lexer.Token)(As 21 2 ModeScripting),
+                    (*lexer.Token)(As 21 2),
                     (*phrase.ParseError)({
                       Phrase: (phrase.Phrase) {
                         Type: (phrase.PhraseType) Error,
                         Children: ([]phrase.AstNode) (len=2) {
-                          (*lexer.Token)(Whitespace 23 1 ModeScripting),
-                          (*lexer.Token)(Namespace 24 9 ModeScripting)
+                          (*lexer.Token)(Whitespace 23 1),
+                          (*lexer.Token)(Namespace 24 9)
                         }
                       },
-                      Unexpected: (*lexer.Token)(Namespace 24 9 ModeScripting),
+                      Unexpected: (*lexer.Token)(Namespace 24 9),
                       Expected: (lexer.TokenType) Name
                     })
                   }
@@ -104,7 +104,7 @@
             })
           }
         }),
-        (*lexer.Token)(Semicolon 33 1 ModeScripting)
+        (*lexer.Token)(Semicolon 33 1)
       }
     })
   }

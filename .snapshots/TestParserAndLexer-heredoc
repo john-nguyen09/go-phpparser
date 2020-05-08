@@ -71,7 +71,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
@@ -83,37 +83,37 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 4 ModeScripting)
+                (*lexer.Token)(VariableName 6 4)
               }
             }),
-            (*lexer.Token)(Whitespace 10 1 ModeScripting),
-            (*lexer.Token)(Equals 11 1 ModeScripting),
-            (*lexer.Token)(Whitespace 12 1 ModeScripting),
+            (*lexer.Token)(Whitespace 10 1),
+            (*lexer.Token)(Equals 11 1),
+            (*lexer.Token)(Whitespace 12 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) HeredocStringLiteral,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(StartHeredoc 13 7 ModeScripting),
+                (*lexer.Token)(StartHeredoc 13 7),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) EncapsulatedVariableList,
                   Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(EncapsulatedAndWhitespace 20 6 ModeHereDoc),
+                    (*lexer.Token)(EncapsulatedAndWhitespace 20 6),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) SimpleVariable,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(VariableName 26 6 ModeHereDoc)
+                        (*lexer.Token)(VariableName 26 6)
                       }
                     }),
-                    (*lexer.Token)(EncapsulatedAndWhitespace 32 0 ModeHereDoc)
+                    (*lexer.Token)(EncapsulatedAndWhitespace 32 0)
                   }
                 }),
-                (*lexer.Token)(EndHeredoc 32 4 ModeEndHereDoc)
+                (*lexer.Token)(EndHeredoc 32 4)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 36 1 ModeScripting)
+        (*lexer.Token)(Semicolon 36 1)
       }
     }),
-    (*lexer.Token)(Whitespace 37 1 ModeScripting)
+    (*lexer.Token)(Whitespace 37 1)
   }
 })

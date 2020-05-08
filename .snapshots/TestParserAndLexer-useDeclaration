@@ -66,14 +66,14 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) NamespaceUseDeclaration,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Use 6 3 ModeScripting),
-        (*lexer.Token)(Whitespace 9 1 ModeScripting),
+        (*lexer.Token)(Use 6 3),
+        (*lexer.Token)(Whitespace 9 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) NamespaceUseClauseList,
           Children: ([]phrase.AstNode) (len=1) {
@@ -83,25 +83,25 @@
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceName,
                   Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(Name 10 3 ModeScripting),
-                    (*lexer.Token)(Backslash 13 1 ModeScripting),
-                    (*lexer.Token)(Name 14 3 ModeScripting)
+                    (*lexer.Token)(Name 10 3),
+                    (*lexer.Token)(Backslash 13 1),
+                    (*lexer.Token)(Name 14 3)
                   }
                 }),
-                (*lexer.Token)(Whitespace 17 1 ModeScripting),
+                (*lexer.Token)(Whitespace 17 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) NamespaceAliasingClause,
                   Children: ([]phrase.AstNode) (len=3) {
-                    (*lexer.Token)(As 18 2 ModeScripting),
-                    (*lexer.Token)(Whitespace 20 1 ModeScripting),
-                    (*lexer.Token)(Name 21 3 ModeScripting)
+                    (*lexer.Token)(As 18 2),
+                    (*lexer.Token)(Whitespace 20 1),
+                    (*lexer.Token)(Name 21 3)
                   }
                 })
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 24 1 ModeScripting)
+        (*lexer.Token)(Semicolon 24 1)
       }
     })
   }

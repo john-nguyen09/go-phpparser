@@ -16,7 +16,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(Text 0 22 ModeInitial)
+        (*lexer.Token)(Text 0 22)
       }
     })
   }

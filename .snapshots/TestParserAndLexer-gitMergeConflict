@@ -56,24 +56,24 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.ParseError)({
       Phrase: (phrase.Phrase) {
         Type: (phrase.PhraseType) Error,
         Children: ([]phrase.AstNode) (len=8) {
-          (*lexer.Token)(Whitespace 6 1 ModeScripting),
-          (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
-          (*lexer.Token)(LessThanLessThan 9 2 ModeScripting),
-          (*lexer.Token)(StartHeredoc 11 9 ModeScripting),
-          (*lexer.Token)(VariableName 20 4 ModeHereDoc),
-          (*lexer.Token)(EncapsulatedAndWhitespace 24 14 ModeHereDoc),
-          (*lexer.Token)(VariableName 38 4 ModeHereDoc),
-          (*lexer.Token)(EncapsulatedAndWhitespace 42 24 ModeHereDoc)
+          (*lexer.Token)(Whitespace 6 1),
+          (*lexer.Token)(LessThanLessThan 7 2),
+          (*lexer.Token)(LessThanLessThan 9 2),
+          (*lexer.Token)(StartHeredoc 11 9),
+          (*lexer.Token)(VariableName 20 4),
+          (*lexer.Token)(EncapsulatedAndWhitespace 24 14),
+          (*lexer.Token)(VariableName 38 4),
+          (*lexer.Token)(EncapsulatedAndWhitespace 42 24)
         }
       },
-      Unexpected: (*lexer.Token)(LessThanLessThan 7 2 ModeScripting),
+      Unexpected: (*lexer.Token)(LessThanLessThan 7 2),
       Expected: (lexer.TokenType) Undefined
     })
   }

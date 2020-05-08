@@ -91,10 +91,10 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
-    (*lexer.Token)(Whitespace 6 4 ModeScripting),
+    (*lexer.Token)(Whitespace 6 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ExpressionStatement,
       Children: ([]phrase.AstNode) (len=2) {
@@ -104,54 +104,54 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 10 4 ModeScripting)
+                (*lexer.Token)(VariableName 10 4)
               }
             }),
-            (*lexer.Token)(Whitespace 14 1 ModeScripting),
-            (*lexer.Token)(Equals 15 1 ModeScripting),
-            (*lexer.Token)(Whitespace 16 1 ModeScripting),
+            (*lexer.Token)(Whitespace 14 1),
+            (*lexer.Token)(Equals 15 1),
+            (*lexer.Token)(Whitespace 16 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DoubleQuotedStringLiteral,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(DoubleQuote 17 1 ModeScripting),
+                (*lexer.Token)(DoubleQuote 17 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) EncapsulatedVariableList,
                   Children: ([]phrase.AstNode) (len=2) {
-                    (*lexer.Token)(EncapsulatedAndWhitespace 18 6 ModeDoubleQuotes),
+                    (*lexer.Token)(EncapsulatedAndWhitespace 18 6),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) EncapsulatedVariable,
                       Children: ([]phrase.AstNode) (len=3) {
-                        (*lexer.Token)(DollarCurlyOpen 24 2 ModeDoubleQuotes),
+                        (*lexer.Token)(DollarCurlyOpen 24 2),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) DoubleQuotedStringLiteral,
                           Children: ([]phrase.AstNode) (len=3) {
-                            (*lexer.Token)(DoubleQuote 26 1 ModeDoubleQuotes ModeScripting),
+                            (*lexer.Token)(DoubleQuote 26 1),
                             (*phrase.Phrase)({
                               Type: (phrase.PhraseType) EncapsulatedVariableList,
                               Children: ([]phrase.AstNode) (len=2) {
-                                (*lexer.Token)(EncapsulatedAndWhitespace 27 4 ModeDoubleQuotes ModeDoubleQuotes),
+                                (*lexer.Token)(EncapsulatedAndWhitespace 27 4),
                                 (*phrase.Phrase)({
                                   Type: (phrase.PhraseType) SimpleVariable,
                                   Children: ([]phrase.AstNode) (len=1) {
-                                    (*lexer.Token)(VariableName 31 2 ModeDoubleQuotes ModeDoubleQuotes)
+                                    (*lexer.Token)(VariableName 31 2)
                                   }
                                 })
                               }
                             }),
-                            (*lexer.Token)(DoubleQuote 33 1 ModeDoubleQuotes ModeDoubleQuotes)
+                            (*lexer.Token)(DoubleQuote 33 1)
                           }
                         }),
-                        (*lexer.Token)(CloseBrace 34 1 ModeDoubleQuotes ModeScripting)
+                        (*lexer.Token)(CloseBrace 34 1)
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(DoubleQuote 35 1 ModeDoubleQuotes)
+                (*lexer.Token)(DoubleQuote 35 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 36 1 ModeScripting)
+        (*lexer.Token)(Semicolon 36 1)
       }
     })
   }

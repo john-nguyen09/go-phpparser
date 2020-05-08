@@ -3601,305 +3601,305 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
-    (*lexer.Token)(Whitespace 6 1 ModeScripting),
+    (*lexer.Token)(Whitespace 6 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=22) {
-        (*lexer.Token)(DocumentCommentStart 7 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 10 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 11 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 7 3),
+        (*lexer.Token)(DocumentCommentEndline 10 1),
+        (*lexer.Token)(Whitespace 11 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDescription,
           Children: ([]phrase.AstNode) (len=92) {
-            (*lexer.Token)(DocumentCommentStartline 12 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 14 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 23 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 27 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 28 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 29 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 30 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 36 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 37 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 41 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 42 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Comma 49 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 50 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 51 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 55 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 56 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 58 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 59 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 62 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 63 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 64 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 65 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 72 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentVersion 73 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 76 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 77 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentStartline 78 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 83 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 87 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 88 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 95 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 96 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 100 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 101 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 103 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 104 13 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 117 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 118 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 125 8 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 133 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 134 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 140 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 141 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 150 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 151 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 152 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentStartline 153 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 155 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 160 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 161 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 165 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 166 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 175 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 176 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 177 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentStartline 178 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 181 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 182 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 183 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 189 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 193 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 199 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 200 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 201 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 210 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 211 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 215 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 216 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 223 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 224 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 227 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 228 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 234 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 235 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentStartline 236 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 239 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 240 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 241 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 248 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 252 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 257 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 258 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 259 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 268 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 269 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 273 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 274 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 280 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 281 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 284 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 285 8 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 293 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(DocumentCommentStartline 12 2),
+            (*lexer.Token)(Name 14 9),
+            (*lexer.Token)(DocumentCommentText 23 4),
+            (*lexer.Token)(Whitespace 27 1),
+            (*lexer.Token)(DocumentCommentText 28 1),
+            (*lexer.Token)(Whitespace 29 1),
+            (*lexer.Token)(Name 30 6),
+            (*lexer.Token)(Whitespace 36 1),
+            (*lexer.Token)(Name 37 4),
+            (*lexer.Token)(Whitespace 41 1),
+            (*lexer.Token)(Name 42 7),
+            (*lexer.Token)(Comma 49 1),
+            (*lexer.Token)(Whitespace 50 1),
+            (*lexer.Token)(Name 51 4),
+            (*lexer.Token)(Whitespace 55 1),
+            (*lexer.Token)(Name 56 2),
+            (*lexer.Token)(Whitespace 58 1),
+            (*lexer.Token)(Name 59 3),
+            (*lexer.Token)(Whitespace 62 1),
+            (*lexer.Token)(Name 63 1),
+            (*lexer.Token)(Whitespace 64 1),
+            (*lexer.Token)(Name 65 7),
+            (*lexer.Token)(Whitespace 72 1),
+            (*lexer.Token)(DocumentCommentVersion 73 3),
+            (*lexer.Token)(DocumentCommentEndline 76 1),
+            (*lexer.Token)(Whitespace 77 1),
+            (*lexer.Token)(DocumentCommentStartline 78 5),
+            (*lexer.Token)(Name 83 4),
+            (*lexer.Token)(Whitespace 87 1),
+            (*lexer.Token)(Name 88 7),
+            (*lexer.Token)(Whitespace 95 1),
+            (*lexer.Token)(Name 96 4),
+            (*lexer.Token)(Whitespace 100 1),
+            (*lexer.Token)(Name 101 2),
+            (*lexer.Token)(Whitespace 103 1),
+            (*lexer.Token)(Name 104 13),
+            (*lexer.Token)(Whitespace 117 1),
+            (*lexer.Token)(Name 118 7),
+            (*lexer.Token)(DocumentCommentText 125 8),
+            (*lexer.Token)(Whitespace 133 1),
+            (*lexer.Token)(Name 134 6),
+            (*lexer.Token)(Whitespace 140 1),
+            (*lexer.Token)(Name 141 9),
+            (*lexer.Token)(DocumentCommentText 150 1),
+            (*lexer.Token)(DocumentCommentEndline 151 1),
+            (*lexer.Token)(Whitespace 152 1),
+            (*lexer.Token)(DocumentCommentStartline 153 2),
+            (*lexer.Token)(Name 155 5),
+            (*lexer.Token)(Whitespace 160 1),
+            (*lexer.Token)(Name 161 4),
+            (*lexer.Token)(Whitespace 165 1),
+            (*lexer.Token)(Name 166 9),
+            (*lexer.Token)(DocumentCommentText 175 1),
+            (*lexer.Token)(DocumentCommentEndline 176 1),
+            (*lexer.Token)(Whitespace 177 1),
+            (*lexer.Token)(DocumentCommentStartline 178 3),
+            (*lexer.Token)(DocumentCommentText 181 1),
+            (*lexer.Token)(Whitespace 182 1),
+            (*lexer.Token)(Name 183 6),
+            (*lexer.Token)(DocumentCommentText 189 4),
+            (*lexer.Token)(Whitespace 193 6),
+            (*lexer.Token)(DocumentCommentText 199 1),
+            (*lexer.Token)(Whitespace 200 1),
+            (*lexer.Token)(Name 201 9),
+            (*lexer.Token)(Whitespace 210 1),
+            (*lexer.Token)(Name 211 4),
+            (*lexer.Token)(Whitespace 215 1),
+            (*lexer.Token)(Name 216 7),
+            (*lexer.Token)(Whitespace 223 1),
+            (*lexer.Token)(Name 224 3),
+            (*lexer.Token)(Whitespace 227 1),
+            (*lexer.Token)(Name 228 6),
+            (*lexer.Token)(DocumentCommentEndline 234 1),
+            (*lexer.Token)(Whitespace 235 1),
+            (*lexer.Token)(DocumentCommentStartline 236 3),
+            (*lexer.Token)(DocumentCommentText 239 1),
+            (*lexer.Token)(Whitespace 240 1),
+            (*lexer.Token)(Name 241 7),
+            (*lexer.Token)(DocumentCommentText 248 4),
+            (*lexer.Token)(Whitespace 252 5),
+            (*lexer.Token)(DocumentCommentText 257 1),
+            (*lexer.Token)(Whitespace 258 1),
+            (*lexer.Token)(Name 259 9),
+            (*lexer.Token)(Whitespace 268 1),
+            (*lexer.Token)(Name 269 4),
+            (*lexer.Token)(Whitespace 273 1),
+            (*lexer.Token)(Name 274 6),
+            (*lexer.Token)(Whitespace 280 1),
+            (*lexer.Token)(Name 281 3),
+            (*lexer.Token)(Whitespace 284 1),
+            (*lexer.Token)(Name 285 8),
+            (*lexer.Token)(DocumentCommentEndline 293 1)
           }
         }),
-        (*lexer.Token)(Whitespace 294 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 294 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 295 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentTagName 300 8 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 308 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 295 5),
+            (*lexer.Token)(DocumentCommentTagName 300 8),
+            (*lexer.Token)(Whitespace 308 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=2) {
-                (*lexer.Token)(DocumentCommentVersion 309 5 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 314 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(DocumentCommentVersion 309 5),
+                (*lexer.Token)(DocumentCommentEndline 314 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 315 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 315 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentAuthorTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 316 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtAuthor 318 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 325 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 316 2),
+            (*lexer.Token)(AtAuthor 318 7),
+            (*lexer.Token)(Whitespace 325 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentAuthor,
               Children: ([]phrase.AstNode) (len=3) {
-                (*lexer.Token)(Name 326 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 330 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 331 7 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 326 4),
+                (*lexer.Token)(Whitespace 330 1),
+                (*lexer.Token)(Name 331 7)
               }
             }),
-            (*lexer.Token)(Whitespace 338 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 338 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentEmail,
               Children: ([]phrase.AstNode) (len=4) {
-                (*lexer.Token)(LessThan 339 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 340 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 344 20 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(GreaterThan 364 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(LessThan 339 1),
+                (*lexer.Token)(Name 340 4),
+                (*lexer.Token)(DocumentCommentText 344 20),
+                (*lexer.Token)(GreaterThan 364 1)
               }
             })
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 365 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 366 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 365 1),
+        (*lexer.Token)(Whitespace 366 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentAuthorTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 367 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtAuthor 369 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 376 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 367 2),
+            (*lexer.Token)(AtAuthor 369 7),
+            (*lexer.Token)(Whitespace 376 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentAuthor,
               Children: ([]phrase.AstNode) (len=21) {
-                (*lexer.Token)(Name 377 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 380 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 381 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 383 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 384 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 390 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 391 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 395 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 396 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 400 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 401 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 404 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 405 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 409 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 410 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 412 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 413 10 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 423 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 424 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 426 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 427 6 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 377 3),
+                (*lexer.Token)(Whitespace 380 1),
+                (*lexer.Token)(Name 381 2),
+                (*lexer.Token)(Whitespace 383 1),
+                (*lexer.Token)(Name 384 6),
+                (*lexer.Token)(Whitespace 390 1),
+                (*lexer.Token)(Name 391 4),
+                (*lexer.Token)(Whitespace 395 1),
+                (*lexer.Token)(Name 396 4),
+                (*lexer.Token)(Whitespace 400 1),
+                (*lexer.Token)(Name 401 3),
+                (*lexer.Token)(Whitespace 404 1),
+                (*lexer.Token)(Name 405 4),
+                (*lexer.Token)(Whitespace 409 1),
+                (*lexer.Token)(Name 410 2),
+                (*lexer.Token)(Whitespace 412 1),
+                (*lexer.Token)(Name 413 10),
+                (*lexer.Token)(Whitespace 423 1),
+                (*lexer.Token)(Name 424 2),
+                (*lexer.Token)(Whitespace 426 1),
+                (*lexer.Token)(Name 427 6)
               }
             })
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 433 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 434 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 433 1),
+        (*lexer.Token)(Whitespace 434 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 435 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentTagName 437 8 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 445 4 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 435 2),
+            (*lexer.Token)(DocumentCommentTagName 437 8),
+            (*lexer.Token)(Whitespace 445 4),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=2) {
-                (*lexer.Token)(Name 449 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 453 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 449 4),
+                (*lexer.Token)(DocumentCommentEndline 453 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 454 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 454 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 455 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentTagName 457 11 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 468 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 455 2),
+            (*lexer.Token)(DocumentCommentTagName 457 11),
+            (*lexer.Token)(Whitespace 468 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=2) {
-                (*lexer.Token)(Name 469 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 472 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 469 3),
+                (*lexer.Token)(DocumentCommentEndline 472 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 473 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 473 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 474 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentTagName 476 10 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 486 2 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 474 2),
+            (*lexer.Token)(DocumentCommentTagName 476 10),
+            (*lexer.Token)(Whitespace 486 2),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=15) {
-                (*lexer.Token)(IntegerLiteral 488 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 492 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 493 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 500 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 501 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 507 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 508 9 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 517 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 519 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 523 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 524 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 525 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 526 9 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 535 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 539 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(IntegerLiteral 488 4),
+                (*lexer.Token)(Whitespace 492 1),
+                (*lexer.Token)(Name 493 7),
+                (*lexer.Token)(Whitespace 500 1),
+                (*lexer.Token)(Name 501 6),
+                (*lexer.Token)(Whitespace 507 1),
+                (*lexer.Token)(Name 508 9),
+                (*lexer.Token)(Whitespace 517 2),
+                (*lexer.Token)(Name 519 4),
+                (*lexer.Token)(DocumentCommentText 523 1),
+                (*lexer.Token)(ForwardSlash 524 1),
+                (*lexer.Token)(ForwardSlash 525 1),
+                (*lexer.Token)(Name 526 9),
+                (*lexer.Token)(DocumentCommentText 535 4),
+                (*lexer.Token)(DocumentCommentEndline 539 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 540 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 540 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 541 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentTagName 543 8 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 551 4 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 541 2),
+            (*lexer.Token)(DocumentCommentTagName 543 8),
+            (*lexer.Token)(Whitespace 551 4),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=22) {
-                (*lexer.Token)(Name 555 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 559 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 560 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 561 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 562 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 565 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 573 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 574 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 582 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 583 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 586 5 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 591 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 592 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 595 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 596 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 599 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 600 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 602 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 603 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 605 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 606 5 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 611 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 555 4),
+                (*lexer.Token)(DocumentCommentText 559 1),
+                (*lexer.Token)(ForwardSlash 560 1),
+                (*lexer.Token)(ForwardSlash 561 1),
+                (*lexer.Token)(Name 562 3),
+                (*lexer.Token)(DocumentCommentText 565 8),
+                (*lexer.Token)(ForwardSlash 573 1),
+                (*lexer.Token)(Name 574 8),
+                (*lexer.Token)(ForwardSlash 582 1),
+                (*lexer.Token)(Name 583 3),
+                (*lexer.Token)(DocumentCommentText 586 5),
+                (*lexer.Token)(Whitespace 591 1),
+                (*lexer.Token)(Name 592 3),
+                (*lexer.Token)(Whitespace 595 1),
+                (*lexer.Token)(Name 596 3),
+                (*lexer.Token)(Whitespace 599 1),
+                (*lexer.Token)(Name 600 2),
+                (*lexer.Token)(Whitespace 602 1),
+                (*lexer.Token)(Name 603 2),
+                (*lexer.Token)(Whitespace 605 1),
+                (*lexer.Token)(Name 606 5),
+                (*lexer.Token)(DocumentCommentEndline 611 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 612 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 613 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 612 1),
+        (*lexer.Token)(DocumentCommentEnd 613 2)
       }
     }),
-    (*lexer.Token)(Whitespace 615 2 ModeScripting),
+    (*lexer.Token)(Whitespace 615 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(DocumentCommentStart 617 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 620 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 617 3),
+        (*lexer.Token)(Whitespace 620 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentVarTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(AtVar 621 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 625 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(AtVar 621 4),
+            (*lexer.Token)(Whitespace 625 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeUnion,
               Children: ([]phrase.AstNode) (len=3) {
@@ -3912,14 +3912,14 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 626 8 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 626 8)
                           }
                         })
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Bar 634 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Bar 634 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) TypeDeclaration,
                   Children: ([]phrase.AstNode) (len=2) {
@@ -3929,37 +3929,37 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 635 3 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 635 3)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Array 638 2 ModeScripting ModeDocumentBlock)
+                    (*lexer.Token)(Array 638 2)
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 640 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 641 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 646 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 640 1),
+            (*lexer.Token)(VariableName 641 5),
+            (*lexer.Token)(Whitespace 646 1)
           }
         }),
-        (*lexer.Token)(DocumentCommentEnd 647 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(DocumentCommentEnd 647 2)
       }
     }),
-    (*lexer.Token)(Whitespace 649 1 ModeScripting),
+    (*lexer.Token)(Whitespace 649 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=17) {
-        (*lexer.Token)(DocumentCommentStart 650 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 653 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 654 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 650 3),
+        (*lexer.Token)(DocumentCommentEndline 653 1),
+        (*lexer.Token)(Whitespace 654 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentMethodTag,
           Children: ([]phrase.AstNode) (len=8) {
-            (*lexer.Token)(DocumentCommentStartline 655 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtMethod 657 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 664 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 655 2),
+            (*lexer.Token)(AtMethod 657 7),
+            (*lexer.Token)(Whitespace 664 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -3969,32 +3969,32 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 665 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 665 6)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 671 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 671 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) Identifier,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(Name 672 9 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 672 9)
               }
             }),
-            (*lexer.Token)(OpenParenthesis 681 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(CloseParenthesis 682 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(OpenParenthesis 681 1),
+            (*lexer.Token)(CloseParenthesis 682 1)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 683 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 684 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 683 1),
+        (*lexer.Token)(Whitespace 684 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentMethodTag,
           Children: ([]phrase.AstNode) (len=9) {
-            (*lexer.Token)(DocumentCommentStartline 685 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtMethod 687 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 694 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 685 2),
+            (*lexer.Token)(AtMethod 687 7),
+            (*lexer.Token)(Whitespace 694 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4004,21 +4004,21 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 695 4 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 695 4)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 699 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 699 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) Identifier,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(Name 700 10 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 700 10)
               }
             }),
-            (*lexer.Token)(OpenParenthesis 710 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(OpenParenthesis 710 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ParameterDeclarationList,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4034,37 +4034,37 @@
                             (*phrase.Phrase)({
                               Type: (phrase.PhraseType) NamespaceName,
                               Children: ([]phrase.AstNode) (len=1) {
-                                (*lexer.Token)(Name 711 7 ModeScripting ModeDocumentBlock)
+                                (*lexer.Token)(Name 711 7)
                               }
                             })
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Whitespace 718 1 ModeScripting ModeDocumentBlock),
-                    (*lexer.Token)(VariableName 719 8 ModeScripting ModeDocumentBlock)
+                    (*lexer.Token)(Whitespace 718 1),
+                    (*lexer.Token)(VariableName 719 8)
                   }
                 })
               }
             }),
-            (*lexer.Token)(CloseParenthesis 727 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(CloseParenthesis 727 1)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 728 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 729 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 728 1),
+        (*lexer.Token)(Whitespace 729 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentMethodTag,
           Children: ([]phrase.AstNode) (len=9) {
-            (*lexer.Token)(DocumentCommentStartline 730 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtMethod 732 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 739 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 730 2),
+            (*lexer.Token)(AtMethod 732 7),
+            (*lexer.Token)(Whitespace 739 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) Identifier,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(Name 740 9 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 740 9)
               }
             }),
-            (*lexer.Token)(OpenParenthesis 749 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(OpenParenthesis 749 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ParameterDeclarationList,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4080,57 +4080,57 @@
                             (*phrase.Phrase)({
                               Type: (phrase.PhraseType) NamespaceName,
                               Children: ([]phrase.AstNode) (len=1) {
-                                (*lexer.Token)(Name 750 7 ModeScripting ModeDocumentBlock)
+                                (*lexer.Token)(Name 750 7)
                               }
                             })
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Whitespace 757 1 ModeScripting ModeDocumentBlock),
-                    (*lexer.Token)(VariableName 758 8 ModeScripting ModeDocumentBlock)
+                    (*lexer.Token)(Whitespace 757 1),
+                    (*lexer.Token)(VariableName 758 8)
                   }
                 })
               }
             }),
-            (*lexer.Token)(CloseParenthesis 766 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 767 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(CloseParenthesis 766 1),
+            (*lexer.Token)(Whitespace 767 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=20) {
-                (*lexer.Token)(Name 768 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 771 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 772 10 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 782 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 783 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 786 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 787 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 791 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Static 792 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 798 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 799 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 806 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 807 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentStartline 808 38 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 846 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 848 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 849 5 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 854 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 855 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 861 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 768 3),
+                (*lexer.Token)(Whitespace 771 1),
+                (*lexer.Token)(Name 772 10),
+                (*lexer.Token)(Whitespace 782 1),
+                (*lexer.Token)(Name 783 3),
+                (*lexer.Token)(Whitespace 786 1),
+                (*lexer.Token)(Name 787 4),
+                (*lexer.Token)(Whitespace 791 1),
+                (*lexer.Token)(Static 792 6),
+                (*lexer.Token)(Whitespace 798 1),
+                (*lexer.Token)(Name 799 7),
+                (*lexer.Token)(DocumentCommentEndline 806 1),
+                (*lexer.Token)(Whitespace 807 1),
+                (*lexer.Token)(DocumentCommentStartline 808 38),
+                (*lexer.Token)(Name 846 2),
+                (*lexer.Token)(Whitespace 848 1),
+                (*lexer.Token)(Name 849 5),
+                (*lexer.Token)(Whitespace 854 1),
+                (*lexer.Token)(Name 855 6),
+                (*lexer.Token)(DocumentCommentEndline 861 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 862 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 862 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentMethodTag,
           Children: ([]phrase.AstNode) (len=10) {
-            (*lexer.Token)(DocumentCommentStartline 863 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtMethod 865 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 872 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Static 873 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 879 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 863 2),
+            (*lexer.Token)(AtMethod 865 7),
+            (*lexer.Token)(Whitespace 872 1),
+            (*lexer.Token)(Static 873 6),
+            (*lexer.Token)(Whitespace 879 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4140,32 +4140,32 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 880 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 880 6)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 886 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 886 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) Identifier,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(Name 887 12 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 887 12)
               }
             }),
-            (*lexer.Token)(OpenParenthesis 899 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(CloseParenthesis 900 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(OpenParenthesis 899 1),
+            (*lexer.Token)(CloseParenthesis 900 1)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 901 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 902 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 901 1),
+        (*lexer.Token)(Whitespace 902 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentMethodTag,
           Children: ([]phrase.AstNode) (len=11) {
-            (*lexer.Token)(DocumentCommentStartline 903 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtMethod 905 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 912 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 903 2),
+            (*lexer.Token)(AtMethod 905 7),
+            (*lexer.Token)(Whitespace 912 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4175,21 +4175,21 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 913 4 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 913 4)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 917 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 917 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) Identifier,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(Name 918 11 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 918 11)
               }
             }),
-            (*lexer.Token)(OpenParenthesis 929 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(OpenParenthesis 929 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ParameterDeclarationList,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4208,14 +4208,14 @@
                                 (*phrase.Phrase)({
                                   Type: (phrase.PhraseType) NamespaceName,
                                   Children: ([]phrase.AstNode) (len=1) {
-                                    (*lexer.Token)(Name 930 5 ModeScripting ModeDocumentBlock)
+                                    (*lexer.Token)(Name 930 5)
                                   }
                                 })
                               }
                             })
                           }
                         }),
-                        (*lexer.Token)(Bar 935 1 ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Bar 935 1),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) TypeDeclaration,
                           Children: ([]phrase.AstNode) (len=1) {
@@ -4225,14 +4225,14 @@
                                 (*phrase.Phrase)({
                                   Type: (phrase.PhraseType) NamespaceName,
                                   Children: ([]phrase.AstNode) (len=1) {
-                                    (*lexer.Token)(Name 936 8 ModeScripting ModeDocumentBlock)
+                                    (*lexer.Token)(Name 936 8)
                                   }
                                 })
                               }
                             })
                           }
                         }),
-                        (*lexer.Token)(Bar 944 1 ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Bar 944 1),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) TypeDeclaration,
                           Children: ([]phrase.AstNode) (len=1) {
@@ -4242,14 +4242,14 @@
                                 (*phrase.Phrase)({
                                   Type: (phrase.PhraseType) NamespaceName,
                                   Children: ([]phrase.AstNode) (len=1) {
-                                    (*lexer.Token)(Name 945 8 ModeScripting ModeDocumentBlock)
+                                    (*lexer.Token)(Name 945 8)
                                   }
                                 })
                               }
                             })
                           }
                         }),
-                        (*lexer.Token)(Bar 953 1 ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Bar 953 1),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) TypeDeclaration,
                           Children: ([]phrase.AstNode) (len=1) {
@@ -4259,7 +4259,7 @@
                                 (*phrase.Phrase)({
                                   Type: (phrase.PhraseType) NamespaceName,
                                   Children: ([]phrase.AstNode) (len=1) {
-                                    (*lexer.Token)(Name 954 5 ModeScripting ModeDocumentBlock)
+                                    (*lexer.Token)(Name 954 5)
                                   }
                                 })
                               }
@@ -4268,163 +4268,163 @@
                         })
                       }
                     }),
-                    (*lexer.Token)(Whitespace 959 1 ModeScripting ModeDocumentBlock),
-                    (*lexer.Token)(VariableName 960 11 ModeScripting ModeDocumentBlock),
-                    (*lexer.Token)(Whitespace 971 1 ModeScripting ModeDocumentBlock),
-                    (*lexer.Token)(Equals 972 1 ModeScripting ModeDocumentBlock),
-                    (*lexer.Token)(Whitespace 973 1 ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Whitespace 959 1),
+                    (*lexer.Token)(VariableName 960 11),
+                    (*lexer.Token)(Whitespace 971 1),
+                    (*lexer.Token)(Equals 972 1),
+                    (*lexer.Token)(Whitespace 973 1),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) ParameterValue,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(DocumentCommentText 974 5 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(DocumentCommentText 974 5)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(CloseParenthesis 979 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 980 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(CloseParenthesis 979 1),
+            (*lexer.Token)(Whitespace 980 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=18) {
-                (*lexer.Token)(Name 981 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 985 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 986 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 992 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 993 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 997 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 998 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentStartline 999 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1001 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1002 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1003 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1006 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1007 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1009 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1010 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1016 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1017 13 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1030 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 981 4),
+                (*lexer.Token)(Whitespace 985 1),
+                (*lexer.Token)(Name 986 6),
+                (*lexer.Token)(Whitespace 992 1),
+                (*lexer.Token)(Name 993 4),
+                (*lexer.Token)(DocumentCommentEndline 997 1),
+                (*lexer.Token)(Whitespace 998 1),
+                (*lexer.Token)(DocumentCommentStartline 999 2),
+                (*lexer.Token)(Name 1001 1),
+                (*lexer.Token)(Whitespace 1002 1),
+                (*lexer.Token)(Name 1003 3),
+                (*lexer.Token)(Whitespace 1006 1),
+                (*lexer.Token)(Name 1007 2),
+                (*lexer.Token)(Whitespace 1009 1),
+                (*lexer.Token)(Name 1010 6),
+                (*lexer.Token)(Whitespace 1016 1),
+                (*lexer.Token)(Name 1017 13),
+                (*lexer.Token)(DocumentCommentEndline 1030 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1031 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1032 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 1031 1),
+        (*lexer.Token)(DocumentCommentEnd 1032 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1034 3 ModeScripting),
+    (*lexer.Token)(Whitespace 1034 3),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=14) {
-        (*lexer.Token)(DocumentCommentStart 1037 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 1040 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1041 2 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1037 3),
+        (*lexer.Token)(DocumentCommentEndline 1040 1),
+        (*lexer.Token)(Whitespace 1041 2),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDeprecatedTag,
           Children: ([]phrase.AstNode) (len=2) {
-            (*lexer.Token)(DocumentCommentStartline 1043 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtDeprecated 1045 11 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(DocumentCommentStartline 1043 2),
+            (*lexer.Token)(AtDeprecated 1045 11)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1056 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1057 2 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1056 1),
+        (*lexer.Token)(Whitespace 1057 2),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDeprecatedTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 1059 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtDeprecated 1061 11 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1072 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentVersion 1073 5 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(DocumentCommentStartline 1059 2),
+            (*lexer.Token)(AtDeprecated 1061 11),
+            (*lexer.Token)(Whitespace 1072 1),
+            (*lexer.Token)(DocumentCommentVersion 1073 5)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1078 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1079 2 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1078 1),
+        (*lexer.Token)(Whitespace 1079 2),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDeprecatedTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 1081 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtDeprecated 1083 11 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1094 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1081 2),
+            (*lexer.Token)(AtDeprecated 1083 11),
+            (*lexer.Token)(Whitespace 1094 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=19) {
-                (*lexer.Token)(Name 1095 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1097 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1098 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1104 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1105 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1109 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1110 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1112 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1113 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1121 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1122 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1126 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1127 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1130 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1131 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1134 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1135 11 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1146 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1147 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1095 2),
+                (*lexer.Token)(Whitespace 1097 1),
+                (*lexer.Token)(Name 1098 6),
+                (*lexer.Token)(Whitespace 1104 1),
+                (*lexer.Token)(Name 1105 4),
+                (*lexer.Token)(Whitespace 1109 1),
+                (*lexer.Token)(Name 1110 2),
+                (*lexer.Token)(Whitespace 1112 1),
+                (*lexer.Token)(Name 1113 8),
+                (*lexer.Token)(Whitespace 1121 1),
+                (*lexer.Token)(Name 1122 4),
+                (*lexer.Token)(Whitespace 1126 1),
+                (*lexer.Token)(Name 1127 3),
+                (*lexer.Token)(Whitespace 1130 1),
+                (*lexer.Token)(Name 1131 3),
+                (*lexer.Token)(Whitespace 1134 1),
+                (*lexer.Token)(Name 1135 11),
+                (*lexer.Token)(DocumentCommentText 1146 1),
+                (*lexer.Token)(DocumentCommentEndline 1147 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1148 2 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 1148 2),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDeprecatedTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1150 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtDeprecated 1152 11 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1163 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentVersion 1164 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1169 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1150 2),
+            (*lexer.Token)(AtDeprecated 1152 11),
+            (*lexer.Token)(Whitespace 1163 1),
+            (*lexer.Token)(DocumentCommentVersion 1164 5),
+            (*lexer.Token)(Whitespace 1169 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=19) {
-                (*lexer.Token)(Name 1170 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1172 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1173 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1179 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1180 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1184 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1185 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1187 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1188 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1196 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1197 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1201 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1202 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1205 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1206 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1209 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1210 11 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1221 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1222 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1170 2),
+                (*lexer.Token)(Whitespace 1172 1),
+                (*lexer.Token)(Name 1173 6),
+                (*lexer.Token)(Whitespace 1179 1),
+                (*lexer.Token)(Name 1180 4),
+                (*lexer.Token)(Whitespace 1184 1),
+                (*lexer.Token)(Name 1185 2),
+                (*lexer.Token)(Whitespace 1187 1),
+                (*lexer.Token)(Name 1188 8),
+                (*lexer.Token)(Whitespace 1196 1),
+                (*lexer.Token)(Name 1197 4),
+                (*lexer.Token)(Whitespace 1201 1),
+                (*lexer.Token)(Name 1202 3),
+                (*lexer.Token)(Whitespace 1205 1),
+                (*lexer.Token)(Name 1206 3),
+                (*lexer.Token)(Whitespace 1209 1),
+                (*lexer.Token)(Name 1210 11),
+                (*lexer.Token)(DocumentCommentText 1221 1),
+                (*lexer.Token)(DocumentCommentEndline 1222 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1223 2 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1225 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 1223 2),
+        (*lexer.Token)(DocumentCommentEnd 1225 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1227 2 ModeScripting),
+    (*lexer.Token)(Whitespace 1227 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=9) {
-        (*lexer.Token)(DocumentCommentStart 1229 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 1232 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1233 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1229 3),
+        (*lexer.Token)(DocumentCommentEndline 1232 1),
+        (*lexer.Token)(Whitespace 1233 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentGlobalTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1234 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtGlobal 1236 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1243 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1234 2),
+            (*lexer.Token)(AtGlobal 1236 7),
+            (*lexer.Token)(Whitespace 1243 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeUnion,
               Children: ([]phrase.AstNode) (len=5) {
@@ -4437,14 +4437,14 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 1244 8 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 1244 8)
                           }
                         })
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Bar 1252 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Bar 1252 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) TypeDeclaration,
                   Children: ([]phrase.AstNode) (len=1) {
@@ -4454,14 +4454,14 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 1253 9 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 1253 9)
                           }
                         })
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Bar 1262 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Bar 1262 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) TypeDeclaration,
                   Children: ([]phrase.AstNode) (len=2) {
@@ -4471,157 +4471,157 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 1263 8 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 1263 8)
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Array 1271 2 ModeScripting ModeDocumentBlock)
+                    (*lexer.Token)(Array 1271 2)
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1273 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1274 3 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 1273 1),
+            (*lexer.Token)(VariableName 1274 3)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1277 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1278 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1277 1),
+        (*lexer.Token)(Whitespace 1278 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 1279 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtLink 1281 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1286 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1279 2),
+            (*lexer.Token)(AtLink 1281 5),
+            (*lexer.Token)(Whitespace 1286 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=18) {
-                (*lexer.Token)(Name 1287 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1291 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 1292 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 1293 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1294 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1301 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 1305 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1306 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(ForwardSlash 1308 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1309 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1312 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1313 13 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1326 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1327 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1329 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1330 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1333 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1334 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1287 4),
+                (*lexer.Token)(DocumentCommentText 1291 1),
+                (*lexer.Token)(ForwardSlash 1292 1),
+                (*lexer.Token)(ForwardSlash 1293 1),
+                (*lexer.Token)(Name 1294 7),
+                (*lexer.Token)(DocumentCommentText 1301 4),
+                (*lexer.Token)(ForwardSlash 1305 1),
+                (*lexer.Token)(Name 1306 2),
+                (*lexer.Token)(ForwardSlash 1308 1),
+                (*lexer.Token)(Name 1309 3),
+                (*lexer.Token)(Whitespace 1312 1),
+                (*lexer.Token)(Name 1313 13),
+                (*lexer.Token)(Whitespace 1326 1),
+                (*lexer.Token)(Name 1327 2),
+                (*lexer.Token)(Whitespace 1329 1),
+                (*lexer.Token)(Name 1330 3),
+                (*lexer.Token)(DocumentCommentText 1333 1),
+                (*lexer.Token)(DocumentCommentEndline 1334 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1335 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1336 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 1335 1),
+        (*lexer.Token)(DocumentCommentEnd 1336 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1338 1 ModeScripting),
+    (*lexer.Token)(Whitespace 1338 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) GlobalDeclaration,
       Children: ([]phrase.AstNode) (len=4) {
-        (*lexer.Token)(Global 1339 6 ModeScripting),
-        (*lexer.Token)(Whitespace 1345 1 ModeScripting),
+        (*lexer.Token)(Global 1339 6),
+        (*lexer.Token)(Whitespace 1345 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) VariableNameList,
           Children: ([]phrase.AstNode) (len=1) {
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 1346 3 ModeScripting)
+                (*lexer.Token)(VariableName 1346 3)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 1349 1 ModeScripting)
+        (*lexer.Token)(Semicolon 1349 1)
       }
     }),
-    (*lexer.Token)(Whitespace 1350 2 ModeScripting),
+    (*lexer.Token)(Whitespace 1350 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=7) {
-        (*lexer.Token)(DocumentCommentStart 1352 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 1355 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1356 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1352 3),
+        (*lexer.Token)(DocumentCommentEndline 1355 1),
+        (*lexer.Token)(Whitespace 1356 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentGlobalTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1357 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtGlobal 1359 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1366 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1357 2),
+            (*lexer.Token)(AtGlobal 1359 7),
+            (*lexer.Token)(Whitespace 1366 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) FullyQualifiedName,
                   Children: ([]phrase.AstNode) (len=2) {
-                    (*lexer.Token)(Backslash 1367 1 ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Backslash 1367 1),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=3) {
-                        (*lexer.Token)(Name 1368 9 ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Backslash 1377 1 ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Name 1378 15 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1368 9),
+                        (*lexer.Token)(Backslash 1377 1),
+                        (*lexer.Token)(Name 1378 15)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1393 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1394 7 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 1393 1),
+            (*lexer.Token)(VariableName 1394 7)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1401 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1402 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1403 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(DocumentCommentEndline 1401 1),
+        (*lexer.Token)(Whitespace 1402 1),
+        (*lexer.Token)(DocumentCommentEnd 1403 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1405 2 ModeScripting),
+    (*lexer.Token)(Whitespace 1405 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=12) {
-        (*lexer.Token)(DocumentCommentStart 1407 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 1410 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1411 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1407 3),
+        (*lexer.Token)(DocumentCommentEndline 1410 1),
+        (*lexer.Token)(Whitespace 1411 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDescription,
           Children: ([]phrase.AstNode) (len=20) {
-            (*lexer.Token)(DocumentCommentStartline 1412 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1414 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1420 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1421 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1424 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1425 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1431 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1432 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1434 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1435 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1440 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1441 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1443 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1444 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1447 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1448 8 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1456 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 1457 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 1462 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 1463 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(DocumentCommentStartline 1412 2),
+            (*lexer.Token)(Name 1414 6),
+            (*lexer.Token)(Whitespace 1420 1),
+            (*lexer.Token)(Name 1421 3),
+            (*lexer.Token)(Whitespace 1424 1),
+            (*lexer.Token)(Name 1425 6),
+            (*lexer.Token)(Whitespace 1431 1),
+            (*lexer.Token)(Name 1432 2),
+            (*lexer.Token)(Whitespace 1434 1),
+            (*lexer.Token)(Name 1435 5),
+            (*lexer.Token)(Whitespace 1440 1),
+            (*lexer.Token)(Name 1441 2),
+            (*lexer.Token)(Whitespace 1443 1),
+            (*lexer.Token)(Name 1444 3),
+            (*lexer.Token)(Whitespace 1447 1),
+            (*lexer.Token)(Name 1448 8),
+            (*lexer.Token)(Whitespace 1456 1),
+            (*lexer.Token)(Name 1457 5),
+            (*lexer.Token)(DocumentCommentText 1462 1),
+            (*lexer.Token)(DocumentCommentEndline 1463 1)
           }
         }),
-        (*lexer.Token)(Whitespace 1464 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 1464 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentParamTag,
           Children: ([]phrase.AstNode) (len=8) {
-            (*lexer.Token)(DocumentCommentStartline 1465 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtParam 1470 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1476 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1465 5),
+            (*lexer.Token)(AtParam 1470 6),
+            (*lexer.Token)(Whitespace 1476 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=2) {
@@ -4631,46 +4631,46 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1477 5 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1477 5)
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Array 1482 2 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Array 1482 2)
               }
             }),
-            (*lexer.Token)(Whitespace 1484 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1485 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1491 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1484 1),
+            (*lexer.Token)(VariableName 1485 6),
+            (*lexer.Token)(Whitespace 1491 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=15) {
-                (*lexer.Token)(Name 1492 5 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1497 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1498 9 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1507 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1508 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1510 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1511 5 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1516 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1517 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1520 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1521 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1529 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1530 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1532 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1533 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1492 5),
+                (*lexer.Token)(Whitespace 1497 1),
+                (*lexer.Token)(Name 1498 9),
+                (*lexer.Token)(Whitespace 1507 1),
+                (*lexer.Token)(Name 1508 2),
+                (*lexer.Token)(Whitespace 1510 1),
+                (*lexer.Token)(Name 1511 5),
+                (*lexer.Token)(Whitespace 1516 1),
+                (*lexer.Token)(Name 1517 3),
+                (*lexer.Token)(Whitespace 1520 1),
+                (*lexer.Token)(Name 1521 8),
+                (*lexer.Token)(Whitespace 1529 1),
+                (*lexer.Token)(Name 1530 2),
+                (*lexer.Token)(DocumentCommentText 1532 1),
+                (*lexer.Token)(DocumentCommentEndline 1533 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1534 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 1534 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentThrowsTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1535 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtThrows 1540 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1547 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1535 5),
+            (*lexer.Token)(AtThrows 1540 7),
+            (*lexer.Token)(Whitespace 1547 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4680,48 +4680,48 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1548 24 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1548 24)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1572 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1572 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=20) {
-                (*lexer.Token)(Name 1573 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1575 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1576 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1579 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1580 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1588 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1589 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1597 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1598 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1600 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1601 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1604 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1605 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1607 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1608 4 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1612 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1613 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentStartline 1614 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1616 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1624 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1573 2),
+                (*lexer.Token)(Whitespace 1575 1),
+                (*lexer.Token)(Name 1576 3),
+                (*lexer.Token)(Whitespace 1579 1),
+                (*lexer.Token)(Name 1580 8),
+                (*lexer.Token)(Whitespace 1588 1),
+                (*lexer.Token)(Name 1589 8),
+                (*lexer.Token)(Whitespace 1597 1),
+                (*lexer.Token)(Name 1598 2),
+                (*lexer.Token)(Whitespace 1600 1),
+                (*lexer.Token)(Name 1601 3),
+                (*lexer.Token)(Whitespace 1604 1),
+                (*lexer.Token)(Name 1605 2),
+                (*lexer.Token)(Whitespace 1607 1),
+                (*lexer.Token)(Name 1608 4),
+                (*lexer.Token)(DocumentCommentEndline 1612 1),
+                (*lexer.Token)(Whitespace 1613 1),
+                (*lexer.Token)(DocumentCommentStartline 1614 2),
+                (*lexer.Token)(DocumentCommentText 1616 8),
+                (*lexer.Token)(DocumentCommentEndline 1624 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1625 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 1625 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentReturnTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1626 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtReturn 1628 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1635 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1626 2),
+            (*lexer.Token)(AtReturn 1628 7),
+            (*lexer.Token)(Whitespace 1635 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4731,47 +4731,47 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1636 3 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1636 3)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1639 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1639 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=11) {
-                (*lexer.Token)(Name 1640 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1647 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1648 3 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1651 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1652 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1658 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1659 2 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1661 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1662 8 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentText 1670 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1671 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1640 7),
+                (*lexer.Token)(Whitespace 1647 1),
+                (*lexer.Token)(Name 1648 3),
+                (*lexer.Token)(Whitespace 1651 1),
+                (*lexer.Token)(Name 1652 6),
+                (*lexer.Token)(Whitespace 1658 1),
+                (*lexer.Token)(Name 1659 2),
+                (*lexer.Token)(Whitespace 1661 1),
+                (*lexer.Token)(Name 1662 8),
+                (*lexer.Token)(DocumentCommentText 1670 1),
+                (*lexer.Token)(DocumentCommentEndline 1671 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1672 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1673 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 1672 1),
+        (*lexer.Token)(DocumentCommentEnd 1673 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1675 1 ModeScripting),
+    (*lexer.Token)(Whitespace 1675 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) FunctionDeclaration,
       Children: ([]phrase.AstNode) (len=3) {
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) FunctionDeclarationHeader,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(Function 1676 8 ModeScripting),
-            (*lexer.Token)(Whitespace 1684 1 ModeScripting),
-            (*lexer.Token)(Name 1685 5 ModeScripting),
-            (*lexer.Token)(OpenParenthesis 1690 1 ModeScripting),
+            (*lexer.Token)(Function 1676 8),
+            (*lexer.Token)(Whitespace 1684 1),
+            (*lexer.Token)(Name 1685 5),
+            (*lexer.Token)(OpenParenthesis 1690 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ParameterDeclarationList,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4787,46 +4787,46 @@
                             (*phrase.Phrase)({
                               Type: (phrase.PhraseType) NamespaceName,
                               Children: ([]phrase.AstNode) (len=1) {
-                                (*lexer.Token)(Name 1691 5 ModeScripting)
+                                (*lexer.Token)(Name 1691 5)
                               }
                             })
                           }
                         })
                       }
                     }),
-                    (*lexer.Token)(Whitespace 1696 1 ModeScripting),
-                    (*lexer.Token)(VariableName 1697 6 ModeScripting)
+                    (*lexer.Token)(Whitespace 1696 1),
+                    (*lexer.Token)(VariableName 1697 6)
                   }
                 })
               }
             }),
-            (*lexer.Token)(CloseParenthesis 1703 1 ModeScripting)
+            (*lexer.Token)(CloseParenthesis 1703 1)
           }
         }),
-        (*lexer.Token)(Whitespace 1704 1 ModeScripting),
+        (*lexer.Token)(Whitespace 1704 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) FunctionDeclarationBody,
           Children: ([]phrase.AstNode) (len=3) {
-            (*lexer.Token)(OpenBrace 1705 1 ModeScripting),
-            (*lexer.Token)(Whitespace 1706 1 ModeScripting ModeScripting),
-            (*lexer.Token)(CloseBrace 1707 1 ModeScripting ModeScripting)
+            (*lexer.Token)(OpenBrace 1705 1),
+            (*lexer.Token)(Whitespace 1706 1),
+            (*lexer.Token)(CloseBrace 1707 1)
           }
         })
       }
     }),
-    (*lexer.Token)(Whitespace 1708 2 ModeScripting),
+    (*lexer.Token)(Whitespace 1708 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=16) {
-        (*lexer.Token)(DocumentCommentStart 1710 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 1713 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1714 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1710 3),
+        (*lexer.Token)(DocumentCommentEndline 1713 1),
+        (*lexer.Token)(Whitespace 1714 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentPropertyTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1715 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtProperty 1717 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1726 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1715 2),
+            (*lexer.Token)(AtProperty 1717 9),
+            (*lexer.Token)(Whitespace 1726 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4836,25 +4836,25 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1727 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1727 6)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1733 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1734 11 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 1733 1),
+            (*lexer.Token)(VariableName 1734 11)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1745 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1746 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1745 1),
+        (*lexer.Token)(Whitespace 1746 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentPropertyTag,
           Children: ([]phrase.AstNode) (len=5) {
-            (*lexer.Token)(DocumentCommentStartline 1747 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtProperty 1749 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1758 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1747 2),
+            (*lexer.Token)(AtProperty 1749 9),
+            (*lexer.Token)(Whitespace 1758 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4864,7 +4864,7 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1759 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1759 6)
                       }
                     })
                   }
@@ -4877,19 +4877,19 @@
                 Children: ([]phrase.AstNode) {
                 }
               },
-              Unexpected: (*lexer.Token)(DocumentCommentEndline 1765 1 ModeScripting ModeDocumentBlock),
+              Unexpected: (*lexer.Token)(DocumentCommentEndline 1765 1),
               Expected: (lexer.TokenType) VariableName
             })
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1765 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1766 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1765 1),
+        (*lexer.Token)(Whitespace 1766 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentPropertyTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 1767 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtPropertyRead 1769 14 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1783 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1767 2),
+            (*lexer.Token)(AtPropertyRead 1769 14),
+            (*lexer.Token)(Whitespace 1783 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -4899,44 +4899,44 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1784 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1784 6)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1790 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1791 11 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 1790 1),
+            (*lexer.Token)(VariableName 1791 11)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1802 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1803 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 1802 1),
+        (*lexer.Token)(Whitespace 1803 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentPropertyTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 1804 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtPropertyWrite 1806 15 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1821 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1822 11 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(DocumentCommentStartline 1804 2),
+            (*lexer.Token)(AtPropertyWrite 1806 15),
+            (*lexer.Token)(Whitespace 1821 1),
+            (*lexer.Token)(VariableName 1822 11)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 1833 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1834 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1835 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(DocumentCommentEndline 1833 1),
+        (*lexer.Token)(Whitespace 1834 1),
+        (*lexer.Token)(DocumentCommentEnd 1835 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1837 1 ModeScripting),
+    (*lexer.Token)(Whitespace 1837 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=5) {
-        (*lexer.Token)(DocumentCommentStart 1838 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1841 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1838 3),
+        (*lexer.Token)(Whitespace 1841 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentVarTag,
           Children: ([]phrase.AstNode) (len=5) {
-            (*lexer.Token)(AtVar 1842 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1846 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(AtVar 1842 4),
+            (*lexer.Token)(Whitespace 1846 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeUnion,
               Children: ([]phrase.AstNode) (len=3) {
@@ -4949,14 +4949,14 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 1847 6 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 1847 6)
                           }
                         })
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Bar 1853 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Bar 1853 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) TypeDeclaration,
                   Children: ([]phrase.AstNode) (len=1) {
@@ -4966,7 +4966,7 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 1854 4 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 1854 4)
                           }
                         })
                       }
@@ -4975,38 +4975,38 @@
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1858 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1858 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=7) {
-                (*lexer.Token)(Name 1859 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1865 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1866 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1873 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1874 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1875 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1876 11 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1859 6),
+                (*lexer.Token)(Whitespace 1865 1),
+                (*lexer.Token)(Name 1866 7),
+                (*lexer.Token)(Whitespace 1873 1),
+                (*lexer.Token)(Name 1874 1),
+                (*lexer.Token)(Whitespace 1875 1),
+                (*lexer.Token)(Name 1876 11)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1887 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 1888 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 1887 1),
+        (*lexer.Token)(DocumentCommentEnd 1888 2)
       }
     }),
-    (*lexer.Token)(Whitespace 1890 1 ModeScripting),
+    (*lexer.Token)(Whitespace 1890 1),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=8) {
-        (*lexer.Token)(DocumentCommentStart 1891 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 1894 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 1895 2 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 1891 3),
+        (*lexer.Token)(DocumentCommentEndline 1894 1),
+        (*lexer.Token)(Whitespace 1895 2),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentVarTag,
           Children: ([]phrase.AstNode) (len=8) {
-            (*lexer.Token)(DocumentCommentStartline 1897 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtVar 1899 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1903 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1897 2),
+            (*lexer.Token)(AtVar 1899 4),
+            (*lexer.Token)(Whitespace 1903 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -5016,38 +5016,38 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1904 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1904 6)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1910 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1911 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1916 8 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1910 1),
+            (*lexer.Token)(VariableName 1911 5),
+            (*lexer.Token)(Whitespace 1916 8),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=8) {
-                (*lexer.Token)(Name 1924 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1930 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1931 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1938 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1939 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1940 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1941 11 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 1952 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1924 6),
+                (*lexer.Token)(Whitespace 1930 1),
+                (*lexer.Token)(Name 1931 7),
+                (*lexer.Token)(Whitespace 1938 1),
+                (*lexer.Token)(Name 1939 1),
+                (*lexer.Token)(Whitespace 1940 1),
+                (*lexer.Token)(Name 1941 11),
+                (*lexer.Token)(DocumentCommentEndline 1952 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 1953 2 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 1953 2),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentVarTag,
           Children: ([]phrase.AstNode) (len=8) {
-            (*lexer.Token)(DocumentCommentStartline 1955 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtVar 1957 4 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1961 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 1955 2),
+            (*lexer.Token)(AtVar 1957 4),
+            (*lexer.Token)(Whitespace 1961 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -5057,72 +5057,72 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 1962 6 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 1962 6)
                       }
                     })
                   }
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 1968 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 1969 12 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 1981 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(Whitespace 1968 1),
+            (*lexer.Token)(VariableName 1969 12),
+            (*lexer.Token)(Whitespace 1981 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) DocumentCommentDescription,
               Children: ([]phrase.AstNode) (len=8) {
-                (*lexer.Token)(Name 1982 6 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1988 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1989 7 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1996 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1997 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Whitespace 1998 1 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(Name 1999 11 ModeScripting ModeDocumentBlock),
-                (*lexer.Token)(DocumentCommentEndline 2010 1 ModeScripting ModeDocumentBlock)
+                (*lexer.Token)(Name 1982 6),
+                (*lexer.Token)(Whitespace 1988 1),
+                (*lexer.Token)(Name 1989 7),
+                (*lexer.Token)(Whitespace 1996 1),
+                (*lexer.Token)(Name 1997 1),
+                (*lexer.Token)(Whitespace 1998 1),
+                (*lexer.Token)(Name 1999 11),
+                (*lexer.Token)(DocumentCommentEndline 2010 1)
               }
             })
           }
         }),
-        (*lexer.Token)(Whitespace 2011 2 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 2013 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(Whitespace 2011 2),
+        (*lexer.Token)(DocumentCommentEnd 2013 2)
       }
     }),
-    (*lexer.Token)(Whitespace 2015 2 ModeScripting),
+    (*lexer.Token)(Whitespace 2015 2),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) DocumentComment,
       Children: ([]phrase.AstNode) (len=18) {
-        (*lexer.Token)(DocumentCommentStart 2017 3 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEndline 2020 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 2021 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentStart 2017 3),
+        (*lexer.Token)(DocumentCommentEndline 2020 1),
+        (*lexer.Token)(Whitespace 2021 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentDescription,
           Children: ([]phrase.AstNode) (len=18) {
-            (*lexer.Token)(DocumentCommentStartline 2022 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2024 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2027 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2028 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2031 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2032 10 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2042 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2043 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2050 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2051 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2058 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2059 3 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2062 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2063 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2068 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Name 2069 9 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentText 2078 1 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(DocumentCommentEndline 2079 1 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(DocumentCommentStartline 2022 2),
+            (*lexer.Token)(Name 2024 3),
+            (*lexer.Token)(Whitespace 2027 1),
+            (*lexer.Token)(Name 2028 3),
+            (*lexer.Token)(Whitespace 2031 1),
+            (*lexer.Token)(Name 2032 10),
+            (*lexer.Token)(Whitespace 2042 1),
+            (*lexer.Token)(Name 2043 7),
+            (*lexer.Token)(Whitespace 2050 1),
+            (*lexer.Token)(Name 2051 7),
+            (*lexer.Token)(Whitespace 2058 1),
+            (*lexer.Token)(Name 2059 3),
+            (*lexer.Token)(Whitespace 2062 1),
+            (*lexer.Token)(Name 2063 5),
+            (*lexer.Token)(Whitespace 2068 1),
+            (*lexer.Token)(Name 2069 9),
+            (*lexer.Token)(DocumentCommentText 2078 1),
+            (*lexer.Token)(DocumentCommentEndline 2079 1)
           }
         }),
-        (*lexer.Token)(Whitespace 2080 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(Whitespace 2080 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentParamTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 2081 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtParam 2086 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2092 2 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 2081 5),
+            (*lexer.Token)(AtParam 2086 6),
+            (*lexer.Token)(Whitespace 2092 2),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeUnion,
               Children: ([]phrase.AstNode) (len=3) {
@@ -5132,24 +5132,24 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) FullyQualifiedName,
                       Children: ([]phrase.AstNode) (len=2) {
-                        (*lexer.Token)(Backslash 2094 1 ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Backslash 2094 1),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=7) {
-                            (*lexer.Token)(Name 2095 10 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Backslash 2105 1 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Name 2106 9 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Backslash 2115 1 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Name 2116 10 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Backslash 2126 1 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Name 2127 9 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 2095 10),
+                            (*lexer.Token)(Backslash 2105 1),
+                            (*lexer.Token)(Name 2106 9),
+                            (*lexer.Token)(Backslash 2115 1),
+                            (*lexer.Token)(Name 2116 10),
+                            (*lexer.Token)(Backslash 2126 1),
+                            (*lexer.Token)(Name 2127 9)
                           }
                         })
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Bar 2136 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Bar 2136 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) TypeDeclaration,
                   Children: ([]phrase.AstNode) (len=1) {
@@ -5159,7 +5159,7 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 2137 5 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 2137 5)
                           }
                         })
                       }
@@ -5168,18 +5168,18 @@
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 2142 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 2144 10 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 2142 2),
+            (*lexer.Token)(VariableName 2144 10)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 2154 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 2155 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 2154 1),
+        (*lexer.Token)(Whitespace 2155 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentParamTag,
           Children: ([]phrase.AstNode) (len=6) {
-            (*lexer.Token)(DocumentCommentStartline 2156 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtParam 2158 6 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2164 2 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 2156 2),
+            (*lexer.Token)(AtParam 2158 6),
+            (*lexer.Token)(Whitespace 2164 2),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeUnion,
               Children: ([]phrase.AstNode) (len=3) {
@@ -5189,22 +5189,22 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) FullyQualifiedName,
                       Children: ([]phrase.AstNode) (len=2) {
-                        (*lexer.Token)(Backslash 2166 1 ModeScripting ModeDocumentBlock),
+                        (*lexer.Token)(Backslash 2166 1),
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=5) {
-                            (*lexer.Token)(Name 2167 10 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Backslash 2177 1 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Name 2178 4 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Backslash 2182 1 ModeScripting ModeDocumentBlock),
-                            (*lexer.Token)(Name 2183 7 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 2167 10),
+                            (*lexer.Token)(Backslash 2177 1),
+                            (*lexer.Token)(Name 2178 4),
+                            (*lexer.Token)(Backslash 2182 1),
+                            (*lexer.Token)(Name 2183 7)
                           }
                         })
                       }
                     })
                   }
                 }),
-                (*lexer.Token)(Bar 2190 1 ModeScripting ModeDocumentBlock),
+                (*lexer.Token)(Bar 2190 1),
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) TypeDeclaration,
                   Children: ([]phrase.AstNode) (len=1) {
@@ -5214,7 +5214,7 @@
                         (*phrase.Phrase)({
                           Type: (phrase.PhraseType) NamespaceName,
                           Children: ([]phrase.AstNode) (len=1) {
-                            (*lexer.Token)(Name 2191 4 ModeScripting ModeDocumentBlock)
+                            (*lexer.Token)(Name 2191 4)
                           }
                         })
                       }
@@ -5223,18 +5223,18 @@
                 })
               }
             }),
-            (*lexer.Token)(Whitespace 2195 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(VariableName 2197 8 ModeScripting ModeDocumentBlock)
+            (*lexer.Token)(Whitespace 2195 2),
+            (*lexer.Token)(VariableName 2197 8)
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 2205 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 2206 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 2205 1),
+        (*lexer.Token)(Whitespace 2206 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentReturnTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 2207 2 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtReturn 2209 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2216 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 2207 2),
+            (*lexer.Token)(AtReturn 2209 7),
+            (*lexer.Token)(Whitespace 2216 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
@@ -5244,7 +5244,7 @@
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=1) {
-                        (*lexer.Token)(Name 2217 5 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 2217 5)
                       }
                     })
                   }
@@ -5253,29 +5253,29 @@
             })
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 2222 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 2223 1 ModeScripting ModeDocumentBlock),
+        (*lexer.Token)(DocumentCommentEndline 2222 1),
+        (*lexer.Token)(Whitespace 2223 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) DocumentCommentThrowsTag,
           Children: ([]phrase.AstNode) (len=4) {
-            (*lexer.Token)(DocumentCommentStartline 2224 5 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(AtThrows 2229 7 ModeScripting ModeDocumentBlock),
-            (*lexer.Token)(Whitespace 2236 1 ModeScripting ModeDocumentBlock),
+            (*lexer.Token)(DocumentCommentStartline 2224 5),
+            (*lexer.Token)(AtThrows 2229 7),
+            (*lexer.Token)(Whitespace 2236 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) TypeDeclaration,
               Children: ([]phrase.AstNode) (len=1) {
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) FullyQualifiedName,
                   Children: ([]phrase.AstNode) (len=2) {
-                    (*lexer.Token)(Backslash 2237 1 ModeScripting ModeDocumentBlock),
+                    (*lexer.Token)(Backslash 2237 1),
                     (*phrase.Phrase)({
                       Type: (phrase.PhraseType) NamespaceName,
                       Children: ([]phrase.AstNode) (len=5) {
-                        (*lexer.Token)(Name 2238 10 ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Backslash 2248 1 ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Name 2249 10 ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Backslash 2259 1 ModeScripting ModeDocumentBlock),
-                        (*lexer.Token)(Name 2260 19 ModeScripting ModeDocumentBlock)
+                        (*lexer.Token)(Name 2238 10),
+                        (*lexer.Token)(Backslash 2248 1),
+                        (*lexer.Token)(Name 2249 10),
+                        (*lexer.Token)(Backslash 2259 1),
+                        (*lexer.Token)(Name 2260 19)
                       }
                     })
                   }
@@ -5284,11 +5284,11 @@
             })
           }
         }),
-        (*lexer.Token)(DocumentCommentEndline 2279 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(Whitespace 2280 1 ModeScripting ModeDocumentBlock),
-        (*lexer.Token)(DocumentCommentEnd 2281 2 ModeScripting ModeDocumentBlock)
+        (*lexer.Token)(DocumentCommentEndline 2279 1),
+        (*lexer.Token)(Whitespace 2280 1),
+        (*lexer.Token)(DocumentCommentEnd 2281 2)
       }
     }),
-    (*lexer.Token)(Whitespace 2283 1 ModeScripting)
+    (*lexer.Token)(Whitespace 2283 1)
   }
 })

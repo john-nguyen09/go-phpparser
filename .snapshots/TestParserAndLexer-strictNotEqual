@@ -46,7 +46,7 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.Phrase)({
@@ -58,21 +58,21 @@
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 6 2 ModeScripting)
+                (*lexer.Token)(VariableName 6 2)
               }
             }),
-            (*lexer.Token)(Whitespace 8 1 ModeScripting),
-            (*lexer.Token)(ExclamationEqualsEquals 9 3 ModeScripting),
-            (*lexer.Token)(Whitespace 12 1 ModeScripting),
+            (*lexer.Token)(Whitespace 8 1),
+            (*lexer.Token)(ExclamationEqualsEquals 9 3),
+            (*lexer.Token)(Whitespace 12 1),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) SimpleVariable,
               Children: ([]phrase.AstNode) (len=1) {
-                (*lexer.Token)(VariableName 13 2 ModeScripting)
+                (*lexer.Token)(VariableName 13 2)
               }
             })
           }
         }),
-        (*lexer.Token)(Semicolon 15 1 ModeScripting)
+        (*lexer.Token)(Semicolon 15 1)
       }
     })
   }

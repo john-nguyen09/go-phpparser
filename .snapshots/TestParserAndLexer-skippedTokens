@@ -26,18 +26,18 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
     (*phrase.ParseError)({
       Phrase: (phrase.Phrase) {
         Type: (phrase.PhraseType) Error,
         Children: ([]phrase.AstNode) (len=2) {
-          (*lexer.Token)(CloseBracket 6 1 ModeScripting),
-          (*lexer.Token)(Comma 7 1 ModeScripting)
+          (*lexer.Token)(CloseBracket 6 1),
+          (*lexer.Token)(Comma 7 1)
         }
       },
-      Unexpected: (*lexer.Token)(CloseBracket 6 1 ModeScripting),
+      Unexpected: (*lexer.Token)(CloseBracket 6 1),
       Expected: (lexer.TokenType) Undefined
     })
   }

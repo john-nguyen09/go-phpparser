@@ -61,29 +61,29 @@
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(OpenTag 0 6 ModeInitial)
+        (*lexer.Token)(OpenTag 0 6)
       }
     }),
-    (*lexer.Token)(Whitespace 6 4 ModeScripting),
+    (*lexer.Token)(Whitespace 6 4),
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) ClassDeclaration,
       Children: ([]phrase.AstNode) (len=3) {
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) ClassDeclarationHeader,
           Children: ([]phrase.AstNode) (len=5) {
-            (*lexer.Token)(Abstract 10 8 ModeScripting),
-            (*lexer.Token)(Whitespace 18 1 ModeScripting),
-            (*lexer.Token)(Class 19 5 ModeScripting),
-            (*lexer.Token)(Whitespace 24 1 ModeScripting),
-            (*lexer.Token)(Name 25 3 ModeScripting)
+            (*lexer.Token)(Abstract 10 8),
+            (*lexer.Token)(Whitespace 18 1),
+            (*lexer.Token)(Class 19 5),
+            (*lexer.Token)(Whitespace 24 1),
+            (*lexer.Token)(Name 25 3)
           }
         }),
-        (*lexer.Token)(Whitespace 28 1 ModeScripting),
+        (*lexer.Token)(Whitespace 28 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) ClassDeclarationBody,
           Children: ([]phrase.AstNode) (len=2) {
-            (*lexer.Token)(OpenBrace 29 1 ModeScripting),
-            (*lexer.Token)(CloseBrace 30 1 ModeScripting ModeScripting)
+            (*lexer.Token)(OpenBrace 29 1),
+            (*lexer.Token)(CloseBrace 30 1)
           }
         })
       }
