@@ -33,7 +33,16 @@ func TestParserAndLexer(t *testing.T) {
 		}
 
 		t.Run(strings.TrimSuffix(file.Name(), path.Ext(file.Name())), func(t *testing.T) {
-			tokens := lexer.Lex(data)
+			lexerState := lexer.NewLexer(data, nil, 0)
+			tokens := []*lexer.Token{}
+			token := lexerState.Lex()
+			for {
+				tokens = append(tokens, token)
+				if token.Type == lexer.EndOfFile {
+					break
+				}
+				token = lexerState.Lex()
+			}
 			snapshotTokens := []struct {
 				Type   lexer.TokenType
 				Offset int

@@ -60,20 +60,6 @@ func NewLexer(source []byte, modeStack []LexerMode, offset int) *Lexer {
 	return lexer
 }
 
-func Lex(source []byte) []*Token {
-	lexer := NewLexer(source, nil, 0)
-	tokens := []*Token{}
-	t := lexer.Lex()
-	for {
-		tokens = append(tokens, t)
-		if t.Type == EndOfFile {
-			break
-		}
-		t = lexer.Lex()
-	}
-	return tokens
-}
-
 func (s *Lexer) step() {
 	if s.nextOffset > len(s.source) {
 		return
