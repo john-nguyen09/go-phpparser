@@ -71,17 +71,19 @@ func BenchmarkParser(b *testing.B) {
 		panic(err)
 	}
 
-	for _, file := range files {
-		if !strings.HasSuffix(file.Name(), ".php") {
-			continue
-		}
+	for n := 0; n < b.N; n++ {
+		for _, file := range files {
+			if !strings.HasSuffix(file.Name(), ".php") {
+				continue
+			}
 
-		filePath := dir + "/" + file.Name()
-		data, err := ioutil.ReadFile(filePath)
-		if err != nil {
-			panic(err)
-		}
+			filePath := dir + "/" + file.Name()
+			data, err := ioutil.ReadFile(filePath)
+			if err != nil {
+				panic(err)
+			}
 
-		parser.Parse(data)
+			parser.Parse(data)
+		}
 	}
 }
