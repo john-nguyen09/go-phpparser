@@ -714,8 +714,9 @@ func (doc *Parser) ternaryExpression(testExpr phrase.AstNode) *phrase.Phrase {
 		p.Children = append(p.Children, doc.expression(0))
 	} else {
 		p.Children = append(p.Children, doc.expression(0))
-		doc.expect(lexer.Colon)
-		p.Children = append(p.Children, doc.expression(0))
+		if doc.expect(lexer.Colon) != nil {
+			p.Children = append(p.Children, doc.expression(0))
+		}
 	}
 
 	return doc.end()
