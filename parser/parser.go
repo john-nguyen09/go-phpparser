@@ -2727,9 +2727,8 @@ func (doc *Parser) variable(variableAtomNode phrase.AstNode) phrase.AstNode {
 			continue
 		default:
 			//only simple variable atoms qualify as variables
-			p := variableAtomNode.(*phrase.Phrase)
-
-			if count == 1 && p.Type != phrase.SimpleVariable {
+			if p, ok := variableAtomNode.(*phrase.Phrase); ((ok && p.Type != phrase.SimpleVariable) || !ok) &&
+				count == 1 {
 				errNode := doc.start(phrase.ErrorVariable, true)
 				errNode.Children = append(errNode.Children, variableAtomNode)
 				doc.error(lexer.Undefined)
