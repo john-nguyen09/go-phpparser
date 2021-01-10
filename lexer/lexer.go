@@ -2,6 +2,7 @@ package lexer
 
 import (
 	"bytes"
+	"log"
 	"regexp"
 	"strings"
 	"unicode/utf8"
@@ -1062,7 +1063,8 @@ func (s *Lexer) scriptingYield(start int) *Token {
 	if isWhitespace(s.peek(k)) {
 		for k++; isWhitespace(s.peek(k)); k++ {
 		}
-		if strings.ToLower(string(s.peekSpanString(k, 4))) == "from" {
+		log.Println(s.peekSpanString(k-1, 4))
+		if strings.ToLower(s.peekSpanString(k-1, 4)) == "from" {
 			s.stepLoop(k + 4)
 			return NewToken(YieldFrom, start, s.offset-start)
 		}
