@@ -1,0 +1,245 @@
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=24) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 6
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 6,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 7,
+    Length: (int) 17
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenParenthesis,
+    Offset: (int) 24,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) StartHeredoc,
+    Offset: (int) 25,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EncapsulatedAndWhitespace,
+    Offset: (int) 32,
+    Length: (int) 11
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndHeredoc,
+    Offset: (int) 43,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseParenthesis,
+    Offset: (int) 47,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 48,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 49,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 51,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 58,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Equals,
+    Offset: (int) 59,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 60,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBracket,
+    Offset: (int) 61,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) StartHeredoc,
+    Offset: (int) 62,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EncapsulatedAndWhitespace,
+    Offset: (int) 69,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndHeredoc,
+    Offset: (int) 74,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Comma,
+    Offset: (int) 78,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 79,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) StringLiteral,
+    Offset: (int) 80,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBracket,
+    Offset: (int) 87,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 88,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 89,
+    Length: (int) 0
+  }
+}
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=5) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 6)
+      }
+    }),
+    (*lexer.Token)(Whitespace 6 1),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=2) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) FunctionCallExpression,
+          Children: ([]phrase.AstNode) (len=2) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) QualifiedName,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) NamespaceName,
+                  Children: ([]phrase.AstNode) (len=1) {
+                    (*lexer.Token)(Name 7 17)
+                  }
+                })
+              }
+            }),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArgumentExpressionList,
+              Children: ([]phrase.AstNode) (len=3) {
+                (*lexer.Token)(OpenParenthesis 24 1),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) HeredocStringLiteral,
+                  Children: ([]phrase.AstNode) (len=3) {
+                    (*lexer.Token)(StartHeredoc 25 7),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) EncapsulatedVariableList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*lexer.Token)(EncapsulatedAndWhitespace 32 11)
+                      }
+                    }),
+                    (*lexer.Token)(EndHeredoc 43 4)
+                  }
+                }),
+                (*lexer.Token)(CloseParenthesis 47 1)
+              }
+            })
+          }
+        }),
+        (*lexer.Token)(Semicolon 48 1)
+      }
+    }),
+    (*lexer.Token)(Whitespace 49 2),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ExpressionStatement,
+      Children: ([]phrase.AstNode) (len=2) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) SimpleAssignmentExpression,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) SimpleVariable,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*lexer.Token)(VariableName 51 7)
+              }
+            }),
+            (*lexer.Token)(Whitespace 58 1),
+            (*lexer.Token)(Equals 59 1),
+            (*lexer.Token)(Whitespace 60 1),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ArrayCreationExpression,
+              Children: ([]phrase.AstNode) (len=3) {
+                (*lexer.Token)(OpenBracket 61 1),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) ArrayInitialiserList,
+                  Children: ([]phrase.AstNode) (len=4) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) ArrayElement,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) ArrayValue,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) HeredocStringLiteral,
+                              Children: ([]phrase.AstNode) (len=3) {
+                                (*lexer.Token)(StartHeredoc 62 7),
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) EncapsulatedVariableList,
+                                  Children: ([]phrase.AstNode) (len=1) {
+                                    (*lexer.Token)(EncapsulatedAndWhitespace 69 5)
+                                  }
+                                }),
+                                (*lexer.Token)(EndHeredoc 74 4)
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Comma 78 1),
+                    (*lexer.Token)(Whitespace 79 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) ArrayElement,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) ArrayValue,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(StringLiteral 80 7)
+                          }
+                        })
+                      }
+                    })
+                  }
+                }),
+                (*lexer.Token)(CloseBracket 87 1)
+              }
+            })
+          }
+        }),
+        (*lexer.Token)(Semicolon 88 1)
+      }
+    })
+  }
+})

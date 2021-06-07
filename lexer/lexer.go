@@ -2,7 +2,6 @@ package lexer
 
 import (
 	"bytes"
-	"log"
 	"regexp"
 	"strings"
 	"unicode/utf8"
@@ -1063,7 +1062,6 @@ func (s *Lexer) scriptingYield(start int) *Token {
 	if isWhitespace(s.peek(k)) {
 		for k++; isWhitespace(s.peek(k)); k++ {
 		}
-		log.Println(s.peekSpanString(k-1, 4))
 		if strings.ToLower(s.peekSpanString(k-1, 4)) == "from" {
 			s.stepLoop(k + 4)
 			return NewToken(YieldFrom, start, s.offset-start)
@@ -1282,11 +1280,9 @@ func (s *Lexer) heredocAny() *Token {
 				if s.peek(k) == ';' {
 					k++
 				}
-				if s.peek(k) == '\n' || s.peek(k) == '\r' {
-					s.stepLoop(mark)
-					s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
-					return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
-				}
+				s.stepLoop(mark)
+				s.modeStack[len(s.modeStack)-1] = ModeEndHereDoc
+				return NewToken(EncapsulatedAndWhitespace, start, s.offset-start)
 			}
 			continue
 		case '$':
