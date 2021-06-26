@@ -648,16 +648,20 @@ func (phraseType *PhraseType) MarshalJSON() ([]byte, error) {
 	return buffer.Bytes(), nil
 }
 
-func NewPhrase(phraseType PhraseType, children []AstNode) *Phrase {
-	return &Phrase{phraseType, children}
+func NewPhrase(pool *Pool, phraseType PhraseType, children []AstNode) *Phrase {
+	p := pool.Get()
+	p.Type = phraseType
+	p.Children = children
+	return p
 }
 
 func NewParseErr(
+	pool *Pool,
 	phraseType PhraseType,
 	children []AstNode,
 	unexpected *lexer.Token,
 	expected lexer.TokenType) *ParseError {
-	phrase := NewPhrase(phraseType, children)
+	phrase := NewPhrase(pool, phraseType, children)
 
 	return &ParseError{*phrase, unexpected, expected}
 }

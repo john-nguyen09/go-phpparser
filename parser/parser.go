@@ -238,6 +238,7 @@ type Parser struct {
 	phraseStack     []*phrase.Phrase
 	errorPhrase     *phrase.ParseError
 	recoverSetStack [][]lexer.TokenType
+	pool            *phrase.Pool
 }
 
 func tokenTypeIndexOf(haystack []lexer.TokenType, needle lexer.TokenType) int {
@@ -256,7 +257,9 @@ func Parse(source []byte) *phrase.Phrase {
 		NewTokenQueue(),
 		make([]*phrase.Phrase, 0),
 		nil,
-		make([][]lexer.TokenType, 0)}
+		make([][]lexer.TokenType, 0),
+		phrase.NewPool(phrase.DefaultBlockSize),
+	}
 	stmtList := doc.statementList([]lexer.TokenType{lexer.EndOfFile})
 	//append trailing hidden tokens
 	doc.hidden(stmtList)
@@ -279,7 +282,7 @@ func (doc *Parser) start(phraseType phrase.PhraseType, dontPushHiddenToParent bo
 		doc.hidden(nil)
 	}
 
-	p := phrase.NewPhrase(phraseType, make([]phrase.AstNode, 0))
+	p := phrase.NewPhrase(doc.pool, phraseType, make([]phrase.AstNode, 0))
 
 	doc.phraseStack = append(doc.phraseStack, p)
 
@@ -519,7 +522,7 @@ func (doc *Parser) error(expected lexer.TokenType) {
 	}
 
 	doc.errorPhrase = phrase.NewParseErr(
-		phrase.Error, make([]phrase.AstNode, 0), doc.peek(0), expected)
+		doc.pool, phrase.Error, make([]phrase.AstNode, 0), doc.peek(0), expected)
 
 	lastPhrase := doc.phraseStack[len(doc.phraseStack)-1]
 

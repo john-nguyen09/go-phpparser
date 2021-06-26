@@ -412,8 +412,12 @@ type Token struct {
 	Length int       `json:"Length"`
 }
 
-func NewToken(tokenType TokenType, offset int, length int) *Token {
-	return &Token{tokenType, offset, length}
+func NewToken(pool *Pool, tokenType TokenType, offset int, length int) *Token {
+	tkn := pool.Get()
+	tkn.Type = tokenType
+	tkn.Offset = offset
+	tkn.Length = length
+	return tkn
 }
 
 // AstNode is a boilerplate for extending interface

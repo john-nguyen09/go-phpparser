@@ -11,10 +11,10 @@ func (s *Lexer) scriptingDocBlock() *Token {
 	case ' ', '\t':
 		for s.step(); s.r == ' ' || s.r == '\t'; s.step() {
 		}
-		return NewToken(Whitespace, start, s.offset-start)
+		return NewToken(s.pool, Whitespace, start, s.offset-start)
 	case '\r', '\n':
 		s.step()
-		return NewToken(DocumentCommentEndline, start, s.offset-start)
+		return NewToken(s.pool, DocumentCommentEndline, start, s.offset-start)
 	case '@':
 		return s.docBlockTagName()
 	case '$':
@@ -23,14 +23,14 @@ func (s *Lexer) scriptingDocBlock() *Token {
 		if s.peek(1) == '/' {
 			s.stepLoop(2)
 			s.modeStack = s.modeStack[:len(s.modeStack)-1]
-			return NewToken(DocumentCommentEnd, start, s.offset-start)
+			return NewToken(s.pool, DocumentCommentEnd, start, s.offset-start)
 		}
 		for s.step(); isWhitespace(s.r) || s.r == '*'; s.step() {
 			if s.r == '*' && s.peek(1) == '/' {
 				break
 			}
 		}
-		return NewToken(DocumentCommentStartline, start, s.offset-start)
+		return NewToken(s.pool, DocumentCommentStartline, start, s.offset-start)
 	default:
 		return s.scriptingDocumentBlockLabel()
 	}
@@ -42,41 +42,41 @@ func (s *Lexer) scriptingDocumentBlockLabel() *Token {
 	s.step()
 	if c == '[' && s.r == ']' {
 		s.step()
-		return NewToken(Array, start, s.offset-start)
+		return NewToken(s.pool, Array, start, s.offset-start)
 	}
 	if c == '|' {
-		return NewToken(Bar, start, s.offset-start)
+		return NewToken(s.pool, Bar, start, s.offset-start)
 	}
 	if c == '/' {
-		return NewToken(ForwardSlash, start, s.offset-start)
+		return NewToken(s.pool, ForwardSlash, start, s.offset-start)
 	}
 	if c == '\\' {
-		return NewToken(Backslash, start, s.offset-start)
+		return NewToken(s.pool, Backslash, start, s.offset-start)
 	}
 	if c == '<' {
-		return NewToken(LessThan, start, s.offset-start)
+		return NewToken(s.pool, LessThan, start, s.offset-start)
 	}
 	if c == '>' {
-		return NewToken(GreaterThan, start, s.offset-start)
+		return NewToken(s.pool, GreaterThan, start, s.offset-start)
 	}
 	if c == '(' {
-		return NewToken(OpenParenthesis, start, s.offset-start)
+		return NewToken(s.pool, OpenParenthesis, start, s.offset-start)
 	}
 	if c == ')' {
-		return NewToken(CloseParenthesis, start, s.offset-start)
+		return NewToken(s.pool, CloseParenthesis, start, s.offset-start)
 	}
 	if c == '=' {
-		return NewToken(Equals, start, s.offset-start)
+		return NewToken(s.pool, Equals, start, s.offset-start)
 	}
 	if c == ',' {
-		return NewToken(Comma, start, s.offset-start)
+		return NewToken(s.pool, Comma, start, s.offset-start)
 	}
 	if (c == 's' || c == 'S') &&
 		(s.r == 't' || s.r == 'T') &&
 		strings.ToLower(s.peekSpanString(0, 4)) == "atic" &&
 		s.peek(5) == ' ' {
 		s.stepLoop(5)
-		return NewToken(Static, start, s.offset-start)
+		return NewToken(s.pool, Static, start, s.offset-start)
 	}
 	if isDigit(c) {
 		tokenType := IntegerLiteral
@@ -86,26 +86,26 @@ func (s *Lexer) scriptingDocumentBlockLabel() *Token {
 			}
 			s.step()
 		}
-		return NewToken(tokenType, start, s.offset-start)
+		return NewToken(s.pool, tokenType, start, s.offset-start)
 	}
 	if c == '$' && isLabelStart(s.r) {
-		return NewToken(Dollar, start, s.offset-start)
+		return NewToken(s.pool, Dollar, start, s.offset-start)
 	}
 	if isLabelStart(c) {
 		for ; isLabelChar(s.r); s.step() {
 		}
-		return NewToken(Name, start, s.offset-start)
+		return NewToken(s.pool, Name, start, s.offset-start)
 	}
 	if isDocCommentText(c) {
 		for ; isDocCommentText(s.r) && s.r != '[' && s.r != '|' &&
 			s.r != '/' && s.r != '\\' &&
 			s.r != '<' && s.r != '>' && s.r != '(' && s.r != ')'; s.step() {
 		}
-		return NewToken(DocumentCommentText, start, s.offset-start)
+		return NewToken(s.pool, DocumentCommentText, start, s.offset-start)
 	}
 	for ; !isDocCommentText(s.r); s.step() {
 	}
-	return NewToken(DocumentCommentUnknown, start, s.offset-start)
+	return NewToken(s.pool, DocumentCommentUnknown, start, s.offset-start)
 }
 
 func (s *Lexer) docBlockTagName() *Token {
@@ -145,7 +145,7 @@ func (s *Lexer) docBlockTagName() *Token {
 		tokenType = AtVar
 	}
 	s.stepLoop(endLabel)
-	return NewToken(tokenType, start, s.offset-start)
+	return NewToken(s.pool, tokenType, start, s.offset-start)
 }
 
 func isDocCommentText(cp rune) bool {
