@@ -816,6 +816,8 @@ func (s *Lexer) scriptingLabelStart() *Token {
 		tokenType = Exit
 	case "function":
 		tokenType = Function
+	case "fn":
+		tokenType = Fn
 	case "const":
 		tokenType = Const
 	case "return":

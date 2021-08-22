@@ -12,6 +12,7 @@ var statementListRecoverSet = []lexer.TokenType{lexer.Use,
 	lexer.HaltCompiler,
 	lexer.Const,
 	lexer.Function,
+	lexer.Fn,
 	lexer.Class,
 	lexer.Abstract,
 	lexer.Final,
@@ -797,6 +798,9 @@ func (doc *Parser) expressionAtom(precedence int) phrase.AstNode {
 		if doc.peek(1).Type == lexer.Function {
 			return doc.anonymousFunctionCreationExpression()
 		}
+		if doc.peek(1).Type == lexer.Fn {
+			return doc.arrowFunctionCreationExpression()
+		}
 
 		return doc.variableOrExpression(0)
 	case lexer.StringLiteral:
@@ -864,6 +868,8 @@ func (doc *Parser) expressionAtom(precedence int) phrase.AstNode {
 		return doc.yieldFromExpression()
 	case lexer.Function:
 		return doc.anonymousFunctionCreationExpression()
+	case lexer.Fn:
+		return doc.arrowFunctionCreationExpression()
 	case lexer.Include:
 		return doc.scriptInclusion(phrase.IncludeExpression)
 	case lexer.IncludeOnce:
@@ -1616,6 +1622,8 @@ func (doc *Parser) statement() phrase.AstNode {
 				return doc.functionDeclaration()
 			}
 		}
+	case lexer.Fn:
+		return doc.expressionStatement()
 	case lexer.Class,
 		lexer.Abstract,
 		lexer.Final:
@@ -2388,6 +2396,7 @@ func isExpressionStart(t *lexer.Token) bool {
 		lexer.Yield,
 		lexer.YieldFrom,
 		lexer.Function,
+		lexer.Fn,
 		lexer.Include,
 		lexer.IncludeOnce,
 		lexer.Require,
@@ -2667,6 +2676,68 @@ func (doc *Parser) anonymousFunctionUseClause() *phrase.Phrase {
 }
 
 func (doc *Parser) anonymousFunctionUseVariable() phrase.AstNode {
+	doc.start(phrase.AnonymousFunctionUseVariable, false)
+	doc.optional(lexer.Ampersand)
+	doc.expect(lexer.VariableName)
+
+	return doc.end()
+}
+
+func (doc *Parser) arrowFunctionCreationExpression() *phrase.Phrase {
+	p := doc.start(phrase.ArrowFunctionCreationExpression, false)
+	p.Children = append(p.Children, doc.arrowFunctionHeader())
+	doc.expect(lexer.FatArrow)
+	p.Children = append(p.Children, doc.expression(0))
+	return doc.end()
+}
+
+func (doc *Parser) arrowFunctionHeader() *phrase.Phrase {
+	p := doc.start(phrase.ArrowFunctionHeader, false)
+	doc.optional(lexer.Static)
+	doc.next(false) //fn
+	doc.optional(lexer.Ampersand)
+	doc.expect(lexer.OpenParenthesis)
+
+	if isParameterStart(doc.peek(0)) {
+		p.Children = append(p.Children, doc.delimitedList(
+			phrase.ParameterDeclarationList,
+			doc.parameterDeclaration,
+			isParameterStart,
+			lexer.Comma,
+			[]lexer.TokenType{lexer.CloseParenthesis},
+			false))
+	}
+
+	doc.expect(lexer.CloseParenthesis)
+
+	if doc.peek(0).Type == lexer.Use {
+		p.Children = append(p.Children, doc.arrowFunctionUseClause())
+	}
+
+	if doc.peek(0).Type == lexer.Colon {
+		p.Children = append(p.Children, doc.returnType())
+	}
+
+	return doc.end()
+}
+
+func (doc *Parser) arrowFunctionUseClause() *phrase.Phrase {
+	p := doc.start(phrase.ArrowFunctionUseClause, false)
+	doc.next(false) //use
+	doc.expect(lexer.OpenParenthesis)
+	p.Children = append(p.Children, doc.delimitedList(
+		phrase.ClosureUseList,
+		doc.arrowFunctionUseVariable,
+		isAnonymousFunctionUseVariableStart,
+		lexer.Comma,
+		[]lexer.TokenType{lexer.CloseParenthesis},
+		false))
+	doc.expect(lexer.CloseParenthesis)
+
+	return doc.end()
+}
+
+func (doc *Parser) arrowFunctionUseVariable() phrase.AstNode {
 	doc.start(phrase.AnonymousFunctionUseVariable, false)
 	doc.optional(lexer.Ampersand)
 	doc.expect(lexer.VariableName)
@@ -3346,6 +3417,7 @@ func isReservedToken(t *lexer.Token) bool {
 		lexer.Continue,
 		lexer.Goto,
 		lexer.Function,
+		lexer.Fn,
 		lexer.Const,
 		lexer.Return,
 		lexer.Print,
@@ -3399,6 +3471,7 @@ func isStatementStart(t *lexer.Token) bool {
 		lexer.HaltCompiler,
 		lexer.Const,
 		lexer.Function,
+		lexer.Fn,
 		lexer.Class,
 		lexer.Abstract,
 		lexer.Final,
