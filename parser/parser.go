@@ -355,6 +355,22 @@ func (doc *Parser) optionalOneOf(tokenTypes []lexer.TokenType) *lexer.Token {
 	return nil
 }
 
+func (doc *Parser) optionalSeq(tokenTypes []lexer.TokenType) {
+	seqMatched := true
+	for i, t := range tokenTypes {
+		if doc.peek(i).Type != t {
+			seqMatched = false
+			break
+		}
+	}
+	if seqMatched {
+		doc.errorPhrase = nil
+		for range tokenTypes {
+			doc.next(false)
+		}
+	}
+}
+
 func (doc *Parser) next(doNotPush bool) *lexer.Token {
 	var t *lexer.Token
 	if doc.tokenBuffer.Length() > 0 {
@@ -2982,7 +2998,7 @@ func (doc *Parser) argumentList() *phrase.Phrase {
 }
 
 func isArgumentStart(t *lexer.Token) bool {
-	return t.Type == lexer.Ellipsis || isExpressionStart(t)
+	return t.Type == lexer.Ellipsis || t.Type == lexer.Name || isExpressionStart(t)
 }
 
 func (doc *Parser) variadicUnpacking() *phrase.Phrase {
@@ -2994,6 +3010,7 @@ func (doc *Parser) variadicUnpacking() *phrase.Phrase {
 }
 
 func (doc *Parser) argumentExpression() phrase.AstNode {
+	doc.optionalSeq([]lexer.TokenType{lexer.Name, lexer.Colon})
 	if doc.peek(0).Type == lexer.Ellipsis {
 		return doc.variadicUnpacking()
 	}
