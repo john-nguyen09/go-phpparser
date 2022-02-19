@@ -1194,6 +1194,20 @@ func isClassMemberStart(t *lexer.Token) bool {
 	return false
 }
 
+func (doc *Parser) typedProperty(p *phrase.Phrase) phrase.AstNode {
+	t := doc.peek(0)
+	t1 := doc.peek(1)
+	t2 := doc.peek(2)
+	if !isTypeDeclarationStart(t) {
+		return nil
+	}
+	if t1.Type != lexer.VariableName && t2.Type != lexer.VariableName {
+		return nil
+	}
+	p.Children = append(p.Children, doc.typeDeclaration())
+	return doc.propertyDeclaration(p)
+}
+
 func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 	p := doc.start(phrase.ErrorClassMemberDeclaration, false)
 	t := doc.peek(0)
@@ -1217,6 +1231,11 @@ func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 			p.Children = append(p.Children, modifiers)
 
 			return doc.classConstDeclaration(p)
+		} else {
+			typedProperty := doc.typedProperty(p)
+			if typedProperty != nil {
+				return typedProperty
+			}
 		}
 
 		//error
@@ -1228,6 +1247,10 @@ func (doc *Parser) classMemberDeclaration() phrase.AstNode {
 		return doc.methodDeclaration(p, nil)
 	case lexer.Var:
 		doc.next(false)
+		typedProperty := doc.typedProperty(p)
+		if typedProperty != nil {
+			return typedProperty
+		}
 
 		return doc.propertyDeclaration(p)
 	case lexer.Const:

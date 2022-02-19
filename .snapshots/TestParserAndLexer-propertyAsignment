@@ -1,0 +1,487 @@
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=51) {
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenTag,
+    Offset: (int) 0,
+    Length: (int) 7
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Class,
+    Offset: (int) 7,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 12,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 13,
+    Length: (int) 10
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 23,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBrace,
+    Offset: (int) 24,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 25,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Function,
+    Offset: (int) 28,
+    Length: (int) 8
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 36,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 37,
+    Length: (int) 11
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenParenthesis,
+    Offset: (int) 48,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseParenthesis,
+    Offset: (int) 49,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 50,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBrace,
+    Offset: (int) 51,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 52,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 56,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Arrow,
+    Offset: (int) 61,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 63,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 67,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Equals,
+    Offset: (int) 68,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 69,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBracket,
+    Offset: (int) 70,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 71,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 76,
+    Length: (int) 12
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenParenthesis,
+    Offset: (int) 88,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) StringLiteral,
+    Offset: (int) 89,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseParenthesis,
+    Offset: (int) 91,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Comma,
+    Offset: (int) 92,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 93,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBracket,
+    Offset: (int) 97,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 98,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 99,
+    Length: (int) 10
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) VariableName,
+    Offset: (int) 109,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 113,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Equals,
+    Offset: (int) 114,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 115,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenBracket,
+    Offset: (int) 116,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 117,
+    Length: (int) 5
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Name,
+    Offset: (int) 122,
+    Length: (int) 12
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) OpenParenthesis,
+    Offset: (int) 134,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) StringLiteral,
+    Offset: (int) 135,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseParenthesis,
+    Offset: (int) 137,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Comma,
+    Offset: (int) 138,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 139,
+    Length: (int) 4
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBracket,
+    Offset: (int) 143,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Semicolon,
+    Offset: (int) 144,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 145,
+    Length: (int) 3
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBrace,
+    Offset: (int) 148,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) Whitespace,
+    Offset: (int) 149,
+    Length: (int) 2
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) CloseBrace,
+    Offset: (int) 151,
+    Length: (int) 1
+  },
+  (struct { Type lexer.TokenType; Offset int; Length int }) {
+    Type: (lexer.TokenType) EndOfFile,
+    Offset: (int) 152,
+    Length: (int) 0
+  }
+}
+(*phrase.Phrase)({
+  Type: (phrase.PhraseType) StatementList,
+  Children: ([]phrase.AstNode) (len=2) {
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) InlineText,
+      Children: ([]phrase.AstNode) (len=1) {
+        (*lexer.Token)(OpenTag 0 7)
+      }
+    }),
+    (*phrase.Phrase)({
+      Type: (phrase.PhraseType) ClassDeclaration,
+      Children: ([]phrase.AstNode) (len=3) {
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationHeader,
+          Children: ([]phrase.AstNode) (len=3) {
+            (*lexer.Token)(Class 7 5),
+            (*lexer.Token)(Whitespace 12 1),
+            (*lexer.Token)(Name 13 10)
+          }
+        }),
+        (*lexer.Token)(Whitespace 23 1),
+        (*phrase.Phrase)({
+          Type: (phrase.PhraseType) ClassDeclarationBody,
+          Children: ([]phrase.AstNode) (len=5) {
+            (*lexer.Token)(OpenBrace 24 1),
+            (*lexer.Token)(Whitespace 25 3),
+            (*phrase.Phrase)({
+              Type: (phrase.PhraseType) ClassMemberDeclarationList,
+              Children: ([]phrase.AstNode) (len=1) {
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) MethodDeclaration,
+                  Children: ([]phrase.AstNode) (len=3) {
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MethodDeclarationHeader,
+                      Children: ([]phrase.AstNode) (len=5) {
+                        (*lexer.Token)(Function 28 8),
+                        (*lexer.Token)(Whitespace 36 1),
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) Identifier,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(Name 37 11)
+                          }
+                        }),
+                        (*lexer.Token)(OpenParenthesis 48 1),
+                        (*lexer.Token)(CloseParenthesis 49 1)
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 50 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) MethodDeclarationBody,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) CompoundStatement,
+                          Children: ([]phrase.AstNode) (len=5) {
+                            (*lexer.Token)(OpenBrace 51 1),
+                            (*lexer.Token)(Whitespace 52 4),
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) StatementList,
+                              Children: ([]phrase.AstNode) (len=3) {
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) ExpressionStatement,
+                                  Children: ([]phrase.AstNode) (len=2) {
+                                    (*phrase.Phrase)({
+                                      Type: (phrase.PhraseType) SimpleAssignmentExpression,
+                                      Children: ([]phrase.AstNode) (len=5) {
+                                        (*phrase.Phrase)({
+                                          Type: (phrase.PhraseType) PropertyAccessExpression,
+                                          Children: ([]phrase.AstNode) (len=3) {
+                                            (*phrase.Phrase)({
+                                              Type: (phrase.PhraseType) SimpleVariable,
+                                              Children: ([]phrase.AstNode) (len=1) {
+                                                (*lexer.Token)(VariableName 56 5)
+                                              }
+                                            }),
+                                            (*lexer.Token)(Arrow 61 2),
+                                            (*phrase.Phrase)({
+                                              Type: (phrase.PhraseType) MemberName,
+                                              Children: ([]phrase.AstNode) (len=1) {
+                                                (*lexer.Token)(Name 63 4)
+                                              }
+                                            })
+                                          }
+                                        }),
+                                        (*lexer.Token)(Whitespace 67 1),
+                                        (*lexer.Token)(Equals 68 1),
+                                        (*lexer.Token)(Whitespace 69 1),
+                                        (*phrase.Phrase)({
+                                          Type: (phrase.PhraseType) ArrayCreationExpression,
+                                          Children: ([]phrase.AstNode) (len=5) {
+                                            (*lexer.Token)(OpenBracket 70 1),
+                                            (*lexer.Token)(Whitespace 71 5),
+                                            (*phrase.Phrase)({
+                                              Type: (phrase.PhraseType) ArrayInitialiserList,
+                                              Children: ([]phrase.AstNode) (len=2) {
+                                                (*phrase.Phrase)({
+                                                  Type: (phrase.PhraseType) ArrayElement,
+                                                  Children: ([]phrase.AstNode) (len=1) {
+                                                    (*phrase.Phrase)({
+                                                      Type: (phrase.PhraseType) ArrayValue,
+                                                      Children: ([]phrase.AstNode) (len=1) {
+                                                        (*phrase.Phrase)({
+                                                          Type: (phrase.PhraseType) FunctionCallExpression,
+                                                          Children: ([]phrase.AstNode) (len=2) {
+                                                            (*phrase.Phrase)({
+                                                              Type: (phrase.PhraseType) QualifiedName,
+                                                              Children: ([]phrase.AstNode) (len=1) {
+                                                                (*phrase.Phrase)({
+                                                                  Type: (phrase.PhraseType) NamespaceName,
+                                                                  Children: ([]phrase.AstNode) (len=1) {
+                                                                    (*lexer.Token)(Name 76 12)
+                                                                  }
+                                                                })
+                                                              }
+                                                            }),
+                                                            (*phrase.Phrase)({
+                                                              Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                              Children: ([]phrase.AstNode) (len=3) {
+                                                                (*lexer.Token)(OpenParenthesis 88 1),
+                                                                (*lexer.Token)(StringLiteral 89 2),
+                                                                (*lexer.Token)(CloseParenthesis 91 1)
+                                                              }
+                                                            })
+                                                          }
+                                                        })
+                                                      }
+                                                    })
+                                                  }
+                                                }),
+                                                (*lexer.Token)(Comma 92 1)
+                                              }
+                                            }),
+                                            (*lexer.Token)(Whitespace 93 4),
+                                            (*lexer.Token)(CloseBracket 97 1)
+                                          }
+                                        })
+                                      }
+                                    }),
+                                    (*lexer.Token)(Semicolon 98 1)
+                                  }
+                                }),
+                                (*lexer.Token)(Whitespace 99 10),
+                                (*phrase.Phrase)({
+                                  Type: (phrase.PhraseType) ExpressionStatement,
+                                  Children: ([]phrase.AstNode) (len=2) {
+                                    (*phrase.Phrase)({
+                                      Type: (phrase.PhraseType) SimpleAssignmentExpression,
+                                      Children: ([]phrase.AstNode) (len=5) {
+                                        (*phrase.Phrase)({
+                                          Type: (phrase.PhraseType) SimpleVariable,
+                                          Children: ([]phrase.AstNode) (len=1) {
+                                            (*lexer.Token)(VariableName 109 4)
+                                          }
+                                        }),
+                                        (*lexer.Token)(Whitespace 113 1),
+                                        (*lexer.Token)(Equals 114 1),
+                                        (*lexer.Token)(Whitespace 115 1),
+                                        (*phrase.Phrase)({
+                                          Type: (phrase.PhraseType) ArrayCreationExpression,
+                                          Children: ([]phrase.AstNode) (len=5) {
+                                            (*lexer.Token)(OpenBracket 116 1),
+                                            (*lexer.Token)(Whitespace 117 5),
+                                            (*phrase.Phrase)({
+                                              Type: (phrase.PhraseType) ArrayInitialiserList,
+                                              Children: ([]phrase.AstNode) (len=2) {
+                                                (*phrase.Phrase)({
+                                                  Type: (phrase.PhraseType) ArrayElement,
+                                                  Children: ([]phrase.AstNode) (len=1) {
+                                                    (*phrase.Phrase)({
+                                                      Type: (phrase.PhraseType) ArrayValue,
+                                                      Children: ([]phrase.AstNode) (len=1) {
+                                                        (*phrase.Phrase)({
+                                                          Type: (phrase.PhraseType) FunctionCallExpression,
+                                                          Children: ([]phrase.AstNode) (len=2) {
+                                                            (*phrase.Phrase)({
+                                                              Type: (phrase.PhraseType) QualifiedName,
+                                                              Children: ([]phrase.AstNode) (len=1) {
+                                                                (*phrase.Phrase)({
+                                                                  Type: (phrase.PhraseType) NamespaceName,
+                                                                  Children: ([]phrase.AstNode) (len=1) {
+                                                                    (*lexer.Token)(Name 122 12)
+                                                                  }
+                                                                })
+                                                              }
+                                                            }),
+                                                            (*phrase.Phrase)({
+                                                              Type: (phrase.PhraseType) ArgumentExpressionList,
+                                                              Children: ([]phrase.AstNode) (len=3) {
+                                                                (*lexer.Token)(OpenParenthesis 134 1),
+                                                                (*lexer.Token)(StringLiteral 135 2),
+                                                                (*lexer.Token)(CloseParenthesis 137 1)
+                                                              }
+                                                            })
+                                                          }
+                                                        })
+                                                      }
+                                                    })
+                                                  }
+                                                }),
+                                                (*lexer.Token)(Comma 138 1)
+                                              }
+                                            }),
+                                            (*lexer.Token)(Whitespace 139 4),
+                                            (*lexer.Token)(CloseBracket 143 1)
+                                          }
+                                        })
+                                      }
+                                    }),
+                                    (*lexer.Token)(Semicolon 144 1)
+                                  }
+                                })
+                              }
+                            }),
+                            (*lexer.Token)(Whitespace 145 3),
+                            (*lexer.Token)(CloseBrace 148 1)
+                          }
+                        })
+                      }
+                    })
+                  }
+                })
+              }
+            }),
+            (*lexer.Token)(Whitespace 149 2),
+            (*lexer.Token)(CloseBrace 151 1)
+          }
+        })
+      }
+    })
+  }
+})
