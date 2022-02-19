@@ -643,6 +643,7 @@ func (doc *Parser) constDeclaration() *phrase.Phrase {
 		isConstElementStartToken,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.Semicolon},
+		false,
 		false))
 
 	doc.expect(lexer.Semicolon)
@@ -1403,16 +1404,40 @@ func (doc *Parser) methodDeclarationHeader(memberModifers *phrase.Phrase) *phras
 	}
 	doc.next(false) //function
 	doc.optional(lexer.Ampersand)
+	t := doc.peek(0)
+	isConstructor := false
+	if t.Length == 11 { // __construct is 11 bytes
+		value := doc.lexerState.GetTokenValue(t)
+		if value[0] == '_' && value[1] == '_' &&
+			(value[2] == 'c' || value[2] == 'C') &&
+			(value[3] == 'o' || value[3] == 'O') &&
+			(value[4] == 'n' || value[4] == 'N') &&
+			(value[5] == 's' || value[5] == 'S') &&
+			(value[6] == 't' || value[6] == 'T') &&
+			(value[7] == 'r' || value[7] == 'R') &&
+			(value[8] == 'u' || value[8] == 'U') &&
+			(value[9] == 'c' || value[9] == 'C') &&
+			(value[10] == 't' || value[10] == 'T') {
+			isConstructor = true
+		}
+	}
 	p.Children = append(p.Children, doc.identifier())
 	doc.expect(lexer.OpenParenthesis)
 
-	if isParameterStart(doc.peek(0)) {
+	elementFunc := doc.parameterDeclaration
+	paramStartFunc := isParameterStart
+	if isConstructor {
+		elementFunc = doc.constructorParameterDeclaration
+		paramStartFunc = isConstructorParameterStart
+	}
+
+	if paramStartFunc(doc.peek(0)) {
 		p.Children = append(p.Children, doc.delimitedList(
 			phrase.ParameterDeclarationList,
-			doc.parameterDeclaration,
-			isParameterStart,
+			elementFunc,
+			paramStartFunc,
 			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseParenthesis}, false))
+			[]lexer.TokenType{lexer.CloseParenthesis}, false, true))
 	}
 
 	doc.expect(lexer.CloseParenthesis)
@@ -1566,7 +1591,7 @@ func (doc *Parser) functionDeclarationHeader() *phrase.Phrase {
 			doc.parameterDeclaration,
 			isParameterStart,
 			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseParenthesis}, false))
+			[]lexer.TokenType{lexer.CloseParenthesis}, false, true))
 	}
 
 	doc.expect(lexer.CloseParenthesis)
@@ -1583,6 +1608,20 @@ func isParameterStart(t *lexer.Token) bool {
 	case lexer.Ampersand,
 		lexer.Ellipsis,
 		lexer.VariableName:
+		return true
+	default:
+		return isTypeDeclarationStart(t)
+	}
+}
+
+func isConstructorParameterStart(t *lexer.Token) bool {
+	switch t.Type {
+	case lexer.Ampersand,
+		lexer.Ellipsis,
+		lexer.VariableName,
+		lexer.Private,
+		lexer.Protected,
+		lexer.Public:
 		return true
 	default:
 		return isTypeDeclarationStart(t)
@@ -1791,7 +1830,7 @@ func (doc *Parser) catchClause() phrase.AstNode {
 		doc.qualifiedName,
 		isQualifiedNameStart,
 		lexer.Bar,
-		[]lexer.TokenType{lexer.VariableName}, false))
+		[]lexer.TokenType{lexer.VariableName}, false, false))
 	doc.expect(lexer.VariableName)
 	doc.expect(lexer.CloseParenthesis)
 	p.Children = append(p.Children, doc.compoundStatement())
@@ -2029,6 +2068,7 @@ func (doc *Parser) variableList(breakOn []lexer.TokenType) *phrase.Phrase {
 		isVariableStart,
 		lexer.Comma,
 		breakOn,
+		false,
 		false)
 }
 
@@ -2056,6 +2096,7 @@ func (doc *Parser) echoIntrinsic() *phrase.Phrase {
 		isExpressionStart,
 		lexer.Comma,
 		nil,
+		false,
 		false))
 	doc.expect(lexer.Semicolon)
 
@@ -2071,6 +2112,7 @@ func (doc *Parser) functionStaticDeclaration() *phrase.Phrase {
 		func(t *lexer.Token) bool { return t.Type == lexer.VariableName },
 		lexer.Comma,
 		[]lexer.TokenType{lexer.Semicolon},
+		false,
 		false))
 
 	doc.expect(lexer.Semicolon)
@@ -2087,6 +2129,7 @@ func (doc *Parser) globalDeclaration() *phrase.Phrase {
 		isSimpleVariableStart,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.Semicolon},
+		false,
 		false))
 	doc.expect(lexer.Semicolon)
 
@@ -2164,6 +2207,7 @@ func (doc *Parser) forExpressionGroup(
 		isExpressionStart,
 		lexer.Comma,
 		breakOn,
+		false,
 		false)
 }
 
@@ -2381,6 +2425,7 @@ func (doc *Parser) classConstDeclaration(p *phrase.Phrase) *phrase.Phrase {
 		isClassConstElementStartToken,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.Semicolon},
+		false,
 		false))
 
 	doc.expect(lexer.Semicolon)
@@ -2471,6 +2516,7 @@ func (doc *Parser) propertyDeclaration(p *phrase.Phrase) *phrase.Phrase {
 		isPropertyElementStart,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.Semicolon},
+		false,
 		false))
 	doc.expect(lexer.Semicolon)
 
@@ -2528,6 +2574,7 @@ func (doc *Parser) qualifiedNameList(breakOn []lexer.TokenType) *phrase.Phrase {
 		isQualifiedNameStart,
 		lexer.Comma,
 		breakOn,
+		false,
 		false)
 }
 
@@ -2667,6 +2714,7 @@ func (doc *Parser) anonymousFunctionHeader() *phrase.Phrase {
 			isParameterStart,
 			lexer.Comma,
 			[]lexer.TokenType{lexer.CloseParenthesis},
+			false,
 			false))
 	}
 
@@ -2708,6 +2756,7 @@ func (doc *Parser) anonymousFunctionUseClause() *phrase.Phrase {
 		isAnonymousFunctionUseVariableStart,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.CloseParenthesis},
+		false,
 		false))
 	doc.expect(lexer.CloseParenthesis)
 
@@ -2744,6 +2793,7 @@ func (doc *Parser) arrowFunctionHeader() *phrase.Phrase {
 			isParameterStart,
 			lexer.Comma,
 			[]lexer.TokenType{lexer.CloseParenthesis},
+			false,
 			false))
 	}
 
@@ -2770,6 +2820,7 @@ func (doc *Parser) arrowFunctionUseClause() *phrase.Phrase {
 		isAnonymousFunctionUseVariableStart,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.CloseParenthesis},
+		false,
 		false))
 	doc.expect(lexer.CloseParenthesis)
 
@@ -2800,6 +2851,31 @@ func isTypeDeclarationStart(t *lexer.Token) bool {
 
 func (doc *Parser) parameterDeclaration() phrase.AstNode {
 	p := doc.start(phrase.ParameterDeclaration, false)
+
+	if isTypeDeclarationStart(doc.peek(0)) {
+		p.Children = append(p.Children, doc.typeDeclaration())
+	}
+
+	doc.optional(lexer.Ampersand)
+	doc.optional(lexer.Ellipsis)
+	doc.expect(lexer.VariableName)
+
+	if doc.peek(0).Type == lexer.Equals {
+		doc.next(false)
+		p.Children = append(p.Children, doc.expression(0))
+	}
+
+	return doc.end()
+}
+
+func (doc *Parser) constructorParameterDeclaration() phrase.AstNode {
+	p := doc.start(phrase.ParameterDeclaration, false)
+
+	doc.optionalOneOf([]lexer.TokenType{
+		lexer.Private,
+		lexer.Protected,
+		lexer.Public,
+	})
 
 	if isTypeDeclarationStart(doc.peek(0)) {
 		p.Children = append(p.Children, doc.typeDeclaration())
@@ -2985,7 +3061,8 @@ func (doc *Parser) argumentList() *phrase.Phrase {
 			isArgumentStart,
 			lexer.Comma,
 			[]lexer.TokenType{lexer.CloseParenthesis},
-			false)
+			false,
+			true)
 	} else {
 		p = doc.start(phrase.ArgumentExpressionList, false)
 		doc.end()
@@ -3252,6 +3329,7 @@ func (doc *Parser) namespaceUseDeclaration() *phrase.Phrase {
 			isNamespaceUseGroupClauseStartToken,
 			lexer.Comma,
 			[]lexer.TokenType{lexer.CloseBrace},
+			false,
 			false))
 		doc.expect(lexer.CloseBrace)
 		doc.expect(lexer.Semicolon)
@@ -3265,7 +3343,8 @@ func (doc *Parser) namespaceUseDeclaration() *phrase.Phrase {
 		isNamespaceUseClauseStartToken,
 		lexer.Comma,
 		[]lexer.TokenType{lexer.Semicolon},
-		true))
+		true,
+		false))
 
 	doc.expect(lexer.Semicolon)
 
@@ -3302,7 +3381,8 @@ func (doc *Parser) delimitedList(
 	elementStartPredicate func(*lexer.Token) bool,
 	delimiter lexer.TokenType,
 	breakOn []lexer.TokenType,
-	doNotPushHiddenToParent bool) *phrase.Phrase {
+	doNotPushHiddenToParent bool,
+	allowOptionalEndingDelimiter bool) *phrase.Phrase {
 
 	p := doc.start(phraseType, doNotPushHiddenToParent)
 	var t *lexer.Token
@@ -3316,13 +3396,19 @@ func (doc *Parser) delimitedList(
 
 	delimitedListRecoverSet = append(delimitedListRecoverSet, delimiter)
 	doc.recoverSetStack = append(doc.recoverSetStack, delimitedListRecoverSet)
+	maybeEnd := false
 
 	for {
-		p.Children = append(p.Children, elementFunction())
+		if !(allowOptionalEndingDelimiter && maybeEnd) {
+			p.Children = append(p.Children, elementFunction())
+		}
 		t = doc.peek(0)
 
 		if t.Type == delimiter {
 			doc.next(false)
+			if breakOn == nil || tokenTypeIndexOf(breakOn, doc.peek(0).Type) >= 0 {
+				maybeEnd = true
+			}
 		} else if breakOn == nil || tokenTypeIndexOf(breakOn, t.Type) >= 0 {
 			break
 		} else {

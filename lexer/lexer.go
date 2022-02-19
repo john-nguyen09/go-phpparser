@@ -33,6 +33,7 @@ func decodeAll(bs []byte) ([]rune, []uint8) {
 type Lexer struct {
 	offset                   int
 	nextOffset               int
+	sourceBytes              []byte
 	source                   []rune
 	sourceSizes              []uint8
 	modeStack                []LexerMode
@@ -50,6 +51,7 @@ func NewLexer(source []byte, modeStack []LexerMode, offset int) *Lexer {
 	lexer := &Lexer{
 		offset:                   offset,
 		nextOffset:               offset,
+		sourceBytes:              source,
 		source:                   runes,
 		sourceSizes:              sizes,
 		modeStack:                modeStack,
@@ -1468,6 +1470,11 @@ func (s *Lexer) lookingForVarName() *Token {
 	}
 	s.modeStack[len(s.modeStack)-1] = ModeScripting
 	return nil
+}
+
+// GetTokenValue returns the []rune of the token source code
+func (s *Lexer) GetTokenValue(t *Token) []rune {
+	return []rune(string(s.sourceBytes[t.Offset : t.Offset+t.Length]))
 }
 
 func isLabelStart(cp rune) bool {

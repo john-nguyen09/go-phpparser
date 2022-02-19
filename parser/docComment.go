@@ -239,7 +239,7 @@ func (doc *Parser) methodTag(p *phrase.Phrase) {
 			doc.docCommentParameterDeclaration,
 			isParameterStart,
 			lexer.Comma,
-			[]lexer.TokenType{lexer.CloseParenthesis}, false))
+			[]lexer.TokenType{lexer.CloseParenthesis}, false, true))
 	}
 	doc.expect(lexer.CloseParenthesis)
 	desc := doc.docCommentDescription()
