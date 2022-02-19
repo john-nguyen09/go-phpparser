@@ -3053,7 +3053,7 @@ func (doc *Parser) longArrayCreationExpression() *phrase.Phrase {
 }
 
 func isArrayElementStart(t *lexer.Token) bool {
-	return t.Type == lexer.Ampersand || isExpressionStart(t)
+	return t.Type == lexer.Ampersand || isExpressionStart(t) || t.Type == lexer.Ellipsis
 }
 
 func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase {
@@ -3108,7 +3108,7 @@ func (doc *Parser) arrayInitialiserList(breakOn lexer.TokenType) *phrase.Phrase 
 
 func (doc *Parser) arrayValue() *phrase.Phrase {
 	p := doc.start(phrase.ArrayValue, false)
-	doc.optional(lexer.Ampersand)
+	doc.optionalOneOf([]lexer.TokenType{lexer.Ampersand, lexer.Ellipsis})
 	p.Children = append(p.Children, doc.expression(0))
 
 	return doc.end()
@@ -3123,8 +3123,9 @@ func (doc *Parser) arrayKey() *phrase.Phrase {
 
 func (doc *Parser) arrayElement() *phrase.Phrase {
 	p := doc.start(phrase.ArrayElement, false)
+	t := doc.peek(0)
 
-	if doc.peek(0).Type == lexer.Ampersand {
+	if t.Type == lexer.Ampersand || t.Type == lexer.Ellipsis {
 		p.Children = append(p.Children, doc.arrayValue())
 
 		return doc.end()

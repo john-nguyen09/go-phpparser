@@ -1,4 +1,4 @@
-([]struct { Type lexer.TokenType; Offset int; Length int }) (len=62) {
+([]struct { Type lexer.TokenType; Offset int; Length int }) (len=57) {
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) OpenTag,
     Offset: (int) 0,
@@ -235,84 +235,59 @@
     Length: (int) 8
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Name,
-    Offset: (int) 160,
-    Length: (int) 6
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 166,
-    Length: (int) 1
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) VariableName,
-    Offset: (int) 167,
-    Length: (int) 2
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Semicolon,
-    Offset: (int) 169,
-    Length: (int) 1
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
-    Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 170,
-    Length: (int) 6
-  },
-  (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Var,
-    Offset: (int) 176,
+    Offset: (int) 160,
     Length: (int) 3
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 179,
+    Offset: (int) 163,
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Name,
-    Offset: (int) 180,
+    Offset: (int) 164,
     Length: (int) 6
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 186,
+    Offset: (int) 170,
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) VariableName,
-    Offset: (int) 187,
+    Offset: (int) 171,
     Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Semicolon,
-    Offset: (int) 189,
+    Offset: (int) 173,
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 190,
+    Offset: (int) 174,
     Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) CloseBrace,
-    Offset: (int) 192,
+    Offset: (int) 176,
     Length: (int) 1
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) Whitespace,
-    Offset: (int) 193,
+    Offset: (int) 177,
     Length: (int) 2
   },
   (struct { Type lexer.TokenType; Offset int; Length int }) {
     Type: (lexer.TokenType) EndOfFile,
-    Offset: (int) 195,
+    Offset: (int) 179,
     Length: (int) 0
   }
 }
 (*phrase.Phrase)({
   Type: (phrase.PhraseType) StatementList,
-  Children: ([]phrase.AstNode) (len=6) {
+  Children: ([]phrase.AstNode) (len=4) {
     (*phrase.Phrase)({
       Type: (phrase.PhraseType) InlineText,
       Children: ([]phrase.AstNode) (len=1) {
@@ -334,12 +309,12 @@
         (*lexer.Token)(Whitespace 18 1),
         (*phrase.Phrase)({
           Type: (phrase.PhraseType) ClassDeclarationBody,
-          Children: ([]phrase.AstNode) (len=3) {
+          Children: ([]phrase.AstNode) (len=5) {
             (*lexer.Token)(OpenBrace 19 1),
             (*lexer.Token)(Whitespace 20 6),
             (*phrase.Phrase)({
               Type: (phrase.PhraseType) ClassMemberDeclarationList,
-              Children: ([]phrase.AstNode) (len=8) {
+              Children: ([]phrase.AstNode) (len=9) {
                 (*phrase.Phrase)({
                   Type: (phrase.PhraseType) PropertyDeclaration,
                   Children: ([]phrase.AstNode) (len=5) {
@@ -502,78 +477,51 @@
                     (*lexer.Token)(Semicolon 151 1)
                   }
                 }),
-                (*phrase.ParseError)({
-                  Phrase: (phrase.Phrase) {
-                    Type: (phrase.PhraseType) Error,
-                    Children: ([]phrase.AstNode) (len=7) {
-                      (*lexer.Token)(Whitespace 152 8),
-                      (*lexer.Token)(Name 160 6),
-                      (*lexer.Token)(Whitespace 166 1),
-                      (*lexer.Token)(VariableName 167 2),
-                      (*lexer.Token)(Whitespace 170 6),
-                      (*lexer.Token)(Var 176 3),
-                      (*lexer.Token)(Whitespace 179 1)
-                    }
-                  },
-                  Unexpected: (*lexer.Token)(Name 160 6),
-                  Expected: (lexer.TokenType) Undefined
+                (*lexer.Token)(Whitespace 152 8),
+                (*phrase.Phrase)({
+                  Type: (phrase.PhraseType) PropertyDeclaration,
+                  Children: ([]phrase.AstNode) (len=6) {
+                    (*lexer.Token)(Var 160 3),
+                    (*lexer.Token)(Whitespace 163 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) TypeDeclaration,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) QualifiedName,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*phrase.Phrase)({
+                              Type: (phrase.PhraseType) NamespaceName,
+                              Children: ([]phrase.AstNode) (len=1) {
+                                (*lexer.Token)(Name 164 6)
+                              }
+                            })
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Whitespace 170 1),
+                    (*phrase.Phrase)({
+                      Type: (phrase.PhraseType) PropertyElementList,
+                      Children: ([]phrase.AstNode) (len=1) {
+                        (*phrase.Phrase)({
+                          Type: (phrase.PhraseType) PropertyElement,
+                          Children: ([]phrase.AstNode) (len=1) {
+                            (*lexer.Token)(VariableName 171 2)
+                          }
+                        })
+                      }
+                    }),
+                    (*lexer.Token)(Semicolon 173 1)
+                  }
                 })
               }
-            })
+            }),
+            (*lexer.Token)(Whitespace 174 2),
+            (*lexer.Token)(CloseBrace 176 1)
           }
         })
       }
     }),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) NullStatement,
-      Children: ([]phrase.AstNode) (len=1) {
-        (*lexer.Token)(Semicolon 169 1)
-      }
-    }),
-    (*phrase.Phrase)({
-      Type: (phrase.PhraseType) ExpressionStatement,
-      Children: ([]phrase.AstNode) (len=3) {
-        (*phrase.Phrase)({
-          Type: (phrase.PhraseType) ConstantAccessExpression,
-          Children: ([]phrase.AstNode) (len=1) {
-            (*phrase.Phrase)({
-              Type: (phrase.PhraseType) QualifiedName,
-              Children: ([]phrase.AstNode) (len=1) {
-                (*phrase.Phrase)({
-                  Type: (phrase.PhraseType) NamespaceName,
-                  Children: ([]phrase.AstNode) (len=1) {
-                    (*lexer.Token)(Name 180 6)
-                  }
-                })
-              }
-            })
-          }
-        }),
-        (*phrase.ParseError)({
-          Phrase: (phrase.Phrase) {
-            Type: (phrase.PhraseType) Error,
-            Children: ([]phrase.AstNode) (len=2) {
-              (*lexer.Token)(Whitespace 186 1),
-              (*lexer.Token)(VariableName 187 2)
-            }
-          },
-          Unexpected: (*lexer.Token)(VariableName 187 2),
-          Expected: (lexer.TokenType) Semicolon
-        }),
-        (*lexer.Token)(Semicolon 189 1)
-      }
-    }),
-    (*phrase.ParseError)({
-      Phrase: (phrase.Phrase) {
-        Type: (phrase.PhraseType) Error,
-        Children: ([]phrase.AstNode) (len=3) {
-          (*lexer.Token)(Whitespace 190 2),
-          (*lexer.Token)(CloseBrace 192 1),
-          (*lexer.Token)(Whitespace 193 2)
-        }
-      },
-      Unexpected: (*lexer.Token)(CloseBrace 192 1),
-      Expected: (lexer.TokenType) Undefined
-    })
+    (*lexer.Token)(Whitespace 177 2)
   }
 })
