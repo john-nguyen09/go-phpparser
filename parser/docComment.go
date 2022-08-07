@@ -51,7 +51,7 @@ func (doc *Parser) docCommentDescription() *phrase.Phrase {
 			doc.next(false)
 			break
 		}
-		if t.Type == lexer.DocumentCommentEnd {
+		if t.Type == lexer.DocumentCommentEnd || t.Type == lexer.EndOfFile {
 			break
 		}
 		doc.next(false)

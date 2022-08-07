@@ -96,14 +96,14 @@ func (s *Lexer) scriptingDocumentBlockLabel() *Token {
 		}
 		return NewToken(s.pool, Name, start, s.offset-start)
 	}
-	if isDocCommentText(c) {
-		for ; isDocCommentText(s.r) && s.r != '[' && s.r != '|' &&
+	if isDocCommentText(c, s.r) {
+		for ; isDocCommentText(s.r, s.peek(1)) && s.r != '[' && s.r != '|' &&
 			s.r != '/' && s.r != '\\' &&
 			s.r != '<' && s.r != '>' && s.r != '(' && s.r != ')'; s.step() {
 		}
 		return NewToken(s.pool, DocumentCommentText, start, s.offset-start)
 	}
-	for ; !isDocCommentText(s.r); s.step() {
+	for ; !isDocCommentText(s.r, s.peek(1)); s.step() {
 	}
 	return NewToken(s.pool, DocumentCommentUnknown, start, s.offset-start)
 }
@@ -148,6 +148,9 @@ func (s *Lexer) docBlockTagName() *Token {
 	return NewToken(s.pool, tokenType, start, s.offset-start)
 }
 
-func isDocCommentText(cp rune) bool {
+func isDocCommentText(cp, next rune) bool {
+	if cp == '*' && next == '/' {
+		return false
+	}
 	return (cp >= '!' && cp <= '~') || cp >= utf8.RuneSelf
 }
